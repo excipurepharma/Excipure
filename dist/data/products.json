@@ -1,0 +1,172 @@
+[
+  {
+    "id": "11",
+    "name": "Tejesh",
+    "category": "Excipients",
+    "image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1576091160550-217359f42f8c?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1587854692132-47167a7b82fe?q=80&w=800&auto=format&fit=crop"
+    ],
+    "description": "Premium tablet binder and diluent. Excellent compressibility for solid dosage forms. Bulk 25kg drums.",
+    "price": 450.0,
+    "originalPrice": 520.0,
+    "stock": 1000,
+    "whatsappNumber": "919398453760",
+    "email": "excipurepharma@gmail.com"
+  },
+  {
+    "id": "12",
+    "name": "Sodium Starch Glycolate",
+    "category": "Excipients",
+    "image": "https://images.unsplash.com/photo-1576091160550-217359f42f8c?q=80&w=800&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1576091160550-217359f42f8c?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1587854692132-47167a7b82fe?q=80&w=800&auto=format&fit=crop"
+    ],
+    "description": "High-efficiency disintegrant with rapid swelling properties. Ideal for fast-release tablets.",
+    "price": 380.0,
+    "originalPrice": 450.0,
+    "stock": 800,
+    "whatsappNumber": "919398453760",
+    "email": "excipurepharma@gmail.com"
+  },
+  {
+    "id": "13",
+    "name": "Ethanol 99.9% (Absolute)",
+    "category": "Solvents",
+    "image": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop"
+    ],
+    "description": "High purity pharmaceutical grade ethanol. Used as a solvent in various extraction processes.",
+    "price": 2500.0,
+    "originalPrice": 2800.0,
+    "stock": 500,
+    "whatsappNumber": "919398453760",
+    "email": "excipurepharma@gmail.com"
+  },
+  {
+    "id": "14",
+    "name": "Isopropyl Alcohol (IPA)",
+    "category": "Solvents",
+    "image": "https://images.unsplash.com/photo-1583947215259-38e31be8751f?q=80&w=800&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1583947215259-38e31be8751f?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1584017646549-d7ee6be68953?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1584017725350-04ac787cc835?q=80&w=800&auto=format&fit=crop"
+    ],
+    "description": "Pharmaceutical grade Isopropyl Alcohol. Bulk 200L drums available for manufacturing.",
+    "price": 1800.0,
+    "originalPrice": 2100.0,
+    "stock": 300,
+    "whatsappNumber": "919398453760",
+    "email": "excipurepharma@gmail.com"
+  },
+  {
+    "id": "15",
+    "name": "Vitamin C (Ascorbic Acid)",
+    "category": "Vitamins",
+    "image": "https://images.unsplash.com/photo-1471864190281-ad5fe9ac5722?q=80&w=800&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1471864190281-ad5fe9ac5722?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1616671285410-09680bf7d594?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1628771065518-0d82f1938462?q=80&w=800&auto=format&fit=crop"
+    ],
+    "description": "Pure Ascorbic Acid powder. High stability for nutraceutical and pharmaceutical formulations.",
+    "price": 950.0,
+    "originalPrice": 1100.0,
+    "stock": 1200,
+    "whatsappNumber": "919398453760",
+    "email": "excipurepharma@gmail.com"
+  },
+  {
+    "id": "16",
+    "name": "Vitamin B12 (Cyanocobalamin)",
+    "category": "Vitamins",
+    "image": "https://images.unsplash.com/photo-1628771065518-0d82f1938462?q=80&w=800&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1628771065518-0d82f1938462?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1584017646549-d7ee6be68953?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1540340334550-639112297fa1?q=80&w=800&auto=format&fit=crop"
+    ],
+    "description": "Micronized B12 powder for easy incorporation. Certified USP/IP grade.",
+    "price": 4500.0,
+    "originalPrice": 5200.0,
+    "stock": 150,
+    "whatsappNumber": "919398453760",
+    "email": "excipurepharma@gmail.com"
+  },
+  {
+    "id": "25",
+    "name": "Tartrazine (E102) - IP Grade",
+    "category": "Colours",
+    "image": "https://images.unsplash.com/photo-1502733742413-93a7f53ca299?q=80&w=800&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1502733742413-93a7f53ca299?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1505232987216-2fd93781d43a?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1464226184884-fa280b87c399?q=80&w=800&auto=format&fit=crop"
+    ],
+    "description": "Water soluble bright lemon yellow shade for pharmaceutical coatings and syrups.",
+    "price": 450.0,
+    "originalPrice": 550.0,
+    "stock": 300,
+    "whatsappNumber": "919398453760",
+    "email": "excipurepharma@gmail.com"
+  },
+  {
+    "id": "26",
+    "name": "Sunset Yellow FCF (E110)",
+    "category": "Colours",
+    "image": "https://images.unsplash.com/photo-1505232987216-2fd93781d43a?q=80&w=800&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1505232987216-2fd93781d43a?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1502733742413-93a7f53ca299?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1464226184884-fa280b87c399?q=80&w=800&auto=format&fit=crop"
+    ],
+    "description": "Water soluble orange-yellow shade for pharmaceutical aesthetics. High purity.",
+    "price": 480.0,
+    "originalPrice": 580.0,
+    "stock": 250,
+    "whatsappNumber": "919398453760",
+    "email": "excipurepharma@gmail.com"
+  },
+  {
+    "id": "31",
+    "name": "Aloe Vera Gel Powder (200X)",
+    "category": "Specialty",
+    "image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=800&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1563172513-882ad5103a27?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1550948390-6eb7fa773072?q=80&w=800&auto=format&fit=crop"
+    ],
+    "description": "Concentrated 200X spray-dried aloe vera powder. Cosmetic and nutraceutical grade.",
+    "price": 1250.0,
+    "originalPrice": 1600.0,
+    "stock": 100,
+    "whatsappNumber": "919398453760",
+    "email": "excipurepharma@gmail.com"
+  },
+  {
+    "id": "32",
+    "name": "Magnesium Stearate",
+    "category": "Excipients",
+    "image": "https://images.unsplash.com/photo-1579349032044-6725227d8906?q=80&w=800&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1579349032044-6725227d8906?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1576091160550-217359f42f8c?q=80&w=800&auto=format&fit=crop"
+    ],
+    "description": "Premium lubrication agent for high-speed tablet compression machinery.",
+    "price": 320.0,
+    "originalPrice": 380.0,
+    "stock": 2000,
+    "whatsappNumber": "919398453760",
+    "email": "excipurepharma@gmail.com"
+  }
+]
