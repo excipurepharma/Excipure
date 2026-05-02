@@ -1,7 +1,7 @@
 [
   {
     "id": "11",
-    "name": "Tejesh",
+    "name": "MCC (Microcrystalline Cellulose)",
     "category": "Excipients",
     "image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800&auto=format&fit=crop",
     "images": [
@@ -20,11 +20,11 @@
     "id": "12",
     "name": "Sodium Starch Glycolate",
     "category": "Excipients",
-    "image": "https://images.unsplash.com/photo-1576091160550-217359f42f8c?q=80&w=800&auto=format&fit=crop",
+    "image": "/images/product-12.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1576091160550-217359f42f8c?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1587854692132-47167a7b82fe?q=80&w=800&auto=format&fit=crop"
+      "/images/product-12-1.jpg",
+      "/images/product-12-2.jpg",
+      "/images/product-12-3.jpg"
     ],
     "description": "High-efficiency disintegrant with rapid swelling properties. Ideal for fast-release tablets.",
     "price": 380.0,
@@ -37,11 +37,11 @@
     "id": "13",
     "name": "Ethanol 99.9% (Absolute)",
     "category": "Solvents",
-    "image": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop",
+    "image": "/images/product-13.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop"
+      "/images/product-13-1.jpg",
+      "/images/product-13-2.jpg",
+      "/images/product-13-3.jpg"
     ],
     "description": "High purity pharmaceutical grade ethanol. Used as a solvent in various extraction processes.",
     "price": 2500.0,
@@ -54,11 +54,11 @@
     "id": "14",
     "name": "Isopropyl Alcohol (IPA)",
     "category": "Solvents",
-    "image": "https://images.unsplash.com/photo-1583947215259-38e31be8751f?q=80&w=800&auto=format&fit=crop",
+    "image": "/images/product-14.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1583947215259-38e31be8751f?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1584017646549-d7ee6be68953?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1584017725350-04ac787cc835?q=80&w=800&auto=format&fit=crop"
+      "/images/product-14-1.jpg",
+      "/images/product-14-2.jpg",
+      "/images/product-14-3.jpg"
     ],
     "description": "Pharmaceutical grade Isopropyl Alcohol. Bulk 200L drums available for manufacturing.",
     "price": 1800.0,
@@ -71,11 +71,11 @@
     "id": "15",
     "name": "Vitamin C (Ascorbic Acid)",
     "category": "Vitamins",
-    "image": "https://images.unsplash.com/photo-1471864190281-ad5fe9ac5722?q=80&w=800&auto=format&fit=crop",
+    "image": "/images/product-15.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1471864190281-ad5fe9ac5722?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1616671285410-09680bf7d594?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1628771065518-0d82f1938462?q=80&w=800&auto=format&fit=crop"
+      "/images/product-15-1.jpg",
+      "/images/product-15-2.jpg",
+      "/images/product-15-3.jpg"
     ],
     "description": "Pure Ascorbic Acid powder. High stability for nutraceutical and pharmaceutical formulations.",
     "price": 950.0,
@@ -88,11 +88,11 @@
     "id": "16",
     "name": "Vitamin B12 (Cyanocobalamin)",
     "category": "Vitamins",
-    "image": "https://images.unsplash.com/photo-1628771065518-0d82f1938462?q=80&w=800&auto=format&fit=crop",
+    "image": "/images/product-16.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1628771065518-0d82f1938462?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1584017646549-d7ee6be68953?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1540340334550-639112297fa1?q=80&w=800&auto=format&fit=crop"
+      "/images/product-16-1.jpg",
+      "/images/product-16-2.jpg",
+      "/images/product-16-3.jpg"
     ],
     "description": "Micronized B12 powder for easy incorporation. Certified USP/IP grade.",
     "price": 4500.0,
@@ -105,11 +105,11 @@
     "id": "25",
     "name": "Tartrazine (E102) - IP Grade",
     "category": "Colours",
-    "image": "https://images.unsplash.com/photo-1502733742413-93a7f53ca299?q=80&w=800&auto=format&fit=crop",
+    "image": "/images/product-25.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1502733742413-93a7f53ca299?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1505232987216-2fd93781d43a?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1464226184884-fa280b87c399?q=80&w=800&auto=format&fit=crop"
+      "/images/product-25-1.jpg",
+      "/images/product-25-2.jpg",
+      "/images/product-25-3.jpg"
     ],
     "description": "Water soluble bright lemon yellow shade for pharmaceutical coatings and syrups.",
     "price": 450.0,
@@ -122,11 +122,11 @@
     "id": "26",
     "name": "Sunset Yellow FCF (E110)",
     "category": "Colours",
-    "image": "https://images.unsplash.com/photo-1505232987216-2fd93781d43a?q=80&w=800&auto=format&fit=crop",
+    "image": "/images/product-26.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1505232987216-2fd93781d43a?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1502733742413-93a7f53ca299?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1464226184884-fa280b87c399?q=80&w=800&auto=format&fit=crop"
+      "/images/product-26-1.jpg",
+      "/images/product-26-2.jpg",
+      "/images/product-26-3.jpg"
     ],
     "description": "Water soluble orange-yellow shade for pharmaceutical aesthetics. High purity.",
     "price": 480.0,
@@ -139,11 +139,11 @@
     "id": "31",
     "name": "Aloe Vera Gel Powder (200X)",
     "category": "Specialty",
-    "image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=800&auto=format&fit=crop",
+    "image": "/images/product-31.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1563172513-882ad5103a27?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1550948390-6eb7fa773072?q=80&w=800&auto=format&fit=crop"
+      "/images/product-31-1.jpg",
+      "/images/product-31-2.jpg",
+      "/images/product-31-3.jpg"
     ],
     "description": "Concentrated 200X spray-dried aloe vera powder. Cosmetic and nutraceutical grade.",
     "price": 1250.0,
@@ -156,11 +156,11 @@
     "id": "32",
     "name": "Magnesium Stearate",
     "category": "Excipients",
-    "image": "https://images.unsplash.com/photo-1579349032044-6725227d8906?q=80&w=800&auto=format&fit=crop",
+    "image": "/images/product-32.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1579349032044-6725227d8906?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1576091160550-217359f42f8c?q=80&w=800&auto=format&fit=crop"
+      "/images/product-32-1.jpg",
+      "/images/product-32-2.jpg",
+      "/images/product-32-3.jpg"
     ],
     "description": "Premium lubrication agent for high-speed tablet compression machinery.",
     "price": 320.0,
