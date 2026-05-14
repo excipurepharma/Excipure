@@ -1,0 +1,172 @@
+[
+  {
+    "id": "11",
+    "name": "MCC (Microcrystalline Cellulose)",
+    "category": "Excipients",
+    "image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1576091160550-217359f42f8c?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1587854692132-47167a7b82fe?q=80&w=800&auto=format&fit=crop"
+    ],
+    "description": "Premium tablet binder and diluent. Excellent compressibility for solid dosage forms. Bulk 25kg drums.",
+    "price": 450.0,
+    "originalPrice": 520.0,
+    "stock": 1000,
+    "whatsappNumber": "919398453760",
+    "email": "info@excipurepharma.com"
+  },
+  {
+    "id": "12",
+    "name": "Sodium Starch Glycolate",
+    "category": "Excipients",
+    "image": "/images/product-12.jpg",
+    "images": [
+      "/images/product-12-1.jpg",
+      "/images/product-12-2.jpg",
+      "/images/product-12-3.jpg"
+    ],
+    "description": "High-efficiency disintegrant with rapid swelling properties. Ideal for fast-release tablets.",
+    "price": 380.0,
+    "originalPrice": 450.0,
+    "stock": 800,
+    "whatsappNumber": "919398453760",
+    "email": "info@excipurepharma.com"
+  },
+  {
+    "id": "13",
+    "name": "Ethanol 99.9% (Absolute)",
+    "category": "Solvents",
+    "image": "/images/product-13.jpg",
+    "images": [
+      "/images/product-13-1.jpg",
+      "/images/product-13-2.jpg",
+      "/images/product-13-3.jpg"
+    ],
+    "description": "High purity pharmaceutical grade ethanol. Used as a solvent in various extraction processes.",
+    "price": 2500.0,
+    "originalPrice": 2800.0,
+    "stock": 500,
+    "whatsappNumber": "919398453760",
+    "email": "info@excipurepharma.com"
+  },
+  {
+    "id": "14",
+    "name": "Isopropyl Alcohol (IPA)",
+    "category": "Solvents",
+    "image": "/images/product-14.jpg",
+    "images": [
+      "/images/product-14-1.jpg",
+      "/images/product-14-2.jpg",
+      "/images/product-14-3.jpg"
+    ],
+    "description": "Pharmaceutical grade Isopropyl Alcohol. Bulk 200L drums available for manufacturing.",
+    "price": 1800.0,
+    "originalPrice": 2100.0,
+    "stock": 300,
+    "whatsappNumber": "919398453760",
+    "email": "info@excipurepharma.com"
+  },
+  {
+    "id": "15",
+    "name": "Vitamin C (Ascorbic Acid)",
+    "category": "Vitamins",
+    "image": "/images/product-15.jpg",
+    "images": [
+      "/images/product-15-1.jpg",
+      "/images/product-15-2.jpg",
+      "/images/product-15-3.jpg"
+    ],
+    "description": "Pure Ascorbic Acid powder. High stability for nutraceutical and pharmaceutical formulations.",
+    "price": 950.0,
+    "originalPrice": 1100.0,
+    "stock": 1200,
+    "whatsappNumber": "919398453760",
+    "email": "info@excipurepharma.com"
+  },
+  {
+    "id": "16",
+    "name": "Vitamin B12 (Cyanocobalamin)",
+    "category": "Vitamins",
+    "image": "/images/product-16.jpg",
+    "images": [
+      "/images/product-16-1.jpg",
+      "/images/product-16-2.jpg",
+      "/images/product-16-3.jpg"
+    ],
+    "description": "Micronized B12 powder for easy incorporation. Certified USP/IP grade.",
+    "price": 4500.0,
+    "originalPrice": 5200.0,
+    "stock": 150,
+    "whatsappNumber": "919398453760",
+    "email": "info@excipurepharma.com"
+  },
+  {
+    "id": "25",
+    "name": "Tartrazine (E102) - IP Grade",
+    "category": "Colours",
+    "image": "/images/product-25.jpg",
+    "images": [
+      "/images/product-25-1.jpg",
+      "/images/product-25-2.jpg",
+      "/images/product-25-3.jpg"
+    ],
+    "description": "Water soluble bright lemon yellow shade for pharmaceutical coatings and syrups.",
+    "price": 450.0,
+    "originalPrice": 550.0,
+    "stock": 300,
+    "whatsappNumber": "919398453760",
+    "email": "info@excipurepharma.com"
+  },
+  {
+    "id": "26",
+    "name": "Sunset Yellow FCF (E110)",
+    "category": "Colours",
+    "image": "/images/product-26.jpg",
+    "images": [
+      "/images/product-26-1.jpg",
+      "/images/product-26-2.jpg",
+      "/images/product-26-3.jpg"
+    ],
+    "description": "Water soluble orange-yellow shade for pharmaceutical aesthetics. High purity.",
+    "price": 480.0,
+    "originalPrice": 580.0,
+    "stock": 250,
+    "whatsappNumber": "919398453760",
+    "email": "info@excipurepharma.com"
+  },
+  {
+    "id": "31",
+    "name": "Aloe Vera Gel Powder (200X)",
+    "category": "Specialty",
+    "image": "/images/product-31.jpg",
+    "images": [
+      "/images/product-31-1.jpg",
+      "/images/product-31-2.jpg",
+      "/images/product-31-3.jpg"
+    ],
+    "description": "Concentrated 200X spray-dried aloe vera powder. Cosmetic and nutraceutical grade.",
+    "price": 1250.0,
+    "originalPrice": 1600.0,
+    "stock": 100,
+    "whatsappNumber": "919398453760",
+    "email": "info@excipurepharma.com"
+  },
+  {
+    "id": "32",
+    "name": "Magnesium Stearate",
+    "category": "Excipients",
+    "image": "/images/product-32.jpg",
+    "images": [
+      "/images/product-32-1.jpg",
+      "/images/product-32-2.jpg",
+      "/images/product-32-3.jpg"
+    ],
+    "description": "Premium lubrication agent for high-speed tablet compression machinery.",
+    "price": 320.0,
+    "originalPrice": 380.0,
+    "stock": 2000,
+    "whatsappNumber": "919398453760",
+    "email": "info@excipurepharma.com"
+  }
+]
