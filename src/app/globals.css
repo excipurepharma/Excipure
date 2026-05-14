@@ -1,9 +1,1 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Add a default body font for that clean pharma look */
-body {
-  @apply bg-gray-50 text-slate-900;
-  font-family: sans-serif;
-}
+@import "tailwindcss";
