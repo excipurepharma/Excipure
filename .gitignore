@@ -1,25 +1,32 @@
+# Dependencies
 node_modules/
-build/
-coverage/
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Next.js Build Output
+/.next/
+/out/
+/build/
+
+# Production
+/build
+/dist
+
+# Misc
 .DS_Store
-*.log
-.env*
-!.env.example
+*.pem
 
-# Source files (don't track in git, only build output)
-src/
-public/
-vite.config.ts
-tsconfig.json
-package.json
-package-lock.json
-README.md
-metadata.json
-.env.example
-.git/
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Keep only build output
-!assets/
-!data/
-!index.html
-!.nojekyll
+# Local env files
+.env*.local
+.env
+
+# Vercel
+.vercel
