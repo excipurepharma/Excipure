@@ -9,32 +9,27 @@ export default function Home() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [filter, setFilter] = useState('All');
 
-  // Filter logic
   const filteredProducts = filter === 'All' 
     ? products 
     : products.filter(p => p.category === filter);
 
-  const categories = ['All', 'Excipients', 'Solvents', 'Others'];
-
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-[#F8FAFC]">
       <Navbar onCartClick={() => setIsCartOpen(true)} />
 
-      <section className="px-6 py-10 text-center">
-        <h1 className="text-4xl font-black text-brand-navy mb-2">EXCIPURE</h1>
-        <p className="text-gray-500">High Quality Pharmaceutical Raw Materials</p>
-      </section>
+      <header className="px-6 py-8">
+        <h1 className="text-3xl font-black text-brand-navy tracking-tight">EXCIPURE</h1>
+        <p className="text-slate-500 text-sm">High Quality Pharmaceutical Raw Materials</p>
+      </header>
 
-      {/* Category Tabs */}
-      <div className="flex justify-center gap-2 mb-8 overflow-x-auto px-6">
-        {categories.map((cat) => (
+      {/* Category Scroller */}
+      <div className="flex gap-2 overflow-x-auto px-6 mb-6 no-scrollbar">
+        {['All', 'Excipients', 'Solvents', 'Others'].map((cat) => (
           <button
             key={cat}
             onClick={() => setFilter(cat)}
-            className={`px-6 py-2 rounded-full text-sm font-bold transition-all ${
-              filter === cat 
-              ? 'bg-brand-navy text-white' 
-              : 'bg-white text-gray-500 border'
+            className={`px-5 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all ${
+              filter === cat ? 'bg-brand-navy text-white' : 'bg-white text-slate-400 border border-slate-100'
             }`}
           >
             {cat}
@@ -42,7 +37,8 @@ export default function Home() {
         ))}
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 pb-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {/* The 2-Column Mobile Grid */}
+      <div className="px-4 pb-24 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
         {filteredProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
