@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Add a default body font for that clean pharma look */
 body {
-  background-color: #f9fafb;
+  @apply bg-gray-50 text-slate-900;
+  font-family: sans-serif;
 }
