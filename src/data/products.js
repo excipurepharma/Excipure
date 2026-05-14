@@ -1,4 +1,4 @@
-export const products =[
+export const products = [
   {
     "id": "11",
     "name": "MCC (Microcrystalline Cellulose)",
