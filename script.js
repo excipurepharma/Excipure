@@ -1,11 +1,13 @@
-// Initialize Lucide Icons
+// 1. INITIALIZE ICONS
 lucide.createIcons();
 
+// 2. IMAGE CATEGORIES (Professional Stock URLs)
 const imgPowder = "https://images.unsplash.com/photo-1587854692152-cbe660dbbb88?q=80&w=800";
 const imgLiquid = "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800";
 const imgCrystals = "https://images.unsplash.com/photo-1576086213369-97a306dca664?q=80&w=800";
 const imgWaxy = "https://images.unsplash.com/photo-1628771065518-0d82f1938462?q=80&w=800";
 
+// 3. PRODUCT DATABASE (All 34 Items)
 const products = [
     { id: 1, name: "Calcium Carbonate", cat: "Excipients", stock: "25 Kg Bag", func: "Diluent", apps: "Supplement, Diluent, Antacid", grade: "IP/BP/USP", mol: "CaCO₃", purity: ">99%", desc: "Fine white powder used as a diluent and calcium supplement.", img: imgCrystals },
     { id: 2, name: "Carbomer (Carbopol)", cat: "Excipients", stock: "Custom", func: "Gelling agent", apps: "Gels, Cosmetics", grade: "IP/USP/BP", mol: "Polyacrylic Acid", purity: "90–100%", desc: "Fluffy powder forming clear gels for topical use.", img: imgWaxy },
@@ -42,28 +44,28 @@ const products = [
     { id: 33, name: "Parabens", cat: "Excipients", stock: "25 Kg Bag", func: "Preservative", apps: "Liquids, Topicals", grade: "USP", mol: "Preservative", purity: ">99%", desc: "Antimicrobial preservative.", img: imgPowder },
     { id: 34, name: "Sodium Benzoate", cat: "Excipients", stock: "25 Kg Bag", func: "Preservative", apps: "Syrups", grade: "USP/IP", mol: "C₇H₅NaO₂", purity: ">99%", desc: "Effective antimicrobial for liquids.", img: imgCrystals }
 ];
+
 let cart = [];
 let userLocation = "";
 
-// 1. Render Products
+// 4. RENDERING LOGIC
 function renderProducts(items) {
     const grid = document.getElementById('product-grid');
+    if (!grid) return;
+    
     grid.innerHTML = items.map(p => `
-        <div class="product-card bg-white rounded-3xl p-4 border border-slate-100 shadow-sm relative overflow-hidden">
-            <div class="absolute top-4 left-4 z-10 space-y-1">
-                <span class="block bg-white/90 backdrop-blur px-2 py-1 rounded-lg text-[10px] font-black text-slate-500 uppercase tracking-tighter">STOCK: ${p.stock}</span>
-                <span class="block bg-green-500 text-white px-2 py-1 rounded-lg text-[10px] font-black uppercase tracking-tighter">10% OFF</span>
+        <div class="product-card bg-white rounded-3xl p-4 border border-slate-100 shadow-sm relative overflow-hidden group">
+            <div class="absolute top-4 left-4 z-10">
+                <span class="block bg-white/90 backdrop-blur px-2 py-1 rounded-lg text-[10px] font-black text-slate-500 uppercase tracking-tighter">${p.stock}</span>
             </div>
             <img src="${p.img}" class="w-full h-48 object-cover rounded-2xl mb-4 bg-slate-50">
             <div class="px-2">
-                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">${p.cat}</p>
-                <h3 class="font-bold text-sm h-10 mb-4">${p.name}</h3>
+                <p class="text-[10px] font-bold text-slate-400 uppercase mb-1">${p.cat}</p>
+                <h3 class="font-bold text-sm h-10 mb-2">${p.name}</h3>
+                <p class="text-[11px] text-slate-500 line-clamp-2 mb-4 italic">${p.func}</p>
                 <div class="flex justify-between items-center">
-                    <div>
-                        <span class="text-[10px] text-slate-400 line-through">₹${(p.price * 1.1).toFixed(0)}</span>
-                        <p class="font-black text-lg">₹${p.price}</p>
-                    </div>
-                    <button onclick="addToCart(${p.id})" class="w-10 h-10 bg-[#004b8d] text-white rounded-full flex items-center justify-center hover:scale-110 transition">
+                    <button onclick="viewDetails(${p.id})" class="text-[11px] font-bold text-[#004b8d] underline uppercase tracking-widest">Specs</button>
+                    <button onclick="addToCart(${p.id})" class="w-10 h-10 bg-[#004b8d] text-white rounded-full flex items-center justify-center hover:bg-[#1a7139] transition">
                         <i data-lucide="plus" class="w-5 h-5"></i>
                     </button>
                 </div>
@@ -73,11 +75,14 @@ function renderProducts(items) {
     lucide.createIcons();
 }
 
-// 2. Filter Logic
+// 5. FILTER LOGIC
 function filterProducts(category) {
     const btns = document.querySelectorAll('.filter-btn');
     btns.forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
+    
+    // Find the button that was clicked
+    const clickedBtn = Array.from(btns).find(btn => btn.innerText.includes(category));
+    if (clickedBtn) clickedBtn.classList.add('active');
 
     if (category === 'All') {
         renderProducts(products);
@@ -87,19 +92,41 @@ function filterProducts(category) {
     }
 }
 
-// 3. Cart Logic
+// 6. MODAL & DETAILS LOGIC
+function viewDetails(id) {
+    const p = products.find(item => item.id === id);
+    if (!p) return;
+
+    document.getElementById('modal-title').innerText = p.name;
+    document.getElementById('modal-desc').innerText = p.desc;
+    document.getElementById('modal-func').innerText = p.func;
+    document.getElementById('modal-grade').innerText = p.grade;
+    document.getElementById('modal-mol').innerText = p.mol;
+    document.getElementById('modal-purity').innerText = p.purity;
+    
+    const appContainer = document.getElementById('modal-apps');
+    appContainer.innerHTML = p.apps.split(',').map(app => 
+        `<span class="px-3 py-1 bg-blue-50 text-[#004b8d] text-[10px] font-bold rounded-full uppercase border border-blue-100">${app.trim()}</span>`
+    ).join('');
+
+    document.getElementById('modal-add-btn').onclick = () => { addToCart(p.id); closeDetails(); };
+    document.getElementById('details-modal').classList.remove('hidden');
+    lucide.createIcons();
+}
+
+function closeDetails() {
+    document.getElementById('details-modal').classList.add('hidden');
+}
+
+// 7. CART & CHECKOUT LOGIC
 function addToCart(id) {
     const item = products.find(p => p.id === id);
     const inCart = cart.find(c => c.id === id);
-    if (inCart) {
-        inCart.qty++;
-    } else {
-        cart.push({...item, qty: 1});
-    }
+    if (inCart) { inCart.qty++; } else { cart.push({...item, qty: 1}); }
     updateCartUI();
-    // Tiny alert
+    
     const toast = document.createElement('div');
-    toast.className = "fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-6 py-3 rounded-full z-[100] text-sm font-bold shadow-2xl";
+    toast.className = "fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-6 py-3 rounded-full z-[100] text-sm font-bold shadow-2xl animate-bounce";
     toast.innerText = `${item.name} added to cart`;
     document.body.appendChild(toast);
     setTimeout(() => toast.remove(), 2000);
@@ -115,13 +142,13 @@ function updateCartUI() {
     count.innerText = cart.reduce((acc, c) => acc + c.qty, 0);
 
     list.innerHTML = cart.map(c => {
-        total += c.price * c.qty;
+        total += 0; // We keep total 0 as price is hidden/custom
         return `
             <div class="flex items-center gap-4 bg-slate-50 p-3 rounded-2xl">
                 <img src="${c.img}" class="w-16 h-16 object-cover rounded-xl bg-white">
                 <div class="flex-1">
                     <h4 class="text-xs font-bold">${c.name}</h4>
-                    <p class="text-xs font-black text-[#004b8d]">₹${c.price} x ${c.qty}</p>
+                    <p class="text-xs text-slate-500">${c.stock}</p>
                 </div>
                 <div class="flex items-center gap-2">
                     <button onclick="changeQty(${c.id}, -1)" class="w-6 h-6 border rounded-lg">-</button>
@@ -132,8 +159,8 @@ function updateCartUI() {
         `;
     }).join('');
 
-    totalEl.innerText = `₹${total}`;
-    subEl.innerText = `₹${total}`;
+    totalEl.innerText = `Contact for Quote`;
+    subEl.innerText = `—`;
     renderSummary();
 }
 
@@ -151,24 +178,7 @@ function toggleCart() {
     content.classList.toggle('translate-x-full');
 }
 
-// 4. Geolocation
-function getLocation() {
-    const btn = document.getElementById('location-btn');
-    btn.innerHTML = `<i data-lucide="loader" class="animate-spin w-4 h-4"></i> Accessing Location...`;
-    lucide.createIcons();
-
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(pos => {
-            userLocation = `https://www.google.com/maps?q=${pos.coords.latitude},${pos.coords.longitude}`;
-            btn.innerHTML = `<i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Location Shared ✓`;
-            lucide.createIcons();
-        }, () => {
-            btn.innerText = "Location Denied";
-        });
-    }
-}
-
-// 5. Checkout
+// 8. CHECKOUT & WHATSAPP
 function showCheckout() {
     if (cart.length === 0) return alert("Cart is empty!");
     document.getElementById('checkout-modal').classList.remove('hidden');
@@ -181,45 +191,45 @@ function closeCheckout() {
 
 function renderSummary() {
     const list = document.getElementById('summary-items');
-    let total = 0;
-    list.innerHTML = cart.map(c => {
-        total += c.price * c.qty;
-        return `<div class="flex justify-between text-sm"><span>${c.name} x${c.qty}</span><span class="font-bold">₹${c.price * c.qty}</span></div>`;
-    }).join('');
-    document.getElementById('summ-subtotal').innerText = `₹${total}`;
-    document.getElementById('summ-total').innerText = `₹${total}`;
+    list.innerHTML = cart.map(c => `
+        <div class="flex justify-between text-sm">
+            <span>${c.name} x${c.qty}</span>
+            <span class="font-bold text-slate-400">${c.stock}</span>
+        </div>
+    `).join('');
 }
 
-// 6. Submit Order to WhatsApp/Email
-function submitOrder(method) {
-    const name = document.getElementById('cust-name').value;
-    const phone = document.getElementById('cust-phone').value;
-    const address = document.getElementById('cust-address').value;
-    const city = document.getElementById('cust-city').value;
-    const pin = document.getElementById('cust-pin').value;
+function getLocation() {
+    const btn = document.getElementById('location-btn');
+    btn.innerHTML = `<i data-lucide="loader" class="animate-spin w-4 h-4"></i> Accessing...`;
+    lucide.createIcons();
 
-    if (!name || !phone || !address) return alert("Please fill details");
-
-    let orderText = `*NEW ORDER REQUEST - EXCIPURE PHARMA*\n\n`;
-    orderText += `*CUSTOMER DETAILS:*\nName: ${name}\nPhone: ${phone}\nAddress: ${address}, ${city} - ${pin}\n`;
-    if(userLocation) orderText += `Location: ${userLocation}\n`;
-    
-    orderText += `\n*ORDER SUMMARY:*\n`;
-    cart.forEach(c => {
-        orderText += `- ${c.name} (${c.qty} units) @ ₹${c.price}\n`;
-    });
-    
-    const total = cart.reduce((acc, c) => acc + (c.price * c.qty), 0);
-    orderText += `\n*TOTAL AMOUNT: ₹${total}*`;
-
-    if (method === 'whatsapp') {
-        const url = `https://wa.me/919398453760?text=${encodeURIComponent(orderText)}`;
-        window.open(url, '_blank');
-    } else {
-        const mailUrl = `mailto:excipurepharma@gmail.com?subject=New Order from ${name}&body=${encodeURIComponent(orderText)}`;
-        window.location.href = mailUrl;
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(pos => {
+            userLocation = `https://www.google.com/maps?q=${pos.coords.latitude},${pos.coords.longitude}`;
+            btn.innerHTML = `<i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Location Linked`;
+            lucide.createIcons();
+        }, () => { btn.innerText = "Location Denied"; });
     }
 }
 
-// Initial Run
+function submitOrder(method) {
+    const name = document.getElementById('cust-name').value;
+    const phone = document.getElementById('cust-phone').value;
+    if (!name || !phone) return alert("Please enter Name and Phone");
+
+    let orderText = `*NEW INQUIRY - EXCIPURE PHARMA*\n\n`;
+    orderText += `*Customer:* ${name}\n*Phone:* ${phone}\n`;
+    if(userLocation) orderText += `*Location:* ${userLocation}\n`;
+    orderText += `\n*ITEMS REQUESTED:*\n`;
+    cart.forEach(c => { orderText += `- ${c.name} (Qty: ${c.qty}) [${c.stock}]\n`; });
+
+    if (method === 'whatsapp') {
+        window.open(`https://wa.me/919398453760?text=${encodeURIComponent(orderText)}`, '_blank');
+    } else {
+        window.location.href = `mailto:excipurepharma@gmail.com?subject=New Order Inquiry from ${name}&body=${encodeURIComponent(orderText)}`;
+    }
+}
+
+// 9. STARTUP
 renderProducts(products);
