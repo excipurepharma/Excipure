@@ -1,0 +1,24 @@
+/* Custom Styles */
+.filter-btn {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+.filter-btn.active {
+    background: #004b8d;
+    color: white;
+}
+
+#product-grid .product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#product-grid .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+}
+
+/* Modal and Cart transitions */
+.translate-x-full { transform: translateX(100%); }
+.translate-x-0 { transform: translateX(0); }
+.invisible { visibility: hidden; pointer-events: none; }
