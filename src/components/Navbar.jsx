@@ -1,31 +1,35 @@
 "use client";
+import Image from 'next/image';
 import { useCart } from '../context/CartContext';
-import { ShoppingCart, Menu } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 
 export default function Navbar({ onCartClick }) {
   const { totalItems } = useCart();
 
   return (
-    <nav className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b">
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Brand Logo */}
-        <div className="flex items-center gap-2">
-          <div className="bg-brand-navy p-1.5 rounded-lg">
-             <div className="w-5 h-5 border-2 border-white rounded-sm rotate-45" />
+    <nav className="bg-white shadow-md sticky top-0 z-50">
+      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+        {/* LOGO FIX */}
+        <div className="flex items-center">
+          <img 
+            src="/logo.png" 
+            alt="Excipure Pharma" 
+            className="h-12 w-auto object-contain"
+            onError={(e) => {
+               e.target.style.display='none';
+               document.getElementById('text-logo').style.display='block';
+            }}
+          />
+          <div id="text-logo" className="hidden">
+            <span className="text-xl font-black text-ex-blue">EXCIPURE</span>
           </div>
-          <span className="text-xl font-black text-brand-navy tracking-tighter">
-            EXCIPURE
-          </span>
         </div>
 
-        {/* Cart Icon with Badge */}
-        <button 
-          onClick={onCartClick}
-          className="relative p-2 text-brand-navy hover:bg-gray-100 rounded-full transition-colors"
-        >
-          <ShoppingCart size={24} />
+        {/* CART BUTTON FIX */}
+        <button onClick={onCartClick} className="relative p-2 text-ex-blue">
+          <ShoppingCart size={28} />
           {totalItems > 0 && (
-            <span className="absolute top-0 right-0 bg-brand-green text-white text-[10px] font-bold h-5 w-5 flex items-center justify-center rounded-full border-2 border-white">
+            <span className="absolute top-0 right-0 bg-ex-green text-white text-[10px] font-bold h-5 w-5 flex items-center justify-center rounded-full border-2 border-white">
               {totalItems}
             </span>
           )}
