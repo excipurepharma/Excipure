@@ -3,130 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Excipure Pharma | Wholesale Catalog</title>
+    <title>Excipure Pharma | Professional Wholesale Catalog</title>
+    <!-- External Dependencies -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        .filter-btn { background: #f1f5f9; color: #64748b; transition: all 0.2s; }
-        .filter-btn.active { background: #004b8d; color: white; shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
-        .product-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .product-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); }
-        .translate-x-full { transform: translateX(100%); }
-        .translate-x-0 { transform: translateX(0); }
-        .invisible { visibility: hidden; pointer-events: none; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-[#F8FAFC] text-slate-900 font-sans">
 
-    <!-- NAVIGATION -->
+    <!-- 1. NAVIGATION -->
     <nav class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Brand Logo -->
             <div class="flex items-center gap-2">
+                <img src="images/logo.png" alt="Excipure Logo" class="h-10" onerror="this.style.display='none'">
                 <div class="flex flex-col">
                     <span class="block font-bold text-xl leading-none text-[#004b8d]">EXCIPURE</span>
                     <span class="block text-xs tracking-widest text-[#1a7139] font-bold">PHARMA</span>
                 </div>
             </div>
-            <button onclick="toggleCart()" class="relative p-2 bg-slate-100 rounded-full hover:bg-slate-200 transition">
-                <i data-lucide="shopping-cart" class="w-6 h-6"></i>
-                <span id="cart-count" class="absolute -top-1 -right-1 bg-[#1a7139] text-white text-[10px] font-bold px-1.5 rounded-full">0</span>
-            </button>
+            
+            <!-- Cart Trigger -->
+            <div class="flex items-center gap-4">
+                <button onclick="toggleCart()" class="relative p-2 bg-slate-100 rounded-full hover:bg-slate-200 transition">
+                    <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-[#1a7139] text-white text-[10px] font-bold px-1.5 rounded-full">0</span>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <!-- HERO -->
+    <!-- 2. HERO SECTION -->
     <header class="container mx-auto px-6 py-12">
         <div class="bg-white rounded-[2rem] p-8 md:p-16 shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-12">
             <div class="md:w-3/5">
+                <div class="flex items-center gap-2 text-[#004b8d] font-bold text-xs uppercase tracking-widest mb-4">
+                    <span class="w-8 h-[2px] bg-[#004b8d]"></span> GLOBAL PHARMACEUTICAL LEADER
+                </div>
                 <h1 class="text-5xl md:text-7xl font-black text-slate-900 mb-6 leading-tight">
                     High-Quality <br><span class="text-[#1a7139]">Excipients</span> & <br>Solvents<span class="text-[#004b8d]">.</span>
                 </h1>
-                <p class="text-slate-500 text-lg mb-8 max-w-lg">Wholesale distributor of pharmaceutical raw materials.</p>
-                <a href="#catalog" class="inline-block bg-[#004b8d] text-white px-8 py-4 rounded-xl font-bold hover:bg-opacity-90 transition shadow-lg">Browse Catalog →</a>
+                <p class="text-slate-500 text-lg mb-8 max-w-lg">
+                    Excipure Pharma is a leading wholesaler and distributor of pharmaceutical raw materials, vitamins, and colors.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#catalog" class="bg-[#004b8d] text-white px-8 py-4 rounded-xl font-bold hover:bg-opacity-90 transition shadow-lg">Browse Catalog →</a>
+                    <button class="px-8 py-4 rounded-xl font-bold border border-slate-200 hover:bg-slate-50 transition">How It Works</button>
+                </div>
             </div>
+            
+            <!-- Quality Badges -->
             <div class="md:w-2/5 grid grid-cols-2 gap-4">
-                <div class="p-6 bg-slate-50 rounded-2xl"><i data-lucide="shield-check" class="text-[#004b8d] mb-2"></i><h3 class="font-bold text-sm">Quality Assured</h3></div>
-                <div class="p-6 bg-slate-50 rounded-2xl"><i data-lucide="globe" class="text-[#004b8d] mb-2"></i><h3 class="font-bold text-sm">Global Reach</h3></div>
+                <div class="p-6 bg-slate-50 rounded-2xl">
+                    <i data-lucide="shield-check" class="text-[#004b8d] mb-3"></i>
+                    <h3 class="font-bold text-sm">Quality Assured</h3>
+                    <p class="text-xs text-slate-500">WHO-GMP Certified</p>
+                </div>
+                <div class="p-6 bg-slate-50 rounded-2xl">
+                    <i data-lucide="globe" class="text-[#004b8d] mb-3"></i>
+                    <h3 class="font-bold text-sm">Global Reach</h3>
+                    <p class="text-xs text-slate-500">40+ Countries</p>
+                </div>
+                <div class="p-6 bg-slate-50 rounded-2xl">
+                    <i data-lucide="layers" class="text-[#004b8d] mb-3"></i>
+                    <h3 class="font-bold text-sm">Bulk Support</h3>
+                    <p class="text-xs text-slate-500">Wholesale Pricing</p>
+                </div>
+                <div class="p-6 bg-slate-50 rounded-2xl">
+                    <i data-lucide="headset" class="text-[#004b8d] mb-3"></i>
+                    <h3 class="font-bold text-sm">24/7 Support</h3>
+                    <p class="text-xs text-slate-500">Expert Guidance</p>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- CATALOG -->
+    <!-- 3. CATALOG SECTION -->
     <main id="catalog" class="container mx-auto px-6 py-12">
-        <div class="flex flex-wrap gap-2 mb-12" id="filter-buttons">
-            <button onclick="filterProducts('All')" class="filter-btn active px-6 py-2 rounded-full font-bold text-sm">All</button>
-            <button onclick="filterProducts('Excipients')" class="filter-btn px-6 py-2 rounded-full font-bold text-sm">Excipients</button>
+        <div class="mb-10">
+            <h2 class="text-3xl font-black mb-2">Raw Material Catalog</h2>
+            <p class="text-slate-500">Wholesale distribution of pharmaceutical grade excipients, solvents, and vitamins.</p>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="product-grid"></div>
+
+        <!-- Filter Tabs -->
+        <div class="flex flex-wrap gap-2 mb-12" id="filter-buttons">
+            <button onclick="filterProducts('All')" class="filter-btn active px-6 py-2 rounded-full font-bold text-sm transition">All</button>
+            <button onclick="filterProducts('Excipients')" class="filter-btn px-6 py-2 rounded-full font-bold text-sm transition">Excipients</button>
+            <button onclick="filterProducts('Solvents')" class="filter-btn px-6 py-2 rounded-full font-bold text-sm transition">Solvents</button>
+            <button onclick="filterProducts('Vitamins')" class="filter-btn px-6 py-2 rounded-full font-bold text-sm transition">Vitamins</button>
+            <button onclick="filterProducts('Colours')" class="filter-btn px-6 py-2 rounded-full font-bold text-sm transition">Colours</button>
+            <button onclick="filterProducts('Specialty')" class="filter-btn px-6 py-2 rounded-full font-bold text-sm transition">Specialty</button>
+        </div>
+
+        <!-- Dynamic Product Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="product-grid">
+            <!-- Items generated by script.js -->
+        </div>
     </main>
 
-    <!-- MODALS -->
-    <!-- Specs Modal -->
+    <!-- 4. MODALS & DRAWERS -->
+
+    <!-- A. Cart Drawer -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 invisible">
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity" onclick="toggleCart()"></div>
+        <div class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col translate-x-full transition-transform duration-300" id="cart-content">
+            <div class="p-6 border-b flex justify-between items-center">
+                <h2 class="text-xl font-bold flex items-center gap-2"><i data-lucide="shopping-cart"></i> Your Cart</h2>
+                <button onclick="toggleCart()"><i data-lucide="x"></i></button>
+            </div>
+            <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4">
+                <!-- Cart items here -->
+            </div>
+            <div class="p-6 border-t bg-slate-50">
+                <div class="flex justify-between mb-2"><span class="text-slate-500">Subtotal</span><span id="subtotal" class="font-bold">₹0</span></div>
+                <div class="flex justify-between mb-4"><span class="text-slate-500">Shipping</span><span class="text-green-600 font-bold">FREE</span></div>
+                <div class="flex justify-between text-xl font-black mb-6"><span>Total</span><span id="total-price">₹0</span></div>
+                <button onclick="showCheckout()" class="w-full bg-black text-white py-4 rounded-xl font-bold hover:bg-slate-800 transition">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- B. Technical Specifications Modal -->
     <div id="details-modal" class="fixed inset-0 z-[70] hidden flex items-center justify-center p-4">
         <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-md" onclick="closeDetails()"></div>
         <div class="relative bg-white rounded-[2rem] w-full max-w-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
             <div class="p-6 border-b flex justify-between items-center bg-slate-50">
                 <h2 id="modal-title" class="text-2xl font-black text-[#004b8d]">Product Details</h2>
-                <button onclick="closeDetails()"><i data-lucide="x"></i></button>
+                <button onclick="closeDetails()" class="p-2 hover:bg-slate-200 rounded-full transition"><i data-lucide="x"></i></button>
             </div>
             <div class="overflow-y-auto p-8 space-y-6">
-                <p id="modal-desc" class="text-slate-600 leading-relaxed"></p>
-                <div class="grid grid-cols-2 gap-4 text-sm">
-                    <div><h4 class="text-xs font-black text-slate-400 uppercase">Function</h4><p id="modal-func" class="font-bold"></p></div>
-                    <div><h4 class="text-xs font-black text-slate-400 uppercase">Grade</h4><p id="modal-grade" class="font-bold"></p></div>
+                <div>
+                    <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Description</h4>
+                    <p id="modal-desc" class="text-slate-600 leading-relaxed"></p>
+                </div>
+                <div class="grid grid-cols-2 gap-6 text-sm">
+                    <div>
+                        <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-1">Function</h4>
+                        <p id="modal-func" class="font-bold text-slate-800"></p>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-1">Grade Standard</h4>
+                        <p id="modal-grade" class="font-bold text-slate-800"></p>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-1">Molecular Formula</h4>
+                        <p id="modal-mol" class="font-bold text-slate-800"></p>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-1">Purity</h4>
+                        <p id="modal-purity" class="font-bold text-slate-800"></p>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Applications</h4>
+                    <div id="modal-apps" class="flex flex-wrap gap-2">
+                        <!-- Application tags injected here -->
+                    </div>
+                </div>
+            </div>
+            <div class="p-6 border-t bg-slate-50">
+                <button id="modal-add-btn" class="w-full bg-[#004b8d] text-white py-4 rounded-xl font-bold hover:bg-[#1a7139] transition">Add to Cart / Inquiry</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- C. Checkout Modal -->
+    <div id="checkout-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-md" onclick="closeCheckout()"></div>
+        <div class="relative bg-white rounded-[2.5rem] w-full max-w-4xl overflow-hidden shadow-2xl flex flex-col md:flex-row">
+            <!-- Left: Delivery Details -->
+            <div class="p-8 md:p-12 md:w-1/2">
+                <h2 class="text-2xl font-black mb-8">Delivery Details</h2>
+                <form id="checkout-form" class="space-y-4">
+                    <input type="text" id="cust-name" placeholder="Full Name" required class="w-full p-4 bg-slate-100 rounded-xl border-none focus:ring-2 focus:ring-[#004b8d]">
+                    <input type="tel" id="cust-phone" placeholder="Phone Number" required class="w-full p-4 bg-slate-100 rounded-xl border-none focus:ring-2 focus:ring-[#004b8d]">
+                    <input type="text" id="cust-address" placeholder="Street Address" required class="w-full p-4 bg-slate-100 rounded-xl border-none focus:ring-2 focus:ring-[#004b8d]">
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="text" id="cust-city" placeholder="City" required class="w-full p-4 bg-slate-100 rounded-xl border-none focus:ring-2 focus:ring-[#004b8d]">
+                        <input type="text" id="cust-pin" placeholder="Pincode" required class="w-full p-4 bg-slate-100 rounded-xl border-none focus:ring-2 focus:ring-[#004b8d]">
+                    </div>
+                    <button type="button" onclick="getLocation()" id="location-btn" class="flex items-center justify-center gap-2 w-full p-3 text-sm font-bold text-slate-500 border-2 border-dashed border-slate-200 rounded-xl hover:bg-slate-50 transition">
+                        <i data-lucide="map-pin" class="w-4 h-4"></i> Share My Precise Location
+                    </button>
+                    <div class="grid grid-cols-2 gap-4 pt-4">
+                        <button type="button" onclick="submitOrder('whatsapp')" class="bg-[#25D366] text-white p-4 rounded-xl font-bold flex items-center justify-center gap-2">
+                            <i data-lucide="message-circle"></i> WhatsApp
+                        </button>
+                        <button type="button" onclick="submitOrder('email')" class="bg-[#004b8d] text-white p-4 rounded-xl font-bold flex items-center justify-center gap-2">
+                            <i data-lucide="mail"></i> Email
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <!-- Right: Summary -->
+            <div class="bg-slate-50 p-8 md:p-12 md:w-1/2 flex flex-col">
+                <h3 class="text-xl font-bold mb-8">Order Summary</h3>
+                <div id="summary-items" class="flex-1 space-y-4 mb-8"></div>
+                <div class="border-t pt-6 space-y-2">
+                    <div class="flex justify-between text-slate-500"><span>Subtotal</span><span id="summ-subtotal">₹0</span></div>
+                    <div class="flex justify-between text-2xl font-black pt-4"><span>TOTAL</span><span id="summ-total">₹0</span></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- SCRIPT (Internalized) -->
-    <script>
-        const imgPowder = "https://images.unsplash.com/photo-1587854692152-cbe660dbbb88?q=80&w=800";
-        const imgLiquid = "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800";
-        const imgCrystals = "https://images.unsplash.com/photo-1576086213369-97a306dca664?q=80&w=800";
-        const imgWaxy = "https://images.unsplash.com/photo-1628771065518-0d82f1938462?q=80&w=800";
-
-        const products = [
-            { id: 1, name: "Calcium Carbonate", cat: "Excipients", stock: "25 Kg Bag", func: "Diluent", grade: "IP/USP", desc: "Fine white powder used as a diluent.", img: imgCrystals },
-            { id: 2, name: "Carbomer (Carbopol)", cat: "Excipients", stock: "Custom", func: "Gelling agent", grade: "IP/USP", desc: "Forms clear gels for topical use.", img: imgWaxy },
-            { id: 3, name: "Propylene Glycol", cat: "Excipients", stock: "215 Kg Drum", func: "Solvent", grade: "USP/IP", desc: "Clear viscous liquid.", img: imgLiquid },
-            { id: 4, name: "Calcium Stearate", cat: "Excipients", stock: "25 Kg Bag", func: "Lubricant", grade: "USP", desc: "Fine white greasy powder.", img: imgPowder },
-            { id: 14, name: "Lactose", cat: "Excipients", stock: "25 Kg Bag", func: "Diluent", grade: "USP/IP", desc: "Standard filler for dosage forms.", img: imgPowder },
-            { id: 16, name: "MCC", cat: "Excipients", stock: "25 Kg Bag", func: "Binder", grade: "USP/IP", desc: "Highly compressible binder.", img: imgPowder }
-            // (You can add the rest here)
-        ];
-
-        function renderProducts(items) {
-            const grid = document.getElementById('product-grid');
-            grid.innerHTML = items.map(p => `
-                <div class="product-card bg-white rounded-3xl p-4 border border-slate-100 shadow-sm">
-                    <img src="${p.img}" class="w-full h-48 object-cover rounded-2xl mb-4">
-                    <h3 class="font-bold text-sm mb-2">${p.name}</h3>
-                    <div class="flex justify-between items-center">
-                        <button onclick="viewDetails(${p.id})" class="text-xs font-bold text-[#004b8d] underline">Specs</button>
-                        <button class="w-8 h-8 bg-[#004b8d] text-white rounded-full">+</button>
-                    </div>
+    <!-- 5. FOOTER -->
+    <footer class="bg-white border-t border-slate-200 pt-16 pb-8">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center gap-2 mb-6">
+                    <span class="font-bold text-xl leading-none text-[#004b8d]">EXCIPURE</span>
+                    <span class="text-xs tracking-widest text-[#1a7139] font-bold">PHARMA</span>
                 </div>
-            `).join('');
-            lucide.createIcons();
-        }
+                <p class="text-slate-500 max-w-sm mb-6">Premium wholesaler and distributor of pharmaceutical raw materials, excipients, and industrial solvents. WHO-GMP and FDA compliant sourcing.</p>
+                <div class="space-y-3 font-bold text-slate-700">
+                    <p class="flex items-center gap-3"><i data-lucide="phone" class="w-4 h-4"></i> +91 9398453760</p>
+                    <p class="flex items-center gap-3"><i data-lucide="mail" class="w-4 h-4"></i> excipurepharma@gmail.com</p>
+                    <p class="flex items-center gap-3"><i data-lucide="map-pin" class="w-4 h-4"></i> Hyderabad, Telangana, India</p>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-xs uppercase tracking-widest text-slate-400">Service</h4>
+                <ul class="space-y-4 font-bold text-slate-600">
+                    <li><a href="#" class="hover:text-[#004b8d]">Support</a></li>
+                    <li><a href="#" class="hover:text-[#004b8d]">Returns</a></li>
+                    <li><a href="#" class="hover:text-[#004b8d]">Track Order</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-xs uppercase tracking-widest text-slate-400">Legal</h4>
+                <ul class="space-y-4 font-bold text-slate-600">
+                    <li><a href="#" class="hover:text-[#004b8d]">Privacy</a></li>
+                    <li><a href="#" class="hover:text-[#004b8d]">Terms</a></li>
+                    <li><a href="#" class="hover:text-[#004b8d]">Compliance</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container mx-auto px-6 border-t pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+            <p>&copy; 2024 EXCIPURE PHARMA. ALL RIGHTS RESERVED.</p>
+            <div class="flex gap-6 mt-4 md:mt-0">
+                <span>FDA COMPLIANT</span>
+                <span>WHO-GMP CERTIFIED</span>
+            </div>
+        </div>
+    </footer>
 
-        function viewDetails(id) {
-            const p = products.find(item => item.id === id);
-            document.getElementById('modal-title').innerText = p.name;
-            document.getElementById('modal-desc').innerText = p.desc;
-            document.getElementById('modal-func').innerText = p.func;
-            document.getElementById('modal-grade').innerText = p.grade;
-            document.getElementById('details-modal').classList.remove('hidden');
-        }
-
-        function closeDetails() { document.getElementById('details-modal').classList.add('hidden'); }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            renderProducts(products);
-            lucide.createIcons();
-        });
-    </script>
+    <!-- Main Logic Script -->
+    <script src="script.js"></script>
 </body>
 </html>
