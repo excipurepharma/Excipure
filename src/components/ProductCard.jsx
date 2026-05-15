@@ -1,43 +1,34 @@
 "use client";
 import { useCart } from '../context/CartContext';
-import { Plus } from 'lucide-react';
+import { CheckCircle, Plus } from 'lucide-react';
 
 export default function ProductCard({ product }) {
   const { addToCart } = useCart();
 
   return (
-    <div className="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+    <div className="bg-white p-6 rounded-3xl border-l-8 border-ex-green shadow-sm card-hover flex flex-col justify-between h-full">
       <div>
-        <div className="flex justify-between items-start mb-2">
-          <span className="bg-emerald-50 text-emerald-600 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-tight">
-            In Stock
-          </span>
-          <span className="text-[10px] text-gray-400 font-medium uppercase">
-            {product.category}
-          </span>
+        <div className="text-[10px] font-black text-ex-green mb-2 uppercase tracking-widest">
+          ID: {product.id}
         </div>
-        
-        <h3 className="font-bold text-slate-800 text-sm leading-snug mb-1">
+        <h4 className="font-black text-ex-blue mb-4 uppercase text-sm leading-tight h-10 flex items-center">
           {product.name}
-        </h3>
-        <p className="text-[10px] text-gray-400 mb-4 italic">High Purity Grade</p>
+        </h4>
+        <div className="space-y-2 text-[12px] text-gray-600">
+          <p><span className="text-gray-400 font-bold uppercase text-[10px]">Usage:</span> {product.category}</p>
+          <div className="pt-3 border-t mt-3 text-ex-green italic font-black flex items-center gap-2">
+            <CheckCircle size={14} /> {product.stock > 0 ? 'High Purity' : 'Specialty'}
+          </div>
+        </div>
       </div>
 
-      <div className="flex justify-between items-center mt-auto">
-        <div className="flex flex-col">
-          <span className="text-gray-300 text-[10px] line-through font-medium">
-            ₹{(product.price * 1.1).toFixed(0)}
-          </span>
-          <span className="text-lg font-black text-slate-900 leading-none">
-            ₹{product.price}
-          </span>
-        </div>
-        
+      <div className="flex justify-between items-center mt-6">
+        <span className="text-xl font-black text-ex-blue">₹{product.price}</span>
         <button 
           onClick={() => addToCart(product)}
-          className="bg-[#002B44] text-white p-2.5 rounded-xl hover:bg-emerald-600 active:scale-90 transition-all shadow-lg shadow-blue-900/10"
+          className="bg-ex-blue text-white p-2 rounded-full shadow-md hover:bg-opacity-90 transition active:scale-90"
         >
-          <Plus size={18} strokeWidth={3} />
+          <Plus size={20} />
         </button>
       </div>
     </div>
