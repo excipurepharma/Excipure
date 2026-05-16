@@ -1,7 +1,7 @@
 // 1. INITIALIZE ICONS
 lucide.createIcons();
 
-// 2. PRODUCT DATABASE (Mapping to images/products/excipients/)
+// 2. PRODUCT DATABASE
 const products = [
     { id: 1, name: "Calcium Carbonate", cat: "Excipients", stock: "25 Kg Bag", func: "Diluent", apps: "Supplement, Diluent, Antacid", grade: "IP/BP/USP", mol: "CaCO₃", purity: ">99%", desc: "Fine white powder used as a diluent and calcium supplement.", img: "images/products/excipients/calcium-carbonate.jpg" },
     { id: 2, name: "Carbomer (Carbopol)", cat: "Excipients", stock: "Custom", func: "Gelling agent", apps: "Gels, Cosmetics", grade: "IP/USP/BP", mol: "Polyacrylic Acid", purity: "90–100%", desc: "Fluffy powder forming clear gels for topical use.", img: "images/products/excipients/carbomer.jpg" },
@@ -15,7 +15,7 @@ const products = [
     { id: 10, name: "Dicalcium Phosphate (DCP)", cat: "Excipients", stock: "25 Kg Bag", func: "Diluent", apps: "Tablets, Capsules", grade: "USP/IP", mol: "CaHPO₄", purity: ">98%", desc: "Provides bulk and enhances tablet hardness.", img: "images/products/excipients/dcp.jpg" },
     { id: 11, name: "Gelatin", cat: "Excipients", stock: "25 Kg Bag", func: "Gelling agent", apps: "Capsule shells", grade: "USP/IP", mol: "Protein", purity: ">98%", desc: "The primary material for hard/soft capsules.", img: "images/products/excipients/gelatin.jpg" },
     { id: 12, name: "Glycerin", cat: "Excipients", stock: "250 Kg Drum", func: "Humectant", apps: "Syrups, Topicals", grade: "USP/IP", mol: "C₃H₈O₃", purity: ">99%", desc: "Clear viscous solvent and sweetener.", img: "images/products/excipients/glycerin.jpg" },
-    { id: 13, name: "HPMC", cat: "Excipients", stock: "25 Kg Bag", func: "Binder / Coating Agent", apps: "Film Coating, Controlled Release", grade: "IP/USP", mol: "Polymer", purity: ">98%", desc: "Standard for tablet coating and controlled release.", img: "images/products/excipients/hpmc.jpg" },
+    { id: 13, name: "HPMC", cat: "Excipients", stock: "25 Kg Bag", func: "Binder / Coating Agent", apps: "Film Coating, Controlled Release", grade: "IP/USP", mol: "Cellulose", purity: ">98%", desc: "Standard for tablet coating and controlled release.", img: "images/products/excipients/hpmc.jpg" },
     { id: 14, name: "Lactose", cat: "Excipients", stock: "25 Kg Bag", func: "Diluent", apps: "Tablets, Capsules", grade: "USP/IP", mol: "Sugar", purity: ">99%", desc: "High-purity filler for solid dosage forms.", img: "images/products/excipients/lactose.jpg" },
     { id: 15, name: "Magnesium Stearate", cat: "Excipients", stock: "25 Kg Bag", func: "Lubricant", apps: "Tableting", grade: "IP/USP", mol: "Salt", purity: ">98%", desc: "Prevents powder sticking during tableting.", img: "images/products/excipients/magnesium-stearate.jpg" },
     { id: 16, name: "MCC", cat: "Excipients", stock: "25 Kg Bag", func: "Binder / Diluent", apps: "Direct Compression", grade: "USP/IP", mol: "Cellulose", purity: ">98%", desc: "Highly compressible binder for tablets.", img: "images/products/excipients/mcc.jpg" },
@@ -47,13 +47,17 @@ function renderProducts(items) {
     const grid = document.getElementById('product-grid');
     if (!grid) return;
     
-    grid.innerHTML = items.map(p => `
+    grid.innerHTML = items.map(p => {
+        // Debugging: Log the path being attempted
+        console.log(`Loading image for ${p.name}: ${p.img}`);
+        
+        return `
         <div class="product-card bg-white rounded-3xl p-4 border border-slate-100 shadow-sm relative overflow-hidden group">
             <div class="absolute top-4 left-4 z-10">
                 <span class="block bg-white/90 backdrop-blur px-2 py-1 rounded-lg text-[10px] font-black text-slate-500 uppercase tracking-tighter">${p.stock}</span>
             </div>
             <img src="${p.img}" 
-                 onerror="this.src='https://placehold.co/400x300?text=Product+Photo'" 
+                 onerror="this.src='https://placehold.co/400x300?text=${p.name.split(' ')[0]}'" 
                  class="w-full h-48 object-cover rounded-2xl mb-4 bg-slate-50">
             <div class="px-2">
                 <p class="text-[10px] font-bold text-slate-400 uppercase mb-1">${p.cat}</p>
@@ -67,7 +71,7 @@ function renderProducts(items) {
                 </div>
             </div>
         </div>
-    `).join('');
+    `}).join('');
     lucide.createIcons();
 }
 
@@ -152,7 +156,7 @@ function updateCartUI() {
         `;
     }).join('');
 
-    totalEl.innerText = `Contact for Quote`;
+    totalEl.innerText = `Quote Request`;
     subEl.innerText = `—`;
     renderSummary();
 }
