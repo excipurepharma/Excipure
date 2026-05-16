@@ -62,7 +62,36 @@ const products = [
     { id: 120, name: "Sunset Yellow Lake", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Aluminium Lake", apps: "Tablet Coating", grade: "IP/USP", mol: "CI 15985:1", purity: "Pharma Grade", desc: "Orange insoluble pigment for dry processes.", img: "images/products/colours/sunset-yellow-lake.jpg" },
     { id: 121, name: "Tartrazine E102", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Synthetic Colour", apps: "Tablets, Capsules", grade: "IP/USP", mol: "CI 19140", purity: "Pharma Grade", desc: "Lemon-yellow water-soluble azo dye.", img: "images/products/colours/tartrazine-e102.jpg" },
     { id: 122, name: "Tartrazine Lake", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Aluminium Lake", apps: "Coating, Capsules", grade: "IP/USP", mol: "CI 19140:1", purity: "Pharma Grade", desc: "Insoluble yellow pigment for capsules and coated tablets.", img: "images/products/colours/tartrazine-lake.jpg" },
-    { id: 123, name: "Yellow Iron Oxide", cat: "Colours", stock: "25 Kg Bag", func: "Inorganic Pigment", apps: "Capsules, Topicals", grade: "USP/NF/IP", mol: "CI 77492", purity: "Pharma Grade", desc: "Stable inorganic yellow pigment with high coverage.", img: "images/products/colours/yellow-iron-oxide.jpg" }
+    { id: 123, name: "Yellow Iron Oxide", cat: "Colours", stock: "25 Kg Bag", func: "Inorganic Pigment", apps: "Capsules, Topicals", grade: "USP/NF/IP", mol: "CI 77492", purity: "Pharma Grade", desc: "Stable inorganic yellow pigment with high coverage.", img: "images/products/colours/yellow-iron-oxide.jpg" },
+// --- VITAMINS CATEGORY (Items 201+) ---
+    { 
+    id: 201, name: "Ascorbic Acid (Vitamin C)", cat: "Vitamins", stock: "25 Kg Carton", 
+    func: "Vitamin / Antioxidant", apps: "Tablets, Capsules, Fortification", 
+    grade: "IP / BP / USP / FCC", mol: "C₆H₈O₆", purity: ">99%", 
+    desc: "A vital nutrient and powerful antioxidant. Widely used to boost immunity and as a preservative in liquid formulations.", 
+    img: "images/products/vitamins/ascorbic-acid.jpg" 
+    },
+    { 
+    id: 202, name: "Ascorbyl Palmitate", cat: "Vitamins", stock: "10 Kg / 25 Kg", 
+    func: "Antioxidant / Fat-Soluble Vit C", apps: "Oil-based formulations, Softgels", 
+    grade: "NF / FCC / USP", mol: "C₂₂H₃₈O₇", purity: "98 - 100%", 
+    desc: "A fat-soluble form of Vitamin C. Acts as a highly effective antioxidant in fats and oils, preventing rancidity.", 
+    img: "images/products/vitamins/ascorbyl-palmitate.jpg" 
+    },
+    { 
+    id: 203, name: "Tocopherol (Vitamin E)", cat: "Vitamins", stock: "Drum", 
+    func: "Antioxidant / Nutritive", apps: "Softgels, Topicals, Syrups", 
+    grade: "USP / FCC", mol: "C₂₉H₅₀O₂", purity: "Various Strengths", 
+    desc: "Mixed tocopherols derived from natural sources. Essential for protecting cell membranes from oxidative damage.", 
+    img: "images/products/vitamins/tocopherol.jpg" 
+    },
+    { 
+    id: 204, name: "Tocopheryl Acetate", cat: "Vitamins", stock: "Drum", 
+    func: "Vitamin E Supplement", apps: "Multi-vitamins, Cosmetics, Softgels", 
+    grade: "USP / IP / EP", mol: "C₃₁H₅₂O₃", purity: ">98%", 
+    desc: "A more stable form of Vitamin E. It is the most commonly used ester for dietary supplements and skincare products.", 
+    img: "images/products/vitamins/tocopheryl-acetate.jpg" 
+    }
 ];
 
 let cart = [];
