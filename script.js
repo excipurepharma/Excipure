@@ -63,6 +63,7 @@ const products = [
     { id: 121, name: "Tartrazine E102", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Synthetic Colour", apps: "Tablets, Capsules", grade: "IP/USP", mol: "CI 19140", purity: "Pharma Grade", desc: "Lemon-yellow water-soluble azo dye.", img: "images/products/colours/tartrazine-e102.jpg" },
     { id: 122, name: "Tartrazine Lake", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Aluminium Lake", apps: "Coating, Capsules", grade: "IP/USP", mol: "CI 19140:1", purity: "Pharma Grade", desc: "Insoluble yellow pigment for capsules and coated tablets.", img: "images/products/colours/tartrazine-lake.jpg" },
     { id: 123, name: "Yellow Iron Oxide", cat: "Colours", stock: "25 Kg Bag", func: "Inorganic Pigment", apps: "Capsules, Topicals", grade: "USP/NF/IP", mol: "CI 77492", purity: "Pharma Grade", desc: "Stable inorganic yellow pigment with high coverage.", img: "images/products/colours/yellow-iron-oxide.jpg" },
+    
 // --- VITAMINS CATEGORY (Items 201+) ---
     { 
     id: 201, name: "Ascorbic Acid (Vitamin C)", cat: "Vitamins", stock: "25 Kg Carton", 
