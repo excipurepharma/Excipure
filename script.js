@@ -1,7 +1,7 @@
 // 1. INITIALIZE ICONS
 lucide.createIcons();
 
-// 2. PRODUCT DATABASE
+// 2. PRODUCT DATABASE (Updated to your exact folder path)
 const products = [
     { id: 1, name: "Calcium Carbonate", cat: "Excipients", stock: "25 Kg Bag", func: "Diluent", apps: "Supplement, Diluent, Antacid", grade: "IP/BP/USP", mol: "CaCO₃", purity: ">99%", desc: "Fine white powder used as a diluent and calcium supplement.", img: "images/products/excipients/calcium-carbonate.jpg" },
     { id: 2, name: "Carbomer (Carbopol)", cat: "Excipients", stock: "Custom", func: "Gelling agent", apps: "Gels, Cosmetics", grade: "IP/USP/BP", mol: "Polyacrylic Acid", purity: "90–100%", desc: "Fluffy powder forming clear gels for topical use.", img: "images/products/excipients/carbomer.jpg" },
@@ -48,15 +48,16 @@ function renderProducts(items) {
     if (!grid) return;
     
     grid.innerHTML = items.map(p => {
-        // Debugging: Log the path being attempted
-        console.log(`Loading image for ${p.name}: ${p.img}`);
+        // Adding a timestamp to the image prevents the browser from using the old cache
+        const cacheBuster = `?v=${Date.now()}`;
+        const imagePath = p.img + cacheBuster;
         
         return `
         <div class="product-card bg-white rounded-3xl p-4 border border-slate-100 shadow-sm relative overflow-hidden group">
             <div class="absolute top-4 left-4 z-10">
                 <span class="block bg-white/90 backdrop-blur px-2 py-1 rounded-lg text-[10px] font-black text-slate-500 uppercase tracking-tighter">${p.stock}</span>
             </div>
-            <img src="${p.img}" 
+            <img src="${imagePath}" 
                  onerror="this.src='https://placehold.co/400x300?text=${p.name.split(' ')[0]}'" 
                  class="w-full h-48 object-cover rounded-2xl mb-4 bg-slate-50">
             <div class="px-2">
@@ -75,55 +76,40 @@ function renderProducts(items) {
     lucide.createIcons();
 }
 
-// 4. FILTER LOGIC
+// ... Rest of your functions (filterProducts, viewDetails, addToCart, etc.) ...
+// PLEASE KEEP THE REST OF YOUR EXISTING FUNCTIONS BELOW THIS LINE
+
 function filterProducts(category) {
     const btns = document.querySelectorAll('.filter-btn');
     btns.forEach(btn => btn.classList.remove('active'));
-    
     const clickedBtn = Array.from(btns).find(btn => btn.innerText.trim() === category);
     if (clickedBtn) clickedBtn.classList.add('active');
-
-    if (category === 'All') {
-        renderProducts(products);
-    } else {
-        const filtered = products.filter(p => p.cat === category);
-        renderProducts(filtered);
-    }
+    if (category === 'All') { renderProducts(products); } else { const filtered = products.filter(p => p.cat === category); renderProducts(filtered); }
 }
 
-// 5. MODAL & DETAILS LOGIC
 function viewDetails(id) {
     const p = products.find(item => item.id === id);
     if (!p) return;
-
     document.getElementById('modal-title').innerText = p.name;
     document.getElementById('modal-desc').innerText = p.desc;
     document.getElementById('modal-func').innerText = p.func;
     document.getElementById('modal-grade').innerText = p.grade;
     document.getElementById('modal-mol').innerText = p.mol;
     document.getElementById('modal-purity').innerText = p.purity;
-    
     const appContainer = document.getElementById('modal-apps');
-    appContainer.innerHTML = p.apps.split(',').map(app => 
-        `<span class="px-3 py-1 bg-blue-50 text-[#004b8d] text-[10px] font-bold rounded-full uppercase border border-blue-100">${app.trim()}</span>`
-    ).join('');
-
+    appContainer.innerHTML = p.apps.split(',').map(app => `<span class="px-3 py-1 bg-blue-50 text-[#004b8d] text-[10px] font-bold rounded-full uppercase border border-blue-100">${app.trim()}</span>`).join('');
     document.getElementById('modal-add-btn').onclick = () => { addToCart(p.id); closeDetails(); };
     document.getElementById('details-modal').classList.remove('hidden');
     lucide.createIcons();
 }
 
-function closeDetails() {
-    document.getElementById('details-modal').classList.add('hidden');
-}
+function closeDetails() { document.getElementById('details-modal').classList.add('hidden'); }
 
-// 6. CART & CHECKOUT LOGIC
 function addToCart(id) {
     const item = products.find(p => p.id === id);
     const inCart = cart.find(c => c.id === id);
     if (inCart) { inCart.qty++; } else { cart.push({...item, qty: 1}); }
     updateCartUI();
-    
     const toast = document.createElement('div');
     toast.className = "fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-6 py-3 rounded-full z-[100] text-sm font-bold shadow-2xl";
     toast.innerText = `${item.name} added to cart`;
@@ -135,30 +121,22 @@ function updateCartUI() {
     const list = document.getElementById('cart-items');
     const count = document.getElementById('cart-count');
     const totalEl = document.getElementById('total-price');
-    const subEl = document.getElementById('subtotal');
-
     count.innerText = cart.reduce((acc, c) => acc + c.qty, 0);
-
-    list.innerHTML = cart.map(c => {
-        return `
-            <div class="flex items-center gap-4 bg-slate-50 p-3 rounded-2xl">
-                <img src="${c.img}" onerror="this.src='https://placehold.co/100x100?text=Product'" class="w-16 h-16 object-cover rounded-xl bg-white">
-                <div class="flex-1">
-                    <h4 class="text-xs font-bold">${c.name}</h4>
-                    <p class="text-xs text-slate-500">${c.stock}</p>
-                </div>
-                <div class="flex items-center gap-2">
-                    <button onclick="changeQty(${c.id}, -1)" class="w-6 h-6 border rounded-lg">-</button>
-                    <span class="text-xs font-bold">${c.qty}</span>
-                    <button onclick="changeQty(${c.id}, 1)" class="w-6 h-6 border rounded-lg">+</button>
-                </div>
+    list.innerHTML = cart.map(c => `
+        <div class="flex items-center gap-4 bg-slate-50 p-3 rounded-2xl">
+            <img src="${c.img}" onerror="this.src='https://placehold.co/100x100?text=Product'" class="w-16 h-16 object-cover rounded-xl bg-white">
+            <div class="flex-1">
+                <h4 class="text-xs font-bold">${c.name}</h4>
+                <p class="text-xs text-slate-500">${c.stock}</p>
             </div>
-        `;
-    }).join('');
-
+            <div class="flex items-center gap-2">
+                <button onclick="changeQty(${c.id}, -1)" class="w-6 h-6 border rounded-lg">-</button>
+                <span class="text-xs font-bold">${c.qty}</span>
+                <button onclick="changeQty(${c.id}, 1)" class="w-6 h-6 border rounded-lg">+</button>
+            </div>
+        </div>
+    `).join('');
     totalEl.innerText = `Quote Request`;
-    subEl.innerText = `—`;
-    renderSummary();
 }
 
 function changeQty(id, delta) {
@@ -175,56 +153,28 @@ function toggleCart() {
     content.classList.toggle('translate-x-full');
 }
 
-// 7. CHECKOUT & WHATSAPP
-function showCheckout() {
-    if (cart.length === 0) return alert("Cart is empty!");
-    document.getElementById('checkout-modal').classList.remove('hidden');
-    renderSummary();
-}
-
-function closeCheckout() {
-    document.getElementById('checkout-modal').classList.add('hidden');
-}
-
+function showCheckout() { if (cart.length === 0) return alert("Cart is empty!"); document.getElementById('checkout-modal').classList.remove('hidden'); renderSummary(); }
+function closeCheckout() { document.getElementById('checkout-modal').classList.add('hidden'); }
 function renderSummary() {
     const list = document.getElementById('summary-items');
-    list.innerHTML = cart.map(c => `
-        <div class="flex justify-between text-sm">
-            <span>${c.name} x${c.qty}</span>
-            <span class="font-bold text-slate-400">${c.stock}</span>
-        </div>
-    `).join('');
+    list.innerHTML = cart.map(c => `<div class="flex justify-between text-sm"><span>${c.name} x${c.qty}</span><span class="font-bold text-slate-400">${c.stock}</span></div>`).join('');
 }
 
 function getLocation() {
     const btn = document.getElementById('location-btn');
     btn.innerHTML = `Accessing...`;
-
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(pos => {
-            userLocation = `https://www.google.com/maps?q=${pos.coords.latitude},${pos.coords.longitude}`;
-            btn.innerHTML = `Location Linked ✓`;
-        }, () => { btn.innerText = "Location Denied"; });
-    }
+    if (navigator.geolocation) { navigator.geolocation.getCurrentPosition(pos => { userLocation = `https://www.google.com/maps?q=${pos.coords.latitude},${pos.coords.longitude}`; btn.innerHTML = `Location Linked ✓`; }, () => { btn.innerText = "Location Denied"; }); }
 }
 
 function submitOrder(method) {
     const name = document.getElementById('cust-name').value;
     const phone = document.getElementById('cust-phone').value;
     if (!name || !phone) return alert("Please enter Name and Phone");
-
-    let orderText = `*NEW INQUIRY - EXCIPURE PHARMA*\n\n`;
-    orderText += `*Customer:* ${name}\n*Phone:* ${phone}\n`;
+    let orderText = `*NEW INQUIRY - EXCIPURE PHARMA*\n\n*Customer:* ${name}\n*Phone:* ${phone}\n`;
     if(userLocation) orderText += `*Location:* ${userLocation}\n`;
     orderText += `\n*ITEMS REQUESTED:*\n`;
     cart.forEach(c => { orderText += `- ${c.name} (Qty: ${c.qty}) [${c.stock}]\n`; });
-
-    if (method === 'whatsapp') {
-        window.open(`https://wa.me/919398453760?text=${encodeURIComponent(orderText)}`, '_blank');
-    } else {
-        window.location.href = `mailto:excipurepharma@gmail.com?subject=Inquiry from ${name}&body=${encodeURIComponent(orderText)}`;
-    }
+    if (method === 'whatsapp') { window.open(`https://wa.me/919398453760?text=${encodeURIComponent(orderText)}`, '_blank'); } else { window.location.href = `mailto:excipurepharma@gmail.com?subject=Inquiry from ${name}&body=${encodeURIComponent(orderText)}`; }
 }
 
-// 8. STARTUP
 renderProducts(products);
