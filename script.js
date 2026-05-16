@@ -35,8 +35,9 @@ const products = [
     { id: 30, name: "Ethanol (99.9%)", cat: "Excipients", stock: "50/200 L Drum", func: "Solvent", apps: "Liquids, Sanitizers", grade: "IP/USP", mol: "C₂H₆O", purity: ">99%", desc: "High-purity volatile solvent.", img: "images/products/excipients/ethanol.jpg" },
     { id: 31, name: "Ethyl Cellulose", cat: "Excipients", stock: "25 Kg Bag", func: "Release Agent", apps: "SR Tablets", grade: "IP/USP", mol: "Polymer", purity: ">98%", desc: "Used for barrier coating and SR.", img: "images/products/excipients/ethyl-cellulose.jpg" },
     { id: 32, name: "Mannitol", cat: "Excipients", stock: "25 Kg Bag", func: "Sweetener", apps: "Chewables", grade: "USP/IP", mol: "C₆H₁₄O₆", purity: ">98%", desc: "Cooling effect and non-hygroscopic.", img: "images/products/excipients/mannitol.jpg" },
-    { id: 33, name: "Parabens", cat: "Excipients", stock: "25 Kg Bag", func: "Preservative", apps: "Liquids, Topicals", grade: "USP", mol: "Preservative", purity: ">99%", desc: "Antimicrobial preservative.", img: "images/products/excipients/parabens.jpg" },
-    { id: 34, name: "Sodium Benzoate", cat: "Excipients", stock: "25 Kg Bag", func: "Preservative", apps: "Syrups", grade: "USP/IP", mol: "C₇H₅NaO₂", purity: ">99%", desc: "Effective antimicrobial for liquids.", img: "images/products/excipients/sodium-benzoate.jpg" }
+    { id: 33, name: "Methyl Paraben", cat: "Excipients", stock: "25 Kg Bag", func: "Preservative", apps: "Syrups, Creams, Lotions", grade: "Pharma Grade / USP", mol: "C₈H₈O₃ (152.15 g/mol)", purity: ">99%", desc: "A widely used antimicrobial preservative effective against bacteria and fungi.", img: "images/products/excipients/methyl-paraben.jpg" },
+    { id: 34, name: "Propyl Paraben", cat: "Excipients", stock: "25 Kg Bag", func: "Preservative", apps: "Liquid & Topical Formulations", grade: "Pharma Grade / USP", mol: "C₁₀H₁₂O₃ (180.20 g/mol)", purity: ">99%", desc: "An antimicrobial preservative often used in combination with Methyl Paraben.", img: "images/products/excipients/propyl-paraben.jpg" },
+    { id: 35, name: "Sodium Benzoate", cat: "Excipients", stock: "25 Kg Bag", func: "Preservative", apps: "Syrups", grade: "USP/IP", mol: "C₇H₅NaO₂", purity: ">99%", desc: "Effective antimicrobial for liquids.", img: "images/products/excipients/sodium-benzoate.jpg" }
 ];
 
 let cart = [];
