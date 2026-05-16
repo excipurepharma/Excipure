@@ -92,6 +92,34 @@ const products = [
     grade: "USP / IP / EP", mol: "C₃₁H₅₂O₃", purity: ">98%", 
     desc: "A more stable form of Vitamin E. It is the most commonly used ester for dietary supplements and skincare products.", 
     img: "images/products/vitamins/tocopheryl-acetate.jpg" 
+    },
+
+// --- SPECIALTY CATEGORY (Items 301+) ---
+    { 
+    id: 301, 
+    name: "Aloe Vera Gel Powder", 
+    cat: "Specialty", 
+    stock: "10 Kg / 25 Kg", 
+    func: "Natural Extract / Humectant", 
+    apps: "Cosmetic formulations, Nutraceuticals, Skincare", 
+    grade: "Cosmetic / Food Grade", 
+    mol: "Natural Extract", 
+    purity: "200X / 100X Concentration", 
+    desc: "A premium natural extract derived from the Aloe Barbadensis leaf. Highly valued for its soothing, hydrating, and skin-healing properties.", 
+    img: "images/products/specialty/aloe-vera-gel-powder.jpg" 
+    },
+    { 
+    id: 302, 
+    name: "Bio-Based Super Absorbent Polymer (SAP)", 
+    cat: "Specialty", 
+    stock: "25 Kg Bag", 
+    func: "Water Retaining Agent", 
+    apps: "Agriculture, Hygiene Products, Industrial Absorbents", 
+    grade: "Eco-Friendly / Industrial", 
+    mol: "Bio-Polymer", 
+    purity: "High Absorption Capacity", 
+    desc: "An eco-friendly, biodegradable polymer capable of absorbing and retaining massive amounts of water. Ideal for water conservation in agriculture and high-performance hygiene products.", 
+    img: "images/products/specialty/bio-based-super-absorbent-polymer.jpg" 
     }
 ];
 
