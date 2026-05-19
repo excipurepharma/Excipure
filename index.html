@@ -126,44 +126,37 @@
         <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-md" onclick="closeDetails()"></div>
         <div class="relative bg-white rounded-[2rem] w-full max-w-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
             <div class="p-6 border-b flex justify-between items-center bg-slate-50">
-                <h2 id="modal-title" class="text-2xl font-black text-[#004b8d]">Product Details</h2>
-                <button onclick="closeDetails()" class="p-2 hover:bg-slate-200 rounded-full transition"><i data-lucide="x"></i></button>
-            </div>
-            <div class="overflow-y-auto p-8 space-y-6">
+            <h2 id="modal-title" class="text-2xl font-black text-[#004b8d]">Product Details</h2>
+            <button onclick="closeDetails()" class="p-2 hover:bg-slate-200 rounded-full transition"><i data-lucide="x"></i></button>
+        </div>
+        
+        <div class="overflow-y-auto p-8">
+            <!-- Image Header in Modal -->
+            <img id="modal-img" src="" class="w-full h-48 object-contain mb-6 bg-slate-50 rounded-2xl border border-slate-100">
+            
+            <div class="space-y-6">
                 <div>
                     <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Description</h4>
-                    <p id="modal-desc" class="text-slate-600 leading-relaxed"></p>
+                    <p id="modal-desc" class="text-slate-600 leading-relaxed italic"></p>
                 </div>
-                <div class="grid grid-cols-2 gap-6 text-sm">
-                    <div>
-                        <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-1">Function</h4>
-                        <p id="modal-func" class="font-bold text-slate-800"></p>
-                    </div>
-                    <div>
-                        <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-1">Grade Standard</h4>
-                        <p id="modal-grade" class="font-bold text-slate-800"></p>
-                    </div>
-                    <div>
-                        <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-1">Molecular Formula</h4>
-                        <p id="modal-mol" class="font-bold text-slate-800"></p>
-                    </div>
-                    <div>
-                        <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-1">Purity</h4>
-                        <p id="modal-purity" class="font-bold text-slate-800"></p>
-                    </div>
+
+                <!-- DYNAMIC SPECS CONTAINER -->
+                <div id="specs-grid" class="grid grid-cols-2 gap-x-6 gap-y-4 border-t border-slate-100 pt-6">
+                    <!-- JavaScript will inject specific rows here based on category -->
                 </div>
+
                 <div>
-                    <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Applications</h4>
-                    <div id="modal-apps" class="flex flex-wrap gap-2">
-                        <!-- Application tags injected here -->
-                    </div>
+                    <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-2 pt-4">Main Applications</h4>
+                    <div id="modal-apps" class="flex flex-wrap gap-2"></div>
                 </div>
-            </div>
-            <div class="p-6 border-t bg-slate-50">
-                <button id="modal-add-btn" class="w-full bg-[#004b8d] text-white py-4 rounded-xl font-bold hover:bg-[#1a7139] transition">Add to Cart / Inquiry</button>
             </div>
         </div>
+
+        <div class="p-6 border-t bg-slate-50">
+            <button id="modal-add-btn" class="w-full bg-[#004b8d] text-white py-4 rounded-xl font-bold hover:bg-[#1a7139] transition">Add to Inquiry</button>
+        </div>
     </div>
+</div>
 
     <!-- C. Checkout Modal -->
     <div id="checkout-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-4">
