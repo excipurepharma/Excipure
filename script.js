@@ -130,8 +130,15 @@ function viewDetails(id) {
     const p = products.find(item => item.id === id);
     if (!p) return;
 
+    // --- FIX: Update Title, Description AND Image ---
     document.getElementById('modal-title').innerText = p.name;
     document.getElementById('modal-desc').innerText = p.desc;
+    
+    const modalImg = document.getElementById('modal-img');
+    if (modalImg) {
+        modalImg.src = p.img; // This line fixes the missing image issue
+        modalImg.alt = p.name;
+    }
     
     // Select the Dynamic Specs Grid
     const specsGrid = document.getElementById('specs-grid');
