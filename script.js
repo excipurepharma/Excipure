@@ -40,29 +40,144 @@ const products = [
     { id: 35, name: "Sodium Benzoate", cat: "Excipients", stock: "25 Kg Bag", func: "Preservative", apps: "Syrups", grade: "USP/IP", mol: "C₇H₅NaO₂", purity: ">99%", desc: "Effective antimicrobial for liquids.", img: "images/products/excipients/sodium-benzoate.jpg" },
     
 // --- COLOURS CATEGORY (Items 101+) ---
-    { id: 101, name: "Allura Red E129", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Synthetic Colour", apps: "Tablets, Syrups", grade: "IP/USP", mol: "CI 16035", purity: "Pharma Grade", desc: "Water-soluble synthetic azo dye providing a vibrant red shade.", img: "images/products/colours/allura-red-e129.jpg" },
-    { id: 102, name: "Allura Red Lake", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Aluminium Lake", apps: "Tablet Coating, Capsules", grade: "IP/USP", mol: "CI 16035:1", purity: "Pharma Grade", desc: "Insoluble form of Allura Red, ideal for dry compression and coatings.", img: "images/products/colours/allura-red-lake.jpg" },
-    { id: 103, name: "Black Iron Oxide", cat: "Colours", stock: "25 Kg Bag", func: "Inorganic Pigment", apps: "Capsules, Coatings", grade: "USP/NF/IP", mol: "CI 77499", purity: "Pharma Grade", desc: "Provides high opacity and a deep black shade for solid orals.", img: "images/products/colours/black-iron-oxide.jpg" },
-    { id: 104, name: "Brilliant Blue E133", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Synthetic Colour", apps: "Coatings, Liquids", grade: "IP/USP", mol: "CI 42090", purity: "Pharma Grade", desc: "Brilliant blue water-soluble dye for primary or blended shades.", img: "images/products/colours/brilliant-blue-e133.jpg" },
-    { id: 105, name: "Brilliant Blue Lake", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Aluminium Lake", apps: "Tablets, Dry Blends", grade: "IP/USP", mol: "CI 42090:2", purity: "Pharma Grade", desc: "Insoluble pigment for uniform blue coloring in solid dosage forms.", img: "images/products/colours/brilliant-blue-lake.jpg" },
-    { id: 106, name: "Carmosine E122", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Synthetic Colour", apps: "Syrups, Capsules", grade: "IP/USP", mol: "CI 14720", purity: "Pharma Grade", desc: "Provides a red to maroon shade in liquid and solid formulations.", img: "images/products/colours/carmosine-e122.jpg" },
-    { id: 107, name: "Carmosine Lake", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Aluminium Lake", apps: "Tablet Coating", grade: "IP/USP", mol: "CI 14720:1", purity: "Pharma Grade", desc: "Insoluble carmosine for consistent red coatings.", img: "images/products/colours/carmosine-lake.jpg" },
-    { id: 108, name: "D and C Red 30", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Dye / Pigment", apps: "Topicals, Tablets", grade: "USP/IP", mol: "CI 73360", purity: "Pharma Grade", desc: "Specifically approved for drugs and cosmetics.", img: "images/products/colours/d-and-c-red-30.jpg" },
-    { id: 109, name: "D and C Red 34", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Dye / Pigment", apps: "Topicals, Tablets", grade: "USP/IP", mol: "CI 15880:1", purity: "Pharma Grade", desc: "Calcium salt based deep red colorant.", img: "images/products/colours/d-and-c-red-34.jpg" },
-    { id: 110, name: "D and C Red 36", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Dye / Pigment", apps: "Topicals, Tablets", grade: "USP/IP", mol: "CI 12085", purity: "Pharma Grade", desc: "Organic pigment providing a bright red-orange shade.", img: "images/products/colours/d-and-c-red-36.jpg" },
-    { id: 111, name: "Fast Green E143", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Synthetic Colour", apps: "Liquids, Coatings", grade: "IP/USP", mol: "CI 42053", purity: "Pharma Grade", desc: "Sea-green shade with high water solubility.", img: "images/products/colours/fast-green-e143.jpg" },
-    { id: 112, name: "Fast Green Lake", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Aluminium Lake", apps: "Tablets, Capsules", grade: "IP/USP", mol: "CI 42053:1", purity: "Pharma Grade", desc: "Insoluble green pigment for dry pharmaceutical blends.", img: "images/products/colours/fast-green-lake.jpg" },
-    { id: 113, name: "Indigo Carmine E132", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Synthetic Colour", apps: "Tablets, Capsules", grade: "IP/USP", mol: "CI 73015", purity: "Pharma Grade", desc: "Deep blue dye often used in diagnostic and coating apps.", img: "images/products/colours/indigo-caramine-e132.jpg" },
-    { id: 114, name: "Iron Red Oxide", cat: "Colours", stock: "25 Kg Bag", func: "Inorganic Pigment", apps: "Coating, Capsules", grade: "USP/NF/IP", mol: "CI 77491", purity: "Pharma Grade", desc: "Natural red pigment with excellent light fastness.", img: "images/products/colours/iron-red-oxide.jpg" },
-    { id: 115, name: "Ponceau 4R E124", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Synthetic Colour", apps: "Syrups, Capsules", grade: "IP/USP", mol: "CI 16255", purity: "Pharma Grade", desc: "Bright red azo dye used in diverse pharmaceutical orals.", img: "images/products/colours/ponceau-4r-e124.jpg" },
-    { id: 116, name: "Ponceau 4R Lake", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Aluminium Lake", apps: "Coatings, Dry blends", grade: "IP/USP", mol: "CI 16255:1", purity: "Pharma Grade", desc: "Insoluble version of Ponceau 4R for solid dosage forms.", img: "images/products/colours/ponceau-4r-lake.jpg" },
-    { id: 117, name: "Quinoline Yellow E104", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Synthetic Colour", apps: "Coatings, Tablets", grade: "IP/USP", mol: "CI 47005", purity: "Pharma Grade", desc: "Yellow-greenish hue with high stability.", img: "images/products/colours/quinoline-yellow-e104.jpg" },
-    { id: 118, name: "Quinoline Yellow Lake", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Aluminium Lake", apps: "Tablets, Coatings", grade: "IP/USP", mol: "CI 47005:1", purity: "Pharma Grade", desc: "Opaque yellow pigment for coatings and capsules.", img: "images/products/colours/quinoloine-yellow-lake.jpg" },
-    { id: 119, name: "Sunset Yellow E110", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Synthetic Colour", apps: "Syrups, Tablets", grade: "IP/USP", mol: "CI 15985", purity: "Pharma Grade", desc: "Provides an orange-yellow shade to liquids and coatings.", img: "images/products/colours/sunset-yellow-e110.jpg" },
-    { id: 120, name: "Sunset Yellow Lake", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Aluminium Lake", apps: "Tablet Coating", grade: "IP/USP", mol: "CI 15985:1", purity: "Pharma Grade", desc: "Orange insoluble pigment for dry processes.", img: "images/products/colours/sunset-yellow-lake.jpg" },
-    { id: 121, name: "Tartrazine E102", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Synthetic Colour", apps: "Tablets, Capsules", grade: "IP/USP", mol: "CI 19140", purity: "Pharma Grade", desc: "Lemon-yellow water-soluble azo dye.", img: "images/products/colours/tartrazine-e102.jpg" },
-    { id: 122, name: "Tartrazine Lake", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Aluminium Lake", apps: "Coating, Capsules", grade: "IP/USP", mol: "CI 19140:1", purity: "Pharma Grade", desc: "Insoluble yellow pigment for capsules and coated tablets.", img: "images/products/colours/tartrazine-lake.jpg" },
-    { id: 123, name: "Yellow Iron Oxide", cat: "Colours", stock: "25 Kg Bag", func: "Inorganic Pigment", apps: "Capsules, Topicals", grade: "USP/NF/IP", mol: "CI 77492", purity: "Pharma Grade", desc: "Stable inorganic yellow pigment with high coverage.", img: "images/products/colours/yellow-iron-oxide.jpg" },
+    { 
+        id: 101, name: "Allura Red E129", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Synthetic Colour", 
+        apps: "Tablets, Capsules, Syrups", grade: "IP/USP/Food Grade", mol: "C₁₈H₁₄N₂Na₂O₈S₂", purity: ">85%", 
+        desc: "A vibrant red colour offering uniformity and stability across various dosage forms.", 
+        img: "images/products/colours/allura-red-e129.jpg" 
+    },
+    { 
+        id: 102, name: "Allura Red Lake", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Aluminium Lake", 
+        apps: "Tablet Coating, Capsule Coating, Food & Nutraceuticals", grade: "IP/USP/Food Grade", mol: "Complex Aluminium Lake", purity: ">40% Dye Content", 
+        desc: "A stable pigment for strong, uniform red coloration in tablets and capsules.", 
+        img: "images/products/colours/allura-red-lake.jpg" 
+    },
+    { 
+        id: 103, name: "Black Iron Oxide", cat: "Colours", stock: "25 Kg Bag", func: "Inorganic Pigment", 
+        apps: "Capsules, Coatings", grade: "USP/NF/IP", mol: "Fe₃O₄", purity: ">95%", 
+        desc: "Used for grey to black shades, often blended for customized colour variations.", 
+        img: "images/products/colours/black-iron-oxide.jpg" 
+    },
+    { 
+        id: 104, name: "Brilliant Blue E133", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Synthetic Colour", 
+        apps: "Tablets, Capsules, Oral liquids", grade: "IP/USP/Food Grade", mol: "C₃₇H₃₄N₂Na₂O₉S₃", purity: ">85%", 
+        desc: "A bright blue colour used for clear, consistent, and visually appealing formulations.", 
+        img: "images/products/colours/brilliant-blue-e133.jpg" 
+    },
+    { 
+        id: 105, name: "Brilliant Blue Lake", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Aluminium Lake", 
+        apps: "Tablet Coating, Capsule Coating, Food & Cosmetic", grade: "IP/USP/Food Grade", mol: "Complex Aluminium Lake", purity: ">35% Dye Content", 
+        desc: "An aluminum lake pigment providing stable blue coloration in tablet coatings and nutraceutical formulations.", 
+        img: "images/products/colours/brilliant-blue-lake.jpg" 
+    },
+    { 
+        id: 106, name: "Carmosine E122", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Synthetic Colour", 
+        apps: "Oral liquids, Tablets", grade: "IP/USP/Food Grade", mol: "C₂₀H₁₂N₂Na₂O₇S₂", purity: ">85%", 
+        desc: "A deep red shade commonly used in tablets, capsules, and syrups for strong visual identity.", 
+        img: "images/products/colours/carmosine-e122.jpg" 
+    },
+    { 
+        id: 107, name: "Carmosine Lake", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Aluminium Lake", 
+        apps: "Pharmaceutical Coating, Syrup & Nutraceuticals", grade: "IP/USP/Food Grade", mol: "Complex Aluminium Lake", purity: ">35% Dye Content", 
+        desc: "An insoluble pigment form of Carmoisine used in pharmaceutical coatings and solid dosage formulations.", 
+        img: "images/products/colours/carmosine-lake.jpg" 
+    },
+    { 
+        id: 108, name: "D and C Red 30", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Dye / Pigment", 
+        apps: "Cosmetic, Pharmaceutical & Personal Care", grade: "USP/IP", mol: "C₂₆H₂₂ N₄O₂", purity: ">90%", 
+        desc: "A synthetic organic pigment used in pharmaceutical and cosmetic formulations for stable red coloration.", 
+        img: "images/products/colours/d-and-c-red-30.jpg" 
+    },
+    { 
+        id: 109, name: "D and C Red 34", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Dye / Pigment", 
+        apps: "Pharmaceutical Coating, Cosmetic & Personal Care", grade: "USP/IP", mol: "C₁₈H₁₃N₃NaO₈S", purity: ">90%", 
+        desc: "A specialty organic red pigment commonly used in cosmetic and pharmaceutical coating applications.", 
+        img: "images/products/colours/d-and-c-red-34.jpg" 
+    },
+    { 
+        id: 110, name: "D and C Red 36", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Dye / Pigment", 
+        apps: "Tablet Coating, Cosmetic & Pharmaceutical Apps", grade: "USP/IP", mol: "C₂₀H₁₂N₂O₇S₂Na₂", purity: ">90%", 
+        desc: "A high-performance organic pigment used in specialty pharmaceutical and cosmetic products requiring deep red shades.", 
+        img: "images/products/colours/d-and-c-red-36.jpg" 
+    },
+    { 
+        id: 111, name: "Fast Green E143", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Synthetic Colour", 
+        apps: "Tablets, Capsules, Syrups", grade: "IP/USP/Food Grade", mol: "C₃₇H₃₄N₂Na₂O₁₀S₃", purity: ">85%", 
+        desc: "A sea-green colour used in formulations to achieve unique and recognizable product differentiation.", 
+        img: "images/products/colours/fast-green-e143.jpg" 
+    },
+    { 
+        id: 112, name: "Fast Green Lake", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Aluminium Lake", 
+        apps: "Pharmaceutical Coating, Food & Nutraceuticals", grade: "IP/USP/Food Grade", mol: "Complex Aluminium Lake", purity: ">35% Dye Content", 
+        desc: "A stable insoluble green pigment used in coated pharmaceutical and nutraceutical products.", 
+        img: "images/products/colours/fast-green-lake.jpg" 
+    },
+    { 
+        id: 113, name: "Indigo Carmine E132", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Synthetic Colour", 
+        apps: "Tablets, Diagnostics, Capsules", grade: "IP/USP/Food Grade", mol: "C₁₆H₈N₂Na₂O₈S₂", purity: ">85%", 
+        desc: "A darker blue shade suitable for coatings and specialized pharmaceutical applications.", 
+        img: "images/products/colours/indigo-caramine-e132.jpg" 
+    },
+    { 
+        id: 114, name: "Iron Red Oxide", cat: "Colours", stock: "25 Kg Bag", func: "Inorganic Pigment", 
+        apps: "Tablet Coating, Capsules", grade: "USP/NF/IP", mol: "Fe₂O₃", purity: ">95%", 
+        desc: "A highly stable inorganic pigment used for red shades in coatings and capsules.", 
+        img: "images/products/colours/iron-red-oxide.jpg" 
+    },
+    { 
+        id: 115, name: "Ponceau 4R E124", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Synthetic Colour", 
+        apps: "Tablets, Syrups, Capsules", grade: "IP/USP/Food Grade", mol: "C₂₀H₁₁N₂Na₃O₁₀S₃", purity: ">80%", 
+        desc: "A rich red colour providing stable and attractive appearance in oral formulations.", 
+        img: "images/products/colours/ponceau-4r-e124.jpg" 
+    },
+    { 
+        id: 116, name: "Ponceau 4R Lake", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Aluminium Lake", 
+        apps: "Film Coating, Tablet Coating, Food & Pharma", grade: "IP/USP/Food Grade", mol: "Complex Aluminium Lake", purity: ">40% Dye Content", 
+        desc: "A lake pigment of Ponceau 4R used in tablets, capsules, and nutraceutical coating systems.", 
+        img: "images/products/colours/ponceau-4r-lake.jpg" 
+    },
+    { 
+        id: 117, name: "Quinoline Yellow E104", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Synthetic Colour", 
+        apps: "Tablets, Coatings, Cosmetics", grade: "IP/USP/Food Grade", mol: "C₁₈H₉NO₈S₂Na₂", purity: ">70%", 
+        desc: "A greenish-yellow colour used in coatings and liquid preparations for distinct identification.", 
+        img: "images/products/colours/quinoline-yellow-e104.jpg" 
+    },
+    { 
+        id: 118, name: "Quinoline Yellow Lake", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Aluminium Lake", 
+        apps: "Film Coating, Tablet Coating, Nutraceuticals", grade: "IP/USP/Food Grade", mol: "Complex Aluminium Lake", purity: ">40% Dye Content", 
+        desc: "An insoluble pigment form of Quinoline Yellow designed for stable coating and dry formulation applications.", 
+        img: "images/products/colours/quinoloine-yellow-lake.jpg" 
+    },
+    { 
+        id: 119, name: "Sunset Yellow E110", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Synthetic Colour", 
+        apps: "Tablets, Capsules, Syrups, Nutraceuticals", grade: "IP/USP/Food Grade", mol: "C₁₆H₁₀N₂Na₂O₇S₂", purity: ">85%", 
+        desc: "An orange-yellow shade suitable for both liquid and solid formulations, enhancing product appeal.", 
+        img: "images/products/colours/sunset-yellow-e110.jpg" 
+    },
+    { 
+        id: 120, name: "Sunset Yellow Lake", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Aluminium Lake", 
+        apps: "Film Coating, Oil-based systems", grade: "IP/USP/Food Grade", mol: "Complex Aluminium Lake", purity: ">40% Dye Content", 
+        desc: "Provides enhanced opacity and consistent colour in coatings and blends.", 
+        img: "images/products/colours/sunset-yellow-lake.jpg" 
+    },
+    { 
+        id: 121, name: "Tartrazine E102", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Synthetic Colour", 
+        apps: "Tablets, Capsules, Syrups, Oral liquids", grade: "IP/USP/Food Grade", mol: "C₁₆H₉N₄Na₃O₉S₂", purity: ">85%", 
+        desc: "A bright lemon-yellow colour widely used in tablets, capsules, and syrups for consistent and appealing appearance.", 
+        img: "images/products/colours/tartrazine-e102.jpg" 
+    },
+    { 
+        id: 122, name: "Tartrazine Lake", cat: "Colours", stock: "1 Kg / 25 Kg", func: "Aluminium Lake", 
+        apps: "Tablet Coating, Capsules", grade: "IP/USP/Food Grade", mol: "Complex Aluminium Lake", purity: ">40% Dye Content", 
+        desc: "An insoluble pigment form offering improved stability and uniform dispersion in solid dosage forms.", 
+        img: "images/products/colours/tartrazine-lake.jpg" 
+    },
+    { 
+        id: 123, name: "Yellow Iron Oxide", cat: "Colours", stock: "25 Kg Bag", func: "Inorganic Pigment", 
+        apps: "Tablet Coating, Light Resistant Apps", grade: "USP/NF/IP", mol: "FeO(OH)", purity: ">95%", 
+        desc: "Provides natural yellow to ochre tones with excellent stability and light resistance.", 
+        img: "images/products/colours/yellow-iron-oxide.jpg" 
+    },
     
 // --- VITAMINS CATEGORY (Items 201+) ---
     { 
