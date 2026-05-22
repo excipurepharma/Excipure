@@ -22,3 +22,9 @@
 .translate-x-full { transform: translateX(100%); }
 .translate-x-0 { transform: translateX(0); }
 .invisible { visibility: hidden; pointer-events: none; }
+
+
+.custom-scrollbar::-webkit-scrollbar { width: 4px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #004b8d; }
