@@ -515,56 +515,80 @@ function getLocation() {
     }
 }
 
-// --- UPDATED EMAIL & WHATSAPP SUBMISSION ---
+// --- UPDATED SUBMISSION LOGIC ---
 function submitOrder(method) {
-    // 1. Get Form Values
-    const nameEl = document.getElementById('cust-name');
-    const phoneEl = document.getElementById('cust-phone');
-    const addrEl = document.getElementById('cust-address');
-    const cityEl = document.getElementById('cust-city');
-    const pinEl = document.getElementById('cust-pin');
+    const name = document.getElementById('cust-name').value.trim();
+    const phone = document.getElementById('cust-phone').value.trim();
+    const address = document.getElementById('cust-address').value.trim();
+    const city = document.getElementById('cust-city').value.trim();
+    const pin = document.getElementById('cust-pin').value.trim();
 
-    // 2. Validate essential fields
-    if (!nameEl.value.trim() || !phoneEl.value.trim() || !addrEl.value.trim()) {
-        alert("Please enter your Name, Phone, and Address before submitting.");
+    // 1. Validation
+    if (!name || !phone || !address) {
+        alert("Please provide your Name, Phone and Address to continue.");
         return;
     }
 
-    // 3. Construct Message Body
-    let orderText = `NEW INQUIRY - EXCIPURE PHARMA\n`;
-    orderText += `----------------------------\n`;
-    orderText += `CUSTOMER DETAILS:\n`;
-    orderText += `Name: ${nameEl.value}\n`;
-    orderText += `Phone: ${phoneEl.value}\n`;
-    orderText += `Address: ${addrEl.value}, ${cityEl.value} - ${pinEl.value}\n`;
-    if(userLocation) orderText += `GPS Location: ${userLocation}\n`;
-    
-    orderText += `\nITEMS REQUESTED:\n`;
-    cart.forEach(c => { 
-        orderText += `- ${c.name} (Qty: ${c.qty}) [Stock: ${c.stock}]\n`; 
-    });
-    orderText += `----------------------------\n`;
+    if (cart.length === 0) {
+        alert("Your cart is empty.");
+        return;
+    }
 
-    // 4. Handle Submission
+    // 2. Format Body Text
+    let body = `NEW INQUIRY - EXCIPURE PHARMA\n`;
+    body += `==============================\n\n`;
+    body += `CUSTOMER INFO:\n`;
+    body += `Name: ${name}\n`;
+    body += `Phone: ${phone}\n`;
+    body += `Address: ${address}, ${city} - ${pin}\n`;
+    if(userLocation) body += `Location Link: ${userLocation}\n`;
+    
+    body += `\nREQUESTED PRODUCTS:\n`;
+    cart.forEach((item, index) => {
+        body += `${index + 1}. ${item.name} | Qty: ${item.qty} | Packaging: ${item.stock}\n`;
+    });
+    body += `\n==============================\n`;
+    body += `Please provide the best wholesale price for the above items.`;
+
+    // 3. Handle Method
     if (method === 'whatsapp') {
-        const waUrl = `https://wa.me/919398453760?text=${encodeURIComponent(orderText)}`;
+        const waUrl = `https://wa.me/919398453760?text=${encodeURIComponent(body)}`;
         window.open(waUrl, '_blank');
     } 
     else if (method === 'email') {
-        const primaryEmail = "info@excipurepharma.com";
-        const bccEmails = "srija@excipurepharma.com,vamsi@excipurepharma.com";
-        const subject = `Product Inquiry from ${nameEl.value}`;
+        const to = "info@excipurepharma.com";
+        const bcc = "srija@excipurepharma.com,vamsi@excipurepharma.com";
+        const subject = `Product Inquiry: ${name}`;
         
-        // Construct standard Mailto format
-        const mailtoLink = `mailto:${primaryEmail}?bcc=${bccEmails}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(orderText)}`;
+        // Mailto link
+        const mailtoUrl = `mailto:${to}?bcc=${bcc}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         
-        // Most reliable way to trigger email client
+        // Use hidden link click for better browser support
         const link = document.createElement('a');
-        link.href = mailtoLink;
-        link.style.display = 'none';
-        document.body.appendChild(link);
+        link.href = mailtoUrl;
         link.click();
-        document.body.removeChild(link);
+    }
+}
+
+// Ensure summary count updates in checkout
+function renderSummary() {
+    const list = document.getElementById('summary-items');
+    const summCount = document.getElementById('summ-count');
+    
+    if (list) {
+        list.innerHTML = cart.map(c => `
+            <div class="flex justify-between text-sm bg-white p-3 rounded-xl border border-slate-100">
+                <div class="flex flex-col">
+                    <span class="font-bold text-slate-800">${c.name}</span>
+                    <span class="text-[10px] text-slate-400 uppercase font-black">${c.stock}</span>
+                </div>
+                <span class="font-black text-[#004b8d]">x${c.qty}</span>
+            </div>
+        `).join('');
+    }
+    
+    if (summCount) {
+        summCount.innerText = cart.reduce((acc, c) => acc + c.qty, 0);
     }
 }
 // --- UPDATED SIDEBAR RENDERING LOGIC ---
