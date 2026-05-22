@@ -517,21 +517,26 @@ function getLocation() {
 
 // --- UPDATED EMAIL & WHATSAPP SUBMISSION ---
 function submitOrder(method) {
-    const name = document.getElementById('cust-name').value;
-    const phone = document.getElementById('cust-phone').value;
-    const address = document.getElementById('cust-address').value;
-    const city = document.getElementById('cust-city').value;
-    const pin = document.getElementById('cust-pin').value;
+    // 1. Get Form Values
+    const nameEl = document.getElementById('cust-name');
+    const phoneEl = document.getElementById('cust-phone');
+    const addrEl = document.getElementById('cust-address');
+    const cityEl = document.getElementById('cust-city');
+    const pinEl = document.getElementById('cust-pin');
 
-    if (!name || !phone || !address) return alert("Please fill in Name, Phone, and Address");
+    // 2. Validate essential fields
+    if (!nameEl.value.trim() || !phoneEl.value.trim() || !addrEl.value.trim()) {
+        alert("Please enter your Name, Phone, and Address before submitting.");
+        return;
+    }
 
-    // 1. Construct professional message
+    // 3. Construct Message Body
     let orderText = `NEW INQUIRY - EXCIPURE PHARMA\n`;
     orderText += `----------------------------\n`;
     orderText += `CUSTOMER DETAILS:\n`;
-    orderText += `Name: ${name}\n`;
-    orderText += `Phone: ${phone}\n`;
-    orderText += `Address: ${address}, ${city} - ${pin}\n`;
+    orderText += `Name: ${nameEl.value}\n`;
+    orderText += `Phone: ${phoneEl.value}\n`;
+    orderText += `Address: ${addrEl.value}, ${cityEl.value} - ${pinEl.value}\n`;
     if(userLocation) orderText += `GPS Location: ${userLocation}\n`;
     
     orderText += `\nITEMS REQUESTED:\n`;
@@ -540,18 +545,26 @@ function submitOrder(method) {
     });
     orderText += `----------------------------\n`;
 
+    // 4. Handle Submission
     if (method === 'whatsapp') {
-        window.open(`https://wa.me/919398453760?text=${encodeURIComponent(orderText)}`, '_blank');
-    } else {
-        // 2. EMAIL CONNECTION (Primary, BCC, Subject, Body)
+        const waUrl = `https://wa.me/919398453760?text=${encodeURIComponent(orderText)}`;
+        window.open(waUrl, '_blank');
+    } 
+    else if (method === 'email') {
         const primaryEmail = "info@excipurepharma.com";
         const bccEmails = "srija@excipurepharma.com,vamsi@excipurepharma.com";
-        const subject = `Product Inquiry: ${name}`;
+        const subject = `Product Inquiry from ${nameEl.value}`;
         
-        // Construct mailto link
+        // Construct standard Mailto format
         const mailtoLink = `mailto:${primaryEmail}?bcc=${bccEmails}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(orderText)}`;
         
-        window.location.href = mailtoLink;
+        // Most reliable way to trigger email client
+        const link = document.createElement('a');
+        link.href = mailtoLink;
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
 }
 // --- UPDATED SIDEBAR RENDERING LOGIC ---
