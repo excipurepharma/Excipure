@@ -532,5 +532,85 @@ function submitOrder(method) {
         window.location.href = `mailto:excipurepharma@gmail.com?subject=Inquiry from ${name}&body=${encodeURIComponent(orderText)}`;
     }
 }
+// --- NEW SIDEBAR RENDERING LOGIC ---
+function renderSidebar() {
+    const nav = document.getElementById('sidebar-nav');
+    if (!nav) return;
 
+    const categories = ["Excipients", "Colours", "Solvents", "Vitamins", "Specialty"];
+    
+    nav.innerHTML = categories.map(cat => {
+        // Get all products belonging to this category
+        const catProducts = products.filter(p => p.cat === cat);
+        
+        return `
+            <div class="category-group">
+                <button onclick="toggleSidebarDropdown(this, '${cat}')" 
+                        class="w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-50 transition group">
+                    <span class="text-sm font-bold text-slate-700 group-hover:text-[#004b8d]">${cat}</span>
+                    <i data-lucide="chevron-down" class="w-4 h-4 text-slate-300 transition-transform duration-200 dropdown-icon"></i>
+                </button>
+                
+                <!-- Dropdown Content (Hidden by default) -->
+                <div class="dropdown-content hidden pl-6 pr-2 py-2 space-y-1">
+                    <button onclick="filterProducts('${cat}')" class="w-full text-left py-2 px-3 text-[11px] font-black uppercase text-[#1a7139] hover:underline">
+                        View All ${cat}
+                    </button>
+                    ${catProducts.map(p => `
+                        <button onclick="filterSingleProduct(${p.id})" 
+                                class="w-full text-left py-1.5 px-3 text-xs text-slate-500 hover:text-[#004b8d] transition truncate">
+                            ${p.name}
+                        </button>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }).join('');
+    
+    lucide.createIcons();
+}
+
+// Toggle Accordion Function
+function toggleSidebarDropdown(btn, cat) {
+    const group = btn.parentElement;
+    const content = group.querySelector('.dropdown-content');
+    const icon = btn.querySelector('.dropdown-icon');
+    
+    // Close others
+    document.querySelectorAll('.dropdown-content').forEach(el => {
+        if (el !== content) el.classList.add('hidden');
+    });
+    document.querySelectorAll('.dropdown-icon').forEach(i => {
+        if (icon !== i) i.style.transform = 'rotate(0deg)';
+    });
+
+    // Toggle current
+    const isHidden = content.classList.toggle('hidden');
+    icon.style.transform = isHidden ? 'rotate(0deg)' : 'rotate(180deg)';
+    
+    // Also filter by category when parent is clicked
+    filterProducts(cat);
+}
+
+// Function to filter just one product
+function filterSingleProduct(id) {
+    const filtered = products.filter(p => p.id === id);
+    renderProducts(filtered);
+}
+
+// Update the existing filterProducts to handle sidebar active states
+const originalFilterProducts = filterProducts;
+filterProducts = function(category) {
+    if (category === 'All') {
+        renderProducts(products);
+        // Reset all icons and close all dropdowns
+        document.querySelectorAll('.dropdown-content').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.dropdown-icon').forEach(i => i.style.transform = 'rotate(0deg)');
+    } else {
+        renderProducts(products.filter(p => p.cat === category));
+    }
+};
+
+// 8. STARTUP (Updated)
 renderProducts(products);
+renderSidebar();
