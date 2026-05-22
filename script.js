@@ -91,7 +91,7 @@ const products = [
     { 
         id: 15, name: "Magnesium Stearate", cat: "Excipients", stock: "25 Kg Bag", func: "Lubricant", 
         apps: "Lubricant, Flow Enhancer", grade: "Pharma Grade / IP / BP / USP", 
-        mol: "C₃₆H₇₀MgO₄", purity: ">98%", desc: "Prevents sticking and improves powder flow during manufacturing.", 
+        mol: "C₃₆H₇₀MgO₄", purity: ">98%", desc: "A magnesium salt of stearic acid used as a lubricant in tablet and capsule manufacturing to prevent sticking and improve powder flow.", 
         img: "images/products/excipients/magnesium-stearate.jpg",
         features: "Reduces sticking, Improves flow properties", appearance: "Fine white powder", weight: "591.24 g/mol", density: "1.03 g/cm³", melting: "88°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
     },
@@ -239,7 +239,7 @@ const products = [
     { id: 114, name: "Iron Red Oxide", cat: "Colours", stock: "25 Kg Bag", func: "Inorganic Pigment", apps: "Tablet Coating, Capsules", grade: "IP/USP", mol: "Fe₂O₃", purity: ">95%", desc: "Highly stable inorganic red pigment.", img: "images/products/colours/iron-red-oxide.jpg", ci: "CI 77491", type: "Inorganic Pigment", solubility: "Insoluble", weight: "159.69 g/mol", density: "5.24 g/cm³", appearance: "Red-brown Fine Powder", features: "Excellent opacity, high stability" },
     { id: 115, name: "Ponceau 4R E124", cat: "Colours", stock: "25 Kg", func: "Synthetic Colour", apps: "Tablets, Syrups, Capsules", grade: "IP/USP/Food Grade", mol: "C₂₀H₁₁N₂Na₃O₁₀S₃", purity: ">80%", desc: "Rich red colour for oral forms.", img: "images/products/colours/ponceau-4r-e124.jpg", ci: "CI 16255", type: "Synthetic Azo Dye", solubility: "Water Soluble", weight: "604.47 g/mol", density: "0.90 g/cm³", appearance: "Red Powder/Granules", features: "Strong red shade, good dispersion" },
     { id: 116, name: "Ponceau 4R Lake", cat: "Colours", stock: "25 Kg", func: "Aluminium Lake", apps: "Film Coating, Tablet Coating", grade: "IP/USP/Food Grade", mol: "Complex Aluminium Lake", purity: ">40% Dye Content", desc: "Lake pigment used in nutraceutical coatings.", img: "images/products/colours/ponceau-4r-lake.jpg", type: "Aluminium Lake Pigment", solubility: "Insoluble", weight: "N/A", density: "0.72 g/cm³", appearance: "Red Fine Powder", features: "Strong colouring, excellent dispersion" },
-    { id: 117, name: "Quinoline Yellow E104", cat: "Colours", stock: "25 Kg", func: "Synthetic Dye", apps: "Tablets, Coatings", grade: "IP/USP/Food Grade", mol: "C₁₈H₉NO₈S₂Na₂", purity: ">70%", desc: "Greenish-yellow colour used in coatings.", img: "images/products/colours/quinoline-yellow-e104.jpg", ci: "CI 47005", type: "Synthetic Dye", solubility: "Water Soluble", weight: "477.38 g/mol", density: "0.70 g/cm³", appearance: "Greenish-yellow Powder", features: "High light stability, distinct hue" },
+    { id: 117, name: "Quinoline Yellow E104", cat: "Colours", stock: "25 Kg", func: "Synthetic Dye", apps: "Tablets, Coatings", grade: "IP/USP/Food Grade", mol: "C₁₈H₁NO₈S₂Na₂", purity: ">70%", desc: "Greenish-yellow colour used in coatings.", img: "images/products/colours/quinoline-yellow-e104.jpg", ci: "CI 47005", type: "Synthetic Dye", solubility: "Water Soluble", weight: "477.38 g/mol", density: "0.70 g/cm³", appearance: "Greenish-yellow Powder", features: "High light stability, distinct hue" },
     { id: 118, name: "Quinoline Yellow Lake", cat: "Colours", stock: "25 Kg", func: "Aluminium Lake", apps: "Film Coating, Tablet Coating", grade: "IP/USP/Food Grade", mol: "Complex Aluminium Lake", purity: ">40% Dye Content", desc: "Insoluble pigment form for stable coatings.", img: "images/products/colours/quinoloine-yellow-lake.jpg", type: "Aluminium Lake Pigment", solubility: "Insoluble", density: "0.65 g/cm³", appearance: "Yellow Fine Powder", features: "Colour stability, uniform dispersion" },
     { id: 119, name: "Sunset Yellow E110", cat: "Colours", stock: "25 Kg", func: "Synthetic Colour", apps: "Tablets, Capsules, Syrups", grade: "IP/USP/Food Grade", mol: "C₁₆H₁₀N₂Na₂O₇S₂", purity: ">85%", desc: "Orange-yellow shade enhancing product appeal.", img: "images/products/colours/sunset-yellow-e110.jpg", ci: "CI 15985", type: "Synthetic Azo Dye", solubility: "Water Soluble", weight: "452.37 g/mol", density: "0.80 g/cm³", appearance: "Orange-red Powder", features: "Good heat stability, vibrant shade" },
     { id: 120, name: "Sunset Yellow Lake", cat: "Colours", stock: "25 Kg", func: "Aluminium Lake", apps: "Film Coating, Oil-based systems", grade: "IP/USP/Food Grade", mol: "Complex Aluminium Lake", purity: ">40% Dye Content", desc: "Enhanced opacity and consistent colour.", img: "images/products/colours/sunset-yellow-lake.jpg", type: "Aluminium Lake Pigment", solubility: "Insoluble", density: "0.60 g/cm³", appearance: "Orange Fine Powder", features: "Stable in oil systems, uniform opacity" },
@@ -491,7 +491,7 @@ function getLocation() {
     }
 }
 
-// 7. SUBMISSION LOGIC
+// --- UPDATED SUBMISSION LOGIC ---
 function submitOrder(method) {
     const name = document.getElementById('cust-name').value.trim();
     const phone = document.getElementById('cust-phone').value.trim();
