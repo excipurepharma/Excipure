@@ -4,7 +4,28 @@ lucide.createIcons();
 // 2. PRODUCT DATABASE
 const products = [
     // --- EXCIPIENTS ---
-    { id: 1, name: "Calcium Carbonate", cat: "Excipients", stock: "25 Kg Bag", func: "Diluent", apps: "Supplement, Diluent, Antacid", grade: "IP/BP/USP", mol: "CaCO₃", purity: ">99%", desc: "Fine white powder used as a diluent and calcium supplement.", img: "images/products/excipients/calcium-carbonate.jpg" },
+    { 
+    id: 1, 
+    name: "Calcium Carbonate", 
+    cat: "Excipients", 
+    stock: "25 Kg Bag", 
+    func: "Diluent", 
+    apps: "Calcium Supplement, Tablet Diluent, Antacid Formulations", 
+    grade: "Pharma Grade / IP / BP / USP / Food Grade", 
+    mol: "CaCO₃", 
+    purity: "Approx. >99%", 
+    desc: "A fine white, odorless crystalline powder, Calcium Carbonate is widely used as a diluent and calcium supplement. It provides bulk to formulations and is also used as an antacid. Common in pharmaceutical, food, and nutraceutical industries.", 
+    img: "images/products/excipients/calcium-carbonate.jpg",
+    // New fields from Excel:
+    features: "Excellent stability, High calcium content, Good compressibility",
+    appearance: "White powder or granules",
+    weight: "100.09 g/mol",
+    density: "Approx. 2.71 g/cm³",
+    melting: "Decomposes above 825°C",
+    origin: "India",
+    moq: "25 Kg",
+    pkgType: "Bag"
+    },
     { id: 2, name: "Carbomer (Carbopol)", cat: "Excipients", stock: "Custom", func: "Gelling agent", apps: "Gels, Cosmetics", grade: "IP/USP/BP", mol: "Polyacrylic Acid", purity: "90–100%", desc: "Fluffy powder forming clear gels for topical use.", img: "images/products/excipients/carbomer.jpg" },
     { id: 3, name: "Propylene Glycol", cat: "Excipients", stock: "215 Kg Drum", func: "Solvent", apps: "Syrups, Oral Liquids", grade: "USP/IP", mol: "C₃H₈O₂", purity: ">99%", desc: "Clear viscous liquid used as a solvent and humectant.", img: "images/products/excipients/propylene-glycol.jpg" },
     { id: 4, name: "Calcium Stearate", cat: "Excipients", stock: "25 Kg Bag", func: "Lubricant", apps: "Tablets, Capsules", grade: "USP", mol: "C₃₆H₇₀CaO₄", purity: ">98%", desc: "Fine white greasy powder used as a tablet lubricant.", img: "images/products/excipients/calcium-stearate.jpg" },
@@ -158,10 +179,16 @@ function viewDetails(id) {
     } 
     else if (p.cat === "Excipients") {
         specs.push({ label: "Function", value: p.func });
+        specs.push({ label: "Key Features", value: p.features || "N/A" });
+        specs.push({ label: "Appearance", value: p.appearance || "N/A" });
         specs.push({ label: "Formula", value: p.mol });
+        specs.push({ label: "Mol. Weight", value: p.weight || "N/A" });
+        specs.push({ label: "Density", value: p.density || "N/A" });
+        specs.push({ label: "Melting Point", value: p.melting || "N/A" });
         specs.push({ label: "Grade", value: p.grade });
         specs.push({ label: "Purity", value: p.purity });
-        if (p.appearance) specs.push({ label: "Appearance", value: p.appearance });
+        specs.push({ label: "Origin", value: p.origin || "N/A" });
+        specs.push({ label: "Min. Order", value: p.moq || "N/A" });
     }
     else if (p.cat === "Vitamins") {
         specs.push({ label: "Function", value: p.func });
