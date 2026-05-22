@@ -3,7 +3,7 @@ lucide.createIcons();
 
 // 2. PRODUCT DATABASE
 const products = [
-    // --- EXCIPIENTS (Mapped from provided Excel Data) ---
+    // --- EXCIPIENTS ---
     { 
         id: 1, name: "Calcium Carbonate", cat: "Excipients", stock: "25 Kg Bag", func: "Diluent", 
         apps: "Calcium Supplement, Tablet Diluent, Antacid Formulations", grade: "IP / BP / USP / Food Grade", 
@@ -17,13 +17,6 @@ const products = [
         mol: "Crosslinked Polyacrylic Acid", purity: ">99%", desc: "A white fluffy hygroscopic powder widely used as a thickening, suspending, and gelling agent in pharmaceutical and cosmetic formulations.", 
         img: "images/products/excipients/carbomer.jpg",
         features: "High viscosity, Excellent stability, Efficient suspending properties", appearance: "White fluffy powder", weight: "Varies", density: "0.20 g/cm³", melting: "Decomposes", origin: "India", moq: "20 Kg", pkgType: "Bag / Drum"
-    },
-    { 
-        id: 3, name: "Propylene Glycol", cat: "Excipients", stock: "215 Kg Drum", func: "Solvent / Humectant", 
-        apps: "Syrups, Oral Solutions, Topical Formulations", grade: "Pharma Grade / USP / IP", 
-        mol: "C₃H₈O₂", purity: ">99%", desc: "A clear, colorless, viscous liquid with hygroscopic properties, Propylene Glycol is widely used as a solvent and humectant. It helps dissolve active ingredients and maintain moisture.", 
-        img: "images/products/excipients/propylene-glycol.jpg",
-        features: "Excellent solvent properties, Moisture retaining, Good stability", appearance: "Clear colorless viscous liquid", weight: "76.09 g/mol", density: "1.04 g/cm³", melting: "-59°C", origin: "India", moq: "215 Kg", pkgType: "Drum"
     },
     { 
         id: 4, name: "Calcium Stearate", cat: "Excipients", stock: "25 Kg Bag", func: "Lubricant / Stabilizer", 
@@ -82,13 +75,6 @@ const products = [
         features: "Excellent film forming, Biocompatible", appearance: "Yellowish granules or powder", weight: "Varies", density: "1.30 g/cm³", melting: "35°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
     },
     { 
-        id: 12, name: "Glycerin", cat: "Excipients", stock: "250 Kg Drum", func: "Humectant / Solvent", 
-        apps: "Syrups, Creams, Oral Solutions", grade: "Pharma Grade / USP / IP", 
-        mol: "C₃H₈O₃", purity: ">99%", desc: "A clear viscous liquid used as a humectant, sweetener, and solvent. Highly effective at moisture retention with a pleasant sweet taste.", 
-        img: "images/products/excipients/glycerin.jpg",
-        features: "Moisture retaining, Sweet taste", appearance: "Clear viscous liquid", weight: "92.09 g/mol", density: "1.26 g/cm³", melting: "18°C", origin: "India", moq: "250 Kg", pkgType: "Drum"
-    },
-    { 
         id: 13, name: "HPMC", cat: "Excipients", stock: "25 Kg Bag", func: "Binder / Coating Agent", 
         apps: "Tablets, Capsules, Film Coating", grade: "Pharma Grade / IP / USP", 
         mol: "C₅₆H₁₀₈O₃₀", purity: ">98%", desc: "A semi-synthetic polymer derived from cellulose, widely used for binding, film coating, and controlled drug release.", 
@@ -122,13 +108,6 @@ const products = [
         mol: "Copolymer", purity: ">98%", desc: "A non-ionic surfactant used to improve the solubility and stability of drugs in various pharmaceutical and cosmetic delivery systems.", 
         img: "images/products/excipients/poloxamer.jpg",
         features: "Excellent emulsification, Improves solubility", appearance: "White waxy powder", weight: "Varies", density: "1.05 g/cm³", melting: "52°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
-    },
-    { 
-        id: 18, name: "Polyethylene Glycol (PEG)", cat: "Excipients", stock: "25 Kg Bag", func: "Solvent / Plasticizer", 
-        apps: "Ointments, Tablets, Capsules", grade: "Pharma Grade / USP", 
-        mol: "H(OCH₂CH₂)nOH", purity: ">99%", desc: "A versatile polymer used as a plasticizer and solvent. Improves drug solubility and formulation stability across many applications.", 
-        img: "images/products/excipients/peg.jpg",
-        features: "Excellent solubility, Good stability", appearance: "White flakes or powder", weight: "Varies", density: "1.12 g/cm³", melting: "60°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
     },
     { 
         id: 19, name: "PVP K30", cat: "Excipients", stock: "25 Kg Bag", func: "Binder / Solubilizer", 
@@ -208,13 +187,6 @@ const products = [
         features: "Improves powder flow, High adsorption", appearance: "Fine white powder", weight: "60.08 g/mol", density: "2.20 g/cm³", melting: "1600°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
     },
     { 
-        id: 30, name: "Ethanol (99.9%)", cat: "Excipients", stock: "50/200 L Drum", func: "Solvent / Disinfectant", 
-        apps: "Syrups, Sanitizers, Liquid Formulations", grade: "Pharma Grade / IP / USP", 
-        mol: "C₂H₆O", purity: ">99%", desc: "A clear, colorless, volatile liquid with a characteristic odor. Used as a high-purity solvent and powerful disinfectant.", 
-        img: "images/products/excipients/ethanol.jpg",
-        features: "Rapid evaporation, Excellent solvent properties", appearance: "Clear colorless liquid", weight: "46.07 g/mol", density: "0.79 g/cm³", melting: "-114°C", origin: "India", moq: "50 L", pkgType: "Drum"
-    },
-    { 
         id: 31, name: "Ethyl Cellulose", cat: "Excipients", stock: "25 Kg Bag", func: "Coating Agent / Binder", 
         apps: "Sustained Release Tablets, Film Coating", grade: "Pharma Grade / IP / USP", 
         mol: "C₂₀H₃₈O₁₁", purity: ">98%", desc: "A white free-flowing powder used for sustained drug release and barrier coating. Known for its water-insolubility and film strength.", 
@@ -250,7 +222,7 @@ const products = [
         features: "Microbial protection, Good stability", appearance: "White crystalline powder", weight: "144.11 g/mol", density: "1.44 g/cm³", melting: "300°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
     },
     
-    // --- COLOURS (Existing) ---
+    // --- COLOURS ---
     { id: 101, name: "Allura Red E129", cat: "Colours", stock: "25 Kg", func: "Synthetic Colour", apps: "Tablets, Capsules, Syrups", grade: "IP/USP/Food Grade", mol: "C₁₈H₁₄N₂Na₂O₈S₂", purity: ">85%", desc: "A vibrant red colour offering uniformity and stability across various dosage forms.", img: "images/products/colours/allura-red-e129.jpg", ci: "CI 16035", type: "Synthetic Azo Dye", solubility: "Water Soluble", weight: "496.42 g/mol", density: "0.70 g/cm³", appearance: "Dark red Powder", features: "Bright red shade, excellent uniformity" },
     { id: 102, name: "Allura Red Lake", cat: "Colours", stock: "25 Kg", func: "Aluminium Lake", apps: "Tablet Coating, Capsule Coating, Food & Nutraceuticals", grade: "IP/USP/Food Grade", mol: "Complex Aluminium Lake", purity: ">40% Dye Content", desc: "A stable pigment for strong, uniform red coloration in tablets and capsules.", img: "images/products/colours/allura-red-lake.jpg", type: "Aluminium Lake Pigment", solubility: "Insoluble / Oil Dispersible", density: "0.70 g/cm³", appearance: "Red Fine Powder", features: "Bright colour shade, good heat stability" },
     { id: 103, name: "Black Iron Oxide", cat: "Colours", stock: "25 Kg Bag", func: "Inorganic Pigment", apps: "Capsules, Coatings", grade: "IP/USP", mol: "Fe₃O₄", purity: ">95%", desc: "Used for grey to black shades, often blended for customized colour variations.", img: "images/products/colours/black-iron-oxide.jpg", ci: "CI 77499", type: "Inorganic Pigment", solubility: "Insoluble", weight: "231.53 g/mol", density: "5.17 g/cm³", appearance: "Black Fine Powder", features: "Deep black shade, high covering power" },
