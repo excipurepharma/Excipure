@@ -245,31 +245,31 @@ function renderProducts(items) {
     if (!grid) return;
     
     grid.innerHTML = items.map(p => `
-        <div class="product-card bg-white rounded-[2rem] p-6 border border-slate-100 shadow-sm relative overflow-hidden group">
-            <div class="absolute top-4 left-4 z-10">
-                <span class="block bg-[#004b8d] text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest">${p.stock}</span>
+        <div class="product-card bg-white rounded-[2.5rem] p-7 border border-slate-100 shadow-sm relative overflow-hidden group">
+            <div class="absolute top-5 left-5 z-10">
+                <span class="block bg-[#004b8d] text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest shadow-md">${p.stock}</span>
             </div>
             <img src="${p.img}?v=${Date.now()}" 
                  onerror="handleImageError(this, '${p.name}')" 
-                 class="w-full h-52 object-cover rounded-2xl mb-4 bg-slate-50 border border-slate-50 shadow-inner">
+                 class="w-full h-56 object-cover rounded-3xl mb-5 bg-slate-50 border border-slate-50 shadow-inner">
             <div class="px-2">
                 <p class="text-[11px] font-black text-[#1a7139] uppercase mb-1 tracking-tighter">${p.cat}</p>
-                <h3 class="font-bold text-lg h-14 mb-2 uppercase leading-tight text-slate-900">${p.name}</h3>
+                <h3 class="font-black text-xl h-14 mb-3 uppercase leading-tight text-slate-900">${p.name}</h3>
                 
-                <!-- Updated Application Line -->
-                <p class="text-[13px] text-slate-500 mb-1">Application: <span class="text-[16px] font-black text-slate-800">${p.func}</span></p>
+                <!-- Updated Application Line with Bigger Font -->
+                <p class="text-[14px] text-slate-500 mb-2">Application: <span class="text-[17px] font-black text-slate-900">${p.func}</span></p>
                 
-                <!-- Added MOQ and PkgType -->
-                <div class="flex gap-2 text-[12px] text-slate-400 font-bold uppercase tracking-tight mb-6">
-                    <span>MOQ: ${p.moq || '25 Kg'}</span>
-                    <span class="text-slate-200">|</span>
-                    <span>${p.pkgType || 'Bag'}</span>
+                <!-- Expanded MOQ and Package Type with Bold Black Values -->
+                <div class="text-[12px] text-slate-500 leading-tight mb-7">
+                    Minimum order quantity: <span class="font-black text-slate-900">${p.moq || '25 Kg'}</span>
+                    <span class="mx-1 text-slate-300">|</span>
+                    Package type: <span class="font-black text-slate-900">${p.pkgType || 'Bag'}</span>
                 </div>
 
-                <div class="flex justify-between items-center pt-3 border-t border-slate-50">
-                    <button onclick="viewDetails(${p.id})" class="text-[14px] font-black text-[#004b8d] underline uppercase tracking-widest hover:text-[#1a7139] transition-colors">Product Details</button>
-                    <button onclick="addToCart(${p.id})" class="w-12 h-12 bg-[#004b8d] text-white rounded-full flex items-center justify-center hover:bg-[#1a7139] transition shadow-lg shadow-blue-100">
-                        <i data-lucide="plus" class="w-6 h-6"></i>
+                <div class="flex justify-between items-center pt-4 border-t border-slate-50">
+                    <button onclick="viewDetails(${p.id})" class="text-[15px] font-black text-[#004b8d] underline uppercase tracking-widest hover:text-[#1a7139] transition-colors">Product Details</button>
+                    <button onclick="addToCart(${p.id})" class="w-14 h-14 bg-[#004b8d] text-white rounded-full flex items-center justify-center hover:bg-[#1a7139] transition shadow-xl shadow-blue-100">
+                        <i data-lucide="plus" class="w-7 h-7"></i>
                     </button>
                 </div>
             </div>
