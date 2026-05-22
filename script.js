@@ -315,7 +315,6 @@ function renderProducts(items) {
                 <div class="text-[12px] text-slate-500 leading-tight mb-7">
                     Minimum order quantity: <span class="font-black text-slate-900">${p.moq || '25 Kg'}</span>
                     <span class="mx-1 text-slate-300">|</span>
-                    Package type: <span class="font-black text-slate-900">${p.pkgType || 'Bag'}</span>
                 </div>
 
                 <div class="flex justify-between items-center pt-4 border-t border-slate-50">
