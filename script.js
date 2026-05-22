@@ -281,6 +281,36 @@ const products = [
     { id: 203, name: "Tocopherol (Vitamin E)", cat: "Vitamins", stock: "Drum", func: "Antioxidant / Nutritive", apps: "Softgels, Topicals, Syrups", grade: "USP/FCC", mol: "C₂₉H₅₀O₂", purity: "Various Strengths", desc: "Derived from natural sources; protects cell membranes.", img: "images/products/vitamins/tocopherol.jpg" },
     { id: 204, name: "Tocopheryl Acetate", cat: "Vitamins", stock: "Drum", func: "Vitamin E Supplement", apps: "Multi-vitamins, Cosmetics, Softgels", grade: "USP/IP/EP", mol: "C₃₁H₅₂O₃", purity: ">98%", desc: "Stable ester of Vitamin E for dietary supplements.", img: "images/products/vitamins/tocopheryl-acetate.jpg" },
 
+    // -----SOLVENTS -----
+    { 
+        id: 3, name: "Propylene Glycol", cat: "Solvents", stock: "215 Kg Drum", func: "Solvent / Humectant", 
+        apps: "Syrups, Oral Solutions, Topical Formulations", grade: "Pharma Grade / USP / IP", 
+        mol: "C₃H₈O₂", purity: ">99%", desc: "A clear, colorless, viscous liquid with hygroscopic properties, Propylene Glycol is widely used as a solvent and humectant.", 
+        img: "images/products/excipients/propylene-glycol.jpg",
+        features: "Excellent solvent properties, Moisture retaining, Good stability", appearance: "Clear colorless viscous liquid", weight: "76.09 g/mol", density: "1.04 g/cm³", melting: "-59°C", origin: "India", moq: "215 Kg", pkgType: "Drum"
+    },
+    { 
+        id: 12, name: "Glycerin", cat: "Solvents", stock: "250 Kg Drum", func: "Humectant / Solvent", 
+        apps: "Syrups, Creams, Oral Solutions", grade: "Pharma Grade / USP / IP", 
+        mol: "C₃H₈O₃", purity: ">99%", desc: "A clear viscous liquid used as a humectant, sweetener, and solvent. Highly effective at moisture retention with a pleasant sweet taste.", 
+        img: "images/products/excipients/glycerin.jpg",
+        features: "Moisture retaining, Sweet taste", appearance: "Clear viscous liquid", weight: "92.09 g/mol", density: "1.26 g/cm³", melting: "18°C", origin: "India", moq: "250 Kg", pkgType: "Drum"
+    },
+    { 
+        id: 18, name: "Polyethylene Glycol (PEG)", cat: "Solvents", stock: "25 Kg Bag", func: "Solvent / Plasticizer", 
+        apps: "Ointments, Tablets, Capsules", grade: "Pharma Grade / USP", 
+        mol: "H(OCH₂CH₂)nOH", purity: ">99%", desc: "A versatile polymer used as a plasticizer and solvent. Improves drug solubility and formulation stability across many applications.", 
+        img: "images/products/excipients/peg.jpg",
+        features: "Excellent solubility, Good stability", appearance: "White flakes or powder", weight: "Varies", density: "1.12 g/cm³", melting: "60°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 30, name: "Ethanol (99.9%)", cat: "Solvents", stock: "50/200 L Drum", func: "Solvent / Disinfectant", 
+        apps: "Syrups, Sanitizers, Liquid Formulations", grade: "Pharma Grade / IP / USP", 
+        mol: "C₂H₆O", purity: ">99%", desc: "A clear, colorless, volatile liquid with a characteristic odor. Used as a high-purity solvent and powerful disinfectant.", 
+        img: "images/products/excipients/ethanol.jpg",
+        features: "Rapid evaporation, Excellent solvent properties", appearance: "Clear colorless liquid", weight: "46.07 g/mol", density: "0.79 g/cm³", melting: "-114°C", origin: "India", moq: "50 L", pkgType: "Drum"
+    },
+
     // --- SPECIALTY ---
     { id: 301, name: "Aloe Vera Gel Powder", cat: "Specialty", stock: "10/25 Kg", func: "Natural Extract", apps: "Cosmetics, Nutraceuticals, Skincare", grade: "Cosmetic / Food Grade", mol: "Natural Extract", purity: "200X / 100X", desc: "Premium extract derived from Aloe Barbadensis leaf.", img: "images/products/specialty/aloe-vera-gel-powder.jpg" },
     { id: 302, name: "Bio-SAP Polymer", cat: "Specialty", stock: "25 Kg Bag", func: "Water Retainer", apps: "Agriculture, Hygiene, Industrial", grade: "Eco-Friendly", mol: "Bio-Polymer", purity: "High Capacity", desc: "Eco-friendly polymer capable of massive water retention.", img: "images/products/specialty/bio-based-super-absorbent-polymer.jpg" }
@@ -381,6 +411,19 @@ function viewDetails(id) {
         specs.push({ label: "Active Purity", value: p.purity });
         specs.push({ label: "Formula", value: p.mol });
         specs.push({ label: "Grade", value: p.grade });
+    }
+    else if (p.cat === "Excipients" || p.cat === "Solvents") {
+        specs.push({ label: "Function", value: p.func });
+        specs.push({ label: "Key Features", value: p.features || "N/A" });
+        specs.push({ label: "Appearance", value: p.appearance || "N/A" });
+        specs.push({ label: "Formula", value: p.mol });
+        specs.push({ label: "Mol. Weight", value: p.weight || "N/A" });
+        specs.push({ label: "Density", value: p.density || "N/A" });
+        specs.push({ label: "Melting Point", value: p.melting || "N/A" });
+        specs.push({ label: "Grade", value: p.grade });
+        specs.push({ label: "Purity", value: p.purity });
+        specs.push({ label: "Origin", value: p.origin || "India" });
+        specs.push({ label: "Min. Order", value: p.moq || "25 Kg" });
     }
     else { 
         specs.push({ label: "Category", value: p.cat });
