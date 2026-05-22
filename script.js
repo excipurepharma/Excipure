@@ -309,7 +309,8 @@ function renderProducts(items) {
                 <h3 class="font-bold text-sm h-10 mb-2 uppercase">${p.name}</h3>
                 <p class="text-[11px] text-slate-500 line-clamp-2 mb-4 italic">${p.func}</p>
                 <div class="flex justify-between items-center">
-                    <button onclick="viewDetails(${p.id})" class="text-[11px] font-bold text-[#004b8d] underline uppercase tracking-widest">Specs</button>
+                    <!-- RENAME TO PRODUCT DETAILS AND INCREASE FONT -->
+                    <button onclick="viewDetails(${p.id})" class="text-[13px] font-bold text-[#004b8d] underline uppercase tracking-wide">Product Details</button>
                     <button onclick="addToCart(${p.id})" class="w-10 h-10 bg-[#004b8d] text-white rounded-full flex items-center justify-center hover:bg-[#1a7139] transition">
                         <i data-lucide="plus" class="w-5 h-5"></i>
                     </button>
@@ -356,7 +357,8 @@ function viewDetails(id) {
     if (!p) return;
 
     document.getElementById('modal-title').innerText = p.name;
-    document.getElementById('modal-desc').innerText = p.desc;
+    // INCREASE DESCRIPTION FONT
+    document.getElementById('modal-desc').innerHTML = `<span class="text-lg text-slate-600">${p.desc}</span>`;
     
     const modalImg = document.getElementById('modal-img');
     if (modalImg) {
@@ -386,15 +388,17 @@ function viewDetails(id) {
         specs.push({ label: "Function", value: p.func }, { label: "Grade", value: p.grade }, { label: "Purity", value: p.purity });
     }
 
+    // INCREASE SPECS GRID FONT SIZES
     specsGrid.innerHTML = specs.map(s => `
-        <div>
-            <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-0.5">${s.label}</h4>
-            <p class="text-xs font-bold text-slate-800">${s.value}</p>
+        <div class="mb-4">
+            <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-1">${s.label}</h4>
+            <p class="text-base font-bold text-slate-800">${s.value}</p>
         </div>
     `).join('');
 
+    // INCREASE TAG FONT SIZE
     document.getElementById('modal-apps').innerHTML = p.apps.split(',').map(app => 
-        `<span class="px-3 py-1 bg-blue-50 text-[#004b8d] text-[10px] font-bold rounded-full uppercase border border-blue-100">${app.trim()}</span>`
+        `<span class="px-4 py-2 bg-blue-50 text-[#004b8d] text-xs font-bold rounded-full uppercase border border-blue-100">${app.trim()}</span>`
     ).join('');
 
     document.getElementById('modal-add-btn').onclick = () => { addToCart(p.id); closeDetails(); };
