@@ -515,21 +515,43 @@ function getLocation() {
     }
 }
 
+// --- UPDATED EMAIL & WHATSAPP SUBMISSION ---
 function submitOrder(method) {
     const name = document.getElementById('cust-name').value;
     const phone = document.getElementById('cust-phone').value;
-    if (!name || !phone) return alert("Please enter Name and Phone");
+    const address = document.getElementById('cust-address').value;
+    const city = document.getElementById('cust-city').value;
+    const pin = document.getElementById('cust-pin').value;
 
-    let orderText = `*NEW INQUIRY - EXCIPURE PHARMA*\n\n`;
-    orderText += `*Customer:* ${name}\n*Phone:* ${phone}\n`;
-    if(userLocation) orderText += `*Location:* ${userLocation}\n`;
-    orderText += `\n*ITEMS REQUESTED:*\n`;
-    cart.forEach(c => { orderText += `- ${c.name} (Qty: ${c.qty}) [${c.stock}]\n`; });
+    if (!name || !phone || !address) return alert("Please fill in Name, Phone, and Address");
+
+    // 1. Construct professional message
+    let orderText = `NEW INQUIRY - EXCIPURE PHARMA\n`;
+    orderText += `----------------------------\n`;
+    orderText += `CUSTOMER DETAILS:\n`;
+    orderText += `Name: ${name}\n`;
+    orderText += `Phone: ${phone}\n`;
+    orderText += `Address: ${address}, ${city} - ${pin}\n`;
+    if(userLocation) orderText += `GPS Location: ${userLocation}\n`;
+    
+    orderText += `\nITEMS REQUESTED:\n`;
+    cart.forEach(c => { 
+        orderText += `- ${c.name} (Qty: ${c.qty}) [Stock: ${c.stock}]\n`; 
+    });
+    orderText += `----------------------------\n`;
 
     if (method === 'whatsapp') {
         window.open(`https://wa.me/919398453760?text=${encodeURIComponent(orderText)}`, '_blank');
     } else {
-        window.location.href = `mailto:excipurepharma@gmail.com?subject=Inquiry from ${name}&body=${encodeURIComponent(orderText)}`;
+        // 2. EMAIL CONNECTION (Primary, BCC, Subject, Body)
+        const primaryEmail = "info@excipurepharma.com";
+        const bccEmails = "srija@excipurepharma.com,vamsi@excipurepharma.com";
+        const subject = `Product Inquiry: ${name}`;
+        
+        // Construct mailto link
+        const mailtoLink = `mailto:${primaryEmail}?bcc=${bccEmails}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(orderText)}`;
+        
+        window.location.href = mailtoLink;
     }
 }
 // --- UPDATED SIDEBAR RENDERING LOGIC ---
