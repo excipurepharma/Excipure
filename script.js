@@ -397,4 +397,45 @@ function renderSidebar() {
         return `
             <div class="category-group border-b border-slate-50 last:border-0 pb-1">
                 <button onclick="toggleSidebarDropdown(this, '${cat}')" class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition group text-left">
-                    <span class="text-base font-black text-slate-800 group-hover:text-[#004b8d] uppercase tracking-wide">${cat} <span class="text-slate-400
+                    <span class="text-base font-black text-slate-800 group-hover:text-[#004b8d] uppercase tracking-wide">${cat} <span class="text-slate-400 font-medium ml-1">(${catItems.length})</span></span>
+                    <i data-lucide="chevron-down" class="w-5 h-5 text-slate-300 transition-transform duration-200 dropdown-icon"></i>
+                </button>
+                <div class="dropdown-content hidden pl-4 pr-2 py-3 space-y-1.5">
+                    <button onclick="filterProducts('${cat}')" class="w-full text-left py-2 px-3 text-[12px] font-black uppercase text-[#1a7139] hover:bg-green-50 rounded-lg transition">View All Category</button>
+                    ${catItems.map(p => `<button onclick="filterSingleProduct(${p.id})" class="w-full text-left py-2 px-3 text-[14px] font-bold text-slate-500 hover:text-[#004b8d] hover:bg-blue-50 rounded-lg transition truncate">${p.name}</button>`).join('')}
+                </div>
+            </div>
+        `;
+    }).join('');
+    nav.innerHTML = html;
+    lucide.createIcons();
+}
+
+function toggleSidebarDropdown(btn, cat) {
+    const group = btn.parentElement;
+    const content = group.querySelector('.dropdown-content');
+    const icon = btn.querySelector('.dropdown-icon');
+    document.querySelectorAll('.dropdown-content').forEach(el => { if (el !== content) el.classList.add('hidden'); });
+    document.querySelectorAll('.dropdown-icon').forEach(i => { if (icon !== i) i.style.transform = 'rotate(0deg)'; });
+    content.classList.toggle('hidden') ? icon.style.transform = 'rotate(0deg)' : icon.style.transform = 'rotate(180deg)';
+    filterProducts(cat);
+}
+
+// Ensure summary works
+function renderSummary() {
+    const list = document.getElementById('summary-items');
+    const summCount = document.getElementById('summ-count');
+    if (list) {
+        list.innerHTML = cart.map(c => `
+            <div class="flex justify-between text-sm bg-white p-3 rounded-xl border border-slate-100">
+                <div class="flex flex-col"><span class="font-bold text-slate-800 text-base">${c.name}</span><span class="text-[10px] text-slate-400 uppercase font-black">${c.stock}</span></div>
+                <span class="font-black text-[#004b8d] text-lg">x${c.qty}</span>
+            </div>
+        `).join('');
+    }
+    if (summCount) summCount.innerText = cart.reduce((acc, c) => acc + c.qty, 0);
+}
+
+// STARTUP
+renderProducts(products);
+renderSidebar();
