@@ -314,7 +314,6 @@ function renderProducts(items) {
                 <!-- Expanded MOQ and Package Type with Bold Black Values -->
                 <div class="text-[12px] text-slate-500 leading-tight mb-7">
                     Minimum order quantity: <span class="font-black text-slate-900">${p.moq || '25 Kg'}</span>
-                    <span class="mx-1 text-slate-300">|</span>
                 </div>
 
                 <div class="flex justify-between items-center pt-4 border-t border-slate-50">
