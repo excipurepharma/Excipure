@@ -591,7 +591,7 @@ function renderSummary() {
         summCount.innerText = cart.reduce((acc, c) => acc + c.qty, 0);
     }
 }
-// --- UPDATED SIDEBAR RENDERING LOGIC ---
+// --- UPDATED SIDEBAR LOGIC ---
 function renderSidebar() {
     const nav = document.getElementById('sidebar-nav');
     if (!nav) return;
@@ -599,7 +599,6 @@ function renderSidebar() {
     const categories = ["Excipients", "Colours", "Solvents", "Vitamins", "Specialty"];
     const totalCount = products.length;
 
-    // 1. Start with the "All Products" button (No more "Show All")
     let sidebarHTML = `
         <button onclick="filterProducts('All')" 
                 class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-50 transition font-bold text-sm mb-4 flex items-center justify-between group border border-transparent hover:border-slate-100">
@@ -608,23 +607,22 @@ function renderSidebar() {
         </button>
     `;
 
-    // 2. Generate Category Dropdowns
     sidebarHTML += categories.map(cat => {
         const catProducts = products.filter(p => p.cat === cat);
         const count = catProducts.length;
         
         return `
-            <div class="category-group">
+            <div class="category-group border-b border-slate-50 last:border-0 pb-1">
                 <button onclick="toggleSidebarDropdown(this, '${cat}')" 
                         class="w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-50 transition group">
-                    <span class="text-sm font-bold text-slate-700 group-hover:text-[#004b8d]">
-                        ${cat} <span class="text-slate-400 font-medium ml-1">(${count})</span>
+                    <span class="text-[11px] font-black text-slate-500 group-hover:text-[#004b8d] uppercase tracking-tighter">
+                        ${cat} <span class="text-slate-300 font-medium ml-1">(${count})</span>
                     </span>
-                    <i data-lucide="chevron-down" class="w-4 h-4 text-slate-300 transition-transform duration-200 dropdown-icon"></i>
+                    <i data-lucide="chevron-down" class="w-3 h-3 text-slate-300 transition-transform duration-200 dropdown-icon"></i>
                 </button>
                 
-                <div class="dropdown-content hidden pl-4 pr-2 py-2 space-y-1">
-                    <button onclick="filterProducts('${cat}')" class="w-full text-left py-2 px-3 text-[10px] font-black uppercase text-[#1a7139] hover:bg-green-50 rounded-lg transition">
+                <div class="dropdown-content hidden pl-2 pr-2 py-2 space-y-1">
+                    <button onclick="filterProducts('${cat}')" class="w-full text-left py-1.5 px-3 text-[10px] font-black uppercase text-[#1a7139] hover:bg-green-50 rounded-lg transition">
                         View All ${cat}
                     </button>
                     ${catProducts.map(p => `
@@ -640,6 +638,22 @@ function renderSidebar() {
     
     nav.innerHTML = sidebarHTML;
     lucide.createIcons();
+}
+
+// --- NEW FEATURE: Filter to single product and SCROLL ---
+function filterSingleProduct(id) {
+    // 1. Filter the grid to show ONLY this product
+    const filtered = products.filter(p => p.id === id);
+    renderProducts(filtered);
+
+    // 2. Smoothly scroll to the catalog grid
+    const catalogSection = document.getElementById('catalog');
+    if (catalogSection) {
+        window.scrollTo({
+            top: catalogSection.offsetTop - 100, // Offset for the sticky nav
+            behavior: 'smooth'
+        });
+    }
 }
 
 // Sidebar Dropdown Toggle
