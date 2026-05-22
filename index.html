@@ -209,32 +209,69 @@
 
     <!-- C. Checkout Modal -->
     <div id="checkout-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-4">
+        <!-- Backdrop -->
         <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-md" onclick="closeCheckout()"></div>
-        <div class="relative bg-white rounded-[2.5rem] w-full max-w-4xl overflow-hidden shadow-2xl flex flex-col md:flex-row">
-            <!-- Left: Delivery Details -->
-            <div class="p-8 md:p-12 md:w-1/2">
-                <h2 class="text-2xl font-black mb-8">Delivery Details</h2>
+        
+        <!-- Modal Content -->
+        <div class="relative bg-white rounded-[2.5rem] w-full max-w-5xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh]">
+            
+            <!-- Close Button (Top Right) -->
+            <button onclick="closeCheckout()" class="absolute top-6 right-6 z-50 p-2 bg-white/80 backdrop-blur rounded-full shadow-sm border border-slate-100 hover:bg-slate-100 transition">
+                <i data-lucide="x" class="w-5 h-5 text-slate-500"></i>
+            </button>
+
+            <!-- Left Side: Delivery Form -->
+            <div class="p-8 md:p-12 md:w-1/2 overflow-y-auto">
+                <h2 class="text-2xl font-black mb-2">Inquiry Details</h2>
+                <p class="text-slate-500 text-sm mb-8">Please provide your details to receive a formal quote.</p>
+                
                 <form id="checkout-form" class="space-y-4">
-                    <input type="text" id="cust-name" placeholder="Full Name" required class="w-full p-4 bg-slate-100 rounded-xl border-none focus:ring-2 focus:ring-[#004b8d]">
-                    <input type="tel" id="cust-phone" placeholder="Phone Number" required class="w-full p-4 bg-slate-100 rounded-xl border-none focus:ring-2 focus:ring-[#004b8d]">
-                    <input type="text" id="cust-address" placeholder="Street Address" required class="w-full p-4 bg-slate-100 rounded-xl border-none focus:ring-2 focus:ring-[#004b8d]">
+                    <input type="text" id="cust-name" placeholder="Full Name / Company Name" required class="w-full p-4 bg-slate-100 rounded-xl border-none focus:ring-2 focus:ring-[#004b8d] transition-all">
+                    <input type="tel" id="cust-phone" placeholder="WhatsApp Number" required class="w-full p-4 bg-slate-100 rounded-xl border-none focus:ring-2 focus:ring-[#004b8d] transition-all">
+                    <input type="text" id="cust-address" placeholder="Shipping Address" required class="w-full p-4 bg-slate-100 rounded-xl border-none focus:ring-2 focus:ring-[#004b8d] transition-all">
+                    
                     <div class="grid grid-cols-2 gap-4">
                         <input type="text" id="cust-city" placeholder="City" required class="w-full p-4 bg-slate-100 rounded-xl border-none focus:ring-2 focus:ring-[#004b8d]">
                         <input type="text" id="cust-pin" placeholder="Pincode" required class="w-full p-4 bg-slate-100 rounded-xl border-none focus:ring-2 focus:ring-[#004b8d]">
                     </div>
-                    <button type="button" onclick="getLocation()" id="location-btn" class="flex items-center justify-center gap-2 w-full p-3 text-sm font-bold text-slate-500 border-2 border-dashed border-slate-200 rounded-xl hover:bg-slate-50 transition">
-                        <i data-lucide="map-pin" class="w-4 h-4"></i> Share My Precise Location
+
+                    <button type="button" onclick="getLocation()" id="location-btn" class="flex items-center justify-center gap-2 w-full p-3 text-[10px] font-black uppercase tracking-widest text-slate-400 border-2 border-dashed border-slate-200 rounded-xl hover:bg-slate-50 transition">
+                        <i data-lucide="map-pin" class="w-4 h-4"></i> Share Precise Location
                     </button>
+
                     <div class="grid grid-cols-2 gap-4 pt-4">
-                        <button type="button" onclick="submitOrder('whatsapp')" class="bg-[#25D366] text-white p-4 rounded-xl font-bold flex items-center justify-center gap-2">
-                            <i data-lucide="message-circle"></i> WhatsApp 
+                        <button type="button" onclick="submitOrder('whatsapp')" class="bg-[#25D366] text-white p-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:brightness-95 transition shadow-lg shadow-green-100">
+                            <i data-lucide="message-circle"></i> WhatsApp
                         </button>
-                        <button type="button" onclick="submitOrder('email')" class="bg-[#004b8d] text-white p-4 rounded-xl font-bold flex items-center justify-center gap-2">
-                        <i data-lucide="mail"></i> Email 
-                    </button>
+                        <button type="button" onclick="submitOrder('email')" class="bg-[#004b8d] text-white p-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:brightness-95 transition shadow-lg shadow-blue-100">
+                            <i data-lucide="mail"></i> Email
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Right Side: Order Summary -->
+            <div class="bg-slate-50 p-8 md:p-12 md:w-1/2 flex flex-col overflow-y-auto">
+                <h3 class="text-xl font-bold mb-8 flex items-center gap-2">
+                    <i data-lucide="shopping-bag" class="text-[#004b8d]"></i> Inquiry Summary
+                </h3>
+                
+                <div id="summary-items" class="flex-1 space-y-4 mb-8">
+                    <!-- Items auto-filled by JS -->
+                </div>
+
+                <div class="border-t border-slate-200 pt-6">
+                    <div class="flex justify-between items-center text-slate-500 text-sm mb-2">
+                        <span>Total Items</span>
+                        <span id="summ-count" class="font-bold text-slate-800">0</span>
+                    </div>
+                    <div class="flex justify-between items-center text-xl font-black pt-4 text-[#1a7139]">
+                        <span>ESTIMATE</span>
+                        <span class="text-xs uppercase tracking-tighter text-slate-400">Quote on Request</span>
+                    </div>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
             <!-- Right: Summary -->
             <div class="bg-slate-50 p-8 md:p-12 md:w-1/2 flex flex-col">
