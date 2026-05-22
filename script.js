@@ -538,9 +538,19 @@ function renderSidebar() {
     if (!nav) return;
 
     const categories = ["Excipients", "Colours", "Solvents", "Vitamins", "Specialty"];
-    
-    nav.innerHTML = categories.map(cat => {
-        // 1. Calculate count for this category
+    const totalCount = products.length;
+
+    // 1. Start with the "All Products" button (No more "Show All")
+    let sidebarHTML = `
+        <button onclick="filterProducts('All')" 
+                class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-50 transition font-bold text-sm mb-4 flex items-center justify-between group border border-transparent hover:border-slate-100">
+            <span class="text-slate-700 group-hover:text-[#004b8d]">All Products <span class="text-slate-400 font-medium ml-1">(${totalCount})</span></span>
+            <i data-lucide="layers" class="w-4 h-4 text-slate-300"></i>
+        </button>
+    `;
+
+    // 2. Generate Category Dropdowns
+    sidebarHTML += categories.map(cat => {
         const catProducts = products.filter(p => p.cat === cat);
         const count = catProducts.length;
         
@@ -554,7 +564,6 @@ function renderSidebar() {
                     <i data-lucide="chevron-down" class="w-4 h-4 text-slate-300 transition-transform duration-200 dropdown-icon"></i>
                 </button>
                 
-                <!-- Dropdown Content (Hidden by default) -->
                 <div class="dropdown-content hidden pl-4 pr-2 py-2 space-y-1">
                     <button onclick="filterProducts('${cat}')" class="w-full text-left py-2 px-3 text-[10px] font-black uppercase text-[#1a7139] hover:bg-green-50 rounded-lg transition">
                         View All ${cat}
@@ -570,16 +579,17 @@ function renderSidebar() {
         `;
     }).join('');
     
+    nav.innerHTML = sidebarHTML;
     lucide.createIcons();
 }
 
-// Toggle Accordion Function
+// Sidebar Dropdown Toggle
 function toggleSidebarDropdown(btn, cat) {
     const group = btn.parentElement;
     const content = group.querySelector('.dropdown-content');
     const icon = btn.querySelector('.dropdown-icon');
     
-    // Close other dropdowns
+    // Close others
     document.querySelectorAll('.dropdown-content').forEach(el => {
         if (el !== content) el.classList.add('hidden');
     });
@@ -591,28 +601,30 @@ function toggleSidebarDropdown(btn, cat) {
     const isHidden = content.classList.toggle('hidden');
     icon.style.transform = isHidden ? 'rotate(0deg)' : 'rotate(180deg)';
     
-    // Auto-filter products when category is clicked
     filterProducts(cat);
 }
 
-// Function to filter and show only one specific product
+// Filter to a single specific product
 function filterSingleProduct(id) {
     const filtered = products.filter(p => p.id === id);
     renderProducts(filtered);
-    
-    // On mobile, you might want to scroll to content
     if(window.innerWidth < 768) {
         document.getElementById('product-grid').scrollIntoView({ behavior: 'smooth' });
     }
 }
 
-// Update the existing filterProducts function
+// Main Filter Logic
 function filterProducts(category) {
-    // If we ever need 'All' logic back, keep the safety, otherwise filter by cat
-    const filtered = category === 'All' ? products : products.filter(p => p.cat === category);
-    renderProducts(filtered);
+    if (category === 'All') {
+        renderProducts(products);
+        // Close all dropdowns when viewing all
+        document.querySelectorAll('.dropdown-content').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.dropdown-icon').forEach(i => i.style.transform = 'rotate(0deg)');
+    } else {
+        renderProducts(products.filter(p => p.cat === category));
+    }
 }
 
-// 8. STARTUP (Run these on load)
-renderProducts(products); // Show all on initial load
-renderSidebar();          // Initialize side panel
+// Update the Startup section at the very bottom
+renderProducts(products);
+renderSidebar();
