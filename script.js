@@ -3,65 +3,254 @@ lucide.createIcons();
 
 // 2. PRODUCT DATABASE
 const products = [
-    // --- EXCIPIENTS ---
+    // --- EXCIPIENTS (Mapped from provided Excel Data) ---
     { 
-    id: 1, 
-    name: "Calcium Carbonate", 
-    cat: "Excipients", 
-    stock: "25 Kg Bag", 
-    func: "Diluent", 
-    apps: "Calcium Supplement, Tablet Diluent, Antacid Formulations", 
-    grade: "Pharma Grade / IP / BP / USP / Food Grade", 
-    mol: "CaCO₃", 
-    purity: "Approx. >99%", 
-    desc: "A fine white, odorless crystalline powder, Calcium Carbonate is widely used as a diluent and calcium supplement. It provides bulk to formulations and is also used as an antacid. Common in pharmaceutical, food, and nutraceutical industries.", 
-    img: "images/products/excipients/calcium-carbonate.jpg",
-    // New fields from Excel:
-    features: "Excellent stability, High calcium content, Good compressibility",
-    appearance: "White powder or granules",
-    weight: "100.09 g/mol",
-    density: "Approx. 2.71 g/cm³",
-    melting: "Decomposes above 825°C",
-    origin: "India",
-    moq: "25 Kg",
-    pkgType: "Bag"
+        id: 1, name: "Calcium Carbonate", cat: "Excipients", stock: "25 Kg Bag", func: "Diluent", 
+        apps: "Calcium Supplement, Tablet Diluent, Antacid Formulations", grade: "IP / BP / USP / Food Grade", 
+        mol: "CaCO₃", purity: ">99%", desc: "A fine white, odorless crystalline powder, Calcium Carbonate is widely used as a diluent and calcium supplement. It provides bulk to formulations and is also used as an antacid.", 
+        img: "images/products/excipients/calcium-carbonate.jpg",
+        features: "Excellent stability, High calcium content, Good compressibility", appearance: "White powder or granules", weight: "100.09 g/mol", density: "2.71 g/cm³", melting: "825°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
     },
-    { id: 2, name: "Carbomer (Carbopol)", cat: "Excipients", stock: "Custom", func: "Gelling agent", apps: "Gels, Cosmetics", grade: "IP/USP/BP", mol: "Polyacrylic Acid", purity: "90–100%", desc: "Fluffy powder forming clear gels for topical use.", img: "images/products/excipients/carbomer.jpg" },
-    { id: 3, name: "Propylene Glycol", cat: "Excipients", stock: "215 Kg Drum", func: "Solvent", apps: "Syrups, Oral Liquids", grade: "USP/IP", mol: "C₃H₈O₂", purity: ">99%", desc: "Clear viscous liquid used as a solvent and humectant.", img: "images/products/excipients/propylene-glycol.jpg" },
-    { id: 4, name: "Calcium Stearate", cat: "Excipients", stock: "25 Kg Bag", func: "Lubricant", apps: "Tablets, Capsules", grade: "USP", mol: "C₃₆H₇₀CaO₄", purity: ">98%", desc: "Fine white greasy powder used as a tablet lubricant.", img: "images/products/excipients/calcium-stearate.jpg" },
-    { id: 5, name: "Chitosan", cat: "Excipients", stock: "Custom", func: "Binder", apps: "Biomedical, Film coatings", grade: "USP/BP", mol: "Polymer", purity: "≥ 85%", desc: "Natural polymer known for bioadhesive properties.", img: "images/products/excipients/chitosan.jpg" },
-    { id: 6, name: "Citric Acid", cat: "Excipients", stock: "25 Kg Bag", func: "Acidulant", apps: "Effervescent tabs, Syrups", grade: "IP/USP/BP", mol: "C₆H₈O₇", purity: "Pharma Std", desc: "White crystalline powder used for pH adjustment.", img: "images/products/excipients/citric-acid.jpg" },
-    { id: 7, name: "CMC (Carboxy Methyl Cellulose)", cat: "Excipients", stock: "25 Kg Bag", func: "Thickener", apps: "Suspensions, Tablets", grade: "USP/IP", mol: "C₈H₁₅NaO₈", purity: ">99%", desc: "Water-soluble thickener and binder.", img: "images/products/excipients/cmc.jpg" },
-    { id: 8, name: "Croscarmellose Sodium", cat: "Excipients", stock: "25 Kg Bag", func: "Super Disintegrant", apps: "Tablets", grade: "USP/IP", mol: "Polymer", purity: ">99%", desc: "Ensures rapid drug release from tablets.", img: "images/products/excipients/croscarmellose.jpg" },
-    { id: 9, name: "Crospovidone", cat: "Excipients", stock: "25 Kg Bag", func: "Super Disintegrant", apps: "Rapid release tabs", grade: "USP/IP", mol: "(C₆H₉NO)n", purity: ">98%", desc: "Ensures quick tablet disintegration.", img: "images/products/excipients/crospovidone.jpg" },
-    { id: 10, name: "Dicalcium Phosphate (DCP)", cat: "Excipients", stock: "25 Kg Bag", func: "Diluent", apps: "Tablets, Capsules", grade: "USP/IP", mol: "CaHPO₄", purity: ">98%", desc: "Provides bulk and enhances tablet hardness.", img: "images/products/excipients/dcp.jpg" },
-    { id: 11, name: "Gelatin", cat: "Excipients", stock: "25 Kg Bag", func: "Gelling agent", apps: "Capsule shells", grade: "USP/IP", mol: "Protein", purity: ">98%", desc: "The primary material for hard/soft capsules.", img: "images/products/excipients/gelatin.jpg" },
-    { id: 12, name: "Glycerin", cat: "Excipients", stock: "250 Kg Drum", func: "Humectant", apps: "Syrups, Topicals", grade: "USP/IP", mol: "C₃H₈O₃", purity: ">99%", desc: "Clear viscous solvent and sweetener.", img: "images/products/excipients/glycerin.jpg" },
-    { id: 13, name: "HPMC", cat: "Excipients", stock: "25 Kg Bag", func: "Binder / Coating Agent", apps: "Film Coating, Controlled Release", grade: "IP/USP", mol: "Cellulose", purity: ">98%", desc: "Standard for tablet coating and controlled release.", img: "images/products/excipients/hpmc.jpg" },
-    { id: 14, name: "Lactose", cat: "Excipients", stock: "25 Kg Bag", func: "Diluent", apps: "Tablets, Capsules", grade: "USP/IP", mol: "Sugar", purity: ">99%", desc: "High-purity filler for solid dosage forms.", img: "images/products/excipients/lactose.jpg" },
-    { id: 15, name: "Magnesium Stearate", cat: "Excipients", stock: "25 Kg Bag", func: "Lubricant", apps: "Tableting", grade: "IP/USP", mol: "Salt", purity: ">98%", desc: "Prevents powder sticking during tableting.", img: "images/products/excipients/magnesium-stearate.jpg" },
-    { id: 16, name: "MCC", cat: "Excipients", stock: "25 Kg Bag", func: "Binder / Diluent", apps: "Direct Compression", grade: "USP/IP", mol: "Cellulose", purity: ">98%", desc: "Highly compressible binder for tablets.", img: "images/products/excipients/mcc.jpg" },
-    { id: 17, name: "Poloxamer", cat: "Excipients", stock: "25 Kg Bag", func: "Surfactant", apps: "Emulsions, Gels", grade: "USP", mol: "Copolymer", purity: ">98%", desc: "Improves drug solubility and stability.", img: "images/products/excipients/poloxamer.jpg" },
-    { id: 18, name: "Polyethylene Glycol (PEG)", cat: "Excipients", stock: "25 Kg Bag", func: "Solvent / Plasticizer", apps: "Ointments, Coating", grade: "USP", mol: "Polymer", purity: ">99%", desc: "Versatile solvent and coating plasticizer.", img: "images/products/excipients/peg.jpg" },
-    { id: 19, name: "PVP K30", cat: "Excipients", stock: "25 Kg Bag", func: "Binder", apps: "Wet Granulation", grade: "USP", mol: "Polymer", purity: ">99%", desc: "Strong binder for granulation process.", img: "images/products/excipients/pvp-k30.jpg" },
-    { id: 20, name: "Sodium Lauryl Sulfate (SLS)", cat: "Excipients", stock: "25 Kg Bag", func: "Surfactant", apps: "Capsules, Topicals", grade: "IP/USP", mol: "Salt", purity: ">95%", desc: "Improves drug dissolution in water.", img: "images/products/excipients/sls.jpg" },
-    { id: 21, name: "SSG (Sodium Starch Glycolate)", cat: "Excipients", stock: "25 Kg Bag", func: "Super Disintegrant", apps: "Tablets", grade: "USP/IP", mol: "Starch", purity: ">95%", desc: "Derived from starch, ensures rapid disintegration.", img: "images/products/excipients/ssg.jpg" },
-    { id: 22, name: "Sorbitol", cat: "Excipients", stock: "25Kg Bag / Drum", func: "Sweetener", apps: "Syrups, Chewables", grade: "USP/IP", mol: "C₆H₁₄O₆", purity: ">98%", desc: "Non-sugar sweetener and humectant.", img: "images/products/excipients/sorbitol.jpg" },
-    { id: 23, name: "Starch (Maize/Corn)", cat: "Excipients", stock: "25 Kg Bag", func: "Binder", apps: "Tablets", grade: "IP/USP", mol: "Natural", purity: ">98%", desc: "Universal binder and disintegrant.", img: "images/products/excipients/starch.jpg" },
-    { id: 24, name: "Stearic Acid", cat: "Excipients", stock: "25 Kg Bag", func: "Lubricant", apps: "Tablets, Creams", grade: "USP", mol: "C₁₈H₃₆O₂", purity: ">98%", desc: "Waxy solid used as lubricant and binder.", img: "images/products/excipients/stearic-acid.jpg" },
-    { id: 25, name: "Sucrose", cat: "Excipients", stock: "25 Kg Bag", func: "Sweetener", apps: "Syrups, Tabs", grade: "IP/USP", mol: "Sugar", purity: ">99%", desc: "Standard pharma-grade sugar.", img: "images/products/excipients/sucrose.jpg" },
-    { id: 26, name: "Talc", cat: "Excipients", stock: "25 Kg Bag", func: "Glidant", apps: "Tablets, Powders", grade: "IP/USP", mol: "Mineral", purity: ">98%", desc: "Enhances flow and reduces sticking.", img: "images/products/excipients/talc.jpg" },
-    { id: 27, name: "Titanium Dioxide", cat: "Excipients", stock: "25 Kg Bag", func: "Opacifier", apps: "Tablet Coating, Capsule Coating, Pharma & Nutraceuticals", grade: "IP/USP", mol: "TiO₂", purity: ">99%", desc: "A widely used white pigment that provides opacity, brightness, and UV protection.", img: "images/products/excipients/titanium-dioxide.jpg", ci: "PW 6", type: "Opacifying Pigment", weight: "79.87 g/mol", density: "4.23 g/cm³", appearance: "Fine White Powder", features: "High Opacity, brightness, UV protection" },
-    { id: 28, name: "Xanthan Gum", cat: "Excipients", stock: "25 Kg Bag", func: "Thickener", apps: "Suspensions", grade: "USP", mol: "Gum", purity: ">98%", desc: "Natural stabilizer for oral liquids.", img: "images/products/excipients/xanthan-gum.jpg" },
-    { id: 29, name: "Colloidal Silicon Dioxide", cat: "Excipients", stock: "25 Kg Bag", func: "Glidant", apps: "Flow Enhancer", grade: "USP/IP", mol: "SiO₂", purity: ">99%", desc: "Improves powder flow significantly.", img: "images/products/excipients/colloidal-silicon-dioxide.jpg" },
-    { id: 30, name: "Ethanol (99.9%)", cat: "Excipients", stock: "50/200 L Drum", func: "Solvent", apps: "Liquids, Sanitizers", grade: "IP/USP", mol: "C₂H₆O", purity: ">99%", desc: "High-purity volatile solvent.", img: "images/products/excipients/ethanol.jpg" },
-    { id: 31, name: "Ethyl Cellulose", cat: "Excipients", stock: "25 Kg Bag", func: "Release Agent", apps: "SR Tablets", grade: "IP/USP", mol: "Polymer", purity: ">98%", desc: "Used for barrier coating and SR.", img: "images/products/excipients/ethyl-cellulose.jpg" },
-    { id: 32, name: "Mannitol", cat: "Excipients", stock: "25 Kg Bag", func: "Sweetener", apps: "Chewables", grade: "USP/IP", mol: "C₆H₁₄O₆", purity: ">98%", desc: "Cooling effect and non-hygroscopic.", img: "images/products/excipients/mannitol.jpg" },
-    { id: 33, name: "Methyl Paraben", cat: "Excipients", stock: "25 Kg Bag", func: "Preservative", apps: "Syrups, Creams, Lotions", grade: "Pharma Grade / USP", mol: "C₈H₈O₃ (152.15 g/mol)", purity: ">99%", desc: "A widely used antimicrobial preservative effective against bacteria and fungi.", img: "images/products/excipients/methyl-paraben.jpg" },
-    { id: 34, name: "Propyl Paraben", cat: "Excipients", stock: "25 Kg Bag", func: "Preservative", apps: "Liquid & Topical Formulations", grade: "Pharma Grade / USP", mol: "C₁₀H₁₂O₃ (180.20 g/mol)", purity: ">99%", desc: "An antimicrobial preservative often used in combination with Methyl Paraben.", img: "images/products/excipients/propyl-paraben.jpg" },
-    { id: 35, name: "Sodium Benzoate", cat: "Excipients", stock: "25 Kg Bag", func: "Preservative", apps: "Syrups", grade: "USP/IP", mol: "C₇H₅NaO₂", purity: ">99%", desc: "Effective antimicrobial for liquids.", img: "images/products/excipients/sodium-benzoate.jpg" },
+    { 
+        id: 2, name: "Carbomer (Carbopol)", cat: "Excipients", stock: "25 Kg Bag", func: "Thickener / Gelling Agent", 
+        apps: "Gels, Creams, Lotions, Topical Formulations", grade: "Pharma Grade / USP", 
+        mol: "Crosslinked Polyacrylic Acid", purity: ">99%", desc: "A white fluffy hygroscopic powder widely used as a thickening, suspending, and gelling agent in pharmaceutical and cosmetic formulations.", 
+        img: "images/products/excipients/carbomer.jpg",
+        features: "High viscosity, Excellent stability, Efficient suspending properties", appearance: "White fluffy powder", weight: "Varies", density: "0.20 g/cm³", melting: "Decomposes", origin: "India", moq: "20 Kg", pkgType: "Bag / Drum"
+    },
+    { 
+        id: 3, name: "Propylene Glycol", cat: "Excipients", stock: "215 Kg Drum", func: "Solvent / Humectant", 
+        apps: "Syrups, Oral Solutions, Topical Formulations", grade: "Pharma Grade / USP / IP", 
+        mol: "C₃H₈O₂", purity: ">99%", desc: "A clear, colorless, viscous liquid with hygroscopic properties, Propylene Glycol is widely used as a solvent and humectant. It helps dissolve active ingredients and maintain moisture.", 
+        img: "images/products/excipients/propylene-glycol.jpg",
+        features: "Excellent solvent properties, Moisture retaining, Good stability", appearance: "Clear colorless viscous liquid", weight: "76.09 g/mol", density: "1.04 g/cm³", melting: "-59°C", origin: "India", moq: "215 Kg", pkgType: "Drum"
+    },
+    { 
+        id: 4, name: "Calcium Stearate", cat: "Excipients", stock: "25 Kg Bag", func: "Lubricant / Stabilizer", 
+        apps: "Tablets, Capsules", grade: "Pharma Grade / USP", 
+        mol: "C₃₆H₇₀CaO₄", purity: ">98%", desc: "A fine white, slightly greasy powder, Calcium Stearate acts as a lubricant and anti-adherent in tablet manufacturing. It prevents sticking to machinery and improves powder flow.", 
+        img: "images/products/excipients/calcium-stearate.jpg",
+        features: "Water repellent, Improves flow properties", appearance: "Fine white powder", weight: "607.02 g/mol", density: "1.08 g/cm³", melting: "150°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 5, name: "Chitosan", cat: "Excipients", stock: "25 Kg Bag", func: "Binder / Film Forming Agent", 
+        apps: "Drug Delivery Systems, Tablets, Wound Dressings", grade: "Pharma Grade", 
+        mol: "(C₆H₁₁NO₄)n", purity: ">90%", desc: "A natural biopolymer derived from chitin, widely used in pharmaceutical and biomedical applications for its biocompatibility and film-forming properties.", 
+        img: "images/products/excipients/chitosan.jpg",
+        features: "Biodegradable, Biocompatible, Excellent film forming ability", appearance: "Off-white to light cream powder", weight: "Varies", density: "0.75 g/cm³", melting: "Decomposes", origin: "India", moq: "25 Kg", pkgType: "Bag / Drum"
+    },
+    { 
+        id: 6, name: "Citric Acid", cat: "Excipients", stock: "25 Kg Bag", func: "Acidulant / Buffering Agent", 
+        apps: "Effervescent Tablets, Syrups, Food formulations", grade: "IP / BP / USP", 
+        mol: "C₆H₈O₇", purity: ">99%", desc: "A white crystalline organic acid widely used as an acidulant, preservative, and buffering agent in pharmaceutical and food formulations.", 
+        img: "images/products/excipients/citric-acid.jpg",
+        features: "Excellent solubility, pH control, Enhances flavor stability", appearance: "White crystalline powder", weight: "192.12 g/mol", density: "1.66 g/cm³", melting: "153°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 7, name: "CMC (Carboxy Methyl Cellulose)", cat: "Excipients", stock: "25 Kg Bag", func: "Thickener / Stabilizer", 
+        apps: "Suspensions, Syrups, Tablets", grade: "Pharma Grade / USP / IP", 
+        mol: "C₈H₁₅NaO₈", purity: ">99%", desc: "A white to cream-colored powder used as a thickener, stabilizer, and binder in pharmaceutical formulations. Known for high viscosity and water solubility.", 
+        img: "images/products/excipients/cmc.jpg",
+        features: "High viscosity, Excellent water solubility", appearance: "White to cream powder", weight: "242.20 g/mol", density: "1.59 g/cm³", melting: "Decomposes", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 8, name: "Croscarmellose Sodium", cat: "Excipients", stock: "25 Kg Bag", func: "Super Disintegrant", 
+        apps: "Tablets, Fast Dissolving Tablets", grade: "Pharma Grade / USP / IP", 
+        mol: "C₈H₁₆NaO₈", purity: ">99%", desc: "A white powder used as a super disintegrant in tablet formulations for rapid drug release through rapid swelling properties.", 
+        img: "images/products/excipients/croscarmellose.jpg",
+        features: "Rapid swelling, Improves tablet disintegration", appearance: "White powder", weight: "262.19 g/mol", density: "1.60 g/cm³", melting: "Decomposes", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 9, name: "Crospovidone", cat: "Excipients", stock: "25 Kg Bag", func: "Super Disintegrant", 
+        apps: "Tablets, Fast Dissolving Tablets, Capsules", grade: "Pharma Grade / USP / IP", 
+        mol: "(C₆H₉NO)n", purity: ">98%", desc: "Cross-linked Polyvinylpyrrolidone used to ensure rapid disintegration, faster dissolution, and improved drug release in solid oral dosage forms.", 
+        img: "images/products/excipients/crospovidone.jpg",
+        features: "Rapid disintegration, High swelling capacity", appearance: "White powder", weight: "Varies", density: "1.22 g/cm³", melting: "150°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 10, name: "Dicalcium Phosphate (DCP)", cat: "Excipients", stock: "25 Kg Bag", func: "Diluent / Calcium Supplement", 
+        apps: "Tablets, Capsules", grade: "Pharma Grade / USP / IP", 
+        mol: "CaHPO₄", purity: ">98%", desc: "A white, odorless crystalline powder that serves as a filler/diluent, providing bulk and enhancing tablet hardness and stability.", 
+        img: "images/products/excipients/dcp.jpg",
+        features: "Good flowability, Excellent compressibility", appearance: "White powder", weight: "136.06 g/mol", density: "2.89 g/cm³", melting: "109°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 11, name: "Gelatin", cat: "Excipients", stock: "25 Kg Bag", func: "Gelling Agent / Capsule Material", 
+        apps: "Hard Capsules, Softgel Capsules", grade: "Pharma Grade / USP / IP", 
+        mol: "Protein derivative", purity: ">98%", desc: "A protein-based excipient used as a gelling and capsule-forming agent. Known for excellent film forming and biocompatibility.", 
+        img: "images/products/excipients/gelatin.jpg",
+        features: "Excellent film forming, Biocompatible", appearance: "Yellowish granules or powder", weight: "Varies", density: "1.30 g/cm³", melting: "35°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 12, name: "Glycerin", cat: "Excipients", stock: "250 Kg Drum", func: "Humectant / Solvent", 
+        apps: "Syrups, Creams, Oral Solutions", grade: "Pharma Grade / USP / IP", 
+        mol: "C₃H₈O₃", purity: ">99%", desc: "A clear viscous liquid used as a humectant, sweetener, and solvent. Highly effective at moisture retention with a pleasant sweet taste.", 
+        img: "images/products/excipients/glycerin.jpg",
+        features: "Moisture retaining, Sweet taste", appearance: "Clear viscous liquid", weight: "92.09 g/mol", density: "1.26 g/cm³", melting: "18°C", origin: "India", moq: "250 Kg", pkgType: "Drum"
+    },
+    { 
+        id: 13, name: "HPMC", cat: "Excipients", stock: "25 Kg Bag", func: "Binder / Coating Agent", 
+        apps: "Tablets, Capsules, Film Coating", grade: "Pharma Grade / IP / USP", 
+        mol: "C₅₆H₁₀₈O₃₀", purity: ">98%", desc: "A semi-synthetic polymer derived from cellulose, widely used for binding, film coating, and controlled drug release.", 
+        img: "images/products/excipients/hpmc.jpg",
+        features: "Excellent film forming, Controlled drug release", appearance: "White to off-white powder", weight: "Varies", density: "1.39 g/cm³", melting: "190°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 14, name: "Lactose", cat: "Excipients", stock: "25 Kg Bag", func: "Diluent / Filler", 
+        apps: "Tablets, Capsules", grade: "Pharma Grade / USP / IP", 
+        mol: "C₁₂H₂₂O₁₁", purity: ">99%", desc: "A white crystalline powder used as a primary diluent and filler. Offers excellent compressibility and a mild sweet taste.", 
+        img: "images/products/excipients/lactose.jpg",
+        features: "Excellent compressibility, Good taste", appearance: "White crystalline powder", weight: "342.30 g/mol", density: "1.53 g/cm³", melting: "202°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 15, name: "Magnesium Stearate", cat: "Excipients", stock: "25 Kg Bag", func: "Lubricant", 
+        apps: "Lubricant, Flow Enhancer", grade: "Pharma Grade / IP / BP / USP", 
+        mol: "C₃₆H₇₀MgO₄", purity: ">98%", desc: "A magnesium salt of stearic acid used as a lubricant in tablet and capsule manufacturing to prevent sticking and improve powder flow.", 
+        img: "images/products/excipients/magnesium-stearate.jpg",
+        features: "Reduces sticking, Improves flow properties", appearance: "Fine white powder", weight: "591.24 g/mol", density: "1.03 g/cm³", melting: "88°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 16, name: "MCC (Microcrystalline Cellulose)", cat: "Excipients", stock: "25 Kg Bag", func: "Binder / Diluent", 
+        apps: "Direct Compression Tablets", grade: "Pharma Grade / USP / IP", 
+        mol: "(C₆H₁₀O₅)n", purity: ">98%", desc: "A purified, partially depolymerized cellulose widely used in tablet formulations for its exceptional compressibility and binding properties.", 
+        img: "images/products/excipients/mcc.jpg",
+        features: "Excellent compressibility, Good flow properties", appearance: "White powder", weight: "Varies", density: "1.50 g/cm³", melting: "Decomposes", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 17, name: "Poloxamer", cat: "Excipients", stock: "25 Kg Bag", func: "Surfactant / Solubilizer", 
+        apps: "Creams, Gels, Liquid Formulations", grade: "Pharma Grade / USP", 
+        mol: "Copolymer", purity: ">98%", desc: "A non-ionic surfactant used to improve the solubility and stability of drugs in various pharmaceutical and cosmetic delivery systems.", 
+        img: "images/products/excipients/poloxamer.jpg",
+        features: "Excellent emulsification, Improves solubility", appearance: "White waxy powder", weight: "Varies", density: "1.05 g/cm³", melting: "52°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 18, name: "Polyethylene Glycol (PEG)", cat: "Excipients", stock: "25 Kg Bag", func: "Solvent / Plasticizer", 
+        apps: "Ointments, Tablets, Capsules", grade: "Pharma Grade / USP", 
+        mol: "H(OCH₂CH₂)nOH", purity: ">99%", desc: "A versatile polymer used as a plasticizer and solvent. Improves drug solubility and formulation stability across many applications.", 
+        img: "images/products/excipients/peg.jpg",
+        features: "Excellent solubility, Good stability", appearance: "White flakes or powder", weight: "Varies", density: "1.12 g/cm³", melting: "60°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 19, name: "PVP K30", cat: "Excipients", stock: "25 Kg Bag", func: "Binder / Solubilizer", 
+        apps: "Wet Granulation, Tablets, Capsules", grade: "Pharma Grade / USP", 
+        mol: "(C₆H₉NO)n", purity: ">99%", desc: "A synthetic polymer widely used as a high-performance binder in wet granulation and as a solubilizer to enhance drug dissolution.", 
+        img: "images/products/excipients/pvp-k30.jpg",
+        features: "Excellent binding properties, Water soluble", appearance: "White hygroscopic powder", weight: "Varies", density: "1.20 g/cm³", melting: "150°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 20, name: "Sodium Lauryl Sulfate (SLS)", cat: "Excipients", stock: "25 Kg Bag", func: "Surfactant", 
+        apps: "Wetting Agent, Emulsifier, Foaming Agent", grade: "Pharma Grade / IP / BP / USP", 
+        mol: "C₁₂H₂₅NaO₄S", purity: ">95%", desc: "An anionic surfactant widely used as a wetting, emulsifying, and foaming agent in pharmaceutical and personal care formulations.", 
+        img: "images/products/excipients/sls.jpg",
+        features: "Excellent foaming, Effective wetting action", appearance: "White to pale yellow powder/flakes", weight: "288.38 g/mol", density: "1.01 g/cm³", melting: "204°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 21, name: "SSG (Sodium Starch Glycolate)", cat: "Excipients", stock: "25 Kg Bag", func: "Super Disintegrant", 
+        apps: "Tablets, Capsules", grade: "Pharma Grade / USP / IP", 
+        mol: "C₂₄H₃₅NaO₁₈", purity: ">95%", desc: "A free-flowing powder derived from modified starch. Acts as a superdisintegrant by rapidly swelling in contact with water to enable quick drug release.", 
+        img: "images/products/excipients/ssg.jpg",
+        features: "Fast swelling, Excellent disintegration", appearance: "White powder", weight: "594.52 g/mol", density: "0.75 g/cm³", melting: "Decomposes", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 22, name: "Sorbitol", cat: "Excipients", stock: "25 Kg Bag / Drum", func: "Sweetener / Humectant", 
+        apps: "Syrups, Oral Solutions, Chewables", grade: "Pharma Grade / USP / IP", 
+        mol: "C₆H₁₄O₆", purity: ">98%", desc: "A sweet-tasting polyol used as a non-cariogenic sweetener and humectant in various liquid and solid pharmaceutical formulations.", 
+        img: "images/products/excipients/sorbitol.jpg",
+        features: "Non-cariogenic, Moisture retaining", appearance: "Clear liquid or white powder", weight: "182.17 g/mol", density: "1.49 g/cm³", melting: "95°C", origin: "India", moq: "25 Kg", pkgType: "Drum / Bag"
+    },
+    { 
+        id: 23, name: "Starch", cat: "Excipients", stock: "25 Kg Bag", func: "Binder / Disintegrant", 
+        apps: "Tablets, Capsules", grade: "Pharma Grade / IP / USP", 
+        mol: "(C₆H₁₀O₅)n", purity: ">98%", desc: "A natural polysaccharide used to aid in both tablet binding and disintegration. Essential for solid dosage form construction.", 
+        img: "images/products/excipients/starch.jpg",
+        features: "Excellent swelling property, Good compressibility", appearance: "Fine white powder", weight: "Varies", density: "1.50 g/cm³", melting: "Decomposes", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 24, name: "Stearic Acid", cat: "Excipients", stock: "25 Kg Bag", func: "Lubricant / Emulsifier", 
+        apps: "Tablets, Capsules, Creams", grade: "Pharma Grade / USP", 
+        mol: "C₁₈H₃₆O₂", purity: ">98%", desc: "A fatty acid used as a lubricant and binder. It enhances tablet compression and is also used as an emulsifier in creams.", 
+        img: "images/products/excipients/stearic-acid.jpg",
+        features: "Improves flowability, Excellent stability", appearance: "White waxy powder", weight: "284.48 g/mol", density: "0.94 g/cm³", melting: "69°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 25, name: "Sucrose", cat: "Excipients", stock: "25 Kg Bag", func: "Sweetening Agent", 
+        apps: "Syrups, Chewable Tablets", grade: "Pharma Grade / IP / USP", 
+        mol: "C₁₂H₂₂O₁₁", purity: ">99%", desc: "A white crystalline powder with a sweet taste. Acts as a primary sweetening and bulking agent for oral liquid and solid forms.", 
+        img: "images/products/excipients/sucrose.jpg",
+        features: "Pleasant taste, Good solubility", appearance: "White crystalline powder", weight: "342.30 g/mol", density: "1.59 g/cm³", melting: "186°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 26, name: "Talc", cat: "Excipients", stock: "25 Kg Bag", func: "Glidant / Anti-caking Agent", 
+        apps: "Tablets, Capsules, Powder Formulations", grade: "Pharma Grade / IP / USP", 
+        mol: "Mg₃Si₄O₁₀(OH)₂", purity: ">98%", desc: "A fine magnesium silicate mineral powder used as a lubricant and flow enhancer. Prevents sticking and improves powder flow during manufacturing.", 
+        img: "images/products/excipients/talc.jpg",
+        features: "Improves powder flow, Reduces sticking", appearance: "Fine white powder", weight: "379.27 g/mol", density: "2.70 g/cm³", melting: "1500°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 27, name: "Titanium Dioxide", cat: "Excipients", stock: "25 Kg Bag", func: "Opacifier / Colouring Agent", 
+        apps: "Tablet Coating, Capsule Coating, Whiteness Provider", grade: "Pharma Grade / IP / BP / USP", 
+        mol: "TiO₂", purity: ">99%", desc: "A fine white inorganic pigment widely used as an opacifier and whitening agent. Provides high brightness and UV protection to sensitive drugs.", 
+        img: "images/products/excipients/titanium-dioxide.jpg",
+        features: "Excellent opacity, High brightness, UV protection", appearance: "Fine white powder", weight: "79.87 g/mol", density: "4.23 g/cm³", melting: "1843°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 28, name: "Xanthan Gum", cat: "Excipients", stock: "25 Kg Bag", func: "Thickener / Stabilizer", 
+        apps: "Suspensions, Syrups, Oral Liquids", grade: "Pharma Grade / USP", 
+        mol: "(C₃₅H₄₉O₂₉)n", purity: ">98%", desc: "A natural polysaccharide produced by fermentation. Used to thicken and stabilize liquid formulations across a wide pH range.", 
+        img: "images/products/excipients/xanthan-gum.jpg",
+        features: "Viscosity control, Stable pH range, Good suspension", appearance: "Cream to off-white powder", weight: "Varies", density: "1.50 g/cm³", melting: "Decomposes", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 29, name: "Colloidal Silicon Dioxide", cat: "Excipients", stock: "25 Kg Bag", func: "Glidant / Anti-caking Agent", 
+        apps: "Flow Enhancer, Moisture Control", grade: "Pharma Grade / USP / IP", 
+        mol: "SiO₂", purity: ">99%", desc: "A very fine white powder used as a glidant to improve powder flow and as an anti-caking agent due to its high adsorption capacity.", 
+        img: "images/products/excipients/colloidal-silicon-dioxide.jpg",
+        features: "Improves powder flow, High adsorption", appearance: "Fine white powder", weight: "60.08 g/mol", density: "2.20 g/cm³", melting: "1600°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 30, name: "Ethanol (99.9%)", cat: "Excipients", stock: "50/200 L Drum", func: "Solvent / Disinfectant", 
+        apps: "Syrups, Sanitizers, Liquid Formulations", grade: "Pharma Grade / IP / USP", 
+        mol: "C₂H₆O", purity: ">99%", desc: "A clear, colorless, volatile liquid with a characteristic odor. Used as a high-purity solvent and powerful disinfectant.", 
+        img: "images/products/excipients/ethanol.jpg",
+        features: "Rapid evaporation, Excellent solvent properties", appearance: "Clear colorless liquid", weight: "46.07 g/mol", density: "0.79 g/cm³", melting: "-114°C", origin: "India", moq: "50 L", pkgType: "Drum"
+    },
+    { 
+        id: 31, name: "Ethyl Cellulose", cat: "Excipients", stock: "25 Kg Bag", func: "Coating Agent / Binder", 
+        apps: "Sustained Release Tablets, Film Coating", grade: "Pharma Grade / IP / USP", 
+        mol: "C₂₀H₃₈O₁₁", purity: ">98%", desc: "A white free-flowing powder used for sustained drug release and barrier coating. Known for its water-insolubility and film strength.", 
+        img: "images/products/excipients/ethyl-cellulose.jpg",
+        features: "Water-insoluble, Film strength, Sustained release", appearance: "White granular powder", weight: "Varies", density: "1.14 g/cm³", melting: "240°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 32, name: "Mannitol", cat: "Excipients", stock: "25 Kg Bag", func: "Diluent / Sweetener", 
+        apps: "Chewable Tablets, Capsules", grade: "Pharma Grade / USP / IP", 
+        mol: "C₆H₁₄O₆", purity: ">98%", desc: "A white crystalline powder with a sweet, cooling taste. Used as a non-hygroscopic diluent, ideal for moisture-sensitive formulations.", 
+        img: "images/products/excipients/mannitol.jpg",
+        features: "Cooling effect, Non-hygroscopic", appearance: "White crystalline powder", weight: "182.17 g/mol", density: "1.49 g/cm³", melting: "167°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 33, name: "Methyl Paraben", cat: "Excipients", stock: "25 Kg Bag", func: "Preservative", 
+        apps: "Syrups, Creams, Lotions", grade: "Pharma Grade / USP", 
+        mol: "C₈H₈O₃", purity: ">99%", desc: "A widely used antimicrobial preservative effective against a broad spectrum of bacteria and fungi in liquid and semi-solid forms.", 
+        img: "images/products/excipients/methyl-paraben.jpg",
+        features: "Antimicrobial, Stable compound", appearance: "White crystalline powder", weight: "152.15 g/mol", density: "1.35 g/cm³", melting: "125°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 34, name: "Propyl Paraben", cat: "Excipients", stock: "25 Kg Bag", func: "Preservative", 
+        apps: "Liquid & Topical Formulations", grade: "Pharma Grade / USP", 
+        mol: "C₁₀H₁₂O₃", purity: ">99%", desc: "An antimicrobial preservative often used with Methyl Paraben for synergistic protection against microbial growth.", 
+        img: "images/products/excipients/propyl-paraben.jpg",
+        features: "Antimicrobial activity, Good stability", appearance: "White crystalline powder", weight: "180.20 g/mol", density: "1.06 g/cm³", melting: "96°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
+    { 
+        id: 35, name: "Sodium Benzoate", cat: "Excipients", stock: "25 Kg Bag", func: "Preservative", 
+        apps: "Syrups, Liquid Formulations", grade: "Pharma Grade / USP / IP", 
+        mol: "C₇H₅NaO₂", purity: ">99%", desc: "A white crystalline powder used to prevent microbial growth and ensure the shelf-life stability of pharmaceutical and food products.", 
+        img: "images/products/excipients/sodium-benzoate.jpg",
+        features: "Microbial protection, Good stability", appearance: "White crystalline powder", weight: "144.11 g/mol", density: "1.44 g/cm³", melting: "300°C", origin: "India", moq: "25 Kg", pkgType: "Bag"
+    },
     
-    // --- COLOURS (Mapped from Excel) ---
+    // --- COLOURS (Existing) ---
     { id: 101, name: "Allura Red E129", cat: "Colours", stock: "25 Kg", func: "Synthetic Colour", apps: "Tablets, Capsules, Syrups", grade: "IP/USP/Food Grade", mol: "C₁₈H₁₄N₂Na₂O₈S₂", purity: ">85%", desc: "A vibrant red colour offering uniformity and stability across various dosage forms.", img: "images/products/colours/allura-red-e129.jpg", ci: "CI 16035", type: "Synthetic Azo Dye", solubility: "Water Soluble", weight: "496.42 g/mol", density: "0.70 g/cm³", appearance: "Dark red Powder", features: "Bright red shade, excellent uniformity" },
     { id: 102, name: "Allura Red Lake", cat: "Colours", stock: "25 Kg", func: "Aluminium Lake", apps: "Tablet Coating, Capsule Coating, Food & Nutraceuticals", grade: "IP/USP/Food Grade", mol: "Complex Aluminium Lake", purity: ">40% Dye Content", desc: "A stable pigment for strong, uniform red coloration in tablets and capsules.", img: "images/products/colours/allura-red-lake.jpg", type: "Aluminium Lake Pigment", solubility: "Insoluble / Oil Dispersible", density: "0.70 g/cm³", appearance: "Red Fine Powder", features: "Bright colour shade, good heat stability" },
     { id: 103, name: "Black Iron Oxide", cat: "Colours", stock: "25 Kg Bag", func: "Inorganic Pigment", apps: "Capsules, Coatings", grade: "IP/USP", mol: "Fe₃O₄", purity: ">95%", desc: "Used for grey to black shades, often blended for customized colour variations.", img: "images/products/colours/black-iron-oxide.jpg", ci: "CI 77499", type: "Inorganic Pigment", solubility: "Insoluble", weight: "231.53 g/mol", density: "5.17 g/cm³", appearance: "Black Fine Powder", features: "Deep black shade, high covering power" },
@@ -151,21 +340,18 @@ function viewDetails(id) {
     const p = products.find(item => item.id === id);
     if (!p) return;
 
-    // --- FIX: Update Title, Description AND Image ---
     document.getElementById('modal-title').innerText = p.name;
     document.getElementById('modal-desc').innerText = p.desc;
     
     const modalImg = document.getElementById('modal-img');
     if (modalImg) {
-        modalImg.src = p.img; // This line fixes the missing image issue
+        modalImg.src = p.img; 
         modalImg.alt = p.name;
     }
     
-    // Select the Dynamic Specs Grid
     const specsGrid = document.getElementById('specs-grid');
     let specs = [];
 
-    // CATEGORIZE SPECS BASED ON TYPE
     if (p.cat === "Colours") {
         if (p.ci) specs.push({ label: "Colour Index", value: p.ci });
         specs.push({ label: "Type", value: p.type || "Synthetic Dye" });
@@ -187,8 +373,8 @@ function viewDetails(id) {
         specs.push({ label: "Melting Point", value: p.melting || "N/A" });
         specs.push({ label: "Grade", value: p.grade });
         specs.push({ label: "Purity", value: p.purity });
-        specs.push({ label: "Origin", value: p.origin || "N/A" });
-        specs.push({ label: "Min. Order", value: p.moq || "N/A" });
+        specs.push({ label: "Origin", value: p.origin || "India" });
+        specs.push({ label: "Min. Order", value: p.moq || "25 Kg" });
     }
     else if (p.cat === "Vitamins") {
         specs.push({ label: "Function", value: p.func });
@@ -196,14 +382,13 @@ function viewDetails(id) {
         specs.push({ label: "Formula", value: p.mol });
         specs.push({ label: "Grade", value: p.grade });
     }
-    else { // Specialty/Others
+    else { 
         specs.push({ label: "Category", value: p.cat });
         specs.push({ label: "Function", value: p.func });
         specs.push({ label: "Grade", value: p.grade });
         specs.push({ label: "Concentration", value: p.purity });
     }
 
-    // Inject Specs into Modal
     specsGrid.innerHTML = specs.map(s => `
         <div>
             <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-0.5">${s.label}</h4>
@@ -211,7 +396,6 @@ function viewDetails(id) {
         </div>
     `).join('');
 
-    // Handle Applications Tags
     const appContainer = document.getElementById('modal-apps');
     appContainer.innerHTML = p.apps.split(',').map(app => 
         `<span class="px-3 py-1 bg-blue-50 text-[#004b8d] text-[10px] font-bold rounded-full uppercase border border-blue-100">${app.trim()}</span>`
@@ -226,7 +410,6 @@ function closeDetails() {
     document.getElementById('details-modal').classList.add('hidden');
 }
 
-// 6. CART & CHECKOUT LOGIC
 function addToCart(id) {
     const item = products.find(p => p.id === id);
     const inCart = cart.find(c => c.id === id);
@@ -280,7 +463,6 @@ function toggleCart() {
     document.getElementById('cart-content').classList.toggle('translate-x-full');
 }
 
-// 7. CHECKOUT & WHATSAPP
 function showCheckout() {
     if (cart.length === 0) return alert("Your inquiry list is empty!");
     document.getElementById('checkout-modal').classList.remove('hidden');
@@ -336,5 +518,4 @@ function submitOrder(method) {
     }
 }
 
-// 8. STARTUP
 renderProducts(products);
