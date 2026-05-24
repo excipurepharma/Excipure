@@ -215,21 +215,40 @@ function addToCart(id) {
     setTimeout(() => toast.remove(), 2000);
 }
 
+// --- UPDATED UI SYNC LOGIC ---
 function updateCartUI() {
     const list = document.getElementById('cart-items');
-    document.getElementById('cart-count').innerText = cart.reduce((acc, c) => acc + c.qty, 0);
+    const totalItems = cart.reduce((acc, c) => acc + c.qty, 0);
+
+    // 1. Update Navigation Bar Circle
+    const navCount = document.getElementById('cart-count');
+    if (navCount) navCount.innerText = totalItems;
+
+    // 2. Update Side Drawer (Cart) Footer
+    const drawerCount = document.getElementById('cart-total-count');
+    if (drawerCount) drawerCount.innerText = totalItems;
+
+    // 3. Update Checkout Modal Summary Count
+    const summCount = document.getElementById('summ-count');
+    if (summCount) summCount.innerText = totalItems;
+
+    // 4. Render the list of items in the drawer
     list.innerHTML = cart.map(c => `
-        <div class="flex items-center gap-4 bg-slate-50 p-3 rounded-2xl">
-            <img src="${c.img}" class="w-16 h-16 object-cover rounded-xl bg-white">
-            <div class="flex-1"><h4 class="text-xs font-bold">${c.name}</h4><p class="text-[10px] text-slate-500">${c.stock}</p></div>
-            <div class="flex items-center gap-2">
-                <button onclick="changeQty(${c.id}, -1)" class="w-6 h-6 border rounded-lg">-</button>
-                <span class="text-xs font-bold">${c.qty}</span>
-                <button onclick="changeQty(${c.id}, 1)" class="w-6 h-6 border rounded-lg">+</button>
+        <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+            <img src="${c.img}" class="w-16 h-16 object-cover rounded-xl bg-white border border-slate-100">
+            <div class="flex-1">
+                <h4 class="text-sm font-bold text-slate-800">${c.name}</h4>
+                <p class="text-[10px] text-slate-400 font-black uppercase tracking-tight">${c.stock}</p>
+            </div>
+            <div class="flex items-center gap-3 bg-white px-3 py-1 rounded-xl border border-slate-100">
+                <button onclick="changeQty(${c.id}, -1)" class="text-slate-400 hover:text-red-500 font-bold">-</button>
+                <span class="text-sm font-black text-slate-700 w-4 text-center">${c.qty}</span>
+                <button onclick="changeQty(${c.id}, 1)" class="text-[#004b8d] font-bold">+</button>
             </div>
         </div>
     `).join('');
-    renderSummary();
+
+    renderSummary(); // Keep Checkout Modal in sync
 }
 
 function changeQty(id, delta) {
@@ -256,16 +275,25 @@ function closeCheckout() {
 
 function renderSummary() {
     const list = document.getElementById('summary-items');
-    const summCount = document.getElementById('summ-count');
+    const totalItems = cart.reduce((acc, c) => acc + c.qty, 0);
+    
     if (list) {
         list.innerHTML = cart.map(c => `
-            <div class="flex justify-between text-sm bg-white p-3 rounded-xl border border-slate-100">
-                <div class="flex flex-col"><span class="font-bold text-slate-800 text-base">${c.name}</span><span class="text-[10px] text-slate-400 uppercase font-black">${c.stock}</span></div>
-                <span class="font-black text-[#004b8d] text-lg">x${c.qty}</span>
+            <div class="flex justify-between items-center bg-white p-4 rounded-2xl border border-slate-100 shadow-sm">
+                <div class="flex flex-col">
+                    <span class="font-black text-slate-800 text-base">${c.name}</span>
+                    <span class="text-[10px] text-slate-400 uppercase font-black tracking-widest">${c.stock}</span>
+                </div>
+                <div class="bg-slate-50 px-4 py-1 rounded-lg border border-slate-100">
+                    <span class="font-black text-[#004b8d] text-lg">x${c.qty}</span>
+                </div>
             </div>
         `).join('');
     }
-    if (summCount) summCount.innerText = cart.reduce((acc, c) => acc + c.qty, 0);
+
+    // Sync counts one more time for the checkout modal specifically
+    const summCount = document.getElementById('summ-count');
+    if (summCount) summCount.innerText = totalItems;
 }
 
 function getLocation() {
