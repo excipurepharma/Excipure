@@ -69,12 +69,12 @@ const products = [
 
     // --- VITAMINS  ---
     { id: 201, name: "Ascorbic Acid (Vitamin C)", cat: "Vitamins", stock: "25 Kg Carton", func: "Vitamin / Antioxidant", apps: "Tablets, Capsules, Fortification", grade: "IP/BP/USP/FCC", mol: "C₆H₈O₆", purity: ">99%", desc: "Vital nutrient used to boost immunity.", img: "images/products/vitamins/ascorbic-acid.jpg", moq: "25 Kg", pkgType: "Carton" },
-    { id: 202, name: "Ascorbyl Palmitate", cat: "Vitamins", stock: "10/25 Kg", func: "Fat-Soluble Vit C", apps: "Oil formulations", grade: "NF/FCC", mol: "C₂₂H₃₈O₇", purity: "98-100%", desc: "Fat-soluble antioxidant.", img: "images/products/vitamins/ascorbyl-palmitate.jpg" },
-    { id: 203, name: "Tocopherol (Vitamin E)", cat: "Vitamins", stock: "Drum", func: "Antioxidant", apps: "Softgels, Topicals", grade: "USP", mol: "C₂₉H₅₀O₂", purity: "Various", desc: "Protect cells from damage.", img: "images/products/vitamins/tocopherol.jpg" },
-    { id: 204, name: "Tocopheryl Acetate", cat: "Vitamins", stock: "Drum", func: "Vitamin E", apps: "Multi-vitamins", grade: "USP", mol: "C₃₁H₅₂O₃", purity: ">98%", desc: "Stable ester of Vitamin E.", img: "images/products/vitamins/tocopheryl-acetate.jpg" },
+    { id: 202, name: "Ascorbyl Palmitate", cat: "Vitamins", stock: "25 Kg", func: "Fat-Soluble Vit C", apps: "Oil formulations", grade: "NF/FCC", mol: "C₂₂H₃₈O₇", purity: "98-100%", desc: "Fat-soluble antioxidant.", img: "images/products/vitamins/ascorbyl-palmitate.jpg" },
+    { id: 203, name: "Tocopherol (Vitamin E)", cat: "Vitamins", stock: "25 kg", func: "Antioxidant", apps: "Softgels, Topicals", grade: "USP", mol: "C₂₉H₅₀O₂", purity: "Various", desc: "Protect cells from damage.", img: "images/products/vitamins/tocopherol.jpg" },
+    { id: 204, name: "Tocopheryl Acetate", cat: "Vitamins", stock: "25 kg", func: "Vitamin E", apps: "Multi-vitamins", grade: "USP", mol: "C₃₁H₅₂O₃", purity: ">98%", desc: "Stable ester of Vitamin E.", img: "images/products/vitamins/tocopheryl-acetate.jpg" },
     
     // --- Specialty  ---    
-    { id: 301, name: "Aloe Vera Gel Powder", cat: "Specialty", stock: "10/25 Kg", func: "Natural Extract", apps: "Cosmetics, Nutraceuticals", grade: "Cosmetic / Food Grade", mol: "Natural Extract", purity: "200X / 100X", desc: "Premium extract from Aloe leaf.", img: "images/products/specialty/aloe-vera-gel-powder.jpg" },
+    { id: 301, name: "Aloe Vera Gel Powder", cat: "Specialty", stock: "25 Kg", func: "Natural Extract", apps: "Cosmetics, Nutraceuticals", grade: "Cosmetic / Food Grade", mol: "Natural Extract", purity: "200X / 100X", desc: "Premium extract from Aloe leaf.", img: "images/products/specialty/aloe-vera-gel-powder.jpg" },
     { id: 302, name: "Bio-SAP Polymer", cat: "Specialty", stock: "25 Kg Bag", func: "Water Retainer", apps: "Agriculture, Hygiene", grade: "Eco-Friendly", mol: "Bio-Polymer", purity: "High Capacity", desc: "Eco-friendly polymer.", img: "images/products/specialty/bio-based-super-absorbent-polymer.jpg" }
 ];
 
