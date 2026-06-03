@@ -406,6 +406,8 @@ function toggleSubSidebarDropdown(btn) {
     icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(45deg)';
 }
 
-// STARTUP
-renderProducts(products);
-renderSidebar();
+
+if (document.getElementById('product-grid')) {
+    renderProducts(products);
+    renderSidebar();
+}
