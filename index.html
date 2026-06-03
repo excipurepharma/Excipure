@@ -4,11 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Excipure Pharma | Wholesale Catalog</title>
-    
-    <!-- Browser Tab Icon (Capsule + Leaf) -->
     <link rel="icon" type="image/png" href="images/favicon.png">
-
-    <!-- External Dependencies -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="style.css">
@@ -18,19 +14,21 @@
 <!-- 1. NAVIGATION -->
 <nav class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <!-- Brand Logo -->
-        <div class="flex items-center">
+        <div class="flex items-center gap-8">
             <img src="images/logo.png" alt="Excipure Pharma" class="h-16 md:h-20 w-auto object-contain">
+            <!-- New Nav Links -->
+            <div class="hidden md:flex gap-6">
+                <a href="index.html" class="text-[#004b8d] font-black text-sm uppercase tracking-widest border-b-2 border-[#004b8d]">Home</a>
+                <a href="about.html" class="text-slate-500 hover:text-[#004b8d] font-black text-sm uppercase tracking-widest transition">About Us</a>
+            </div>
         </div>
         
-        <!-- Cart Trigger & GSTIN -->
         <div class="flex items-center gap-6">
             <div class="hidden lg:flex items-center border-r border-slate-200 pr-6">
                 <span class="text-lg font-black text-[#004b8d] tracking-tight">
                     GSTIN: <span class="font-bold text-slate-800">36CIZPK7957H1Z8</span>
                 </span>
             </div>
-
             <button onclick="toggleCart()" class="relative p-3 bg-slate-100 rounded-full hover:bg-slate-200 transition">
                 <i data-lucide="shopping-cart" class="w-7 h-7 text-slate-700"></i>
                 <span id="cart-count" class="absolute -top-1 -right-1 bg-[#1a7139] text-white text-[12px] font-black px-2 py-0.5 rounded-full shadow-lg">0</span>
@@ -39,87 +37,69 @@
     </div>
 </nav>
 
-    <!-- 2. HERO SECTION -->
-    <header class="container mx-auto px-6 py-12">
-        <div class="bg-white rounded-[3rem] p-8 md:p-16 shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-12">
-            <div class="md:w-3/5">
-                <div class="flex items-center gap-2 text-[#004b8d] font-black text-sm uppercase tracking-widest mb-4">
-                    <span class="w-12 h-[3px] bg-[#004b8d]"></span> PAN India PHARMACEUTICAL LEADER <span class="w-12 h-[3px] bg-[#004b8d]"></span>
-                </div>
-                <h1 class="text-5xl md:text-7xl font-black text-slate-900 mb-6 leading-tight">
-                    High-Quality <br> <span class="text-[#1a7139]">Excipients</span> & <br>
-                    <span class="bg-gradient-to-r from-yellow-500 via-red-500 via-blue-500 to-green-500 bg-clip-text text-transparent"> Colorants. </span>
-                </h1>
-                <p class="text-slate-500 text-xl mb-10 max-w-lg font-medium leading-relaxed">
-                    Excipure Pharma is a leading wholesaler and distributor of pharmaceutical raw materials, vitamins, and colors.
-                </p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="#catalog" class="bg-[#004b8d] text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-opacity-90 transition shadow-xl">Browse Catalog →</a>
-                </div>
+<!-- 2. HERO SECTION -->
+<header class="container mx-auto px-6 py-12">
+    <div class="bg-white rounded-[3rem] p-8 md:p-16 shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-12">
+        <div class="md:w-3/5">
+            <div class="flex items-center gap-2 text-[#004b8d] font-black text-sm uppercase tracking-widest mb-4">
+                <span class="w-12 h-[3px] bg-[#004b8d]"></span> PAN India PHARMACEUTICAL LEADER <span class="w-12 h-[3px] bg-[#004b8d]"></span>
             </div>
-            
-            <!-- Quality Badges Grid -->
-            <div class="md:w-2/5 grid grid-cols-2 gap-4">
-                <!-- Badge 1: Quality -->
-                <div class="p-6 bg-slate-50 rounded-[2rem] border border-slate-100 flex flex-col items-start">
-                    <i data-lucide="shield-check" class="text-[#004b8d] mb-3 w-7 h-7"></i>
-                    <h3 class="font-black text-xs text-slate-800 uppercase tracking-tighter">Quality Assured</h3>
-                    <p class="text-[9px] text-slate-400 font-bold uppercase mt-1">WHO-GMP Certified</p>
-                </div>
-                
-                <!-- Badge 2: Pan India (RENDERING FROM IMAGES FOLDER) -->
-                <div class="p-6 bg-slate-50 rounded-[2.5rem] border border-slate-100 flex flex-col items-start">
-                    <!-- This renders your actual image file -->
-                    <img src="images/india-map.png" class="w-11 h-11 mb-4 object-contain" alt="India Map">
-                    
-                    <h3 class="font-black text-xs text-slate-800 uppercase tracking-tighter leading-none">Pan India</h3>
-                    <p class="text-[9px] text-slate-400 font-bold uppercase mt-1">Nationwide Supply</p>
-                </div>
-
-                <!-- Badge 3: Bulk Support -->
-                <div class="p-6 bg-slate-50 rounded-[2rem] border border-slate-100 flex flex-col items-start">
-                    <i data-lucide="layers" class="text-[#004b8d] mb-3 w-7 h-7"></i>
-                    <h3 class="font-black text-xs text-slate-800 uppercase tracking-tighter">Bulk Support</h3>
-                    <p class="text-[9px] text-slate-400 font-bold uppercase mt-1">Wholesale Pricing</p>
-                </div>
-
-                <!-- Badge 4: 24/7 Support -->
-                <div class="p-6 bg-slate-50 rounded-[2rem] border border-slate-100 flex flex-col items-start">
-                    <i data-lucide="headset" class="text-[#004b8d] mb-3 w-7 h-7"></i>
-                    <h3 class="font-black text-xs text-slate-800 uppercase tracking-tighter">24/7 Support</h3>
-                    <p class="text-[9px] text-slate-400 font-bold uppercase mt-1">Expert Guidance</p>
-                </div>
-            </div>
-    </header>
-
-    <!-- 3. CATALOG SECTION -->
-    <main id="catalog" class="container mx-auto px-6 py-12">
-        <div class="mb-12 text-center md:text-left">
-            <h2 class="text-4xl font-black mb-3 text-[#004b8d]">Raw Material Catalog</h2>
-            <p class="text-slate-500 text-xl font-medium">Wholesale distribution of premium pharmaceutical grade ingredients.</p>
-        </div>
-
-        <div class="flex flex-col md:flex-row gap-10">
-            <!-- LEFT SIDEBAR -->
-            <aside class="w-full md:w-80 flex-shrink-0">
-                <div class="sticky top-24 bg-white rounded-[2.5rem] border border-slate-100 shadow-sm overflow-hidden flex flex-col" style="max-height: calc(100vh - 120px);">
-                    <div class="p-7 border-b border-slate-50 bg-slate-50/50">
-                        <h3 class="text-xs font-black text-slate-400 uppercase tracking-[0.2em]">Product Categories</h3>
-                    </div>
-                    <nav id="sidebar-nav" class="flex-1 overflow-y-auto p-4 space-y-2 custom-scrollbar">
-                        <!-- Navigation items injected by JS -->
-                    </nav>
-                </div>
-            </aside>
-
-            <!-- RIGHT GRID -->
-            <div class="flex-1">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10" id="product-grid">
-                    <!-- Products generated by JS -->
-                </div>
+            <h1 class="text-5xl md:text-7xl font-black text-slate-900 mb-6 leading-tight">
+                High-Quality <br> <span class="text-[#1a7139]">Excipients</span> & <br>
+                <span class="bg-gradient-to-r from-yellow-500 via-red-500 via-blue-500 to-green-500 bg-clip-text text-transparent"> Colorants. </span>
+            </h1>
+            <p class="text-slate-500 text-xl mb-10 max-w-lg font-medium leading-relaxed">
+                Excipure Pharma is a leading wholesaler and distributor of pharmaceutical raw materials, vitamins, and colors.
+            </p>
+            <div class="flex flex-wrap gap-4">
+                <a href="#catalog" class="bg-[#004b8d] text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-opacity-90 transition shadow-xl">Browse Catalog →</a>
             </div>
         </div>
-    </main>
+        <div class="md:w-2/5 grid grid-cols-2 gap-4">
+            <div class="p-6 bg-slate-50 rounded-[2rem] border border-slate-100 flex flex-col items-start">
+                <i data-lucide="shield-check" class="text-[#004b8d] mb-3 w-7 h-7"></i>
+                <h3 class="font-black text-xs text-slate-800 uppercase tracking-tighter">Quality Assured</h3>
+                <p class="text-[9px] text-slate-400 font-bold uppercase mt-1">WHO-GMP Certified</p>
+            </div>
+            <div class="p-6 bg-slate-50 rounded-[2.5rem] border border-slate-100 flex flex-col items-start">
+                <img src="images/india-map.png" class="w-11 h-11 mb-4 object-contain" alt="India Map">
+                <h3 class="font-black text-xs text-slate-800 uppercase tracking-tighter leading-none">Pan India</h3>
+                <p class="text-[9px] text-slate-400 font-bold uppercase mt-1">Nationwide Supply</p>
+            </div>
+            <div class="p-6 bg-slate-50 rounded-[2rem] border border-slate-100 flex flex-col items-start">
+                <i data-lucide="layers" class="text-[#004b8d] mb-3 w-7 h-7"></i>
+                <h3 class="font-black text-xs text-slate-800 uppercase tracking-tighter">Bulk Support</h3>
+                <p class="text-[9px] text-slate-400 font-bold uppercase mt-1">Wholesale Pricing</p>
+            </div>
+            <div class="p-6 bg-slate-50 rounded-[2rem] border border-slate-100 flex flex-col items-start">
+                <i data-lucide="headset" class="text-[#004b8d] mb-3 w-7 h-7"></i>
+                <h3 class="font-black text-xs text-slate-800 uppercase tracking-tighter">24/7 Support</h3>
+                <p class="text-[9px] text-slate-400 font-bold uppercase mt-1">Expert Guidance</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- 3. CATALOG SECTION -->
+<main id="catalog" class="container mx-auto px-6 py-12">
+    <div class="mb-12 text-center md:text-left">
+        <h2 class="text-4xl font-black mb-3 text-[#004b8d]">Raw Material Catalog</h2>
+        <p class="text-slate-500 text-xl font-medium">Wholesale distribution of premium pharmaceutical grade ingredients.</p>
+    </div>
+    <div class="flex flex-col md:flex-row gap-10">
+        <aside class="w-full md:w-80 flex-shrink-0">
+            <div class="sticky top-24 bg-white rounded-[2.5rem] border border-slate-100 shadow-sm overflow-hidden flex flex-col" style="max-height: calc(100vh - 120px);">
+                <div class="p-7 border-b border-slate-50 bg-slate-50/50">
+                    <h3 class="text-xs font-black text-slate-400 uppercase tracking-[0.2em]">Product Categories</h3>
+                </div>
+                <nav id="sidebar-nav" class="flex-1 overflow-y-auto p-4 space-y-2 custom-scrollbar"></nav>
+            </div>
+        </aside>
+        <div class="flex-1">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10" id="product-grid"></div>
+        </div>
+    </div>
+</main>
 
     <!-- 4. MODALS & DRAWERS -->
 
