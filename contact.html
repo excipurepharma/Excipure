@@ -124,6 +124,12 @@
     
     document.getElementById('contact-form').onsubmit = function(e) {
         e.preventDefault();
+        
+        gtag('event', 'generate_lead', {
+        'event_category': 'Contact Form',
+        'event_label': 'Inquiry Submission'
+        });
+        
         const name = document.getElementById('req-name').value;
         const phone = document.getElementById('req-phone').value;
         const desc = document.getElementById('req-desc').value;
