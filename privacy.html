@@ -5,13 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy | Excipure Pharma</title>
     <link rel="icon" type="image/png" href="images/favicon.png">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DXEZS7HMCH"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DXEZS7HMCH');
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-[#F8FAFC] text-slate-900 font-sans">
 
-<!-- NAVIGATION -->
+<!-- 1. NAVIGATION -->
 <nav class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
         <div class="flex items-center gap-8">
@@ -22,76 +32,119 @@
                 <a href="contact" class="text-slate-500 hover:text-[#004b8d] font-black text-sm uppercase tracking-widest transition">Contact Us</a>
             </div>
         </div>
+        <div class="flex items-center gap-6">
+            <div class="hidden lg:flex items-center">
+                <span class="text-lg font-black text-[#004b8d] tracking-tight">
+                    GSTIN: <span class="font-bold text-slate-800">36ABXFM3910H1ZX</span>
+                </span>
+            </div>
+        </div>
     </div>
 </nav>
 
-<!-- PRIVACY CONTENT -->
+<!-- 2. PRIVACY CONTENT -->
 <main class="container mx-auto px-6 py-20">
-    <div class="max-w-4xl mx-auto">
+    <div class="max-w-5xl mx-auto">
         <div class="bg-white rounded-[3rem] p-10 md:p-16 shadow-sm border border-slate-100">
-            <h1 class="text-4xl font-black text-[#004b8d] mb-4 uppercase">Privacy Policy</h1>
-            <p class="text-slate-400 font-bold mb-10">Last Updated: June 21, 2026</p>
+            
+            <header class="mb-12 border-b border-slate-100 pb-10">
+                <h1 class="text-5xl font-black text-[#004b8d] mb-6 uppercase">Privacy Policy</h1>
+                <p class="text-xl text-slate-600 font-medium leading-relaxed">
+                    Welcome to Excipure Pharma ("Company", "we", "our", or "us"). We respect your privacy and are committed to protecting the personal information you share with us.
+                </p>
+                <p class="mt-4 text-slate-500 font-bold">By using our website, you agree to the practices described in this Privacy Policy.</p>
+            </header>
 
-            <div class="prose prose-slate max-w-none space-y-8 text-slate-600 leading-relaxed">
-                <p>Welcome to Excipure Pharma ("Company", "we", "our", or "us"). We respect your privacy and are committed to protecting the personal information you share with us. This Privacy Policy explains how we collect, use, store, and protect information obtained through our website and business interactions.</p>
-
+            <div class="space-y-12 text-slate-700 leading-relaxed">
+                
+                <!-- Section 1 -->
                 <section>
-                    <h2 class="text-xl font-black text-slate-800 uppercase tracking-wide mb-3">1. Information We Collect</h2>
-                    <p class="mb-4">We collect information that you voluntarily provide when contacting us, requesting quotations, or placing orders.</p>
-                    <ul class="list-disc pl-6 space-y-2">
-                        <li><strong>Personal/Business Info:</strong> Name, Company Name, Email, Mobile Number, GST Details, Shipping Address.</li>
-                        <li><strong>Technical Info:</strong> IP Address, Browser Type, and Usage Data collected via Google Analytics.</li>
+                    <h2 class="text-2xl font-black text-slate-900 mb-6 flex items-center gap-3">
+                        <span class="text-[#004b8d]">1.</span> Information We Collect
+                    </h2>
+                    <p class="mb-6 font-medium">We collect information that you voluntarily provide when contacting us, requesting quotations, placing orders, or communicating with us.</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100">
+                            <h3 class="font-black text-[#004b8d] uppercase text-sm tracking-widest mb-4">Personal & Business Info</h3>
+                            <ul class="space-y-2 text-sm font-bold text-slate-600">
+                                <li>• Full Name & Company Name</li>
+                                <li>• Email Address & Mobile Number</li>
+                                <li>• Shipping & Billing Address</li>
+                                <li>• GST Details (where applicable)</li>
+                                <li>• Product Requirements & Order Info</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100">
+                            <h3 class="font-black text-[#1a7139] uppercase text-sm tracking-widest mb-4">Technical Information</h3>
+                            <ul class="space-y-2 text-sm font-bold text-slate-600">
+                                <li>• IP Address & Browser Type</li>
+                                <li>• Device & Usage Data</li>
+                                <li>• Pages Visited & Visit Duration</li>
+                                <li>• Referral Sources</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 2 -->
+                <section>
+                    <h2 class="text-2xl font-black text-slate-900 mb-6 flex items-center gap-3">
+                        <span class="text-[#004b8d]">2.</span> Purpose of Collection
+                    </h2>
+                    <ul class="grid md:grid-cols-2 gap-4 font-bold text-slate-600">
+                        <li class="flex items-start gap-2"><i data-lucide="check-circle" class="text-[#1a7139] w-5 h-5 flex-shrink-0"></i> Responding to inquiries</li>
+                        <li class="flex items-start gap-2"><i data-lucide="check-circle" class="text-[#1a7139] w-5 h-5 flex-shrink-0"></i> Processing product orders</li>
+                        <li class="flex items-start gap-2"><i data-lucide="check-circle" class="text-[#1a7139] w-5 h-5 flex-shrink-0"></i> Managing shipping logistics</li>
+                        <li class="flex items-start gap-2"><i data-lucide="check-circle" class="text-[#1a7139] w-5 h-5 flex-shrink-0"></i> Maintaining business records</li>
+                        <li class="flex items-start gap-2"><i data-lucide="check-circle" class="text-[#1a7139] w-5 h-5 flex-shrink-0"></i> Google Analytics traffic monitoring</li>
+                        <li class="flex items-start gap-2"><i data-lucide="check-circle" class="text-[#1a7139] w-5 h-5 flex-shrink-0"></i> Legal & Tax compliance</li>
                     </ul>
                 </section>
 
-                <section>
-                    <h2 class="text-xl font-black text-slate-800 uppercase tracking-wide mb-3">2. Purpose of Collection</h2>
-                    <p>We use your data to respond to inquiries, process orders, manage logistics, and comply with legal or tax obligations under Indian law.</p>
+                <!-- Section 3 & 4 -->
+                <div class="grid md:grid-cols-2 gap-12">
+                    <section>
+                        <h2 class="text-2xl font-black text-slate-900 mb-4 tracking-tight">3. Data Storage</h2>
+                        <p class="text-slate-500 font-medium">Information is stored through Secure Email Systems, Google Sheets, and Internal Business Records with reasonable technical measures to prevent unauthorized access.</p>
+                    </section>
+                    <section>
+                        <h2 class="text-2xl font-black text-slate-900 mb-4 tracking-tight">4. Sharing of Info</h2>
+                        <p class="text-slate-500 font-medium">We do not sell or trade data. Sharing is limited to logistics partners, government authorities, and professional advisors (auditors/legal) only when necessary.</p>
+                    </section>
+                </div>
+
+                <!-- Section 10 - Important Legal -->
+                <section class="bg-blue-50 p-10 rounded-[2.5rem] border border-blue-100">
+                    <h2 class="text-2xl font-black text-[#004b8d] mb-4 uppercase tracking-tighter">10. Compliance with Indian Law</h2>
+                    <p class="text-[#004b8d] font-bold leading-relaxed">
+                        Excipure Pharma endeavors to comply with applicable Indian laws, including the <span class="underline">Digital Personal Data Protection Act, 2023 (DPDP Act)</span>, and other relevant regulations governing the collection, storage, and processing of personal data.
+                    </p>
                 </section>
 
-                <section>
-                    <h2 class="text-xl font-black text-slate-800 uppercase tracking-wide mb-3">3. Google Analytics</h2>
-                    <p>Our website uses Google Analytics to understand visitor behavior. This data is anonymized and helps us improve our service performance.</p>
+                <!-- Footer of Privacy Content -->
+                <section class="pt-10 border-t border-slate-100">
+                    <h2 class="text-2xl font-black text-slate-900 mb-4">Contact Privacy Officer</h2>
+                    <div class="space-y-2 font-black text-[#004b8d]">
+                        <p>Email: info@excipurepharma.com</p>
+                        <p>Phone: +91 93984 53760</p>
+                    </div>
                 </section>
-
-                <section>
-                    <h2 class="text-xl font-black text-slate-800 uppercase tracking-wide mb-3">4. Data Sharing & Security</h2>
-                    <p>We do not sell your data. Information is only shared with trusted logistics partners or government authorities when legally required. We implement secure business email and password-protected systems to safeguard your records.</p>
-                </section>
-
-                <section>
-                    <h2 class="text-xl font-black text-slate-800 uppercase tracking-wide mb-3">5. Your Rights</h2>
-                    <p>Under the Digital Personal Data Protection Act, 2023 (DPDP Act), you may request access to, correction of, or deletion of your personal information by contacting us at <strong>info@excipurepharma.com</strong>.</p>
-                </section>
-            </div>
-
-            <div class="mt-16 p-8 bg-slate-50 rounded-[2rem] border border-slate-100">
-                <h2 class="text-lg font-black text-[#004b8d] mb-4 uppercase">Contact Privacy Officer</h2>
-                <p class="text-sm font-bold text-slate-500">Email: info@excipurepharma.com</p>
-                <p class="text-sm font-bold text-slate-500">Phone: +91 93984 53760</p>
             </div>
         </div>
     </div>
 </main>
 
-<!-- 5. FOOTER -->
+<!-- 3. FOOTER -->
 <footer class="bg-white border-t border-slate-200 pt-20 pb-10">
     <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
-        <!-- Brand Section -->
         <div class="col-span-1 md:col-span-2">
             <div class="flex items-center gap-3 mb-8">
                 <span class="font-black text-3xl text-[#004b8d]">EXCIPURE</span>
                 <span class="text-sm tracking-[0.3em] text-[#1a7139] font-black uppercase">Pharma</span>
             </div>
             <p class="text-slate-500 text-lg font-medium max-w-md leading-relaxed mb-10">Premium wholesaler and distributor of pharmaceutical raw materials, excipients, and industrial solvents.</p>
-            <div class="space-y-5 font-black text-slate-700 text-lg">
-                <p class="flex items-center gap-4"><i data-lucide="phone"></i> +91 9398453760</p>
-                <p class="flex items-center gap-4"><i data-lucide="mail"></i> info@excipurepharma.com</p>
-                <p class="flex items-center gap-4"><i data-lucide="map-pin"></i> Hyderabad, Telangana, India</p>
-            </div>
         </div>
-
-        <!-- Services Section -->
         <div>
             <h4 class="font-black mb-8 text-xs uppercase tracking-widest text-slate-400">Services</h4>
             <ul class="space-y-6 font-black text-slate-600 text-lg">
@@ -99,20 +152,16 @@
                 <li><a href="contact" class="hover:text-[#004b8d]">Support</a></li>
             </ul>
         </div>
-
-        <!-- Legal Section -->
         <div>
             <h4 class="font-black mb-8 text-xs uppercase tracking-widest text-slate-400">Legal</h4>
             <ul class="space-y-6 font-black text-slate-600 text-lg">
-                <li><a href="privacy" class="hover:text-[#004b8d]">Privacy</a></li>
+                <li><a href="privacy" class="text-[#004b8d]">Privacy</a></li>
                 <li><a href="#" class="hover:text-[#004b8d]">Compliance</a></li>
             </ul>
         </div>
     </div>
 
-    <!-- Bottom Bar -->
     <div class="container mx-auto px-6 border-t pt-10">
-        <!-- Copyright and Certifications -->
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10 text-xs font-black text-slate-400 tracking-widest uppercase">
             <p>© 2026 EXCIPURE PHARMA. ALL RIGHTS RESERVED.</p>
             <div class="flex gap-8">
@@ -120,8 +169,6 @@
                 <span>WHO-GMP CERTIFIED</span>
             </div>
         </div>
-
-        <!-- Professional Commitment Statement -->
         <div class="max-w-4xl border-l-4 border-[#004b8d] pl-6 py-2">
             <p class="text-slate-500 text-sm md:text-base font-medium leading-relaxed italic">
                 Excipure Pharma is committed to maintaining high standards of quality, compliance, and customer service. Product information provided on this website is for business and informational purposes only.
