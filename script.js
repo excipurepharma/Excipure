@@ -411,3 +411,18 @@ if (document.getElementById('product-grid')) {
     renderProducts(products);
     renderSidebar();
 }
+
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const icon = document.getElementById('menu-icon');
+    
+    menu.classList.toggle('hidden');
+    
+    // Optional: Switch icon between Menu and X if Lucide is loaded
+    if (menu.classList.contains('hidden')) {
+        icon.setAttribute('data-lucide', 'menu');
+    } else {
+        icon.setAttribute('data-lucide', 'x');
+    }
+    lucide.createIcons();
+}
