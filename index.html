@@ -21,29 +21,52 @@
 </head>
 <body class="bg-[#F8FAFC] text-slate-900 font-sans">
 
-<!-- 1. NAVIGATION -->
+<!-- 1. NAVIGATION (MOBILE FRIENDLY) -->
 <nav class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center gap-8">
-            <img src="images/logo.png" alt="Excipure Pharma" class="h-16 md:h-20 w-auto object-contain">
-            <div class="hidden md:flex gap-6">
-                <!-- Using Clean URLs as discussed previously -->
-                <a href="/" class="text-[#004b8d] font-black text-sm uppercase tracking-widest border-b-2 border-[#004b8d]">Home</a>
-                <a href="about" class="text-slate-500 hover:text-[#004b8d] font-black text-sm uppercase tracking-widest transition">About Us</a>
-                <a href="contact" class="text-slate-500 hover:text-[#004b8d] font-black text-sm uppercase tracking-widest transition">Contact Us</a>
+    <div class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center gap-8">
+                <img src="images/logo.png" alt="Excipure Pharma" class="h-12 md:h-20 w-auto object-contain">
+                
+                <!-- Desktop Nav Links (Hidden on Mobile) -->
+                <div class="hidden md:flex gap-6">
+                    <a href="/" class="text-slate-500 hover:text-[#004b8d] font-black text-sm uppercase tracking-widest transition">Home</a>
+                    <a href="about" class="text-slate-500 hover:text-[#004b8d] font-black text-sm uppercase tracking-widest transition">About Us</a>
+                    <a href="contact" class="text-slate-500 hover:text-[#004b8d] font-black text-sm uppercase tracking-widest transition">Contact Us</a>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-4 md:gap-6">
+                <!-- GST (Hidden on very small mobile screens) -->
+                <div class="hidden sm:flex items-center border-r border-slate-200 pr-6">
+                    <span class="text-xs md:text-lg font-black text-[#004b8d] tracking-tight">
+                        GSTIN: <span class="font-bold text-slate-800">36ABXFM3910H1ZX</span>
+                    </span>
+                </div>
+
+                <!-- Cart Button -->
+                <button onclick="toggleCart()" class="relative p-2 md:p-3 bg-slate-100 rounded-full hover:bg-slate-200 transition">
+                    <i data-lucide="shopping-cart" class="w-6 h-6 md:w-7 md:h-7 text-slate-700"></i>
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-[#1a7139] text-white text-[10px] font-black px-1.5 py-0.5 rounded-full shadow-lg">0</span>
+                </button>
+
+                <!-- Mobile Menu Button (Visible only on Mobile) -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-slate-700 hover:bg-slate-100 rounded-lg transition">
+                    <i data-lucide="menu" id="menu-icon" class="w-8 h-8"></i>
+                </button>
             </div>
         </div>
-        
-        <div class="flex items-center gap-6">
-            <div class="hidden lg:flex items-center border-r border-slate-200 pr-6">
-                <span class="text-lg font-black text-[#004b8d] tracking-tight">
-                    GSTIN: <span class="font-bold text-slate-800">36ABXFM3910H1ZX</span>
-                </span>
+
+        <!-- Mobile Dropdown Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2 space-y-2 border-t border-slate-100 mt-4">
+            <a href="/" class="block px-4 py-3 text-base font-black text-slate-700 hover:bg-slate-50 rounded-xl uppercase tracking-widest">Home</a>
+            <a href="about" class="block px-4 py-3 text-base font-black text-slate-700 hover:bg-slate-50 rounded-xl uppercase tracking-widest">About Us</a>
+            <a href="contact" class="block px-4 py-3 text-base font-black text-slate-700 hover:bg-slate-50 rounded-xl uppercase tracking-widest">Contact Us</a>
+            <!-- Mobile GST display -->
+            <div class="px-4 py-3 sm:hidden">
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">GST Number</p>
+                <p class="text-sm font-black text-[#004b8d]">36ABXFM3910H1ZX</p>
             </div>
-            <button onclick="toggleCart()" class="relative p-3 bg-slate-100 rounded-full hover:bg-slate-200 transition">
-                <i data-lucide="shopping-cart" class="w-7 h-7 text-slate-700"></i>
-                <span id="cart-count" class="absolute -top-1 -right-1 bg-[#1a7139] text-white text-[12px] font-black px-2 py-0.5 rounded-full shadow-lg">0</span>
-            </button>
         </div>
     </div>
 </nav>
