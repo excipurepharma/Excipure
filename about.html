@@ -21,21 +21,34 @@
   gtag('config', 'G-DXEZS7HMCH');
 </script>
 
-<!-- NAVIGATION (about.html) -->
-<nav class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center gap-8">
-            <img src="images/logo.png" alt="Excipure Pharma" class="h-16 md:h-20 w-auto object-contain">
-            <div class="hidden md:flex gap-6">
-                <a href="index.html" class="text-slate-500 hover:text-[#004b8d] font-black text-sm uppercase tracking-widest transition">Home</a>
-                <a href="about.html" class="text-[#004b8d] font-black text-sm uppercase tracking-widest border-b-2 border-[#004b8d]">About Us</a>
-                <a href="contact.html" class="text-slate-500 hover:text-[#004b8d] font-black text-sm uppercase tracking-widest transition">Contact Us</a>
+<!-- NAVIGATION -->
+<nav class="sticky top-0 z-40 bg-white/90 backdrop-blur-lg border-b border-slate-200">
+    <div class="container mx-auto px-5 py-3 md:py-4">
+        <div class="flex justify-between items-center mb-1 md:mb-0">
+            <div class="flex items-center gap-4">
+                <img src="images/logo.png" alt="Excipure Pharma" class="h-10 md:h-20 w-auto object-contain">
+                <div class="hidden md:flex gap-8 ml-10">
+                    <a href="/" class="text-[#004b8d] font-black text-sm uppercase tracking-widest border-b-2 border-[#004b8d] pb-1">Home</a>
+                    <a href="about" class="text-slate-500 hover:text-[#004b8d] font-black text-sm uppercase tracking-widest transition">About Us</a>
+                    <a href="contact" class="text-slate-500 hover:text-[#004b8d] font-black text-sm uppercase tracking-widest transition">Contact Us</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <button onclick="toggleCart()" class="relative p-3 bg-[#004b8d] text-white rounded-2xl md:rounded-full hover:bg-[#1a7139] transition shadow-lg shadow-blue-100">
+                    <i data-lucide="shopping-cart" class="w-5 h-5 md:w-6 md:h-6"></i>
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-[#1a7139] border-2 border-white text-white text-[10px] font-black px-1.5 py-0.5 rounded-full">0</span>
+                </button>
             </div>
         </div>
-        <div class="hidden lg:flex items-center">
-            <span class="text-lg font-black text-[#004b8d] tracking-tight">
-                GSTIN: <span class="font-bold text-slate-800">36ABXFM3910H1ZX</span>
-            </span>
+
+        <!-- MOBILE PILLS: Home Active -->
+        <div class="flex md:hidden items-center justify-between bg-slate-50 p-1 rounded-2xl mt-3 border border-slate-100">
+            <a href="/" class="flex-1 flex flex-col items-center py-2 gap-1 rounded-xl text-[#004b8d] bg-white shadow-sm font-black text-[10px] uppercase tracking-tighter transition-all">
+                <i data-lucide="home" class="w-4 h-4"></i>Home</a>
+            <a href="about" class="flex-1 flex flex-col items-center py-2 gap-1 rounded-xl text-slate-400 font-black text-[10px] uppercase tracking-tighter">
+                <i data-lucide="info" class="w-4 h-4"></i>About</a>
+            <a href="contact" class="flex-1 flex flex-col items-center py-2 gap-1 rounded-xl text-slate-400 font-black text-[10px] uppercase tracking-tighter">
+                <i data-lucide="mail" class="w-4 h-4"></i>Contact</a>
         </div>
     </div>
 </nav>
