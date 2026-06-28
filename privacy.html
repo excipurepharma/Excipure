@@ -22,22 +22,46 @@
 <body class="bg-[#F8FAFC] text-slate-900 font-sans">
 
 <!-- 1. NAVIGATION -->
-<nav class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center gap-8">
-            <img src="images/logo.png" alt="Excipure Pharma" class="h-16 md:h-20 w-auto object-contain">
-            <div class="hidden md:flex gap-6">
-                <a href="/" class="text-slate-500 hover:text-[#004b8d] font-black text-sm uppercase tracking-widest transition">Home</a>
-                <a href="about" class="text-slate-500 hover:text-[#004b8d] font-black text-sm uppercase tracking-widest transition">About Us</a>
-                <a href="contact" class="text-slate-500 hover:text-[#004b8d] font-black text-sm uppercase tracking-widest transition">Contact Us</a>
+<nav class="sticky top-0 z-40 bg-white/95 backdrop-blur-lg border-b border-slate-200">
+    <div class="container mx-auto px-4 py-3 md:py-5">
+        <!-- Top Row: Logo, GST, and Cart -->
+        <div class="flex justify-between items-center gap-2">
+            <div class="flex items-center gap-4">
+                <img src="images/logo.png" alt="Excipure Pharma" class="h-10 md:h-20 w-auto object-contain">
+                
+                <!-- Desktop Links (Hidden on Mobile) -->
+                <div class="hidden md:flex gap-8 ml-10">
+                    <a href="/" class="text-slate-500 hover:text-[#004b8d] font-black text-sm uppercase tracking-widest transition">Home</a>
+                    <a href="about" class="text-slate-500 hover:text-[#004b8d] font-black text-sm uppercase tracking-widest transition">About Us</a>
+                    <a href="contact" class="text-slate-500 hover:text-[#004b8d] font-black text-sm uppercase tracking-widest transition">Contact Us</a>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3 md:gap-8">
+                <!-- GST Number (Single Row, Signature Blue, Professional Font) -->
+                <div class="text-right border-r border-slate-200 pr-3 md:pr-8">
+                    <p class="whitespace-nowrap leading-none flex items-baseline">
+                        <span class="text-[11px] md:text-lg font-black text-[#004b8d] uppercase tracking-tighter">GST Number:-</span>
+                        <span class="text-[12px] md:text-2xl font-semibold text-slate-800 ml-1.5 tracking-wider">36CIZPK7957H1Z8</span>
+                    </p>
+                </div>
+
+                <!-- Cart Button -->
+                <button onclick="window.location.href='/#catalog'" class="relative p-3 md:p-4 bg-[#004b8d] text-white rounded-xl md:rounded-2xl hover:bg-[#1a7139] transition shadow-xl shadow-blue-100">
+                    <i data-lucide="shopping-cart" class="w-5 h-5 md:w-7 md:h-7"></i>
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-[#1a7139] border-2 border-white text-white text-[10px] font-black px-2 py-0.5 rounded-full">0</span>
+                </button>
             </div>
         </div>
-        <div class="flex items-center gap-6">
-            <div class="hidden lg:flex items-center">
-                <span class="text-lg font-black text-[#004b8d] tracking-tight">
-                    GSTIN:-  <span class="font-bold text-slate-800">36CIZPK7957H1Z8</span>
-                </span>
-            </div>
+
+        <!-- Mobile Pill Navigation (Visible ONLY on Mobile) -->
+        <div class="flex md:hidden items-center justify-between bg-slate-50 p-1 rounded-2xl mt-3 border border-slate-100">
+            <a href="/" class="flex-1 flex flex-col items-center py-2 gap-0.5 rounded-xl text-slate-400 font-black text-[10px] uppercase tracking-tighter transition-all">
+                <i data-lucide="home" class="w-4 h-4"></i>Home</a>
+            <a href="about" class="flex-1 flex flex-col items-center py-2 gap-0.5 rounded-xl text-slate-400 font-black text-[10px] uppercase tracking-tighter transition-all">
+                <i data-lucide="info" class="w-4 h-4"></i>About</a>
+            <a href="contact" class="flex-1 flex flex-col items-center py-2 gap-0.5 rounded-xl text-slate-400 font-black text-[10px] uppercase tracking-tighter transition-all">
+                <i data-lucide="mail" class="w-4 h-4"></i>Contact</a>
         </div>
     </div>
 </nav>
