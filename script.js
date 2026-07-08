@@ -92,6 +92,7 @@ function renderProducts(items) {
                 <span class="block bg-[#004b8d] text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest shadow-md">${p.stock}</span>
             </div>
             <img src="${p.img}?v=${Date.now()}" 
+                 alt="${p.name} - Pharmaceutical Excipients Wholesaler Hyderabad"
                  onerror="handleImageError(this, '${p.name}')" 
                  class="w-full h-56 object-cover rounded-3xl mb-5 bg-slate-50 border border-slate-50 shadow-inner">
             <div class="px-2">
