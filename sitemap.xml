@@ -1,19 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Home Page -->
   <url>
     <loc>https://excipurepharma.com/</loc>
+    <lastmod>2026-07-08</lastmod>
     <priority>1.0</priority>
   </url>
+  
+  <!-- About Us -->
   <url>
     <loc>https://excipurepharma.com/about</loc>
+    <lastmod>2026-07-08</lastmod>
     <priority>0.8</priority>
   </url>
+  
+  <!-- Contact Us -->
   <url>
     <loc>https://excipurepharma.com/contact</loc>
-    <priority>0.8</priority>
+    <lastmod>2026-07-08</lastmod>
+    <priority>0.9</priority>
   </url>
+  
+  <!-- Compliance (Missing in your version) -->
+  <url>
+    <loc>https://excipurepharma.com/compliance</loc>
+    <lastmod>2026-07-08</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Privacy Policy -->
   <url>
     <loc>https://excipurepharma.com/privacy</loc>
-    <priority>0.8</priority>
+    <lastmod>2026-07-08</lastmod>
+    <priority>0.5</priority>
   </url>
 </urlset>
