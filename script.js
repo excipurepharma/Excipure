@@ -85,7 +85,6 @@ let activeProductId = null;
 window.renderProducts = function(items) {
     const grid = document.getElementById('product-grid');
     if (!grid) return;
-    
     grid.innerHTML = items.map(p => `
         <div class="product-card bg-white rounded-[2.5rem] p-7 border border-slate-100 shadow-sm relative overflow-hidden group">
             <div class="absolute top-5 left-5 z-10"><span class="block bg-[#004b8d] text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest shadow-md">${p.stock}</span></div>
@@ -106,7 +105,7 @@ window.renderProducts = function(items) {
     lucide.createIcons();
 }
 
-// 4. RESTORED SIDEBAR LOGIC (Dropdowns + Counts)
+// 4. SIDEBAR LOGIC (Completely Fixed Dropdowns)
 window.renderSidebar = function() {
     const nav = document.getElementById('sidebar-nav');
     if (!nav) return;
@@ -121,24 +120,30 @@ window.renderSidebar = function() {
 
     html += categories.map(cat => {
         const catItems = products.filter(p => p.cat === cat);
+        
+        // Special logic for Colours (Nested Type -> Products)
         if (cat === "Colours") {
             const types = ["Inorganic Pigment", "Aluminium Lake Pigment", "Synthetic Azo Dye", "Organic Pigment"];
             return `
                 <div class="category-group border-b border-slate-50 last:border-0 pb-1">
-                    <button onclick="window.toggleSidebarDropdown(this, '${cat}')" class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition group text-left">
+                    <button onclick="window.toggleDropdown(this)" class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition group text-left">
                         <span class="text-base font-black text-slate-800 uppercase tracking-wide">${cat} <span class="text-slate-400 font-medium ml-1">(${catItems.length})</span></span>
                         <i data-lucide="chevron-down" class="w-5 h-5 text-slate-300 dropdown-icon transition-transform"></i>
                     </button>
-                    <div class="dropdown-content hidden pl-4 pr-2 py-3 space-y-3">
+                    <div class="dropdown-content hidden pl-4 pr-2 py-3 space-y-4">
+                        <button onclick="window.filterProducts('Colours')" class="text-[10px] font-black text-[#1a7139] uppercase px-3">View All Colours</button>
                         ${types.map(type => {
-                            const subItems = catItems.filter(p => p.subCat === type);
-                            if (subItems.length === 0) return '';
+                            const typeItems = catItems.filter(p => p.subCat === type);
+                            if (typeItems.length === 0) return '';
                             return `
                                 <div class="sub-category-group">
-                                    <button onclick="window.toggleSubSidebarDropdown(this, '${type}')" class="w-full flex items-center justify-between py-2 px-3 hover:bg-slate-50 rounded-lg transition">
-                                        <span class="text-[13px] font-black text-[#004b8d] uppercase">${type} (${subItems.length})</span>
-                                        <i data-lucide="plus" class="w-3 h-3 text-slate-400"></i>
+                                    <button onclick="window.toggleDropdown(this)" class="w-full flex items-center justify-between py-2 px-3 hover:bg-slate-100 rounded-lg transition">
+                                        <span class="text-[13px] font-black text-[#004b8d] uppercase">${type}</span>
+                                        <i data-lucide="plus" class="w-3 h-3 text-slate-400 dropdown-icon"></i>
                                     </button>
+                                    <div class="dropdown-content hidden pl-4 pt-2 space-y-1">
+                                        ${typeItems.map(p => `<button onclick="window.filterSingleProduct(${p.id})" class="w-full text-left py-1 text-sm font-bold text-slate-500 hover:text-[#004b8d] truncate">• ${p.name}</button>`).join('')}
+                                    </div>
                                 </div>
                             `;
                         }).join('')}
@@ -146,12 +151,20 @@ window.renderSidebar = function() {
                 </div>
             `;
         }
+
+        // Standard logic for other categories
         return `
             <div class="category-group border-b border-slate-50 last:border-0 pb-1">
-                <button onclick="window.filterProducts('${cat}')" class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition text-left group">
+                <button onclick="window.toggleDropdown(this)" class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition group text-left">
                     <span class="text-base font-black text-slate-800 uppercase tracking-wide">${cat} <span class="text-slate-400 font-medium ml-1">(${catItems.length})</span></span>
-                    <i data-lucide="chevron-right" class="w-5 h-5 text-slate-300"></i>
+                    <i data-lucide="chevron-down" class="w-5 h-5 text-slate-300 dropdown-icon transition-transform"></i>
                 </button>
+                <div class="dropdown-content hidden pl-8 pr-2 py-2 space-y-1">
+                    <button onclick="window.filterProducts('${cat}')" class="text-[10px] font-black text-[#1a7139] uppercase mb-2">View All ${cat}</button>
+                    ${catItems.map(p => `
+                        <button onclick="window.filterSingleProduct(${p.id})" class="w-full text-left py-1.5 text-sm font-bold text-slate-500 hover:text-[#004b8d] transition truncate">• ${p.name}</button>
+                    `).join('')}
+                </div>
             </div>
         `;
     }).join('');
@@ -159,27 +172,28 @@ window.renderSidebar = function() {
     lucide.createIcons();
 }
 
-window.toggleSidebarDropdown = function(btn, cat) {
+// 5. ACTIONS & TOGGLES
+window.toggleDropdown = function(btn) {
     const content = btn.nextElementSibling;
     const icon = btn.querySelector('.dropdown-icon');
+    
+    // Toggle the hidden class
     content.classList.toggle('hidden');
-    icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
-    window.filterProducts(cat);
+    
+    // Rotate Icon
+    if (icon) {
+        icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+    }
 }
 
-window.toggleSubSidebarDropdown = function(btn, type) {
-    window.filterSubProducts(type);
-}
-
-// 5. FILTERING
 window.filterProducts = function(cat) {
     if (cat === 'All') renderProducts(products);
     else renderProducts(products.filter(p => p.cat === cat));
     scrollToCatalog();
 }
 
-window.filterSubProducts = function(subCat) {
-    renderProducts(products.filter(p => p.subCat === subCat));
+window.filterSingleProduct = function(id) {
+    renderProducts(products.filter(p => p.id === id));
     scrollToCatalog();
 }
 
@@ -188,7 +202,7 @@ function scrollToCatalog() {
     if (target) window.scrollTo({ top: target.offsetTop - 100, behavior: 'smooth' });
 }
 
-// 6. MODAL & DETAILS
+// 6. MODAL & DETAILS (Technical Specs)
 window.viewDetails = function(id) {
     const p = products.find(item => item.id === id);
     if (!p) return;
@@ -219,7 +233,7 @@ window.addFromModal = function() {
     window.closeDetails();
 }
 
-// 7. CART
+// 7. CART & CHECKOUT
 window.addToCart = function(id) {
     const item = products.find(p => p.id === id);
     const inCart = cart.find(c => c.id === id);
@@ -263,7 +277,13 @@ window.toggleCart = function() {
 window.showCheckout = function() {
     if (cart.length === 0) return alert("Inquiry list is empty!");
     document.getElementById('checkout-modal').classList.remove('hidden');
-    document.getElementById('summary-items').innerHTML = cart.map(c => `<div class="flex justify-between p-3 bg-slate-50 rounded-xl mb-2"><span class="font-black text-slate-800">${c.name}</span><span class="font-black text-[#004b8d]">x${c.qty}</span></div>`).join('');
+    document.getElementById('summary-items').innerHTML = cart.map(c => `
+        <div class="flex justify-between items-center bg-white p-4 rounded-2xl border border-slate-100 shadow-sm mb-2">
+            <span class="font-black text-slate-800 text-base ml-4">${c.name}</span>
+            <div class="bg-slate-50 px-4 py-1 rounded-lg border border-slate-100 mr-4">
+                <span class="font-black text-[#004b8d] text-lg">x${c.qty}</span>
+            </div>
+        </div>`).join('');
 }
 
 window.closeCheckout = function() { document.getElementById('checkout-modal').classList.add('hidden'); }
