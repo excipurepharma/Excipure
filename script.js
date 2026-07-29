@@ -87,12 +87,12 @@ window.renderProducts = function(items) {
     if (!grid) return;
     
     if (items.length === 0) {
-        grid.innerHTML = `<div class="col-span-full py-20 text-center text-slate-400 font-bold">No products found matching your search.</div>`;
+        grid.innerHTML = `<div class="col-span-full py-20 text-center text-slate-400 font-bold">No products found.</div>`;
         return;
     }
 
     grid.innerHTML = items.map(p => `
-        <div class="product-card bg-white rounded-[2.5rem] p-7 border border-slate-100 shadow-sm relative overflow-hidden group transition-all duration-300">
+        <div class="product-card bg-white rounded-[2.5rem] p-7 border border-slate-100 shadow-sm relative overflow-hidden group">
             <div class="absolute top-5 left-5 z-10"><span class="block bg-[#004b8d] text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest shadow-md">${p.stock}</span></div>
             <img src="${p.img}?v=${Date.now()}" alt="${p.name}" class="w-full h-56 object-cover rounded-3xl mb-5 bg-slate-50 border border-slate-50 shadow-inner">
             <div class="px-2">
@@ -101,8 +101,6 @@ window.renderProducts = function(items) {
                 
                 <!-- INCREASED FONT SIZES -->
                 <p class="text-[16px] text-slate-500 mb-1 leading-tight">Application: <span class="font-black text-slate-800">${p.func}</span></p>
-                
-                <!-- ADDED KEY FEATURES -->
                 <p class="text-[16px] text-slate-500 mb-4 leading-tight">Key Features: <span class="font-bold text-[#1a7139] italic">${p.features || 'Premium Grade'}</span></p>
                 
                 <div class="text-[15px] text-slate-400 leading-tight mb-7 uppercase font-black">
@@ -119,47 +117,59 @@ window.renderProducts = function(items) {
     lucide.createIcons();
 }
 
-// 4. SEARCH & FILTER LOGIC
-window.searchProducts = function(query) {
-    const q = query.toLowerCase().trim();
-    if (!q) {
-        window.renderProducts(products);
-        return;
-    }
-    const filtered = products.filter(p => 
-        p.name.toLowerCase().includes(q) || 
-        p.cat.toLowerCase().includes(q) || 
-        p.func.toLowerCase().includes(q) ||
-        (p.features && p.features.toLowerCase().includes(q))
-    );
-    window.renderProducts(filtered);
-}
-
-window.filterProducts = function(cat) {
-    document.getElementById('product-search').value = ""; // Clear search when using sidebar
-    if (cat === 'All') renderProducts(products);
-    else renderProducts(products.filter(p => p.cat === cat));
-    scrollToCatalog();
-}
-
-// 5. RESTORED SIDEBAR LOGIC (Dropdowns)
+// 4. RESTORED SIDEBAR LOGIC (Dropdowns & Grouped Colours)
 window.renderSidebar = function() {
     const nav = document.getElementById('sidebar-nav');
     if (!nav) return;
     const categories = ["Excipients", "Colours", "Solvents", "Vitamins", "Specialty"];
     
-    let html = `<button onclick="window.filterProducts('All')" class="w-full text-left px-5 py-4 rounded-xl hover:bg-slate-50 transition font-black text-lg mb-4 flex items-center justify-between border border-transparent">All Products (${products.length}) <i data-lucide="layers"></i></button>`;
+    let html = `<button onclick="window.filterProducts('All')" class="w-full text-left px-5 py-4 rounded-xl hover:bg-slate-50 transition font-black text-lg mb-4 flex items-center justify-between border border-transparent group"><span class="text-slate-700 group-hover:text-[#004b8d]">All Products (${products.length})</span><i data-lucide="layers" class="w-5 h-5 text-slate-300"></i></button>`;
 
     html += categories.map(cat => {
         const catItems = products.filter(p => p.cat === cat);
+        
+        // Tiered logic specifically for Colours
+        if (cat === "Colours") {
+            const types = ["Inorganic Pigment", "Aluminium Lake Pigment", "Synthetic Azo Dye", "Organic Pigment"];
+            return `
+                <div class="category-group border-b border-slate-50 last:border-0 pb-1">
+                    <button onclick="window.toggleDropdown(this)" class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition text-left">
+                        <span class="text-base font-black text-slate-800 uppercase">${cat} (${catItems.length})</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-300 dropdown-icon transition-transform"></i>
+                    </button>
+                    <div class="dropdown-content hidden pl-4 pr-2 py-3 space-y-4 border-l-2 border-slate-100 ml-5">
+                        <button onclick="window.filterProducts('Colours')" class="text-[10px] font-black text-[#1a7139] uppercase px-3 hover:underline">View All Colours</button>
+                        ${types.map(type => {
+                            const subItems = catItems.filter(p => p.subCat === type);
+                            if (subItems.length === 0) return '';
+                            return `
+                                <div class="sub-category-group">
+                                    <button onclick="window.toggleDropdown(this)" class="w-full flex items-center justify-between py-2 px-3 hover:bg-slate-100 rounded-lg transition">
+                                        <span class="text-[13px] font-black text-[#004b8d] uppercase">${type} (${subItems.length})</span>
+                                        <i data-lucide="plus" class="w-3 h-3 text-slate-400 dropdown-icon"></i>
+                                    </button>
+                                    <div class="dropdown-content hidden pl-4 pt-2 space-y-1">
+                                        ${subItems.map(p => `<button onclick="window.filterSingleProduct(${p.id})" class="w-full text-left py-1 text-sm font-bold text-slate-500 hover:text-[#004b8d] truncate">• ${p.name}</button>`).join('')}
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Standard logic for other categories
         return `
             <div class="category-group border-b border-slate-50 last:border-0 pb-1">
-                <button onclick="window.toggleDropdown(this)" class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition group text-left">
+                <button onclick="window.toggleDropdown(this)" class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition text-left">
                     <span class="text-base font-black text-slate-800 uppercase">${cat} (${catItems.length})</span>
-                    <i data-lucide="chevron-down" class="w-5 h-5 text-slate-300 dropdown-icon"></i>
+                    <i data-lucide="chevron-down" class="w-5 h-5 text-slate-300 dropdown-icon transition-transform"></i>
                 </button>
-                <div class="dropdown-content hidden pl-8 pr-2 py-2 space-y-1">
-                    ${catItems.map(p => `<button onclick="window.filterSingleProduct(${p.id})" class="w-full text-left py-1.5 text-sm font-bold text-slate-500 hover:text-[#004b8d] truncate">• ${p.name}</button>`).join('')}
+                <div class="dropdown-content hidden pl-8 pr-2 py-2 space-y-1 border-l-2 border-slate-100 ml-5">
+                    ${catItems.map(p => `
+                        <button onclick="window.filterSingleProduct(${p.id})" class="w-full text-left py-1.5 text-sm font-bold text-slate-500 hover:text-[#004b8d] transition truncate">• ${p.name}</button>
+                    `).join('')}
                 </div>
             </div>
         `;
@@ -168,12 +178,35 @@ window.renderSidebar = function() {
     lucide.createIcons();
 }
 
-// 6. ALL OTHER ACTIONS (DETAILS, CART, TOGGLES)
+// 5. SEARCH & ACTIONS
+window.searchProducts = function(query) {
+    const q = query.toLowerCase().trim();
+    if (!q) { window.renderProducts(products); return; }
+    const filtered = products.filter(p => 
+        p.name.toLowerCase().includes(q) || 
+        p.cat.toLowerCase().includes(q) || 
+        (p.features && p.features.toLowerCase().includes(q))
+    );
+    window.renderProducts(filtered);
+}
+
 window.toggleDropdown = function(btn) {
     const content = btn.nextElementSibling;
     const icon = btn.querySelector('.dropdown-icon');
     content.classList.toggle('hidden');
-    if (icon) icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+    if (icon) {
+        if (icon.getAttribute('data-lucide') === 'plus') {
+            icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(45deg)';
+        } else {
+            icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
+    }
+}
+
+window.filterProducts = function(cat) {
+    if (cat === 'All') renderProducts(products);
+    else renderProducts(products.filter(p => p.cat === cat));
+    scrollToCatalog();
 }
 
 window.filterSingleProduct = function(id) {
@@ -186,6 +219,7 @@ function scrollToCatalog() {
     if (target) window.scrollTo({ top: target.offsetTop - 100, behavior: 'smooth' });
 }
 
+// 6. MODAL & DETAILS
 window.viewDetails = function(id) {
     const p = products.find(item => item.id === id);
     if (!p) return;
@@ -217,6 +251,7 @@ window.addFromModal = function() {
     window.closeDetails();
 }
 
+// 7. CART & STARTUP
 window.addToCart = function(id) {
     const item = products.find(p => p.id === id);
     const inCart = cart.find(c => c.id === id);
@@ -236,13 +271,12 @@ window.updateCartUI = function() {
     document.getElementById('cart-items').innerHTML = cart.map(c => `
         <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100 mb-4">
             <div class="flex-1"><h4 class="text-sm font-bold">${c.name}</h4><p class="text-[10px] uppercase text-slate-400">${c.stock}</p></div>
-            <div class="flex items-center gap-3 bg-white px-3 py-1 rounded-xl">
-                <button onclick="window.changeQty(${c.id}, -1)" class="font-bold">-</button>
+            <div class="flex items-center gap-3 bg-white px-3 py-1 rounded-xl border border-slate-100">
+                <button onclick="window.changeQty(${c.id}, -1)" class="font-bold text-slate-400">-</button>
                 <span class="text-sm font-black w-4 text-center">${c.qty}</span>
                 <button onclick="window.changeQty(${c.id}, 1)" class="text-[#004b8d] font-bold">+</button>
             </div>
-        </div>
-    `).join('');
+        </div>`).join('');
 }
 
 window.changeQty = function(id, delta) {
@@ -253,16 +287,20 @@ window.changeQty = function(id, delta) {
 }
 
 window.toggleCart = function() {
-    const drawer = document.getElementById('cart-drawer');
-    const content = document.getElementById('cart-content');
-    drawer.classList.toggle('invisible');
-    content.classList.toggle('translate-x-full');
+    document.getElementById('cart-drawer').classList.toggle('invisible');
+    document.getElementById('cart-content').classList.toggle('translate-x-full');
 }
 
 window.showCheckout = function() {
     if (cart.length === 0) return alert("Inquiry list is empty!");
     document.getElementById('checkout-modal').classList.remove('hidden');
-    document.getElementById('summary-items').innerHTML = cart.map(c => `<div class="flex justify-between p-3 bg-slate-50 rounded-xl mb-2"><span class="font-black text-slate-800">${c.name}</span><span class="font-black text-[#004b8d]">x${c.qty}</span></div>`).join('');
+    document.getElementById('summary-items').innerHTML = cart.map(c => `
+        <div class="flex justify-between items-center bg-white p-4 rounded-2xl border border-slate-100 shadow-sm mb-2">
+            <span class="font-black text-slate-800 text-base ml-4">${c.name}</span>
+            <div class="bg-slate-50 px-4 py-1 rounded-lg border border-slate-100 mr-4">
+                <span class="font-black text-[#004b8d] text-lg">x${c.qty}</span>
+            </div>
+        </div>`).join('');
 }
 
 window.closeCheckout = function() { document.getElementById('checkout-modal').classList.add('hidden'); }
@@ -275,7 +313,6 @@ window.submitOrder = function(method) {
     else window.location.href = `mailto:info@excipurepharma.com?subject=Inquiry&body=${encodeURIComponent(body)}`;
 }
 
-// 7. STARTUP
 document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('product-grid')) {
         window.renderProducts(products);
