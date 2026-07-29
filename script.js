@@ -79,33 +79,24 @@ const products = [
 ];
 
 let cart = [];
+let activeProductId = null;
 
-// 3. RENDERING LOGIC
+// 2. CORE RENDERING
 window.renderProducts = function(items) {
     const grid = document.getElementById('product-grid');
     if (!grid) return;
-    
     grid.innerHTML = items.map(p => `
         <div class="product-card bg-white rounded-[2.5rem] p-7 border border-slate-100 shadow-sm relative overflow-hidden group">
-            <div class="absolute top-5 left-5 z-10">
-                <span class="block bg-[#004b8d] text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest shadow-md">${p.stock}</span>
-            </div>
-            <img src="${p.img}?v=${Date.now()}" 
-                 alt="${p.name} - Pharmaceutical Excipients Wholesaler Hyderabad"
-                 onerror="this.src='https://placehold.co/400x300?text=${p.name.split(' ')[0]}'" 
-                 class="w-full h-56 object-cover rounded-3xl mb-5 bg-slate-50 border border-slate-50 shadow-inner">
+            <div class="absolute top-5 left-5 z-10"><span class="block bg-[#004b8d] text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest">${p.stock}</span></div>
+            <img src="${p.img}" alt="${p.name}" class="w-full h-56 object-cover rounded-3xl mb-5 bg-slate-50 border border-slate-50 shadow-inner">
             <div class="px-2">
-                <p class="text-[11px] font-black text-[#1a7139] uppercase mb-1 tracking-tighter">${p.cat}</p>
+                <p class="text-[11px] font-black text-[#1a7139] uppercase mb-1">${p.cat}</p>
                 <h3 class="font-black text-xl h-14 mb-3 uppercase leading-tight text-slate-900">${p.name}</h3>
                 <p class="text-[14px] text-slate-500 mb-2">Application: <span class="text-[17px] font-black text-slate-900">${p.func}</span></p>
-                <div class="text-[12px] text-slate-500 leading-tight mb-7">
-                    Minimum order quantity: <span class="font-black text-slate-900">${p.moq || '25 Kg'}</span>
-                </div>
+                <div class="text-[12px] text-slate-500 leading-tight mb-7">Minimum order: <span class="font-black text-slate-900">${p.moq || '25 Kg'}</span></div>
                 <div class="flex justify-between items-center pt-4 border-t border-slate-50">
-                    <button onclick="window.viewDetails(${p.id})" class="text-[15px] font-black text-[#004b8d] underline uppercase tracking-widest hover:text-[#1a7139] transition-colors">Product Details</button>
-                    <button onclick="window.addToCart(${p.id})" class="w-14 h-14 bg-[#004b8d] text-white rounded-full flex items-center justify-center hover:bg-[#1a7139] transition shadow-xl shadow-blue-100">
-                        <i data-lucide="plus" class="w-7 h-7"></i>
-                    </button>
+                    <button onclick="window.viewDetails(${p.id})" class="text-[15px] font-black text-[#004b8d] underline uppercase tracking-widest hover:text-[#1a7139]">Product Details</button>
+                    <button onclick="window.addToCart(${p.id})" class="w-14 h-14 bg-[#004b8d] text-white rounded-full flex items-center justify-center hover:bg-[#1a7139] shadow-xl"><i data-lucide="plus"></i></button>
                 </div>
             </div>
         </div>
@@ -113,170 +104,86 @@ window.renderProducts = function(items) {
     lucide.createIcons();
 }
 
-// 4. FILTER LOGIC
-window.filterProducts = function(category) {
-    if (category === 'All') {
-        renderProducts(products);
-    } else {
-        renderProducts(products.filter(p => p.cat === category));
-    }
-    scrollToCatalog();
+window.renderSidebar = function() {
+    const nav = document.getElementById('sidebar-nav');
+    if (!nav) return;
+    const categories = ["Excipients", "Colours", "Solvents", "Vitamins", "Specialty"];
+    nav.innerHTML = `<button onclick="window.filterProducts('All')" class="w-full text-left px-5 py-4 rounded-xl hover:bg-slate-50 transition font-black text-lg mb-4 flex items-center justify-between border border-transparent">All Products <i data-lucide="layers"></i></button>` + 
+    categories.map(cat => `<button onclick="window.filterProducts('${cat}')" class="w-full text-left px-5 py-4 rounded-xl hover:bg-slate-50 transition font-black text-lg uppercase tracking-wide border-b border-slate-50 last:border-0">${cat}</button>`).join('');
+    lucide.createIcons();
 }
 
-window.filterSingleProduct = function(id) {
-    renderProducts(products.filter(p => p.id === id));
-    scrollToCatalog();
-}
-
-function scrollToCatalog() {
-    const target = document.getElementById('catalog');
-    if (target) {
-        window.scrollTo({ top: target.offsetTop - 100, behavior: 'smooth' });
-    }
-}
-
-// 5. MODAL & DETAILS
+// 3. ACTIONS
 window.viewDetails = function(id) {
     const p = products.find(item => item.id === id);
     if (!p) return;
-
+    activeProductId = id;
     document.getElementById('modal-title').innerText = p.name;
-    document.getElementById('modal-desc').innerHTML = `<span class="text-xl text-slate-600 font-medium">${p.desc}</span>`;
-    document.getElementById('modal-img').src = p.img; 
-    
-    const specsGrid = document.getElementById('specs-grid');
-    let specs = [
-        { label: "Function", value: p.func },
-        { label: "Grade", value: p.grade },
-        { label: "Purity", value: p.purity },
-        { label: "MOQ", value: p.moq || "25 Kg" }
-    ];
-
-    specsGrid.innerHTML = specs.map(s => `
-        <div class="mb-5">
-            <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-1">${s.label}</h4>
-            <p class="text-lg font-extrabold text-slate-800">${s.value}</p>
-        </div>
-    `).join('');
-
+    document.getElementById('modal-desc').innerText = p.desc;
+    document.getElementById('modal-img').src = p.img;
+    document.getElementById('specs-grid').innerHTML = `<div><p class='text-xs uppercase text-slate-400 font-black'>Function</p><p class='font-bold'>${p.func}</p></div><div><p class='text-xs uppercase text-slate-400 font-black'>Grade</p><p class='font-bold'>${p.grade}</p></div>`;
     document.getElementById('details-modal').classList.remove('hidden');
-    lucide.createIcons();
 }
 
-window.closeDetails = function() {
-    document.getElementById('details-modal').classList.add('hidden');
+window.closeDetails = function() { document.getElementById('details-modal').classList.add('hidden'); }
+
+window.addFromModal = function() { 
+    if(activeProductId) window.addToCart(activeProductId);
+    window.closeDetails();
 }
 
-// 6. CART LOGIC
 window.addToCart = function(id) {
     const item = products.find(p => p.id === id);
     const inCart = cart.find(c => c.id === id);
     if (inCart) { inCart.qty++; } else { cart.push({...item, qty: 1}); }
-    updateCartUI();
-    
-    // Toast notification
-    const toast = document.createElement('div');
-    toast.className = "fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-6 py-3 rounded-full z-[100] text-sm font-bold shadow-2xl";
-    toast.innerText = `${item.name} added to inquiry`;
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 2000);
+    window.updateCartUI();
 }
 
-function updateCartUI() {
-    const list = document.getElementById('cart-items');
-    const totalItems = cart.reduce((acc, c) => acc + c.qty, 0);
-
-    document.getElementById('cart-count').innerText = totalItems;
-    if(document.getElementById('cart-total-count')) document.getElementById('cart-total-count').innerText = totalItems;
-
-    list.innerHTML = cart.map(c => `
-        <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100">
-            <div class="flex-1">
-                <h4 class="text-sm font-bold text-slate-800">${c.name}</h4>
-                <p class="text-[10px] text-slate-400 font-black uppercase">${c.stock}</p>
-            </div>
-            <div class="flex items-center gap-3 bg-white px-3 py-1 rounded-xl">
-                <button onclick="window.changeQty(${c.id}, -1)" class="font-bold">-</button>
-                <span class="text-sm font-black w-4 text-center">${c.qty}</span>
-                <button onclick="window.changeQty(${c.id}, 1)" class="text-[#004b8d] font-bold">+</button>
-            </div>
-        </div>
-    `).join('');
+window.updateCartUI = function() {
+    const total = cart.reduce((acc, c) => acc + c.qty, 0);
+    document.getElementById('cart-count').innerText = total;
+    if(document.getElementById('cart-total-count')) document.getElementById('cart-total-count').innerText = total;
+    document.getElementById('cart-items').innerHTML = cart.map(c => `<div class='bg-slate-50 p-4 rounded-xl flex justify-between items-center'><div><p class='font-bold'>${c.name}</p><p class='text-xs'>Qty: ${c.qty}</p></div><button onclick='window.changeQty(${c.id}, -1)' class='text-red-500 font-bold'>Remove</button></div>`).join('');
 }
 
 window.changeQty = function(id, delta) {
     const item = cart.find(c => c.id === id);
     item.qty += delta;
     if (item.qty < 1) cart = cart.filter(c => c.id !== id);
-    updateCartUI();
+    window.updateCartUI();
 }
 
 window.toggleCart = function() {
-    const drawer = document.getElementById('cart-drawer');
-    const content = document.getElementById('cart-content');
-    drawer.classList.toggle('invisible');
-    content.classList.toggle('translate-x-full');
+    document.getElementById('cart-drawer').classList.toggle('invisible');
+    document.getElementById('cart-content').classList.toggle('translate-x-full');
+}
+
+window.filterProducts = function(cat) {
+    if (cat === 'All') renderProducts(products);
+    else renderProducts(products.filter(p => p.cat === cat));
+    window.scrollTo({ top: document.getElementById('catalog').offsetTop - 100, behavior: 'smooth' });
 }
 
 window.showCheckout = function() {
     if (cart.length === 0) return alert("Inquiry list is empty!");
     document.getElementById('checkout-modal').classList.remove('hidden');
-    renderSummary();
+    document.getElementById('summary-items').innerHTML = cart.map(c => `<div class='flex justify-between'><span class='font-bold'>${c.name}</span><span>x${c.qty}</span></div>`).join('');
 }
 
-window.closeCheckout = function() {
-    document.getElementById('checkout-modal').classList.add('hidden');
-}
+window.closeCheckout = function() { document.getElementById('checkout-modal').classList.add('hidden'); }
 
-function renderSummary() {
-    const list = document.getElementById('summary-items');
-    list.innerHTML = cart.map(c => `
-        <div class="flex justify-between items-center bg-white p-4 rounded-2xl border border-slate-100 shadow-sm">
-            <span class="font-black text-slate-800">${c.name}</span>
-            <span class="font-black text-[#004b8d] text-lg">x${c.qty}</span>
-        </div>
-    `).join('');
-}
-
-// 7. ORDER SUBMISSION
 window.submitOrder = function(method) {
-    const name = document.getElementById('cust-name').value.trim();
-    const phone = document.getElementById('cust-phone').value.trim();
-    const address = document.getElementById('cust-address').value.trim();
-    if (!name || !phone || !address) return alert("Please fill all details.");
+    const name = document.getElementById('cust-name').value;
+    const body = `Inquiry from ${name}: ` + cart.map(c => `${c.name} x${c.qty}`).join(', ');
+    if (method === 'whatsapp') window.open(`https://wa.me/919398453760?text=${encodeURIComponent(body)}`);
+    else window.location.href = `mailto:info@excipurepharma.com?subject=Inquiry&body=${encodeURIComponent(body)}`;
+}
 
-    let body = `INQUIRY - EXCIPURE PHARMA\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\n\nProducts:\n`;
-    cart.forEach((item, i) => { body += `${i + 1}. ${item.name} (x${item.qty})\n`; });
-
-    if (method === 'whatsapp') {
-        window.open(`https://wa.me/919398453760?text=${encodeURIComponent(body)}`, '_blank');
-    } else {
-        window.location.href = `mailto:info@excipurepharma.com?subject=Inquiry&body=${encodeURIComponent(body)}`;
+// 4. STARTUP
+document.addEventListener('DOMContentLoaded', () => {
+    lucide.createIcons();
+    if (document.getElementById('product-grid')) {
+        window.renderProducts(products);
+        window.renderSidebar();
     }
-}
-
-// 8. SIDEBAR
-function renderSidebar() {
-    const nav = document.getElementById('sidebar-nav');
-    const categories = ["Excipients", "Colours", "Solvents", "Vitamins", "Specialty"];
-    nav.innerHTML = `
-        <button onclick="window.filterProducts('All')" class="w-full text-left px-5 py-4 rounded-xl hover:bg-slate-50 transition font-black text-lg mb-4 flex items-center justify-between border border-transparent">
-            All Products <i data-lucide="layers" class="w-5 h-5 text-slate-300"></i>
-        </button>
-    ` + categories.map(cat => `
-        <button onclick="window.filterProducts('${cat}')" class="w-full text-left px-5 py-4 rounded-xl hover:bg-slate-50 transition font-black text-lg uppercase tracking-wide border-b border-slate-50 last:border-0">${cat}</button>
-    `).join('');
-    lucide.createIcons();
-}
-
-// INITIAL STARTUP
-if (document.getElementById('product-grid')) {
-    renderProducts(products);
-    renderSidebar();
-}
-
-window.toggleMobileMenu = function() {
-    const menu = document.getElementById('mobile-menu');
-    menu.classList.toggle('hidden');
-    lucide.createIcons();
-}
+});
