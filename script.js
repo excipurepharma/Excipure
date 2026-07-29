@@ -81,31 +81,37 @@ const products = [
 let cart = [];
 let activeProductId = null;
 
-// 3. RENDERING LOGIC
+// 3. RENDERING LOGIC (Increased Font Sizes & Added Key Features)
 window.renderProducts = function(items) {
     const grid = document.getElementById('product-grid');
     if (!grid) return;
     
+    if (items.length === 0) {
+        grid.innerHTML = `<div class="col-span-full py-20 text-center text-slate-400 font-bold">No products found matching your search.</div>`;
+        return;
+    }
+
     grid.innerHTML = items.map(p => `
-        <div class="product-card bg-white rounded-[2.5rem] p-7 border border-slate-100 shadow-sm relative overflow-hidden group">
+        <div class="product-card bg-white rounded-[2.5rem] p-7 border border-slate-100 shadow-sm relative overflow-hidden group transition-all duration-300">
             <div class="absolute top-5 left-5 z-10"><span class="block bg-[#004b8d] text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest shadow-md">${p.stock}</span></div>
             <img src="${p.img}?v=${Date.now()}" alt="${p.name}" class="w-full h-56 object-cover rounded-3xl mb-5 bg-slate-50 border border-slate-50 shadow-inner">
             <div class="px-2">
-                <p class="text-[11px] font-black text-[#1a7139] uppercase mb-1 tracking-tighter">${p.cat}</p>
-                <h3 class="font-black text-xl h-14 mb-3 uppercase leading-tight text-slate-900">${p.name}</h3>
+                <p class="text-[12px] font-black text-[#1a7139] uppercase mb-1 tracking-tighter">${p.cat}</p>
+                <h3 class="font-black text-2xl h-14 mb-4 uppercase leading-tight text-slate-900">${p.name}</h3>
                 
-                <p class="text-[15px] text-slate-500 mb-1 leading-tight">Application: <span class="font-bold text-slate-800">${p.func}</span></p>
-                <p class="text-[15px] text-slate-500 mb-3 leading-tight">Features: <span class="font-bold text-[#1a7139] italic">${p.features || 'Standard Quality'}</span></p>
+                <!-- INCREASED FONT SIZES -->
+                <p class="text-[16px] text-slate-500 mb-1 leading-tight">Application: <span class="font-black text-slate-800">${p.func}</span></p>
                 
-                <div class="text-[14px] text-slate-400 leading-tight mb-7 uppercase font-black">
-                    MOQ: <span class="text-slate-900">${p.moq || '25 Kg'}</span>
+                <!-- ADDED KEY FEATURES -->
+                <p class="text-[16px] text-slate-500 mb-4 leading-tight">Key Features: <span class="font-bold text-[#1a7139] italic">${p.features || 'Premium Grade'}</span></p>
+                
+                <div class="text-[15px] text-slate-400 leading-tight mb-7 uppercase font-black">
+                    MOQ: <span class="text-slate-900 font-black">${p.moq || '25 Kg'}</span>
                 </div>
 
                 <div class="flex justify-between items-center pt-4 border-t border-slate-50">
-                    <button onclick="window.viewDetails(${p.id})" class="text-[15px] font-black text-[#004b8d] underline uppercase tracking-widest hover:text-[#1a7139] transition-colors">Product Details</button>
-                    <button onclick="window.addToCart(${p.id})" class="w-14 h-14 bg-[#004b8d] text-white rounded-full flex items-center justify-center hover:bg-[#1a7139] transition shadow-xl">
-                        <i data-lucide="plus" class="w-7 h-7"></i>
-                    </button>
+                    <button onclick="window.viewDetails(${p.id})" class="text-[15px] font-black text-[#004b8d] underline uppercase tracking-widest hover:text-[#1a7139]">Details</button>
+                    <button onclick="window.addToCart(${p.id})" class="w-14 h-14 bg-[#004b8d] text-white rounded-full flex items-center justify-center hover:bg-[#1a7139] shadow-xl"><i data-lucide="plus"></i></button>
                 </div>
             </div>
         </div>
@@ -113,63 +119,47 @@ window.renderProducts = function(items) {
     lucide.createIcons();
 }
 
-// 4. SIDEBAR LOGIC
+// 4. SEARCH & FILTER LOGIC
+window.searchProducts = function(query) {
+    const q = query.toLowerCase().trim();
+    if (!q) {
+        window.renderProducts(products);
+        return;
+    }
+    const filtered = products.filter(p => 
+        p.name.toLowerCase().includes(q) || 
+        p.cat.toLowerCase().includes(q) || 
+        p.func.toLowerCase().includes(q) ||
+        (p.features && p.features.toLowerCase().includes(q))
+    );
+    window.renderProducts(filtered);
+}
+
+window.filterProducts = function(cat) {
+    document.getElementById('product-search').value = ""; // Clear search when using sidebar
+    if (cat === 'All') renderProducts(products);
+    else renderProducts(products.filter(p => p.cat === cat));
+    scrollToCatalog();
+}
+
+// 5. RESTORED SIDEBAR LOGIC (Dropdowns)
 window.renderSidebar = function() {
     const nav = document.getElementById('sidebar-nav');
     if (!nav) return;
     const categories = ["Excipients", "Colours", "Solvents", "Vitamins", "Specialty"];
     
-    let html = `
-        <button onclick="window.filterProducts('All')" class="w-full text-left px-5 py-4 rounded-xl hover:bg-slate-50 transition font-black text-lg mb-4 flex items-center justify-between group border border-transparent">
-            <span class="text-slate-700">All Products <span class="text-slate-400 font-medium ml-1">(${products.length})</span></span>
-            <i data-lucide="layers" class="w-5 h-5 text-slate-300"></i>
-        </button>
-    `;
+    let html = `<button onclick="window.filterProducts('All')" class="w-full text-left px-5 py-4 rounded-xl hover:bg-slate-50 transition font-black text-lg mb-4 flex items-center justify-between border border-transparent">All Products (${products.length}) <i data-lucide="layers"></i></button>`;
 
     html += categories.map(cat => {
         const catItems = products.filter(p => p.cat === cat);
-        
-        if (cat === "Colours") {
-            const types = ["Inorganic Pigment", "Aluminium Lake Pigment", "Synthetic Azo Dye", "Organic Pigment"];
-            return `
-                <div class="category-group border-b border-slate-50 last:border-0 pb-1">
-                    <button onclick="window.toggleDropdown(this)" class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition group text-left">
-                        <span class="text-base font-black text-slate-800 uppercase tracking-wide">${cat} <span class="text-slate-400 font-medium ml-1">(${catItems.length})</span></span>
-                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-300 dropdown-icon transition-transform"></i>
-                    </button>
-                    <div class="dropdown-content hidden pl-4 pr-2 py-3 space-y-4">
-                        <button onclick="window.filterProducts('Colours')" class="text-[10px] font-black text-[#1a7139] uppercase px-3">View All Colours</button>
-                        ${types.map(type => {
-                            const typeItems = catItems.filter(p => p.subCat === type);
-                            if (typeItems.length === 0) return '';
-                            return `
-                                <div class="sub-category-group">
-                                    <button onclick="window.toggleDropdown(this)" class="w-full flex items-center justify-between py-2 px-3 hover:bg-slate-100 rounded-lg transition">
-                                        <span class="text-[13px] font-black text-[#004b8d] uppercase">${type}</span>
-                                        <i data-lucide="plus" class="w-3 h-3 text-slate-400 dropdown-icon"></i>
-                                    </button>
-                                    <div class="dropdown-content hidden pl-4 pt-2 space-y-1">
-                                        ${typeItems.map(p => `<button onclick="window.filterSingleProduct(${p.id})" class="w-full text-left py-1 text-sm font-bold text-slate-500 hover:text-[#004b8d] truncate">• ${p.name}</button>`).join('')}
-                                    </div>
-                                </div>
-                            `;
-                        }).join('')}
-                    </div>
-                </div>
-            `;
-        }
-
         return `
             <div class="category-group border-b border-slate-50 last:border-0 pb-1">
                 <button onclick="window.toggleDropdown(this)" class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition group text-left">
-                    <span class="text-base font-black text-slate-800 uppercase tracking-wide">${cat} <span class="text-slate-400 font-medium ml-1">(${catItems.length})</span></span>
-                    <i data-lucide="chevron-down" class="w-5 h-5 text-slate-300 dropdown-icon transition-transform"></i>
+                    <span class="text-base font-black text-slate-800 uppercase">${cat} (${catItems.length})</span>
+                    <i data-lucide="chevron-down" class="w-5 h-5 text-slate-300 dropdown-icon"></i>
                 </button>
                 <div class="dropdown-content hidden pl-8 pr-2 py-2 space-y-1">
-                    <button onclick="window.filterProducts('${cat}')" class="text-[10px] font-black text-[#1a7139] uppercase mb-2">View All ${cat}</button>
-                    ${catItems.map(p => `
-                        <button onclick="window.filterSingleProduct(${p.id})" class="w-full text-left py-1.5 text-sm font-bold text-slate-500 hover:text-[#004b8d] transition truncate">• ${p.name}</button>
-                    `).join('')}
+                    ${catItems.map(p => `<button onclick="window.filterSingleProduct(${p.id})" class="w-full text-left py-1.5 text-sm font-bold text-slate-500 hover:text-[#004b8d] truncate">• ${p.name}</button>`).join('')}
                 </div>
             </div>
         `;
@@ -178,18 +168,12 @@ window.renderSidebar = function() {
     lucide.createIcons();
 }
 
-// 5. ACTIONS
+// 6. ALL OTHER ACTIONS (DETAILS, CART, TOGGLES)
 window.toggleDropdown = function(btn) {
     const content = btn.nextElementSibling;
     const icon = btn.querySelector('.dropdown-icon');
     content.classList.toggle('hidden');
-    if (icon) { icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)'; }
-}
-
-window.filterProducts = function(cat) {
-    if (cat === 'All') renderProducts(products);
-    else renderProducts(products.filter(p => p.cat === cat));
-    scrollToCatalog();
+    if (icon) icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
 }
 
 window.filterSingleProduct = function(id) {
@@ -202,35 +186,26 @@ function scrollToCatalog() {
     if (target) window.scrollTo({ top: target.offsetTop - 100, behavior: 'smooth' });
 }
 
-// 6. MODAL
 window.viewDetails = function(id) {
     const p = products.find(item => item.id === id);
     if (!p) return;
     activeProductId = id;
-
     document.getElementById('modal-title').innerText = p.name;
     document.getElementById('modal-desc').innerHTML = `<span class="text-xl text-slate-600 leading-relaxed font-medium">${p.desc}</span>`;
-    document.getElementById('modal-img').src = p.img; 
-    
-    const techSpecs = [
-        { label: "Function", value: p.func },
-        { label: "Grade", value: p.grade },
-        { label: "Formula", value: p.mol },
-        { label: "Purity", value: p.purity },
-        { label: "Appearance", value: p.appearance },
-        { label: "Weight", value: p.weight },
-        { label: "Density", value: p.density },
-        { label: "Melting Point", value: p.melting },
-        { label: "Key Features", value: p.features } // ADDED FEATURES HERE AS REQUESTED
+    document.getElementById('modal-img').src = p.img;
+    const tech = [
+        { l: "Function", v: p.func }, { l: "Grade", v: p.grade },
+        { l: "Formula", v: p.mol }, { l: "Purity", v: p.purity },
+        { l: "Appearance", v: p.appearance }, { l: "Mol. Weight", v: p.weight },
+        { l: "Density", v: p.density }, { l: "Melting Point", v: p.melting },
+        { l: "Key Features", v: p.features }
     ];
-
-    document.getElementById('specs-grid').innerHTML = techSpecs.map(s => `
-        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 ${s.label === 'Key Features' ? 'col-span-2 bg-blue-50 border-blue-100' : ''}">
-            <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">${s.label}</h4>
-            <p class="text-base font-extrabold ${s.label === 'Key Features' ? 'text-[#004b8d]' : 'text-slate-800'}">${s.value || 'N/A'}</p>
+    document.getElementById('specs-grid').innerHTML = tech.map(s => `
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 ${s.l === 'Key Features' ? 'col-span-2 bg-blue-50 border-blue-100' : ''}">
+            <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">${s.l}</h4>
+            <p class="text-base font-extrabold ${s.l === 'Key Features' ? 'text-[#004b8d]' : 'text-slate-800'}">${s.v || 'N/A'}</p>
         </div>
     `).join('');
-
     document.getElementById('details-modal').classList.remove('hidden');
     lucide.createIcons();
 }
@@ -242,7 +217,6 @@ window.addFromModal = function() {
     window.closeDetails();
 }
 
-// 7. CART
 window.addToCart = function(id) {
     const item = products.find(p => p.id === id);
     const inCart = cart.find(c => c.id === id);
@@ -259,15 +233,11 @@ window.updateCartUI = function() {
     const total = cart.reduce((acc, c) => acc + c.qty, 0);
     document.getElementById('cart-count').innerText = total;
     if(document.getElementById('cart-total-count')) document.getElementById('cart-total-count').innerText = total;
-
     document.getElementById('cart-items').innerHTML = cart.map(c => `
         <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100 mb-4">
-            <div class="flex-1">
-                <h4 class="text-sm font-bold text-slate-800">${c.name}</h4>
-                <p class="text-[10px] text-slate-400 font-black uppercase">${c.stock}</p>
-            </div>
-            <div class="flex items-center gap-3 bg-white px-3 py-1 rounded-xl border border-slate-100">
-                <button onclick="window.changeQty(${c.id}, -1)" class="font-bold text-slate-400">-</button>
+            <div class="flex-1"><h4 class="text-sm font-bold">${c.name}</h4><p class="text-[10px] uppercase text-slate-400">${c.stock}</p></div>
+            <div class="flex items-center gap-3 bg-white px-3 py-1 rounded-xl">
+                <button onclick="window.changeQty(${c.id}, -1)" class="font-bold">-</button>
                 <span class="text-sm font-black w-4 text-center">${c.qty}</span>
                 <button onclick="window.changeQty(${c.id}, 1)" class="text-[#004b8d] font-bold">+</button>
             </div>
@@ -290,15 +260,9 @@ window.toggleCart = function() {
 }
 
 window.showCheckout = function() {
-    if (cart.length === 0) return alert("Your inquiry list is empty!");
+    if (cart.length === 0) return alert("Inquiry list is empty!");
     document.getElementById('checkout-modal').classList.remove('hidden');
-    document.getElementById('summary-items').innerHTML = cart.map(c => `
-        <div class="flex justify-between items-center bg-white p-4 rounded-2xl border border-slate-100 shadow-sm mb-2">
-            <span class="font-black text-slate-800 text-base ml-4">${c.name}</span>
-            <div class="bg-slate-50 px-4 py-1 rounded-lg border border-slate-100 mr-4">
-                <span class="font-black text-[#004b8d] text-lg">x${c.qty}</span>
-            </div>
-        </div>`).join('');
+    document.getElementById('summary-items').innerHTML = cart.map(c => `<div class="flex justify-between p-3 bg-slate-50 rounded-xl mb-2"><span class="font-black text-slate-800">${c.name}</span><span class="font-black text-[#004b8d]">x${c.qty}</span></div>`).join('');
 }
 
 window.closeCheckout = function() { document.getElementById('checkout-modal').classList.add('hidden'); }
@@ -311,7 +275,7 @@ window.submitOrder = function(method) {
     else window.location.href = `mailto:info@excipurepharma.com?subject=Inquiry&body=${encodeURIComponent(body)}`;
 }
 
-// 8. STARTUP
+// 7. STARTUP
 document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('product-grid')) {
         window.renderProducts(products);
