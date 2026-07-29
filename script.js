@@ -1,7 +1,6 @@
 // 1. INITIALIZE ICONS
 lucide.createIcons();
 
-
 // 2. PRODUCT DATABASE
 const products = [
     // --- EXCIPIENTS (IDs 1-35) ---
@@ -305,3 +304,4 @@ document.addEventListener('DOMContentLoaded', () => {
         window.renderSidebar();
     }
 });
+The product card which have details like Application, Features & MOQ, the font size must be increased, it is too small, make it appear Larger. Do not break existing code.
