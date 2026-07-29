@@ -305,4 +305,3 @@ document.addEventListener('DOMContentLoaded', () => {
         window.renderSidebar();
     }
 });
-The product card which have details like Application, Features & MOQ, the font size must be increased, it is too small, make it appear Larger. Do not break existing code.
