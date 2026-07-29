@@ -81,18 +81,18 @@ const products = [
 let cart = [];
 let activeProductId = null;
 
-// 3. RENDERING LOGIC (Large Fonts + Key Features)
+// 3. RENDERING LOGIC (Large Card Fonts & Key Features)
 window.renderProducts = function(items) {
     const grid = document.getElementById('product-grid');
     if (!grid) return;
     
     if (items.length === 0) {
-        grid.innerHTML = `<div class="col-span-full py-20 text-center text-slate-400 font-bold">No products found.</div>`;
+        grid.innerHTML = `<div class="col-span-full py-20 text-center text-slate-400 font-bold text-xl">No products found matching your search.</div>`;
         return;
     }
 
     grid.innerHTML = items.map(p => `
-        <div class="product-card bg-white rounded-[2.5rem] p-7 border border-slate-100 shadow-sm relative overflow-hidden group">
+        <div class="product-card bg-white rounded-[2.5rem] p-7 border border-slate-100 shadow-sm relative overflow-hidden group transition-all duration-300">
             <div class="absolute top-5 left-5 z-10"><span class="block bg-[#004b8d] text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest shadow-md">${p.stock}</span></div>
             <img src="${p.img}?v=${Date.now()}" alt="${p.name}" class="w-full h-56 object-cover rounded-3xl mb-5 bg-slate-50 border border-slate-50 shadow-inner">
             <div class="px-2">
@@ -116,7 +116,7 @@ window.renderProducts = function(items) {
     lucide.createIcons();
 }
 
-// 4. SIDEBAR LOGIC (Fixed Alignment & Dropdowns)
+// 4. SIDEBAR LOGIC (Grouped Dropdowns)
 window.renderSidebar = function() {
     const nav = document.getElementById('sidebar-nav');
     if (!nav) return;
@@ -126,16 +126,14 @@ window.renderSidebar = function() {
 
     html += categories.map(cat => {
         const catItems = products.filter(p => p.cat === cat);
-        
         if (cat === "Colours") {
             const types = ["Inorganic Pigment", "Aluminium Lake Pigment", "Synthetic Azo Dye", "Organic Pigment"];
             return `
                 <div class="category-group border-b border-slate-50 last:border-0 pb-1">
-                    <button onclick="window.toggleDropdown(this)" class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition text-left">
+                    <button onclick="window.toggleDropdown(this)" class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition text-left group">
                         <span class="text-base font-black text-slate-800 uppercase">${cat} (${catItems.length})</span>
-                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-300 dropdown-icon transition-transform"></i>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-300 dropdown-icon"></i>
                     </button>
-                    <!-- Unified ml-5 pl-6 for alignment -->
                     <div class="dropdown-content hidden pl-6 pr-2 py-3 space-y-4 border-l-2 border-slate-100 ml-5">
                         <button onclick="window.filterProducts('Colours')" class="text-[10px] font-black text-[#1a7139] uppercase px-0 hover:underline">View All Colours</button>
                         ${types.map(type => {
@@ -150,40 +148,31 @@ window.renderSidebar = function() {
                                     <div class="dropdown-content hidden pl-4 pt-2 space-y-2">
                                         ${typeItems.map(p => `<button onclick="window.filterSingleProduct(${p.id})" class="w-full text-left py-0.5 text-sm font-bold text-slate-500 hover:text-[#004b8d] truncate">• ${p.name}</button>`).join('')}
                                     </div>
-                                </div>
-                            `;
+                                </div>`;
                         }).join('')}
                     </div>
-                </div>
-            `;
+                </div>`;
         }
-
         return `
             <div class="category-group border-b border-slate-50 last:border-0 pb-1">
                 <button onclick="window.toggleDropdown(this)" class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition text-left">
                     <span class="text-base font-black text-slate-800 uppercase">${cat} (${catItems.length})</span>
-                    <i data-lucide="chevron-down" class="w-5 h-5 text-slate-300 dropdown-icon transition-transform"></i>
+                    <i data-lucide="chevron-down" class="w-5 h-5 text-slate-300 dropdown-icon"></i>
                 </button>
-                <!-- Unified ml-5 pl-6 for alignment -->
                 <div class="dropdown-content hidden pl-6 pr-2 py-2 space-y-1 border-l-2 border-slate-100 ml-5">
-                    ${catItems.map(p => `
-                        <button onclick="window.filterSingleProduct(${p.id})" class="w-full text-left py-1.5 text-sm font-bold text-slate-500 hover:text-[#004b8d] transition truncate">• ${p.name}</button>
-                    `).join('')}
+                    ${catItems.map(p => `<button onclick="window.filterSingleProduct(${p.id})" class="w-full text-left py-1.5 text-sm font-bold text-slate-500 hover:text-[#004b8d] transition truncate">• ${p.name}</button>`).join('')}
                 </div>
-            </div>
-        `;
+            </div>`;
     }).join('');
     nav.innerHTML = html;
     lucide.createIcons();
 }
 
-// 5. ACTIONS & SEARCH
+// 5. SEARCH & ACTIONS
 window.searchProducts = function(query) {
     const q = query.toLowerCase().trim();
     if (!q) { window.renderProducts(products); return; }
-    const filtered = products.filter(p => 
-        p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q) || (p.features && p.features.toLowerCase().includes(q))
-    );
+    const filtered = products.filter(p => p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q) || (p.features && p.features.toLowerCase().includes(q)));
     window.renderProducts(filtered);
 }
 
@@ -213,27 +202,44 @@ function scrollToCatalog() {
     if (target) window.scrollTo({ top: target.offsetTop - 100, behavior: 'smooth' });
 }
 
-// 6. MODAL
+// 6. MODAL (Key Features moved below Description)
 window.viewDetails = function(id) {
     const p = products.find(item => item.id === id);
     if (!p) return;
     activeProductId = id;
+
     document.getElementById('modal-title').innerText = p.name;
-    document.getElementById('modal-desc').innerHTML = `<span class="text-xl text-slate-600 leading-relaxed font-medium">${p.desc}</span>`;
-    document.getElementById('modal-img').src = p.img;
-    const tech = [
-        { l: "Function", v: p.func }, { l: "Grade", v: p.grade },
-        { l: "Formula", v: p.mol }, { l: "Purity", v: p.purity },
-        { l: "Appearance", v: p.appearance }, { l: "Mol. Weight", v: p.weight },
-        { l: "Density", v: p.density }, { l: "Melting Point", v: p.melting },
-        { l: "Key Features", v: p.features }
+    document.getElementById('modal-img').src = p.img; 
+    
+    // Description + Key Features directly underneath
+    document.getElementById('modal-desc').innerHTML = `
+        <div class="mb-6">
+            <span class="text-xl text-slate-600 leading-relaxed font-medium">${p.desc}</span>
+        </div>
+        <div class="bg-blue-50 p-6 rounded-[2rem] border border-blue-100 mb-8 shadow-sm">
+            <h4 class="text-[10px] font-black text-[#004b8d] uppercase tracking-widest mb-2">Key Features</h4>
+            <p class="text-lg font-extrabold text-[#004b8d] italic leading-tight">${p.features || 'Premium Pharmaceutical Grade'}</p>
+        </div>
+    `;
+    
+    const techSpecs = [
+        { label: "Function", value: p.func },
+        { label: "Grade", value: p.grade },
+        { label: "Formula", value: p.mol },
+        { label: "Purity", value: p.purity },
+        { label: "Appearance", value: p.appearance },
+        { label: "Weight", value: p.weight },
+        { label: "Density", value: p.density },
+        { label: "Melting Point", value: p.melting }
     ];
-    document.getElementById('specs-grid').innerHTML = tech.map(s => `
-        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 ${s.l === 'Key Features' ? 'col-span-2 bg-blue-50 border-blue-100' : ''}">
-            <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">${s.l}</h4>
-            <p class="text-base font-extrabold ${s.l === 'Key Features' ? 'text-[#004b8d]' : 'text-slate-800'}">${s.v || 'N/A'}</p>
+
+    document.getElementById('specs-grid').innerHTML = techSpecs.map(s => `
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+            <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">${s.label}</h4>
+            <p class="text-base font-extrabold text-slate-800">${s.value || 'N/A'}</p>
         </div>
     `).join('');
+
     document.getElementById('details-modal').classList.remove('hidden');
     lucide.createIcons();
 }
@@ -264,7 +270,7 @@ window.updateCartUI = function() {
     if(document.getElementById('cart-total-count')) document.getElementById('cart-total-count').innerText = total;
     document.getElementById('cart-items').innerHTML = cart.map(c => `
         <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100 mb-4">
-            <div class="flex-1"><h4 class="text-sm font-bold">${c.name}</h4><p class="text-[10px] uppercase text-slate-400">${c.stock}</p></div>
+            <div class="flex-1"><h4 class="text-sm font-bold text-slate-800">${c.name}</h4><p class="text-[10px] uppercase text-slate-400">${c.stock}</p></div>
             <div class="flex items-center gap-3 bg-white px-3 py-1 rounded-xl border border-slate-100">
                 <button onclick="window.changeQty(${c.id}, -1)" class="font-bold text-slate-400">-</button>
                 <span class="text-sm font-black w-4 text-center">${c.qty}</span>
@@ -288,13 +294,7 @@ window.toggleCart = function() {
 window.showCheckout = function() {
     if (cart.length === 0) return alert("Inquiry list is empty!");
     document.getElementById('checkout-modal').classList.remove('hidden');
-    document.getElementById('summary-items').innerHTML = cart.map(c => `
-        <div class="flex justify-between items-center bg-white p-4 rounded-2xl border border-slate-100 shadow-sm mb-2">
-            <span class="font-black text-slate-800 text-base ml-4">${c.name}</span>
-            <div class="bg-slate-50 px-4 py-1 rounded-lg border border-slate-100 mr-4">
-                <span class="font-black text-[#004b8d] text-lg">x${c.qty}</span>
-            </div>
-        </div>`).join('');
+    document.getElementById('summary-items').innerHTML = cart.map(c => `<div class="flex justify-between items-center bg-white p-4 rounded-2xl border border-slate-100 shadow-sm mb-2"><span class="font-black text-slate-800 text-base ml-4">${c.name}</span><div class="bg-slate-50 px-4 py-1 rounded-lg border border-slate-100 mr-4"><span class="font-black text-[#004b8d] text-lg">x${c.qty}</span></div></div>`).join('');
 }
 
 window.closeCheckout = function() { document.getElementById('checkout-modal').classList.add('hidden'); }
