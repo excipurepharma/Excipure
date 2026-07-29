@@ -4,18 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- ADVANCED SEO: HYDERABAD & NATIONAL HUB FOCUS -->
+    <!-- SEO OPTIMIZATION -->
     <title>Pharmaceutical Excipients Wholesaler Hyderabad & India | Excipure Pharma</title>
     <meta name="description" content="Excipure Pharma is the leading wholesaler of pharma excipients, vitamins & colors in Hyderabad. Prime supplier for Hyderabad, Gujarat, Mumbai, Pune, Goa, Nagpur, Telangana, and Andhra Pradesh. WHO-GMP Certified raw materials.">
     <meta name="keywords" content="pharmaceutical excipients Hyderabad, pharma raw materials Hyderabad, excipients supplier India, excipients wholesaler Gujarat, Ahmedabad, pharma chemicals Mumbai, excipients distributor Pune, pharma colors Goa, vitamins wholesaler Nagpur, pharmaceutical ingredients Telangana, pharma raw materials Andhra Pradesh, Excipure Pharma Secunderabad">
     <link rel="canonical" href="https://excipurepharma.com/" />
     
-    <!-- Social Media / WhatsApp SEO -->
-    <meta property="og:title" content="Excipure Pharma | Excipients Distributor Hyderabad & India">
-    <meta property="og:description" content="Based in Hyderabad. National supplier of pharmaceutical raw materials. Serving Gujarat, Maharashtra, Goa, and all 28 states.">
-    <meta property="og:url" content="https://excipurepharma.com">
-    <meta property="og:type" content="website">
-
     <link rel="icon" type="image/png" href="images/favicon.png">
     
     <!-- Google tag (gtag.js) -->
@@ -47,7 +41,6 @@
             </div>
 
             <div class="flex items-center gap-2 md:gap-8">
-                <!-- GST Number (Professional Style) -->
                 <div class="text-right border-r border-slate-200 pr-3 md:pr-8">
                     <p class="whitespace-nowrap leading-none flex items-baseline">
                         <span class="text-[10px] md:text-lg font-black text-[#004b8d] uppercase tracking-tighter">GST Number:-</span>
@@ -61,7 +54,6 @@
             </div>
         </div>
 
-        <!-- Mobile Pill Navigation -->
         <div class="flex md:hidden items-center justify-between bg-slate-50 p-1 rounded-2xl mt-3 border border-slate-100">
             <a href="/" class="flex-1 flex flex-col items-center py-2 gap-0.5 rounded-xl text-[#004b8d] bg-white shadow-sm font-black text-[10px] uppercase tracking-tighter transition-all"><i data-lucide="home" class="w-4 h-4"></i>Home</a>
             <a href="about" class="flex-1 flex flex-col items-center py-2 gap-0.5 rounded-xl text-slate-400 font-black text-[10px] uppercase tracking-tighter transition-all"><i data-lucide="info" class="w-4 h-4"></i>About</a>
@@ -113,12 +105,24 @@
     </div>
 </header>
 
-<!-- 3. CATALOG SECTION -->
+<!-- 3. CATALOG SECTION WITH SEARCH -->
 <main id="catalog" class="container mx-auto px-6 py-12">
-    <div class="mb-12 text-center md:text-left">
-        <h2 class="text-4xl font-black mb-3 text-[#004b8d]">Raw Material Catalog</h2>
-        <p class="text-slate-500 text-xl font-medium">Wholesale distribution of premium pharmaceutical grade ingredients.</p>
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
+        <div>
+            <h2 class="text-4xl font-black mb-3 text-[#004b8d]">Raw Material Catalog</h2>
+            <p class="text-slate-500 text-xl font-medium">Wholesale distribution of premium ingredients.</p>
+        </div>
+        
+        <!-- NEW SEARCH BAR -->
+        <div class="relative w-full max-w-md group">
+            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <i data-lucide="search" class="w-5 h-5 text-slate-400 group-focus-within:text-[#004b8d]"></i>
+            </div>
+            <input type="text" id="product-search" oninput="window.searchProducts(this.value)" placeholder="Search products (e.g. Calcium, Red...)"
+                class="w-full pl-11 pr-4 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-[#004b8d] focus:border-transparent outline-none transition-all font-bold text-slate-700 shadow-sm">
+        </div>
     </div>
+
     <div class="flex flex-col md:flex-row gap-10">
         <aside class="w-full md:w-80 flex-shrink-0">
             <div class="sticky top-24 bg-white rounded-[2.5rem] border border-slate-100 shadow-sm overflow-hidden flex flex-col" style="max-height: calc(100vh - 120px);">
@@ -129,10 +133,13 @@
             </div>
         </aside>
         <div class="flex-1">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10" id="product-grid"></div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10" id="product-grid">
+                <!-- Products will be injected here -->
+            </div>
         </div>
     </div>
 </main>
+
 
 <!-- SEO SECTION (Hidden) -->
 <div style="display:none">
