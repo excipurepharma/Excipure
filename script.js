@@ -1,6 +1,7 @@
 // 1. INITIALIZE ICONS
 lucide.createIcons();
 
+
 // 2. PRODUCT DATABASE
 const products = [
     // --- EXCIPIENTS (IDs 1-35) ---
