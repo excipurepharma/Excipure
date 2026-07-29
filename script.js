@@ -81,7 +81,7 @@ const products = [
 let cart = [];
 let activeProductId = null;
 
-// 3. RENDERING LOGIC (Increased Font Sizes & Added Key Features)
+// 3. RENDERING LOGIC (Large Fonts + Key Features)
 window.renderProducts = function(items) {
     const grid = document.getElementById('product-grid');
     if (!grid) return;
@@ -99,9 +99,8 @@ window.renderProducts = function(items) {
                 <p class="text-[12px] font-black text-[#1a7139] uppercase mb-1 tracking-tighter">${p.cat}</p>
                 <h3 class="font-black text-2xl h-14 mb-4 uppercase leading-tight text-slate-900">${p.name}</h3>
                 
-                <!-- INCREASED FONT SIZES -->
                 <p class="text-[16px] text-slate-500 mb-1 leading-tight">Application: <span class="font-black text-slate-800">${p.func}</span></p>
-                <p class="text-[16px] text-slate-500 mb-4 leading-tight">Key Features: <span class="font-bold text-[#1a7139] italic">${p.features || 'Premium Grade'}</span></p>
+                <p class="text-[16px] text-slate-500 mb-4 leading-tight">Key Features: <span class="font-bold text-[#1a7139] italic">${p.features || 'Standard Quality'}</span></p>
                 
                 <div class="text-[15px] text-slate-400 leading-tight mb-7 uppercase font-black">
                     MOQ: <span class="text-slate-900 font-black">${p.moq || '25 Kg'}</span>
@@ -117,7 +116,7 @@ window.renderProducts = function(items) {
     lucide.createIcons();
 }
 
-// 4. RESTORED SIDEBAR LOGIC (Dropdowns & Grouped Colours)
+// 4. SIDEBAR LOGIC (Fixed Alignment & Dropdowns)
 window.renderSidebar = function() {
     const nav = document.getElementById('sidebar-nav');
     if (!nav) return;
@@ -128,7 +127,6 @@ window.renderSidebar = function() {
     html += categories.map(cat => {
         const catItems = products.filter(p => p.cat === cat);
         
-        // Tiered logic specifically for Colours
         if (cat === "Colours") {
             const types = ["Inorganic Pigment", "Aluminium Lake Pigment", "Synthetic Azo Dye", "Organic Pigment"];
             return `
@@ -137,19 +135,20 @@ window.renderSidebar = function() {
                         <span class="text-base font-black text-slate-800 uppercase">${cat} (${catItems.length})</span>
                         <i data-lucide="chevron-down" class="w-5 h-5 text-slate-300 dropdown-icon transition-transform"></i>
                     </button>
-                    <div class="dropdown-content hidden pl-4 pr-2 py-3 space-y-4 border-l-2 border-slate-100 ml-5">
-                        <button onclick="window.filterProducts('Colours')" class="text-[10px] font-black text-[#1a7139] uppercase px-3 hover:underline">View All Colours</button>
+                    <!-- Unified ml-5 pl-6 for alignment -->
+                    <div class="dropdown-content hidden pl-6 pr-2 py-3 space-y-4 border-l-2 border-slate-100 ml-5">
+                        <button onclick="window.filterProducts('Colours')" class="text-[10px] font-black text-[#1a7139] uppercase px-0 hover:underline">View All Colours</button>
                         ${types.map(type => {
-                            const subItems = catItems.filter(p => p.subCat === type);
-                            if (subItems.length === 0) return '';
+                            const typeItems = catItems.filter(p => p.subCat === type);
+                            if (typeItems.length === 0) return '';
                             return `
                                 <div class="sub-category-group">
-                                    <button onclick="window.toggleDropdown(this)" class="w-full flex items-center justify-between py-2 px-3 hover:bg-slate-100 rounded-lg transition">
-                                        <span class="text-[13px] font-black text-[#004b8d] uppercase">${type} (${subItems.length})</span>
+                                    <button onclick="window.toggleDropdown(this)" class="w-full flex items-center justify-between py-1 px-0 hover:text-[#004b8d] transition text-left">
+                                        <span class="text-[13px] font-black text-[#004b8d] uppercase leading-tight">${type} (${typeItems.length})</span>
                                         <i data-lucide="plus" class="w-3 h-3 text-slate-400 dropdown-icon"></i>
                                     </button>
-                                    <div class="dropdown-content hidden pl-4 pt-2 space-y-1">
-                                        ${subItems.map(p => `<button onclick="window.filterSingleProduct(${p.id})" class="w-full text-left py-1 text-sm font-bold text-slate-500 hover:text-[#004b8d] truncate">• ${p.name}</button>`).join('')}
+                                    <div class="dropdown-content hidden pl-4 pt-2 space-y-2">
+                                        ${typeItems.map(p => `<button onclick="window.filterSingleProduct(${p.id})" class="w-full text-left py-0.5 text-sm font-bold text-slate-500 hover:text-[#004b8d] truncate">• ${p.name}</button>`).join('')}
                                     </div>
                                 </div>
                             `;
@@ -159,14 +158,14 @@ window.renderSidebar = function() {
             `;
         }
 
-        // Standard logic for other categories
         return `
             <div class="category-group border-b border-slate-50 last:border-0 pb-1">
                 <button onclick="window.toggleDropdown(this)" class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition text-left">
                     <span class="text-base font-black text-slate-800 uppercase">${cat} (${catItems.length})</span>
                     <i data-lucide="chevron-down" class="w-5 h-5 text-slate-300 dropdown-icon transition-transform"></i>
                 </button>
-                <div class="dropdown-content hidden pl-8 pr-2 py-2 space-y-1 border-l-2 border-slate-100 ml-5">
+                <!-- Unified ml-5 pl-6 for alignment -->
+                <div class="dropdown-content hidden pl-6 pr-2 py-2 space-y-1 border-l-2 border-slate-100 ml-5">
                     ${catItems.map(p => `
                         <button onclick="window.filterSingleProduct(${p.id})" class="w-full text-left py-1.5 text-sm font-bold text-slate-500 hover:text-[#004b8d] transition truncate">• ${p.name}</button>
                     `).join('')}
@@ -178,14 +177,12 @@ window.renderSidebar = function() {
     lucide.createIcons();
 }
 
-// 5. SEARCH & ACTIONS
+// 5. ACTIONS & SEARCH
 window.searchProducts = function(query) {
     const q = query.toLowerCase().trim();
     if (!q) { window.renderProducts(products); return; }
     const filtered = products.filter(p => 
-        p.name.toLowerCase().includes(q) || 
-        p.cat.toLowerCase().includes(q) || 
-        (p.features && p.features.toLowerCase().includes(q))
+        p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q) || (p.features && p.features.toLowerCase().includes(q))
     );
     window.renderProducts(filtered);
 }
@@ -195,11 +192,8 @@ window.toggleDropdown = function(btn) {
     const icon = btn.querySelector('.dropdown-icon');
     content.classList.toggle('hidden');
     if (icon) {
-        if (icon.getAttribute('data-lucide') === 'plus') {
-            icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(45deg)';
-        } else {
-            icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
-        }
+        const isPlus = icon.getAttribute('data-lucide') === 'plus';
+        icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : (isPlus ? 'rotate(45deg)' : 'rotate(180deg)');
     }
 }
 
@@ -219,7 +213,7 @@ function scrollToCatalog() {
     if (target) window.scrollTo({ top: target.offsetTop - 100, behavior: 'smooth' });
 }
 
-// 6. MODAL & DETAILS
+// 6. MODAL
 window.viewDetails = function(id) {
     const p = products.find(item => item.id === id);
     if (!p) return;
