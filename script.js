@@ -85,12 +85,13 @@ let activeProductId = null;
 window.renderProducts = function(items) {
     const grid = document.getElementById('product-grid');
     if (!grid) return;
+    
     grid.innerHTML = items.map(p => `
         <div class="product-card bg-white rounded-[2.5rem] p-7 border border-slate-100 shadow-sm relative overflow-hidden group">
             <div class="absolute top-5 left-5 z-10"><span class="block bg-[#004b8d] text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest shadow-md">${p.stock}</span></div>
             <img src="${p.img}?v=${Date.now()}" alt="${p.name}" class="w-full h-56 object-cover rounded-3xl mb-5 bg-slate-50 border border-slate-50 shadow-inner">
             <div class="px-2">
-                <p class="text-[11px] font-black text-[#1a7139] uppercase mb-1">${p.cat}</p>
+                <p class="text-[11px] font-black text-[#1a7139] uppercase mb-1 tracking-tighter">${p.cat}</p>
                 <h3 class="font-black text-xl h-14 mb-3 uppercase leading-tight text-slate-900">${p.name}</h3>
                 <p class="text-[13px] text-slate-500 mb-1 leading-tight">Application: <span class="font-bold text-slate-800">${p.func}</span></p>
                 <p class="text-[13px] text-slate-500 mb-3 leading-tight">Features: <span class="font-bold text-[#1a7139] italic">${p.features || 'Standard Quality'}</span></p>
@@ -275,7 +276,7 @@ window.toggleCart = function() {
 }
 
 window.showCheckout = function() {
-    if (cart.length === 0) return alert("Inquiry list is empty!");
+    if (cart.length === 0) return alert("Your inquiry list is empty!");
     document.getElementById('checkout-modal').classList.remove('hidden');
     document.getElementById('summary-items').innerHTML = cart.map(c => `
         <div class="flex justify-between items-center bg-white p-4 rounded-2xl border border-slate-100 shadow-sm mb-2">
@@ -303,3 +304,4 @@ document.addEventListener('DOMContentLoaded', () => {
         window.renderSidebar();
     }
 });
+The product card which have details like Application, Features & MOQ, the font size must be increased, it is too small, make it appear Larger. Do not break existing code.
