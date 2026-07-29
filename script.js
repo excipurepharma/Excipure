@@ -93,12 +93,19 @@ window.renderProducts = function(items) {
             <div class="px-2">
                 <p class="text-[11px] font-black text-[#1a7139] uppercase mb-1 tracking-tighter">${p.cat}</p>
                 <h3 class="font-black text-xl h-14 mb-3 uppercase leading-tight text-slate-900">${p.name}</h3>
-                <p class="text-[13px] text-slate-500 mb-1 leading-tight">Application: <span class="font-bold text-slate-800">${p.func}</span></p>
-                <p class="text-[13px] text-slate-500 mb-3 leading-tight">Features: <span class="font-bold text-[#1a7139] italic">${p.features || 'Standard Quality'}</span></p>
-                <div class="text-[12px] text-slate-400 leading-tight mb-7 uppercase font-black">MOQ: <span class="text-slate-900">${p.moq || '25 Kg'}</span></div>
+                
+                <p class="text-[15px] text-slate-500 mb-1 leading-tight">Application: <span class="font-bold text-slate-800">${p.func}</span></p>
+                <p class="text-[15px] text-slate-500 mb-3 leading-tight">Features: <span class="font-bold text-[#1a7139] italic">${p.features || 'Standard Quality'}</span></p>
+                
+                <div class="text-[14px] text-slate-400 leading-tight mb-7 uppercase font-black">
+                    MOQ: <span class="text-slate-900">${p.moq || '25 Kg'}</span>
+                </div>
+
                 <div class="flex justify-between items-center pt-4 border-t border-slate-50">
-                    <button onclick="window.viewDetails(${p.id})" class="text-[15px] font-black text-[#004b8d] underline uppercase tracking-widest hover:text-[#1a7139]">Product Details</button>
-                    <button onclick="window.addToCart(${p.id})" class="w-14 h-14 bg-[#004b8d] text-white rounded-full flex items-center justify-center hover:bg-[#1a7139] shadow-xl"><i data-lucide="plus"></i></button>
+                    <button onclick="window.viewDetails(${p.id})" class="text-[15px] font-black text-[#004b8d] underline uppercase tracking-widest hover:text-[#1a7139] transition-colors">Product Details</button>
+                    <button onclick="window.addToCart(${p.id})" class="w-14 h-14 bg-[#004b8d] text-white rounded-full flex items-center justify-center hover:bg-[#1a7139] transition shadow-xl">
+                        <i data-lucide="plus" class="w-7 h-7"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -106,7 +113,7 @@ window.renderProducts = function(items) {
     lucide.createIcons();
 }
 
-// 4. SIDEBAR LOGIC (Completely Fixed Dropdowns)
+// 4. SIDEBAR LOGIC
 window.renderSidebar = function() {
     const nav = document.getElementById('sidebar-nav');
     if (!nav) return;
@@ -122,7 +129,6 @@ window.renderSidebar = function() {
     html += categories.map(cat => {
         const catItems = products.filter(p => p.cat === cat);
         
-        // Special logic for Colours (Nested Type -> Products)
         if (cat === "Colours") {
             const types = ["Inorganic Pigment", "Aluminium Lake Pigment", "Synthetic Azo Dye", "Organic Pigment"];
             return `
@@ -153,7 +159,6 @@ window.renderSidebar = function() {
             `;
         }
 
-        // Standard logic for other categories
         return `
             <div class="category-group border-b border-slate-50 last:border-0 pb-1">
                 <button onclick="window.toggleDropdown(this)" class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition group text-left">
@@ -173,18 +178,12 @@ window.renderSidebar = function() {
     lucide.createIcons();
 }
 
-// 5. ACTIONS & TOGGLES
+// 5. ACTIONS
 window.toggleDropdown = function(btn) {
     const content = btn.nextElementSibling;
     const icon = btn.querySelector('.dropdown-icon');
-    
-    // Toggle the hidden class
     content.classList.toggle('hidden');
-    
-    // Rotate Icon
-    if (icon) {
-        icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
-    }
+    if (icon) { icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)'; }
 }
 
 window.filterProducts = function(cat) {
@@ -203,26 +202,35 @@ function scrollToCatalog() {
     if (target) window.scrollTo({ top: target.offsetTop - 100, behavior: 'smooth' });
 }
 
-// 6. MODAL & DETAILS (Technical Specs)
+// 6. MODAL
 window.viewDetails = function(id) {
     const p = products.find(item => item.id === id);
     if (!p) return;
     activeProductId = id;
+
     document.getElementById('modal-title').innerText = p.name;
     document.getElementById('modal-desc').innerHTML = `<span class="text-xl text-slate-600 leading-relaxed font-medium">${p.desc}</span>`;
-    document.getElementById('modal-img').src = p.img;
-    const tech = [
-        { l: "Function", v: p.func }, { l: "Grade", v: p.grade },
-        { l: "Formula", v: p.mol }, { l: "Purity", v: p.purity },
-        { l: "Appearance", v: p.appearance }, { l: "Mol. Weight", v: p.weight },
-        { l: "Density", v: p.density }, { l: "Melting Point", v: p.melting }
+    document.getElementById('modal-img').src = p.img; 
+    
+    const techSpecs = [
+        { label: "Function", value: p.func },
+        { label: "Grade", value: p.grade },
+        { label: "Formula", value: p.mol },
+        { label: "Purity", value: p.purity },
+        { label: "Appearance", value: p.appearance },
+        { label: "Weight", value: p.weight },
+        { label: "Density", value: p.density },
+        { label: "Melting Point", value: p.melting },
+        { label: "Key Features", value: p.features } // ADDED FEATURES HERE AS REQUESTED
     ];
-    document.getElementById('specs-grid').innerHTML = tech.map(s => `
-        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-            <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">${s.l}</h4>
-            <p class="text-base font-extrabold text-slate-800">${s.v || 'N/A'}</p>
+
+    document.getElementById('specs-grid').innerHTML = techSpecs.map(s => `
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 ${s.label === 'Key Features' ? 'col-span-2 bg-blue-50 border-blue-100' : ''}">
+            <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">${s.label}</h4>
+            <p class="text-base font-extrabold ${s.label === 'Key Features' ? 'text-[#004b8d]' : 'text-slate-800'}">${s.value || 'N/A'}</p>
         </div>
     `).join('');
+
     document.getElementById('details-modal').classList.remove('hidden');
     lucide.createIcons();
 }
@@ -234,7 +242,7 @@ window.addFromModal = function() {
     window.closeDetails();
 }
 
-// 7. CART & CHECKOUT
+// 7. CART
 window.addToCart = function(id) {
     const item = products.find(p => p.id === id);
     const inCart = cart.find(c => c.id === id);
@@ -251,9 +259,13 @@ window.updateCartUI = function() {
     const total = cart.reduce((acc, c) => acc + c.qty, 0);
     document.getElementById('cart-count').innerText = total;
     if(document.getElementById('cart-total-count')) document.getElementById('cart-total-count').innerText = total;
+
     document.getElementById('cart-items').innerHTML = cart.map(c => `
         <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100 mb-4">
-            <div class="flex-1"><h4 class="text-sm font-bold">${c.name}</h4><p class="text-[10px] uppercase text-slate-400">${c.stock}</p></div>
+            <div class="flex-1">
+                <h4 class="text-sm font-bold text-slate-800">${c.name}</h4>
+                <p class="text-[10px] text-slate-400 font-black uppercase">${c.stock}</p>
+            </div>
             <div class="flex items-center gap-3 bg-white px-3 py-1 rounded-xl border border-slate-100">
                 <button onclick="window.changeQty(${c.id}, -1)" class="font-bold text-slate-400">-</button>
                 <span class="text-sm font-black w-4 text-center">${c.qty}</span>
@@ -271,8 +283,10 @@ window.changeQty = function(id, delta) {
 }
 
 window.toggleCart = function() {
-    document.getElementById('cart-drawer').classList.toggle('invisible');
-    document.getElementById('cart-content').classList.toggle('translate-x-full');
+    const drawer = document.getElementById('cart-drawer');
+    const content = document.getElementById('cart-content');
+    drawer.classList.toggle('invisible');
+    content.classList.toggle('translate-x-full');
 }
 
 window.showCheckout = function() {
