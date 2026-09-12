@@ -107,114 +107,207 @@ const products = [
     { id: 302, name: "Bio-SAP Polymer", cat: "Specialty", stock: "25 Kg Bag", func: "Water Retainer", apps: "Agriculture, Hygiene", grade: "Eco-Friendly", mol: "Bio-Polymer", purity: ">99%", desc: "Eco-friendly polymer.", img: "images/products/specialty/bio-based-super-absorbent-polymer.jpg", features: "High absorbency, eco-friendly, lightweight", appearance: "White granules", weight: "Variable", density: "Variable", melting: "Decomposes", origin: "India", moq: "25 Kg", pkgType: "Bag" }
 ];
 
+// =========================================================
+// 3. CART / QUOTE STATE
+// =========================================================
+
 let cart = [];
 let activeProductId = null;
 
-// 3. RENDERING LOGIC
+
+// =========================================================
+// 4. PRODUCT CARD RENDERING
+// =========================================================
+
 window.renderProducts = function(items) {
+
     const grid = document.getElementById('product-grid');
+
     if (!grid) return;
 
     if (items.length === 0) {
+
         grid.innerHTML = `
             <div class="col-span-full py-20 text-center text-slate-400 font-bold text-xl">
                 No products found matching your search.
-            </div>`;
+            </div>
+        `;
+
         return;
     }
 
     grid.innerHTML = items.map(p => `
+
         <div class="product-card bg-white rounded-[2.5rem] p-7 border border-slate-100 shadow-sm relative overflow-hidden group transition-all duration-300">
-            
+
+            <!-- STOCK -->
             <div class="absolute top-5 left-5 z-10">
+
                 <span class="block bg-[#004b8d] text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest shadow-md">
                     ${p.stock}
                 </span>
+
             </div>
 
-            <img src="${p.img}?v=${Date.now()}"
-                 alt="${p.name}"
-                 class="w-full h-56 object-cover rounded-3xl mb-5 bg-slate-50 border border-slate-50 shadow-inner">
+
+            <!-- IMAGE -->
+            <img
+                src="${p.img}?v=${Date.now()}"
+                alt="${p.name}"
+                class="w-full h-56 object-cover rounded-3xl mb-5 bg-slate-50 border border-slate-50 shadow-inner"
+            >
+
 
             <div class="px-2">
+
+                <!-- CATEGORY -->
                 <p class="text-[12px] font-black text-[#1a7139] uppercase mb-1 tracking-tighter">
                     ${p.cat}
                 </p>
 
-                <h3 class="font-black text-2xl h-14 mb-4 uppercase leading-tight text-slate-900">
+
+                <!-- PRODUCT NAME -->
+                <h3 class="font-black text-2xl min-h-[3.5rem] mb-4 uppercase leading-tight text-slate-900">
                     ${p.name}
                 </h3>
 
+
+                <!-- APPLICATION -->
                 <p class="text-[16px] text-slate-500 mb-1 leading-tight">
+
                     Application:
-                    <span class="font-black text-slate-800">${p.func}</span>
+
+                    <span class="font-black text-slate-800">
+                        ${p.func}
+                    </span>
+
                 </p>
 
-                <p class="text-[16px] text-slate-500 mb-4 leading-tight">
+
+                <!-- KEY FEATURES -->
+                <p class="text-[16px] text-slate-500 mb-5 leading-tight">
+
                     Key Features:
+
                     <span class="font-bold text-[#1a7139] italic">
                         ${p.features || 'Standard Quality'}
                     </span>
+
                 </p>
 
-                <!-- FORM / PURITY / GRADE -->
-                <div class="grid grid-cols-3 gap-2 mb-6">
 
-                    <div class="bg-slate-50 rounded-xl p-3 border border-slate-100">
-                        <div class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">
+                <!-- =================================================
+                     FORM / PURITY / GRADE
+                     Larger fonts as requested
+                ================================================= -->
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+
+
+                    <!-- FORM -->
+                    <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100">
+
+                        <div class="text-sm font-black text-slate-400 uppercase tracking-widest mb-2">
                             Form
                         </div>
-                        <div class="text-xs font-extrabold text-slate-800 leading-tight">
+
+                        <div class="text-base font-black text-slate-800 leading-snug">
                             ${p.appearance || 'N/A'}
                         </div>
+
                     </div>
 
-                    <div class="bg-slate-50 rounded-xl p-3 border border-slate-100">
-                        <div class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">
+
+                    <!-- PURITY -->
+                    <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100">
+
+                        <div class="text-sm font-black text-slate-400 uppercase tracking-widest mb-2">
                             Purity
                         </div>
-                        <div class="text-xs font-extrabold text-slate-800 leading-tight">
+
+                        <div class="text-base font-black text-slate-800 leading-snug">
                             ${p.purity || 'N/A'}
                         </div>
+
                     </div>
 
-                    <div class="bg-slate-50 rounded-xl p-3 border border-slate-100">
-                        <div class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">
+
+                    <!-- GRADE -->
+                    <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100">
+
+                        <div class="text-sm font-black text-slate-400 uppercase tracking-widest mb-2">
                             Grade
                         </div>
-                        <div class="text-xs font-extrabold text-slate-800 leading-tight">
+
+                        <div class="text-base font-black text-slate-800 leading-snug">
                             ${p.grade || 'N/A'}
                         </div>
+
                     </div>
 
                 </div>
 
-                <div class="text-[15px] text-slate-400 leading-tight mb-7 uppercase font-black">
+
+                <!-- MOQ -->
+                <div class="text-[15px] text-slate-400 leading-tight mb-6 uppercase font-black">
+
                     MOQ:
+
                     <span class="text-slate-900 font-black">
                         ${p.moq || '25 Kg'}
                     </span>
+
                 </div>
 
-                <!-- REQUEST A QUOTE -->
-                <div class="pt-4 border-t border-slate-50">
+
+                <!-- =================================================
+                     DETAILS + REQUEST A QUOTE
+                ================================================= -->
+
+                <div class="pt-4 border-t border-slate-50 grid grid-cols-1 sm:grid-cols-2 gap-3">
+
+
+                    <!-- DETAILS -->
+                    <button
+                        onclick="window.viewDetails(${p.id})"
+                        class="w-full bg-white text-[#004b8d] border-2 border-[#004b8d] py-4 rounded-2xl font-black text-base uppercase tracking-widest hover:bg-[#004b8d] hover:text-white transition shadow-sm">
+
+                        Details
+
+                    </button>
+
+
+                    <!-- REQUEST A QUOTE -->
                     <button
                         onclick="window.requestQuote(${p.id})"
                         class="w-full bg-[#004b8d] text-white py-4 rounded-2xl font-black text-base uppercase tracking-widest hover:bg-[#1a7139] transition shadow-xl">
+
                         Request a Quote
+
                     </button>
+
                 </div>
 
             </div>
+
         </div>
+
     `).join('');
 
+
     lucide.createIcons();
+
 };
 
-// 4. SIDEBAR LOGIC
+
+// =========================================================
+// 5. SIDEBAR
+// =========================================================
+
 window.renderSidebar = function() {
+
     const nav = document.getElementById('sidebar-nav');
+
     if (!nav) return;
 
     const categories = [
@@ -225,22 +318,37 @@ window.renderSidebar = function() {
         "Specialty"
     ];
 
+
     let html = `
+
         <button
             onclick="window.filterProducts('All')"
             class="w-full text-left px-5 py-4 rounded-xl hover:bg-slate-50 transition font-black text-lg mb-4 flex items-center justify-between border border-transparent group">
+
             <span class="text-slate-700 group-hover:text-[#004b8d]">
                 All Products (${products.length})
             </span>
-            <i data-lucide="layers" class="w-5 h-5 text-slate-300"></i>
+
+            <i
+                data-lucide="layers"
+                class="w-5 h-5 text-slate-300">
+            </i>
+
         </button>
+
     `;
+
 
     html += categories.map(cat => {
 
-        const catItems = products.filter(p => p.cat === cat);
+        const catItems = products.filter(
+            p => p.cat === cat
+        );
 
+
+        // COLOURS
         if (cat === "Colours") {
+
             const types = [
                 "Inorganic Pigment",
                 "Aluminium Lake Pigment",
@@ -248,26 +356,37 @@ window.renderSidebar = function() {
                 "Organic Pigment"
             ];
 
+
             return `
+
                 <div class="category-group border-b border-slate-50 last:border-0 pb-1">
 
                     <button
                         onclick="window.toggleDropdown(this)"
                         class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition text-left group">
+
                         <span class="text-base font-black text-slate-800 uppercase">
                             ${cat} (${catItems.length})
                         </span>
-                        <i data-lucide="chevron-down"
-                           class="w-5 h-5 text-slate-300 dropdown-icon"></i>
+
+                        <i
+                            data-lucide="chevron-down"
+                            class="w-5 h-5 text-slate-300 dropdown-icon">
+                        </i>
+
                     </button>
+
 
                     <div class="dropdown-content hidden pl-6 pr-2 py-3 space-y-4 border-l-2 border-slate-100 ml-5">
 
                         <button
                             onclick="window.filterProducts('Colours')"
                             class="text-[10px] font-black text-[#1a7139] uppercase px-0 hover:underline">
+
                             View All Colours
+
                         </button>
+
 
                         ${types.map(type => {
 
@@ -275,9 +394,14 @@ window.renderSidebar = function() {
                                 p => p.subCat === type
                             );
 
-                            if (typeItems.length === 0) return '';
+
+                            if (typeItems.length === 0) {
+                                return '';
+                            }
+
 
                             return `
+
                                 <div class="sub-category-group">
 
                                     <button
@@ -288,31 +412,48 @@ window.renderSidebar = function() {
                                             ${type} (${typeItems.length})
                                         </span>
 
-                                        <i data-lucide="plus"
-                                           class="w-3 h-3 text-slate-400 dropdown-icon"></i>
+                                        <i
+                                            data-lucide="plus"
+                                            class="w-3 h-3 text-slate-400 dropdown-icon">
+                                        </i>
+
                                     </button>
+
 
                                     <div class="dropdown-content hidden pl-4 pt-2 space-y-2">
 
                                         ${typeItems.map(p => `
+
                                             <button
                                                 onclick="window.filterSingleProduct(${p.id})"
                                                 class="w-full text-left py-0.5 text-sm font-bold text-slate-500 hover:text-[#004b8d] truncate">
+
                                                 • ${p.name}
+
                                             </button>
+
                                         `).join('')}
 
                                     </div>
+
                                 </div>
+
                             `;
+
                         }).join('')}
 
                     </div>
+
                 </div>
+
             `;
+
         }
 
+
+        // NORMAL CATEGORIES
         return `
+
             <div class="category-group border-b border-slate-50 last:border-0 pb-1">
 
                 <button
@@ -323,394 +464,805 @@ window.renderSidebar = function() {
                         ${cat} (${catItems.length})
                     </span>
 
-                    <i data-lucide="chevron-down"
-                       class="w-5 h-5 text-slate-300 dropdown-icon"></i>
+                    <i
+                        data-lucide="chevron-down"
+                        class="w-5 h-5 text-slate-300 dropdown-icon">
+                    </i>
+
                 </button>
+
 
                 <div class="dropdown-content hidden pl-6 pr-2 py-2 space-y-1 border-l-2 border-slate-100 ml-5">
 
                     ${catItems.map(p => `
+
                         <button
                             onclick="window.filterSingleProduct(${p.id})"
                             class="w-full text-left py-1.5 text-sm font-bold text-slate-500 hover:text-[#004b8d] transition truncate">
+
                             • ${p.name}
+
                         </button>
+
                     `).join('')}
 
                 </div>
 
             </div>
+
         `;
+
     }).join('');
 
+
     nav.innerHTML = html;
+
     lucide.createIcons();
+
 };
 
-// 5. SEARCH & ACTIONS
+
+// =========================================================
+// 6. SEARCH
+// =========================================================
 
 window.searchProducts = function(query) {
-    const q = query.toLowerCase().trim();
+
+    const q = query
+        .toLowerCase()
+        .trim();
+
 
     if (!q) {
+
         window.renderProducts(products);
+
         return;
     }
 
+
     const filtered = products.filter(p =>
+
         p.name.toLowerCase().includes(q) ||
+
         p.cat.toLowerCase().includes(q) ||
-        (p.features && p.features.toLowerCase().includes(q))
+
+        (
+            p.features &&
+            p.features.toLowerCase().includes(q)
+        )
+
     );
 
+
     window.renderProducts(filtered);
+
 };
+
+
+// =========================================================
+// 7. DROPDOWN
+// =========================================================
 
 window.toggleDropdown = function(btn) {
-    const content = btn.nextElementSibling;
-    const icon = btn.querySelector('.dropdown-icon');
 
-    content.classList.toggle('hidden');
+    const content = btn.nextElementSibling;
+
+    const icon = btn.querySelector(
+        '.dropdown-icon'
+    );
+
+
+    if (!content) return;
+
+
+    content.classList.toggle(
+        'hidden'
+    );
+
 
     if (icon) {
-        const isPlus = icon.getAttribute('data-lucide') === 'plus';
+
+        const isPlus =
+            icon.getAttribute(
+                'data-lucide'
+            ) === 'plus';
+
 
         icon.style.transform =
-            content.classList.contains('hidden')
+
+            content.classList.contains(
+                'hidden'
+            )
+
                 ? 'rotate(0deg)'
-                : (isPlus ? 'rotate(45deg)' : 'rotate(180deg)');
+
+                : (
+                    isPlus
+                        ? 'rotate(45deg)'
+                        : 'rotate(180deg)'
+                );
+
     }
+
 };
+
 
 window.filterProducts = function(cat) {
+
     if (cat === 'All') {
+
         renderProducts(products);
+
     } else {
-        renderProducts(products.filter(p => p.cat === cat));
+
+        renderProducts(
+            products.filter(
+                p => p.cat === cat
+            )
+        );
+
     }
 
     scrollToCatalog();
+
 };
+
 
 window.filterSingleProduct = function(id) {
-    renderProducts(products.filter(p => p.id === id));
+
+    renderProducts(
+        products.filter(
+            p => p.id === id
+        )
+    );
+
     scrollToCatalog();
+
 };
 
+
 function scrollToCatalog() {
-    const target = document.getElementById('catalog');
+
+    const target =
+        document.getElementById(
+            'catalog'
+        );
+
 
     if (target) {
-        window.scrollTo({
-            top: target.offsetTop - 100,
-            behavior: 'smooth'
-        });
-    }
-}
 
-// 6. PRODUCT DETAILS MODAL
+        window.scrollTo({
+
+            top:
+                target.offsetTop - 100,
+
+            behavior:
+                'smooth'
+
+        });
+
+    }
+
+};
+
+
+// =========================================================
+// 8. DETAILS MODAL
+//
+// IMPORTANT:
+// Form, Purity and Grade are NOT repeated here.
+// All other technical information remains.
+// =========================================================
 
 window.viewDetails = function(id) {
-    const p = products.find(item => item.id === id);
+
+    const p = products.find(
+        item => item.id === id
+    );
+
 
     if (!p) return;
 
+
     activeProductId = id;
 
-    document.getElementById('modal-title').innerText = p.name;
-    document.getElementById('modal-img').src = p.img;
 
-    document.getElementById('modal-desc').innerHTML = `
+    // TITLE
+    document.getElementById(
+        'modal-title'
+    ).innerText = p.name;
+
+
+    // IMAGE
+    document.getElementById(
+        'modal-img'
+    ).src = p.img;
+
+
+    // DESCRIPTION + KEY FEATURES
+    document.getElementById(
+        'modal-desc'
+    ).innerHTML = `
+
         <div class="mb-6">
+
             <span class="text-xl text-slate-600 leading-relaxed font-medium">
+
                 ${p.desc}
+
             </span>
+
         </div>
 
+
         <div class="bg-blue-50 p-6 rounded-[2rem] border border-blue-100 mb-8 shadow-sm">
+
             <h4 class="text-[10px] font-black text-[#004b8d] uppercase tracking-widest mb-2">
+
                 Key Features
+
             </h4>
 
             <p class="text-lg font-extrabold text-[#004b8d] italic leading-tight">
+
                 ${p.features || 'Premium Pharmaceutical Grade'}
+
             </p>
+
         </div>
+
     `;
 
-    // Form, Purity and Grade are intentionally shown on the card
-    // instead of repeating them inside technical details.
+
+    // OTHER PROPERTIES ONLY
     const techSpecs = [
-        { label: "Function", value: p.func },
-        { label: "Formula", value: p.mol },
-        { label: "Weight", value: p.weight },
-        { label: "Density", value: p.density },
-        { label: "Melting Point", value: p.melting },
-        { label: "Origin", value: p.origin },
-        { label: "MOQ", value: p.moq },
-        { label: "Packaging", value: p.pkgType }
+
+        {
+            label: "Function",
+            value: p.func
+        },
+
+        {
+            label: "Formula",
+            value: p.mol
+        },
+
+        {
+            label: "Weight",
+            value: p.weight
+        },
+
+        {
+            label: "Density",
+            value: p.density
+        },
+
+        {
+            label: "Melting Point",
+            value: p.melting
+        },
+
+        {
+            label: "Origin",
+            value: p.origin
+        },
+
+        {
+            label: "MOQ",
+            value: p.moq
+        },
+
+        {
+            label: "Packaging",
+            value: p.pkgType
+        }
+
     ];
 
-    document.getElementById('specs-grid').innerHTML =
-        techSpecs.map(s => `
+
+    document.getElementById(
+        'specs-grid'
+    ).innerHTML = techSpecs.map(
+        s => `
+
             <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
 
                 <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">
+
                     ${s.label}
+
                 </h4>
 
                 <p class="text-base font-extrabold text-slate-800">
+
                     ${s.value || 'N/A'}
+
                 </p>
 
             </div>
-        `).join('');
 
-    document.getElementById('details-modal').classList.remove('hidden');
+        `
+    ).join('');
+
+
+    document
+        .getElementById(
+            'details-modal'
+        )
+        .classList.remove(
+            'hidden'
+        );
+
 
     lucide.createIcons();
+
 };
+
 
 window.closeDetails = function() {
-    document.getElementById('details-modal').classList.add('hidden');
+
+    document
+        .getElementById(
+            'details-modal'
+        )
+        .classList.add(
+            'hidden'
+        );
+
 };
 
-window.addFromModal = function() {
-    if (activeProductId) {
-        window.addToCart(activeProductId);
-    }
 
-    window.closeDetails();
-};
-
-// 7. QUOTE LIST
+// =========================================================
+// 9. QUOTE LIST
+// =========================================================
 
 window.addToCart = function(id) {
-    const item = products.find(p => p.id === id);
+
+    const item =
+        products.find(
+            p => p.id === id
+        );
+
 
     if (!item) return;
 
-    const inCart = cart.find(c => c.id === id);
+
+    const inCart =
+        cart.find(
+            c => c.id === id
+        );
+
 
     if (inCart) {
+
         inCart.qty++;
+
     } else {
+
         cart.push({
+
             ...item,
+
             qty: 1
+
         });
+
     }
+
 
     window.updateCartUI();
 
-    const toast = document.createElement('div');
+
+    const toast =
+        document.createElement(
+            'div'
+        );
+
 
     toast.className =
         "fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-6 py-3 rounded-full z-[100] text-sm font-bold shadow-2xl";
 
-    toast.innerText = `${item.name} added to quote list`;
 
-    document.body.appendChild(toast);
+    toast.innerText =
+        `${item.name} added to quote list`;
 
-    setTimeout(() => toast.remove(), 2000);
-};
 
-window.updateCartUI = function() {
-    const total = cart.reduce(
-        (acc, c) => acc + c.qty,
-        0
+    document.body.appendChild(
+        toast
     );
 
-    const countEl = document.getElementById('cart-count');
-    const totalCountEl = document.getElementById('cart-total-count');
-    const itemsEl = document.getElementById('cart-items');
+
+    setTimeout(
+        () => toast.remove(),
+        2000
+    );
+
+};
+
+
+window.updateCartUI = function() {
+
+    const total =
+        cart.reduce(
+            (acc, c) =>
+                acc + c.qty,
+            0
+        );
+
+
+    const countEl =
+        document.getElementById(
+            'cart-count'
+        );
+
+
+    const totalCountEl =
+        document.getElementById(
+            'cart-total-count'
+        );
+
+
+    const itemsEl =
+        document.getElementById(
+            'cart-items'
+        );
+
 
     if (countEl) {
-        countEl.innerText = total;
+
+        countEl.innerText =
+            total;
+
     }
+
 
     if (totalCountEl) {
-        totalCountEl.innerText = total;
+
+        totalCountEl.innerText =
+            total;
+
     }
 
-    if (itemsEl) {
-        itemsEl.innerHTML = cart.map(c => `
+
+    if (!itemsEl) return;
+
+
+    itemsEl.innerHTML =
+        cart.map(c => `
+
             <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100 mb-4">
 
                 <div class="flex-1">
 
                     <h4 class="text-sm font-bold text-slate-800">
+
                         ${c.name}
+
                     </h4>
 
                     <p class="text-[10px] uppercase text-slate-400">
+
                         ${c.stock}
+
                     </p>
 
                 </div>
+
 
                 <div class="flex items-center gap-3 bg-white px-3 py-1 rounded-xl border border-slate-100">
 
                     <button
                         onclick="window.changeQty(${c.id}, -1)"
                         class="font-bold text-slate-400">
+
                         -
+
                     </button>
 
+
                     <span class="text-sm font-black w-4 text-center">
+
                         ${c.qty}
+
                     </span>
+
 
                     <button
                         onclick="window.changeQty(${c.id}, 1)"
                         class="text-[#004b8d] font-bold">
+
                         +
+
                     </button>
 
                 </div>
 
             </div>
+
         `).join('');
-    }
+
 };
 
+
 window.changeQty = function(id, delta) {
-    const item = cart.find(c => c.id === id);
+
+    const item =
+        cart.find(
+            c => c.id === id
+        );
+
 
     if (!item) return;
 
+
     item.qty += delta;
 
+
     if (item.qty < 1) {
-        cart = cart.filter(c => c.id !== id);
+
+        cart =
+            cart.filter(
+                c => c.id !== id
+            );
+
     }
 
-    updateCartUI();
+
+    window.updateCartUI();
+
 };
+
+
+// =========================================================
+// 10. QUOTE DRAWER
+// =========================================================
 
 window.toggleCart = function() {
-    const drawer = document.getElementById('cart-drawer');
-    const content = document.getElementById('cart-content');
 
-    if (!drawer || !content) return;
+    const drawer =
+        document.getElementById(
+            'cart-drawer'
+        );
 
-    drawer.classList.toggle('invisible');
-    content.classList.toggle('translate-x-full');
-};
 
-// 8. REQUEST A QUOTE FLOW
+    const content =
+        document.getElementById(
+            'cart-content'
+        );
 
-window.showCheckout = function() {
-    if (cart.length === 0) {
-        return alert("Quote list is empty!");
+
+    if (!drawer || !content) {
+        return;
     }
 
-    window.openQuoteForm(cart[0].id);
+
+    drawer.classList.toggle(
+        'invisible'
+    );
+
+
+    content.classList.toggle(
+        'translate-x-full'
+    );
+
 };
+
+
+// =========================================================
+// 11. REQUEST A QUOTE
+// =========================================================
+
+window.showCheckout = function() {
+
+    if (cart.length === 0) {
+
+        alert(
+            "Quote list is empty!"
+        );
+
+        return;
+
+    }
+
+
+    window.openQuoteForm(
+        cart[0].id
+    );
+
+};
+
 
 window.requestQuote = function(id) {
 
-    const existing = cart.find(c => c.id === id);
+    const existing =
+        cart.find(
+            c => c.id === id
+        );
+
 
     if (existing) {
+
         existing.qty = 1;
+
     } else {
 
-        const item = products.find(p => p.id === id);
+        const item =
+            products.find(
+                p => p.id === id
+            );
+
 
         if (item) {
+
             cart = [
                 item,
                 ...cart
             ];
+
         }
+
     }
+
 
     window.updateCartUI();
 
-    // Open the quote form immediately
+
+    // DIRECTLY OPEN FORM
     window.openQuoteForm(id);
+
 };
 
-window.requestQuoteFromDetails = function() {
+
+// Details -> Request Quote
+window.requestQuoteFromDetails =
+function() {
 
     if (activeProductId) {
-        window.requestQuote(activeProductId);
+
+        window.requestQuote(
+            activeProductId
+        );
+
     }
 
+
     window.closeDetails();
+
 };
 
-// 9. OPEN QUOTE FORM
+
+// =========================================================
+// 12. OPEN QUOTE FORM
+// =========================================================
 
 window.openQuoteForm = function(id) {
 
     const selected =
-        products.find(p => p.id === id) ||
+        products.find(
+            p => p.id === id
+        ) ||
         cart[0];
+
 
     if (!selected) return;
 
+
+    // PRE-FILL PRODUCT
     const productField =
-        document.getElementById('cust-product');
+        document.getElementById(
+            'cust-product'
+        );
+
 
     if (productField) {
-        productField.value = selected.name;
+
+        productField.value =
+            selected.name;
+
     }
 
+
+    // SUMMARY
     const summaryItems =
-        document.getElementById('summary-items');
+        document.getElementById(
+            'summary-items'
+        );
+
 
     if (summaryItems) {
 
-        const summary = cart.map(c => `
-            <div class="flex justify-between items-center bg-white p-4 rounded-2xl border border-slate-100 shadow-sm">
+        summaryItems.innerHTML =
+            cart.map(c => `
 
-                <div>
+                <div class="flex justify-between items-center bg-white p-4 rounded-2xl border border-slate-100 shadow-sm">
 
-                    <div class="font-black text-slate-800 text-base">
-                        ${c.name}
+                    <div>
+
+                        <div class="font-black text-slate-800 text-base">
+
+                            ${c.name}
+
+                        </div>
+
+                        <div class="text-xs font-bold text-slate-400 mt-1">
+
+                            ${c.stock}
+
+                        </div>
+
                     </div>
 
-                    <div class="text-xs font-bold text-slate-400 mt-1">
-                        ${c.stock}
+
+                    <div class="bg-slate-50 px-4 py-2 rounded-lg border border-slate-100">
+
+                        <span class="font-black text-[#004b8d] text-lg">
+
+                            x${c.qty}
+
+                        </span>
+
                     </div>
 
                 </div>
 
-                <div class="bg-slate-50 px-4 py-2 rounded-lg border border-slate-100">
+            `).join('');
 
-                    <span class="font-black text-[#004b8d] text-lg">
-                        x${c.qty}
-                    </span>
-
-                </div>
-
-            </div>
-        `).join('');
-
-        summaryItems.innerHTML = summary;
     }
 
-    document
-        .getElementById('checkout-modal')
-        .classList.remove('hidden');
+
+    const checkoutModal =
+        document.getElementById(
+            'checkout-modal'
+        );
+
+
+    if (checkoutModal) {
+
+        checkoutModal.classList.remove(
+            'hidden'
+        );
+
+    }
+
 
     lucide.createIcons();
+
 };
 
-window.closeCheckout = function() {
 
-    document
-        .getElementById('checkout-modal')
-        .classList.add('hidden');
+// =========================================================
+// 13. CLOSE QUOTE FORM
+// =========================================================
+
+window.closeCheckout =
+function() {
+
+    const modal =
+        document.getElementById(
+            'checkout-modal'
+        );
+
+
+    if (modal) {
+
+        modal.classList.add(
+            'hidden'
+        );
+
+    }
+
 };
 
-// 10. COLLECT QUOTE FORM DATA
+
+// =========================================================
+// 14. READ FORM
+// =========================================================
 
 function getQuoteData() {
 
-    const fields = [
+    const requiredFields = [
+
         'cust-name',
         'cust-company',
         'cust-phone',
@@ -718,120 +1270,215 @@ function getQuoteData() {
         'cust-product',
         'cust-quantity',
         'cust-grade'
+
     ];
+
 
     const values = {};
 
-    for (const id of fields) {
 
-        const el = document.getElementById(id);
+    for (
+        const id of requiredFields
+    ) {
 
-        if (!el || !el.value.trim()) {
+        const el =
+            document.getElementById(
+                id
+            );
+
+
+        if (
+            !el ||
+            !el.value.trim()
+        ) {
 
             if (el) {
+
                 el.reportValidity();
+
             }
 
             return null;
+
         }
 
-        values[id] = el.value.trim();
+
+        values[id] =
+            el.value.trim();
+
     }
 
-    // Optional designation
+
+    // OPTIONAL
     const designationEl =
-        document.getElementById('cust-designation');
+        document.getElementById(
+            'cust-designation'
+        );
+
 
     values.designation =
         designationEl
             ? designationEl.value.trim()
             : '';
 
-    // Optional specification / COA upload
+
+    // OPTIONAL FILE
     const fileEl =
-        document.getElementById('cust-file');
+        document.getElementById(
+            'cust-file'
+        );
+
 
     const file =
-        fileEl && fileEl.files
+        fileEl &&
+        fileEl.files &&
+        fileEl.files.length > 0
             ? fileEl.files[0]
             : null;
+
 
     values.fileName =
         file
             ? file.name
             : 'Not uploaded';
 
+
     return values;
-}
 
-// 11. SUBMIT QUOTE
+};
 
-window.submitQuote = function(method) {
 
-    const data = getQuoteData();
+// =========================================================
+// 15. SUBMIT QUOTE
+// =========================================================
+
+window.submitQuote =
+function(method) {
+
+    const data =
+        getQuoteData();
+
 
     if (!data) return;
+
+
+    const selectedProducts =
+        cart.length > 0
+
+            ? cart
+                .map(c =>
+                    `- ${c.name} (x${c.qty})`
+                )
+                .join('\n')
+
+            : '- None';
+
 
     const body = [
 
         'NEW QUOTE REQUEST - EXCIPURE PHARMA',
+
         '',
 
         `Name: ${data['cust-name']}`,
+
         `Company: ${data['cust-company']}`,
-        `Designation: ${data.designation || 'Not provided'}`,
+
+        `Designation: ${
+            data.designation ||
+            'Not provided'
+        }`,
+
         `WhatsApp / Mobile: ${data['cust-phone']}`,
+
         `Email: ${data['cust-email']}`,
+
         `Product Required: ${data['cust-product']}`,
+
         `Quantity: ${data['cust-quantity']}`,
+
         `Required Grade: ${data['cust-grade']}`,
+
         `Specification/COA: ${data.fileName}`,
 
         '',
 
         'Selected Products:',
 
-        cart.map(c =>
-            `- ${c.name} (x${c.qty})`
-        ).join('\n') || '- None'
+        selectedProducts
 
     ].join('\n');
 
-    // WhatsApp
-    if (method === 'whatsapp') {
+
+    // WHATSAPP
+    if (
+        method === 'whatsapp'
+    ) {
 
         window.open(
-            `https://wa.me/919398453760?text=${encodeURIComponent(body)}`,
+
+            `https://wa.me/919398453760?text=${
+                encodeURIComponent(body)
+            }`,
+
             '_blank'
+
         );
 
-    } else {
 
-        // Email
-        window.location.href =
-            `mailto:info@excipurepharma.com?subject=${
-                encodeURIComponent(
-                    'Request a Quote - ' +
-                    data['cust-product']
-                )
-            }&body=${
-                encodeURIComponent(body)
-            }`;
+        return;
+
     }
+
+
+    // EMAIL
+    window.location.href =
+
+        `mailto:info@excipurepharma.com` +
+
+        `?subject=${
+            encodeURIComponent(
+                'Request a Quote - ' +
+                data['cust-product']
+            )
+        }` +
+
+        `&body=${
+            encodeURIComponent(body)
+        }`;
+
 };
 
+
 // Backward compatibility
-window.submitOrder = window.submitQuote;
+window.submitOrder =
+    window.submitQuote;
 
-// 12. STARTUP
 
-document.addEventListener('DOMContentLoaded', () => {
+// =========================================================
+// 16. INITIALIZE
+// =========================================================
 
-    if (document.getElementById('product-grid')) {
+document.addEventListener(
+    'DOMContentLoaded',
+    function() {
 
-        window.renderProducts(products);
-        window.renderSidebar();
+        if (
+            document.getElementById(
+                'product-grid'
+            )
+        ) {
+
+            window.renderProducts(
+                products
+            );
+
+            window.renderSidebar();
+
+        }
+
+
+        lucide.createIcons();
 
     }
-
-});
+);
