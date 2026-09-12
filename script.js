@@ -35,7 +35,8 @@ const products = [
     { id: 33, name: "Methyl Paraben", cat: "Excipients", stock: "25 Kg Bag", func: "Preservative", apps: "Syrups, Creams, Lotions", grade: "Pharma Grade / USP", mol: "C₈H₈O₃", purity: ">99%", desc: "Antimicrobial preservative effective against bacteria and fungi.", img: "images/products/excipients/methyl-paraben.jpg", features: "Antimicrobial, Stable compound", appearance: "White crystalline powder", weight: "152.15 g/mol", density: "1.35 g/cm³", melting: "125°C", origin: "India", moq: "25 Kg", pkgType: "Bag" },
     { id: 34, name: "Propyl Paraben", cat: "Excipients", stock: "25 Kg Bag", func: "Preservative", apps: "Liquid & Topical Formulations", grade: "Pharma Grade / USP", mol: "C₁₀H₁₂O₃", purity: ">99%", desc: "Preservative often used with Methyl Paraben.", img: "images/products/excipients/propyl-paraben.jpg", features: "Antimicrobial activity, Good stability", appearance: "White crystalline powder", weight: "180.20 g/mol", density: "1.06 g/cm³", melting: "96°C", origin: "India", moq: "25 Kg", pkgType: "Bag" },
     { id: 35, name: "Sodium Benzoate", cat: "Excipients", stock: "25 Kg Bag", func: "Preservative", apps: "Syrups, Liquid Formulations", grade: "Pharma Grade / USP / IP", mol: "C₇H₅NaO₂", purity: ">99%", desc: "Used to prevent microbial growth and ensure shelf-life.", img: "images/products/excipients/sodium-benzoate.jpg", features: "Microbial protection, Good stability", appearance: "White crystalline powder", weight: "144.11 g/mol", density: "1.44 g/cm³", melting: "300°C", origin: "India", moq: "25 Kg", pkgType: "Bag" },
-        // --- NEW EXCIPIENTS (IDs 36-60) ---
+
+    // --- NEW EXCIPIENTS (IDs 36-60) ---
     { id: 36, name: "Anhydrous Lanolin", cat: "Excipients", stock: "25 Kg Drum", func: "Emollient / Ointment Base", apps: "Ointments, Creams, Lotions, Topical Preparations", grade: "IP / USP / BP", mol: "Wool Wax Esters", purity: "≥99.0%", desc: "Purified wool wax used as an emollient and ointment base in pharmaceutical and cosmetic formulations.", img: "images/products/excipients/anhydrous-lanolin.jpg", features: "Excellent water absorption, skin conditioning, highly stable", appearance: "Yellow Semi-solid Wax", weight: "N/A", density: "0.93 g/cm³", melting: "38–44°C", origin: "India", moq: "25 Kg", pkgType: "HDPE Drum" },
     { id: 37, name: "Bentonite", cat: "Excipients", stock: "25 Kg Bag", func: "Suspending Agent / Thickener", apps: "Oral Suspensions, Creams, Gels, Ointments", grade: "IP / BP / USP", mol: "Al₂H₂O₆Si₂", purity: "≥98.0%", desc: "Natural hydrated aluminium silicate clay used as a suspending, thickening, and adsorbing agent.", img: "images/products/excipients/bentonite.jpg", features: "Excellent swelling capacity, high viscosity, improves stability", appearance: "Cream to Light Grey Fine Powder", weight: "Variable", density: "2.30–2.60 g/cm³", melting: "Decomposes", origin: "India", moq: "25 Kg", pkgType: "HDPE Bag" },
     { id: 38, name: "Calcium Citrate", cat: "Excipients", stock: "25 Kg Bag", func: "Calcium Supplement / Buffering Agent", apps: "Tablets, Capsules, Nutraceuticals", grade: "IP / BP / USP", mol: "Ca₃(C₆H₅O₇)₂·4H₂O", purity: "≥98.0%", desc: "Calcium salt of citric acid used as a calcium source and pharmaceutical excipient.", img: "images/products/excipients/calcium-citrate.jpg", features: "Good absorption, stable solid form, low acid dependence", appearance: "White to almost white powder", weight: "570.50 g/mol", density: "1.7 g/cm³", melting: "Decomposes", origin: "India", moq: "25 Kg", pkgType: "Bag / Drum" },
@@ -61,8 +62,8 @@ const products = [
     { id: 58, name: "Tri potassium Citrate", cat: "Excipients", stock: "25 Kg Bag", func: "Alkalizing Agent", apps: "Tablets, Powders, Effervescents", grade: "IP / BP / USP / EP", mol: "C₆H₅K₃O₇", purity: "≥99.0%", desc: "Potassium salt used as a buffering and alkalizing agent in pharmaceuticals.", img: "images/products/excipients/tripotassium-citrate.jpg", features: "High solubility, effective pH regulation", appearance: "White Crystalline Powder", weight: "306.39 g/mol", density: "2.52 g/cm³", melting: "300°C", origin: "India", moq: "25 Kg", pkgType: "Bag / Drum" },
     { id: 59, name: "Zinc Stearate", cat: "Excipients", stock: "25 Kg Drum", func: "Lubricant / Anti-adherent", apps: "Tablets, Capsules", grade: "IP / BP / USP", mol: "C₃₆H₇₀O₄Zn", purity: "≥95.0%", desc: "Hydrophobic lubricant used to improve powder flow and prevent sticking.", img: "images/products/excipients/zinc-stearate.jpg", features: "Effective at low concentrations, anti-adherent", appearance: "White Fine Powder", weight: "632.33 g/mol", density: "1.09 g/cm³", melting: "125°C", origin: "India", moq: "25 Kg", pkgType: "HDPE Drum" },
     { id: 60, name: "Cetyl Alcohol", cat: "Excipients", stock: "25 Kg Bag", func: "Emulsifier / Thickener", apps: "Creams, Ointments, Topical Prep", grade: "IP / BP / USP", mol: "C₁₆H₃₄O", purity: "≥99.0%", desc: "Fatty alcohol used to stabilize emulsions and improve texture in topicals.", img: "images/products/excipients/cetyl-alcohol.jpg", features: "Skin conditioning, texture improvement", appearance: "White Flakes / Pellets", weight: "242.44 g/mol", density: "0.81 g/cm³", melting: "50°C", origin: "India", moq: "25 Kg", pkgType: "HDPE Bag" },
-    
-   // --- COLOURS (Sub-categories mapped by 'type') ---
+
+    // --- COLOURS ---
     { id: 101, name: "Allura Red E129", cat: "Colours", subCat: "Synthetic Azo Dye", stock: "25 Kg", func: "Synthetic Colour", apps: "Tablets, Capsules, Syrups", grade: "IP/USP/Food Grade", mol: "C₁₈H₁₄N₂Na₂O₈S₂", purity: ">85%", desc: "A vibrant red colour offering uniformity and stability.", img: "images/products/colours/allura-red-e129.jpg", ci: "CI 16035", type: "Synthetic Azo Dye", solubility: "Water Soluble", weight: "496.42 g/mol", density: "0.70 g/cm³", appearance: "Dark red Powder", features: "Bright red shade, excellent uniformity", moq: "25 Kg", pkgType: "Bag / Drum" },
     { id: 102, name: "Allura Red Lake", cat: "Colours", subCat: "Aluminium Lake Pigment", stock: "25 Kg", func: "Aluminium Lake", apps: "Tablet Coating, Capsule Coating", grade: "IP/USP/Food Grade", mol: "Complex Aluminium Lake", purity: ">40% Dye Content", desc: "Stable pigment for uniform red coloration.", img: "images/products/colours/allura-red-lake.jpg", type: "Aluminium Lake Pigment", solubility: "Insoluble / Oil Dispersible", density: "0.70 g/cm³", appearance: "Red Fine Powder", features: "Bright colour shade, good heat stability", moq: "25 Kg", pkgType: "Bag / Drum" },
     { id: 103, name: "Black Iron Oxide", cat: "Colours", subCat: "Inorganic Pigment", stock: "25 Kg Bag", func: "Inorganic Pigment", apps: "Capsules, Coatings", grade: "IP/USP", mol: "Fe₃O₄", purity: ">95%", desc: "Used for grey to black shades.", img: "images/products/colours/black-iron-oxide.jpg", ci: "CI 77499", type: "Inorganic Pigment", solubility: "Insoluble", weight: "231.53 g/mol", density: "5.17 g/cm³", appearance: "Black Fine Powder", features: "Deep black shade, high covering power", moq: "25 Kg", pkgType: "Bag" },
@@ -74,7 +75,7 @@ const products = [
     { id: 109, name: "D and C Red 34", cat: "Colours", subCat: "Organic Pigment", stock: "25 Kg", func: "Colour Pigment", apps: "Pharmaceutical Coating", grade: "IP/USP", mol: "C₁₈H₁₃N₃NaO₈S", purity: ">90%", desc: "Specialty organic red pigment.", img: "images/products/colours/d-and-c-red-34.jpg", type: "Organic Pigment", solubility: "Insoluble", weight: "454.36 g/mol", density: "1.20 g/cm³", appearance: "Red-violet Fine Powder", features: "High tinting strength, consistent performance", moq: "25 Kg", pkgType: "Bag" },
     { id: 110, name: "D and C Red 36", cat: "Colours", subCat: "Organic Pigment", stock: "25 Kg", func: "Colour Pigment", apps: "Tablet Coating", grade: "IP/USP", mol: "C₂₀H₁₂N₂O₇S₂Na₂", purity: ">90%", desc: "High-performance organic pigment for deep red shades.", img: "images/products/colours/d-and-c-red-36.jpg", type: "Organic Pigment", solubility: "Insoluble", weight: "502.43 g/mol", density: "1.25 g/cm³", appearance: "Bluish-red Fine Powder", features: "Excellent uniformity, high stability", moq: "25 Kg", pkgType: "Bag" },
     { id: 111, name: "Fast Green E143", cat: "Colours", subCat: "Synthetic Azo Dye", stock: "25 Kg", func: "Synthetic Colour", apps: "Tablets, Capsules, Syrups", grade: "IP/USP/Food Grade", mol: "C₃₇H₃₄N₂Na₂O₁₀S₃", purity: ">85%", desc: "Sea-green colour for product differentiation.", img: "images/products/colours/fast-green-e143.jpg", ci: "CI 42053", type: "Synthetic Azo Dye", solubility: "Water Soluble", weight: "808.85 g/mol", density: "0.90 g/cm³", appearance: "Green Powder/Granules", features: "Bluish-green shade, stable", moq: "25 Kg", pkgType: "Bag" },
-    { id: 112, name: "Fast Green Lake", cat: "Colours", subCat: "Aluminium Lake Pigment", stock: "25 Kg", func: "Aluminium Lake", apps: "Pharmaceutical Coating", grade: "IP/USP/Food Grade", mol: "Complex Aluminium Lake", purity: ">35% Dye Content", desc: "Stable insoluble green pigment.", img: "images/products/colours/fast-green-lake.jpg", type: "Aluminium Lake Pigment", solubility: "Insoluble", weight: "N/A", density: "0.75 g/cm³", appearance: "Green Fine Powder", features: "Consistent shade, stable performance", moq: "25 Kg", pkgType: "Bag" },
+    { id: 112, name: "Fast Green Lake", cat: "Colours", subCat: "Aluminium Lake Pigment", stock: "25 Kg", func: "Aluminium Lake", apps: "Pharmaceutical Coating", grade: "IP/USP/Food Grade", mol: "Complex Aluminium Lake", purity: ">35% Dye Content", desc: "Stable insoluble green pigment.", img: "images/products/colours/fast-green-lake.jpg", type: "Aluminium Lake Pigment", solubility: "Insoluble", density: "0.75 g/cm³", appearance: "Green Fine Powder", features: "Consistent shade, stable performance", moq: "25 Kg", pkgType: "Bag" },
     { id: 113, name: "Indigo Carmine E132", cat: "Colours", subCat: "Synthetic Azo Dye", stock: "25 Kg", func: "Synthetic Colour", apps: "Tablets, Diagnostics", grade: "IP/USP/Food Grade", mol: "C₁₆H₈N₂Na₂O₈S₂", purity: ">85%", desc: "Darker blue shade for specialized apps.", img: "images/products/colours/indigo-caramine-e132.jpg", ci: "CI 73015", type: "Synthetic Azo Dye", solubility: "Water Soluble", weight: "466.35 g/mol", density: "1.80 g/cm³", appearance: "Dark blue Powder", features: "Deep blue shade, pH stability", moq: "25 Kg", pkgType: "Bag" },
     { id: 114, name: "Iron Red Oxide", cat: "Colours", subCat: "Inorganic Pigment", stock: "25 Kg Bag", func: "Inorganic Pigment", apps: "Tablet Coating, Capsules", grade: "IP/USP", mol: "Fe₂O₃", purity: ">95%", desc: "Highly stable inorganic red pigment.", img: "images/products/colours/iron-red-oxide.jpg", ci: "CI 77491", type: "Inorganic Pigment", solubility: "Insoluble", weight: "159.69 g/mol", density: "5.24 g/cm³", appearance: "Red-brown Fine Powder", features: "Excellent opacity, high stability", moq: "25 Kg", pkgType: "Bag" },
     { id: 115, name: "Ponceau 4R E124", cat: "Colours", subCat: "Synthetic Azo Dye", stock: "25 Kg", func: "Synthetic Colour", apps: "Tablets, Syrups, Capsules", grade: "IP/USP/Food Grade", mol: "C₂₀H₁₁N₂Na₃O₁₀S₃", purity: ">80%", desc: "Rich red colour for oral forms.", img: "images/products/colours/ponceau-4r-e124.jpg", ci: "CI 16255", type: "Synthetic Azo Dye", solubility: "Water Soluble", weight: "604.47 g/mol", density: "0.90 g/cm³", appearance: "Red Powder/Granules", features: "Strong red shade, good dispersion", moq: "25 Kg", pkgType: "Bag" },
@@ -87,257 +88,750 @@ const products = [
     { id: 122, name: "Tartrazine Lake", cat: "Colours", subCat: "Aluminium Lake Pigment", stock: "25 Kg", func: "Aluminium Lake", apps: "Tablet Coating, Capsules", grade: "IP/USP/Food Grade", mol: "Complex Aluminium Lake", purity: ">40% Dye Content", desc: "Insoluble pigment form for improved dispersion.", img: "images/products/colours/tartrazine-lake.jpg", type: "Aluminium Lake Pigment", solubility: "Oil Dispersible", density: "0.60 g/cm³", appearance: "Yellow-orange Fine Powder", features: "Improved opacity, uniform coating", moq: "25 Kg", pkgType: "Bag" },
     { id: 123, name: "Yellow Iron Oxide", cat: "Colours", subCat: "Inorganic Pigment", stock: "25 Kg Bag", func: "Inorganic Pigment", apps: "Tablet Coating", grade: "IP/USP", mol: "FeO(OH)", purity: ">95%", desc: "Provides natural yellow tones with light resistance.", img: "images/products/colours/yellow-iron-oxide.jpg", ci: "CI 77492", type: "Inorganic Pigment", solubility: "Insoluble", weight: "88.85 g/mol", density: "4.26 g/cm³", appearance: "Yellow Fine Powder", features: "Natural shade, light resistant", moq: "25 Kg", pkgType: "Bag" },
 
-        // --- SOLVENTS (IDs 3, 12, 18, 30, 61) ---
+    // --- SOLVENTS ---
     { id: 3, name: "Propylene Glycol", cat: "Solvents", stock: "215 Kg Drum", func: "Solvent / Humectant", apps: "Syrups, Oral Solutions, Topical Formulations", grade: "Pharma Grade / USP / IP", mol: "C₃H₈O₂", purity: ">99%", desc: "Clear, colorless, viscous liquid used as a solvent and humectant.", img: "images/products/solvents/propylene-glycol.jpg", features: "Excellent solvent properties, Moisture retaining", appearance: "Clear colorless viscous liquid", weight: "76.09 g/mol", density: "1.04 g/cm³", melting: "-59°C", origin: "India", moq: "215 Kg", pkgType: "Drum" },
     { id: 12, name: "Glycerin", cat: "Solvents", stock: "250 Kg Drum", func: "Humectant / Solvent", apps: "Syrups, Creams, Oral Solutions", grade: "Pharma Grade / USP / IP", mol: "C₃H₈O₃", purity: ">99%", desc: "Clear viscous liquid used as a humectant and sweetener.", img: "images/products/solvents/glycerin.jpg", features: "Moisture retaining, Sweet taste", appearance: "Clear viscous liquid", weight: "92.09 g/mol", density: "1.26 g/cm³", melting: "18°C", origin: "India", moq: "250 Kg", pkgType: "Drum" },
     { id: 18, name: "Polyethylene Glycol (PEG)", cat: "Solvents", stock: "25 Kg Bag", func: "Solvent / Plasticizer", apps: "Ointments, Tablets, Capsules", grade: "Pharma Grade / USP", mol: "H(OCH₂CH₂)nOH", purity: ">99%", desc: "Versatile polymer used as a plasticizer and solvent.", img: "images/products/solvents/peg.jpg", features: "Excellent solubility, Good stability", appearance: "White flakes or powder", weight: "Varies", density: "1.12 g/cm³", melting: "60°C", origin: "India", moq: "25 Kg", pkgType: "Bag" },
     { id: 30, name: "Ethanol (99.9%)", cat: "Solvents", stock: "50/200 L Drum", func: "Solvent / Disinfectant", apps: "Syrups, Sanitizers, Liquid Formulations", grade: "Pharma Grade / IP / USP", mol: "C₂H₆O", purity: ">99%", desc: "Clear, colorless, volatile solvent and disinfectant.", img: "images/products/solvents/ethanol.jpg", features: "Rapid evaporation, Excellent solvent properties", appearance: "Clear colorless liquid", weight: "46.07 g/mol", density: "0.79 g/cm³", melting: "-114°C", origin: "India", moq: "50 L", pkgType: "Drum" },
     { id: 61, name: "Isopropyl Alcohol (IPA)", cat: "Solvents", stock: "35 / 160 Kg Drum", func: "Solvent / Disinfectant", apps: "Tablet Manufacturing, Topical Products, Sanitizers, Cleaning", grade: "IP / USP / BP", mol: "C₃H₈O", purity: "≥99.5%", desc: "Pharmaceutical solvent and disinfectant widely used during formulation and cleaning processes.", img: "images/products/solvents/ipa.jpg", features: "Fast evaporation, excellent solvency, low residue", appearance: "Clear, Colourless Liquid", weight: "60.10 g/mol", density: "0.785 g/cm³", melting: "–89°C", origin: "India", moq: "35 Kg", pkgType: "HDPE Drum" },
 
-    // --- VITAMINS (IDs 201-205) ---
-    { id: 201, name: "Ascorbic Acid (Vitamin C)", cat: "Vitamins", stock: "25 Kg Carton", func: "Vitamin / Antioxidant", apps: "Tablets, Capsules, Fortification", grade: "IP/BP/USP/FCC", mol: "C₆H₈O₆", purity: ">99%", desc: "Vital nutrient used to boost immunity.", img: "images/products/vitamins/ascorbic-acid.jpg", moq: "25 Kg", pkgType: "Carton" },
-    { id: 202, name: "Ascorbyl Palmitate", cat: "Vitamins", stock: "25 Kg", func: "Fat-Soluble Vit C", apps: "Oil formulations", grade: "NF/FCC", mol: "C₂₂H₃₈O₇", purity: "98-100%", desc: "Fat-soluble antioxidant.", img: "images/products/vitamins/ascorbyl-palmitate.jpg" },
-    { id: 203, name: "Tocopherol (Vitamin E)", cat: "Vitamins", stock: "25 kg", func: "Antioxidant", apps: "Softgels, Topicals", grade: "USP", mol: "C₂₉H₅₀O₂", purity: ">99%", desc: "Protect cells from damage.", img: "images/products/vitamins/tocopherol.jpg" },
-    { id: 204, name: "Tocopheryl Acetate", cat: "Vitamins", stock: "25 kg", func: "Vitamin E", apps: "Multi-vitamins", grade: "USP", mol: "C₃₁H₅₂O₃", purity: ">98%", desc: "Stable ester of Vitamin E.", img: "images/products/vitamins/tocopheryl-acetate.jpg" },
+    // --- VITAMINS ---
+    { id: 201, name: "Ascorbic Acid (Vitamin C)", cat: "Vitamins", stock: "25 Kg Carton", func: "Vitamin / Antioxidant", apps: "Tablets, Capsules, Fortification", grade: "IP/BP/USP/FCC", mol: "C₆H₈O₆", purity: ">99%", desc: "Vital nutrient used to boost immunity.", img: "images/products/vitamins/ascorbic-acid.jpg", features: "High purity, stable, excellent formulation compatibility", appearance: "White crystalline powder", weight: "176.12 g/mol", density: "1.65 g/cm³", melting: "190°C", origin: "India", moq: "25 Kg", pkgType: "Carton" },
+    { id: 202, name: "Ascorbyl Palmitate", cat: "Vitamins", stock: "25 Kg", func: "Fat-Soluble Vit C", apps: "Oil formulations", grade: "NF/FCC", mol: "C₂₂H₃₈O₇", purity: "98-100%", desc: "Fat-soluble antioxidant.", img: "images/products/vitamins/ascorbyl-palmitate.jpg", features: "Oil soluble, antioxidant, stable", appearance: "White to pale yellow powder", weight: "414.54 g/mol", density: "N/A", melting: "107°C", origin: "India", moq: "25 Kg", pkgType: "Bag" },
+    { id: 203, name: "Tocopherol (Vitamin E)", cat: "Vitamins", stock: "25 kg", func: "Antioxidant", apps: "Softgels, Topicals", grade: "USP", mol: "C₂₉H₅₀O₂", purity: ">99%", desc: "Protect cells from damage.", img: "images/products/vitamins/tocopherol.jpg", features: "High antioxidant activity, stable", appearance: "Viscous oil", weight: "430.71 g/mol", density: "0.95 g/cm³", melting: "2.5–3.5°C", origin: "India", moq: "25 Kg", pkgType: "Drum" },
+    { id: 204, name: "Tocopheryl Acetate", cat: "Vitamins", stock: "25 kg", func: "Vitamin E", apps: "Multi-vitamins", grade: "USP", mol: "C₃₁H₅₂O₃", purity: ">98%", desc: "Stable ester of Vitamin E.", img: "images/products/vitamins/tocopheryl-acetate.jpg", features: "Excellent stability, antioxidant properties", appearance: "Clear to pale yellow oil", weight: "472.74 g/mol", density: "0.95 g/cm³", melting: "2–3°C", origin: "India", moq: "25 Kg", pkgType: "Drum" },
     { id: 205, name: "Vitamin D3 (Cholecalciferol)", cat: "Vitamins", stock: "1 Kg / 25 Kg", func: "Vitamin Supplement / Calcium Absorption", apps: "Tablets, Capsules, Softgels, Oral Drops, Food Fortification", grade: "IP / USP / BP", mol: "C₂₇H₄₄O", purity: "≥99.0%", desc: "Fat-soluble vitamin used for maintaining calcium balance and bone health.", img: "images/products/vitamins/vitamin-d3.jpg", features: "High potency (1 MIU/g), stable, excellent bioavailability", appearance: "White to Off-white Powder", weight: "384.64 g/mol", density: "N/A", melting: "84–86°C", origin: "India", moq: "1 Kg", pkgType: "HDPE Container / Foil Bag" },
-    
-    // --- Specialty  ---    
-    { id: 301, name: "Aloe Vera Gel Powder", cat: "Specialty", stock: "25 Kg", func: "Natural Extract", apps: "Cosmetics, Nutraceuticals", grade: "Cosmetic / Food Grade", mol: "Natural Extract", purity: ">99%", desc: "Premium extract from Aloe leaf.", img: "images/products/specialty/aloe-vera-gel-powder.jpg" },
-    { id: 302, name: "Bio-SAP Polymer", cat: "Specialty", stock: "25 Kg Bag", func: "Water Retainer", apps: "Agriculture, Hygiene", grade: "Eco-Friendly", mol: "Bio-Polymer", purity: ">99%", desc: "Eco-friendly polymer.", img: "images/products/specialty/bio-based-super-absorbent-polymer.jpg" }
+
+    // --- SPECIALTY ---
+    { id: 301, name: "Aloe Vera Gel Powder", cat: "Specialty", stock: "25 Kg", func: "Natural Extract", apps: "Cosmetics, Nutraceuticals", grade: "Cosmetic / Food Grade", mol: "Natural Extract", purity: ">99%", desc: "Premium extract from Aloe leaf.", img: "images/products/specialty/aloe-vera-gel-powder.jpg", features: "Natural extract, versatile application", appearance: "Fine powder", weight: "Variable", density: "N/A", melting: "Decomposes", origin: "India", moq: "25 Kg", pkgType: "Bag" },
+    { id: 302, name: "Bio-SAP Polymer", cat: "Specialty", stock: "25 Kg Bag", func: "Water Retainer", apps: "Agriculture, Hygiene", grade: "Eco-Friendly", mol: "Bio-Polymer", purity: ">99%", desc: "Eco-friendly polymer.", img: "images/products/specialty/bio-based-super-absorbent-polymer.jpg", features: "High absorbency, eco-friendly, lightweight", appearance: "White granules", weight: "Variable", density: "Variable", melting: "Decomposes", origin: "India", moq: "25 Kg", pkgType: "Bag" }
 ];
 
 let cart = [];
 let activeProductId = null;
 
-// 3. RENDERING LOGIC (Large Card Fonts & Key Features)
+// 3. RENDERING LOGIC
 window.renderProducts = function(items) {
     const grid = document.getElementById('product-grid');
     if (!grid) return;
-    
+
     if (items.length === 0) {
-        grid.innerHTML = `<div class="col-span-full py-20 text-center text-slate-400 font-bold text-xl">No products found matching your search.</div>`;
+        grid.innerHTML = `
+            <div class="col-span-full py-20 text-center text-slate-400 font-bold text-xl">
+                No products found matching your search.
+            </div>`;
         return;
     }
 
     grid.innerHTML = items.map(p => `
         <div class="product-card bg-white rounded-[2.5rem] p-7 border border-slate-100 shadow-sm relative overflow-hidden group transition-all duration-300">
-            <div class="absolute top-5 left-5 z-10"><span class="block bg-[#004b8d] text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest shadow-md">${p.stock}</span></div>
-            <img src="${p.img}?v=${Date.now()}" alt="${p.name}" class="w-full h-56 object-cover rounded-3xl mb-5 bg-slate-50 border border-slate-50 shadow-inner">
+            
+            <div class="absolute top-5 left-5 z-10">
+                <span class="block bg-[#004b8d] text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest shadow-md">
+                    ${p.stock}
+                </span>
+            </div>
+
+            <img src="${p.img}?v=${Date.now()}"
+                 alt="${p.name}"
+                 class="w-full h-56 object-cover rounded-3xl mb-5 bg-slate-50 border border-slate-50 shadow-inner">
+
             <div class="px-2">
-                <p class="text-[12px] font-black text-[#1a7139] uppercase mb-1 tracking-tighter">${p.cat}</p>
-                <h3 class="font-black text-2xl h-14 mb-4 uppercase leading-tight text-slate-900">${p.name}</h3>
-                
-                <p class="text-[16px] text-slate-500 mb-1 leading-tight">Application: <span class="font-black text-slate-800">${p.func}</span></p>
-                <p class="text-[16px] text-slate-500 mb-4 leading-tight">Key Features: <span class="font-bold text-[#1a7139] italic">${p.features || 'Standard Quality'}</span></p>
-                
-                <div class="text-[15px] text-slate-400 leading-tight mb-7 uppercase font-black">
-                    MOQ: <span class="text-slate-900 font-black">${p.moq || '25 Kg'}</span>
+                <p class="text-[12px] font-black text-[#1a7139] uppercase mb-1 tracking-tighter">
+                    ${p.cat}
+                </p>
+
+                <h3 class="font-black text-2xl h-14 mb-4 uppercase leading-tight text-slate-900">
+                    ${p.name}
+                </h3>
+
+                <p class="text-[16px] text-slate-500 mb-1 leading-tight">
+                    Application:
+                    <span class="font-black text-slate-800">${p.func}</span>
+                </p>
+
+                <p class="text-[16px] text-slate-500 mb-4 leading-tight">
+                    Key Features:
+                    <span class="font-bold text-[#1a7139] italic">
+                        ${p.features || 'Standard Quality'}
+                    </span>
+                </p>
+
+                <!-- FORM / PURITY / GRADE -->
+                <div class="grid grid-cols-3 gap-2 mb-6">
+
+                    <div class="bg-slate-50 rounded-xl p-3 border border-slate-100">
+                        <div class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">
+                            Form
+                        </div>
+                        <div class="text-xs font-extrabold text-slate-800 leading-tight">
+                            ${p.appearance || 'N/A'}
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-xl p-3 border border-slate-100">
+                        <div class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">
+                            Purity
+                        </div>
+                        <div class="text-xs font-extrabold text-slate-800 leading-tight">
+                            ${p.purity || 'N/A'}
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-xl p-3 border border-slate-100">
+                        <div class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">
+                            Grade
+                        </div>
+                        <div class="text-xs font-extrabold text-slate-800 leading-tight">
+                            ${p.grade || 'N/A'}
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="flex justify-between items-center pt-4 border-t border-slate-50">
-                    <button onclick="window.viewDetails(${p.id})" class="text-[15px] font-black text-[#004b8d] underline uppercase tracking-widest hover:text-[#1a7139]">Details</button>
-                    <button onclick="window.addToCart(${p.id})" class="w-14 h-14 bg-[#004b8d] text-white rounded-full flex items-center justify-center hover:bg-[#1a7139] shadow-xl"><i data-lucide="plus"></i></button>
+                <div class="text-[15px] text-slate-400 leading-tight mb-7 uppercase font-black">
+                    MOQ:
+                    <span class="text-slate-900 font-black">
+                        ${p.moq || '25 Kg'}
+                    </span>
                 </div>
+
+                <!-- REQUEST A QUOTE -->
+                <div class="pt-4 border-t border-slate-50">
+                    <button
+                        onclick="window.requestQuote(${p.id})"
+                        class="w-full bg-[#004b8d] text-white py-4 rounded-2xl font-black text-base uppercase tracking-widest hover:bg-[#1a7139] transition shadow-xl">
+                        Request a Quote
+                    </button>
+                </div>
+
             </div>
         </div>
     `).join('');
-    lucide.createIcons();
-}
 
-// 4. SIDEBAR LOGIC (Grouped Dropdowns)
+    lucide.createIcons();
+};
+
+// 4. SIDEBAR LOGIC
 window.renderSidebar = function() {
     const nav = document.getElementById('sidebar-nav');
     if (!nav) return;
-    const categories = ["Excipients", "Colours", "Solvents", "Vitamins", "Specialty"];
-    
-    let html = `<button onclick="window.filterProducts('All')" class="w-full text-left px-5 py-4 rounded-xl hover:bg-slate-50 transition font-black text-lg mb-4 flex items-center justify-between border border-transparent group"><span class="text-slate-700 group-hover:text-[#004b8d]">All Products (${products.length})</span><i data-lucide="layers" class="w-5 h-5 text-slate-300"></i></button>`;
+
+    const categories = [
+        "Excipients",
+        "Colours",
+        "Solvents",
+        "Vitamins",
+        "Specialty"
+    ];
+
+    let html = `
+        <button
+            onclick="window.filterProducts('All')"
+            class="w-full text-left px-5 py-4 rounded-xl hover:bg-slate-50 transition font-black text-lg mb-4 flex items-center justify-between border border-transparent group">
+            <span class="text-slate-700 group-hover:text-[#004b8d]">
+                All Products (${products.length})
+            </span>
+            <i data-lucide="layers" class="w-5 h-5 text-slate-300"></i>
+        </button>
+    `;
 
     html += categories.map(cat => {
+
         const catItems = products.filter(p => p.cat === cat);
+
         if (cat === "Colours") {
-            const types = ["Inorganic Pigment", "Aluminium Lake Pigment", "Synthetic Azo Dye", "Organic Pigment"];
+            const types = [
+                "Inorganic Pigment",
+                "Aluminium Lake Pigment",
+                "Synthetic Azo Dye",
+                "Organic Pigment"
+            ];
+
             return `
                 <div class="category-group border-b border-slate-50 last:border-0 pb-1">
-                    <button onclick="window.toggleDropdown(this)" class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition text-left group">
-                        <span class="text-base font-black text-slate-800 uppercase">${cat} (${catItems.length})</span>
-                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-300 dropdown-icon"></i>
+
+                    <button
+                        onclick="window.toggleDropdown(this)"
+                        class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition text-left group">
+                        <span class="text-base font-black text-slate-800 uppercase">
+                            ${cat} (${catItems.length})
+                        </span>
+                        <i data-lucide="chevron-down"
+                           class="w-5 h-5 text-slate-300 dropdown-icon"></i>
                     </button>
+
                     <div class="dropdown-content hidden pl-6 pr-2 py-3 space-y-4 border-l-2 border-slate-100 ml-5">
-                        <button onclick="window.filterProducts('Colours')" class="text-[10px] font-black text-[#1a7139] uppercase px-0 hover:underline">View All Colours</button>
+
+                        <button
+                            onclick="window.filterProducts('Colours')"
+                            class="text-[10px] font-black text-[#1a7139] uppercase px-0 hover:underline">
+                            View All Colours
+                        </button>
+
                         ${types.map(type => {
-                            const typeItems = catItems.filter(p => p.subCat === type);
+
+                            const typeItems = catItems.filter(
+                                p => p.subCat === type
+                            );
+
                             if (typeItems.length === 0) return '';
+
                             return `
                                 <div class="sub-category-group">
-                                    <button onclick="window.toggleDropdown(this)" class="w-full flex items-center justify-between py-1 px-0 hover:text-[#004b8d] transition text-left">
-                                        <span class="text-[13px] font-black text-[#004b8d] uppercase leading-tight">${type} (${typeItems.length})</span>
-                                        <i data-lucide="plus" class="w-3 h-3 text-slate-400 dropdown-icon"></i>
+
+                                    <button
+                                        onclick="window.toggleDropdown(this)"
+                                        class="w-full flex items-center justify-between py-1 px-0 hover:text-[#004b8d] transition text-left">
+
+                                        <span class="text-[13px] font-black text-[#004b8d] uppercase leading-tight">
+                                            ${type} (${typeItems.length})
+                                        </span>
+
+                                        <i data-lucide="plus"
+                                           class="w-3 h-3 text-slate-400 dropdown-icon"></i>
                                     </button>
+
                                     <div class="dropdown-content hidden pl-4 pt-2 space-y-2">
-                                        ${typeItems.map(p => `<button onclick="window.filterSingleProduct(${p.id})" class="w-full text-left py-0.5 text-sm font-bold text-slate-500 hover:text-[#004b8d] truncate">• ${p.name}</button>`).join('')}
+
+                                        ${typeItems.map(p => `
+                                            <button
+                                                onclick="window.filterSingleProduct(${p.id})"
+                                                class="w-full text-left py-0.5 text-sm font-bold text-slate-500 hover:text-[#004b8d] truncate">
+                                                • ${p.name}
+                                            </button>
+                                        `).join('')}
+
                                     </div>
-                                </div>`;
+                                </div>
+                            `;
                         }).join('')}
+
                     </div>
-                </div>`;
+                </div>
+            `;
         }
+
         return `
             <div class="category-group border-b border-slate-50 last:border-0 pb-1">
-                <button onclick="window.toggleDropdown(this)" class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition text-left">
-                    <span class="text-base font-black text-slate-800 uppercase">${cat} (${catItems.length})</span>
-                    <i data-lucide="chevron-down" class="w-5 h-5 text-slate-300 dropdown-icon"></i>
+
+                <button
+                    onclick="window.toggleDropdown(this)"
+                    class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition text-left">
+
+                    <span class="text-base font-black text-slate-800 uppercase">
+                        ${cat} (${catItems.length})
+                    </span>
+
+                    <i data-lucide="chevron-down"
+                       class="w-5 h-5 text-slate-300 dropdown-icon"></i>
                 </button>
+
                 <div class="dropdown-content hidden pl-6 pr-2 py-2 space-y-1 border-l-2 border-slate-100 ml-5">
-                    ${catItems.map(p => `<button onclick="window.filterSingleProduct(${p.id})" class="w-full text-left py-1.5 text-sm font-bold text-slate-500 hover:text-[#004b8d] transition truncate">• ${p.name}</button>`).join('')}
+
+                    ${catItems.map(p => `
+                        <button
+                            onclick="window.filterSingleProduct(${p.id})"
+                            class="w-full text-left py-1.5 text-sm font-bold text-slate-500 hover:text-[#004b8d] transition truncate">
+                            • ${p.name}
+                        </button>
+                    `).join('')}
+
                 </div>
-            </div>`;
+
+            </div>
+        `;
     }).join('');
+
     nav.innerHTML = html;
     lucide.createIcons();
-}
+};
 
 // 5. SEARCH & ACTIONS
+
 window.searchProducts = function(query) {
     const q = query.toLowerCase().trim();
-    if (!q) { window.renderProducts(products); return; }
-    const filtered = products.filter(p => p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q) || (p.features && p.features.toLowerCase().includes(q)));
+
+    if (!q) {
+        window.renderProducts(products);
+        return;
+    }
+
+    const filtered = products.filter(p =>
+        p.name.toLowerCase().includes(q) ||
+        p.cat.toLowerCase().includes(q) ||
+        (p.features && p.features.toLowerCase().includes(q))
+    );
+
     window.renderProducts(filtered);
-}
+};
 
 window.toggleDropdown = function(btn) {
     const content = btn.nextElementSibling;
     const icon = btn.querySelector('.dropdown-icon');
+
     content.classList.toggle('hidden');
+
     if (icon) {
         const isPlus = icon.getAttribute('data-lucide') === 'plus';
-        icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : (isPlus ? 'rotate(45deg)' : 'rotate(180deg)');
+
+        icon.style.transform =
+            content.classList.contains('hidden')
+                ? 'rotate(0deg)'
+                : (isPlus ? 'rotate(45deg)' : 'rotate(180deg)');
     }
-}
+};
 
 window.filterProducts = function(cat) {
-    if (cat === 'All') renderProducts(products);
-    else renderProducts(products.filter(p => p.cat === cat));
+    if (cat === 'All') {
+        renderProducts(products);
+    } else {
+        renderProducts(products.filter(p => p.cat === cat));
+    }
+
     scrollToCatalog();
-}
+};
 
 window.filterSingleProduct = function(id) {
     renderProducts(products.filter(p => p.id === id));
     scrollToCatalog();
-}
+};
 
 function scrollToCatalog() {
     const target = document.getElementById('catalog');
-    if (target) window.scrollTo({ top: target.offsetTop - 100, behavior: 'smooth' });
+
+    if (target) {
+        window.scrollTo({
+            top: target.offsetTop - 100,
+            behavior: 'smooth'
+        });
+    }
 }
 
-// 6. MODAL (Key Features moved below Description)
+// 6. PRODUCT DETAILS MODAL
+
 window.viewDetails = function(id) {
     const p = products.find(item => item.id === id);
+
     if (!p) return;
+
     activeProductId = id;
 
     document.getElementById('modal-title').innerText = p.name;
-    document.getElementById('modal-img').src = p.img; 
-    
-    // Description + Key Features directly underneath
+    document.getElementById('modal-img').src = p.img;
+
     document.getElementById('modal-desc').innerHTML = `
         <div class="mb-6">
-            <span class="text-xl text-slate-600 leading-relaxed font-medium">${p.desc}</span>
+            <span class="text-xl text-slate-600 leading-relaxed font-medium">
+                ${p.desc}
+            </span>
         </div>
+
         <div class="bg-blue-50 p-6 rounded-[2rem] border border-blue-100 mb-8 shadow-sm">
-            <h4 class="text-[10px] font-black text-[#004b8d] uppercase tracking-widest mb-2">Key Features</h4>
-            <p class="text-lg font-extrabold text-[#004b8d] italic leading-tight">${p.features || 'Premium Pharmaceutical Grade'}</p>
+            <h4 class="text-[10px] font-black text-[#004b8d] uppercase tracking-widest mb-2">
+                Key Features
+            </h4>
+
+            <p class="text-lg font-extrabold text-[#004b8d] italic leading-tight">
+                ${p.features || 'Premium Pharmaceutical Grade'}
+            </p>
         </div>
     `;
-    
+
+    // Form, Purity and Grade are intentionally shown on the card
+    // instead of repeating them inside technical details.
     const techSpecs = [
         { label: "Function", value: p.func },
-        { label: "Grade", value: p.grade },
         { label: "Formula", value: p.mol },
-        { label: "Purity", value: p.purity },
-        { label: "Appearance", value: p.appearance },
         { label: "Weight", value: p.weight },
         { label: "Density", value: p.density },
-        { label: "Melting Point", value: p.melting }
+        { label: "Melting Point", value: p.melting },
+        { label: "Origin", value: p.origin },
+        { label: "MOQ", value: p.moq },
+        { label: "Packaging", value: p.pkgType }
     ];
 
-    document.getElementById('specs-grid').innerHTML = techSpecs.map(s => `
-        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-            <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">${s.label}</h4>
-            <p class="text-base font-extrabold text-slate-800">${s.value || 'N/A'}</p>
-        </div>
-    `).join('');
+    document.getElementById('specs-grid').innerHTML =
+        techSpecs.map(s => `
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+
+                <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">
+                    ${s.label}
+                </h4>
+
+                <p class="text-base font-extrabold text-slate-800">
+                    ${s.value || 'N/A'}
+                </p>
+
+            </div>
+        `).join('');
 
     document.getElementById('details-modal').classList.remove('hidden');
-    lucide.createIcons();
-}
 
-window.closeDetails = function() { document.getElementById('details-modal').classList.add('hidden'); }
+    lucide.createIcons();
+};
+
+window.closeDetails = function() {
+    document.getElementById('details-modal').classList.add('hidden');
+};
 
 window.addFromModal = function() {
-    if(activeProductId) window.addToCart(activeProductId);
-    window.closeDetails();
-}
+    if (activeProductId) {
+        window.addToCart(activeProductId);
+    }
 
-// 7. CART & STARTUP
+    window.closeDetails();
+};
+
+// 7. QUOTE LIST
+
 window.addToCart = function(id) {
     const item = products.find(p => p.id === id);
+
+    if (!item) return;
+
     const inCart = cart.find(c => c.id === id);
-    if (inCart) { inCart.qty++; } else { cart.push({...item, qty: 1}); }
+
+    if (inCart) {
+        inCart.qty++;
+    } else {
+        cart.push({
+            ...item,
+            qty: 1
+        });
+    }
+
     window.updateCartUI();
+
     const toast = document.createElement('div');
-    toast.className = "fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-6 py-3 rounded-full z-[100] text-sm font-bold shadow-2xl";
-    toast.innerText = `${item.name} added to inquiry`;
+
+    toast.className =
+        "fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-6 py-3 rounded-full z-[100] text-sm font-bold shadow-2xl";
+
+    toast.innerText = `${item.name} added to quote list`;
+
     document.body.appendChild(toast);
+
     setTimeout(() => toast.remove(), 2000);
-}
+};
 
 window.updateCartUI = function() {
-    const total = cart.reduce((acc, c) => acc + c.qty, 0);
-    document.getElementById('cart-count').innerText = total;
-    if(document.getElementById('cart-total-count')) document.getElementById('cart-total-count').innerText = total;
-    document.getElementById('cart-items').innerHTML = cart.map(c => `
-        <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100 mb-4">
-            <div class="flex-1"><h4 class="text-sm font-bold text-slate-800">${c.name}</h4><p class="text-[10px] uppercase text-slate-400">${c.stock}</p></div>
-            <div class="flex items-center gap-3 bg-white px-3 py-1 rounded-xl border border-slate-100">
-                <button onclick="window.changeQty(${c.id}, -1)" class="font-bold text-slate-400">-</button>
-                <span class="text-sm font-black w-4 text-center">${c.qty}</span>
-                <button onclick="window.changeQty(${c.id}, 1)" class="text-[#004b8d] font-bold">+</button>
+    const total = cart.reduce(
+        (acc, c) => acc + c.qty,
+        0
+    );
+
+    const countEl = document.getElementById('cart-count');
+    const totalCountEl = document.getElementById('cart-total-count');
+    const itemsEl = document.getElementById('cart-items');
+
+    if (countEl) {
+        countEl.innerText = total;
+    }
+
+    if (totalCountEl) {
+        totalCountEl.innerText = total;
+    }
+
+    if (itemsEl) {
+        itemsEl.innerHTML = cart.map(c => `
+            <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100 mb-4">
+
+                <div class="flex-1">
+
+                    <h4 class="text-sm font-bold text-slate-800">
+                        ${c.name}
+                    </h4>
+
+                    <p class="text-[10px] uppercase text-slate-400">
+                        ${c.stock}
+                    </p>
+
+                </div>
+
+                <div class="flex items-center gap-3 bg-white px-3 py-1 rounded-xl border border-slate-100">
+
+                    <button
+                        onclick="window.changeQty(${c.id}, -1)"
+                        class="font-bold text-slate-400">
+                        -
+                    </button>
+
+                    <span class="text-sm font-black w-4 text-center">
+                        ${c.qty}
+                    </span>
+
+                    <button
+                        onclick="window.changeQty(${c.id}, 1)"
+                        class="text-[#004b8d] font-bold">
+                        +
+                    </button>
+
+                </div>
+
             </div>
-        </div>`).join('');
-}
+        `).join('');
+    }
+};
 
 window.changeQty = function(id, delta) {
     const item = cart.find(c => c.id === id);
+
+    if (!item) return;
+
     item.qty += delta;
-    if (item.qty < 1) cart = cart.filter(c => c.id !== id);
+
+    if (item.qty < 1) {
+        cart = cart.filter(c => c.id !== id);
+    }
+
     updateCartUI();
-}
+};
 
 window.toggleCart = function() {
-    document.getElementById('cart-drawer').classList.toggle('invisible');
-    document.getElementById('cart-content').classList.toggle('translate-x-full');
-}
+    const drawer = document.getElementById('cart-drawer');
+    const content = document.getElementById('cart-content');
+
+    if (!drawer || !content) return;
+
+    drawer.classList.toggle('invisible');
+    content.classList.toggle('translate-x-full');
+};
+
+// 8. REQUEST A QUOTE FLOW
 
 window.showCheckout = function() {
-    if (cart.length === 0) return alert("Inquiry list is empty!");
-    document.getElementById('checkout-modal').classList.remove('hidden');
-    document.getElementById('summary-items').innerHTML = cart.map(c => `<div class="flex justify-between items-center bg-white p-4 rounded-2xl border border-slate-100 shadow-sm mb-2"><span class="font-black text-slate-800 text-base ml-4">${c.name}</span><div class="bg-slate-50 px-4 py-1 rounded-lg border border-slate-100 mr-4"><span class="font-black text-[#004b8d] text-lg">x${c.qty}</span></div></div>`).join('');
+    if (cart.length === 0) {
+        return alert("Quote list is empty!");
+    }
+
+    window.openQuoteForm(cart[0].id);
+};
+
+window.requestQuote = function(id) {
+
+    const existing = cart.find(c => c.id === id);
+
+    if (existing) {
+        existing.qty = 1;
+    } else {
+
+        const item = products.find(p => p.id === id);
+
+        if (item) {
+            cart = [
+                item,
+                ...cart
+            ];
+        }
+    }
+
+    window.updateCartUI();
+
+    // Open the quote form immediately
+    window.openQuoteForm(id);
+};
+
+window.requestQuoteFromDetails = function() {
+
+    if (activeProductId) {
+        window.requestQuote(activeProductId);
+    }
+
+    window.closeDetails();
+};
+
+// 9. OPEN QUOTE FORM
+
+window.openQuoteForm = function(id) {
+
+    const selected =
+        products.find(p => p.id === id) ||
+        cart[0];
+
+    if (!selected) return;
+
+    const productField =
+        document.getElementById('cust-product');
+
+    if (productField) {
+        productField.value = selected.name;
+    }
+
+    const summaryItems =
+        document.getElementById('summary-items');
+
+    if (summaryItems) {
+
+        const summary = cart.map(c => `
+            <div class="flex justify-between items-center bg-white p-4 rounded-2xl border border-slate-100 shadow-sm">
+
+                <div>
+
+                    <div class="font-black text-slate-800 text-base">
+                        ${c.name}
+                    </div>
+
+                    <div class="text-xs font-bold text-slate-400 mt-1">
+                        ${c.stock}
+                    </div>
+
+                </div>
+
+                <div class="bg-slate-50 px-4 py-2 rounded-lg border border-slate-100">
+
+                    <span class="font-black text-[#004b8d] text-lg">
+                        x${c.qty}
+                    </span>
+
+                </div>
+
+            </div>
+        `).join('');
+
+        summaryItems.innerHTML = summary;
+    }
+
+    document
+        .getElementById('checkout-modal')
+        .classList.remove('hidden');
+
+    lucide.createIcons();
+};
+
+window.closeCheckout = function() {
+
+    document
+        .getElementById('checkout-modal')
+        .classList.add('hidden');
+};
+
+// 10. COLLECT QUOTE FORM DATA
+
+function getQuoteData() {
+
+    const fields = [
+        'cust-name',
+        'cust-company',
+        'cust-phone',
+        'cust-email',
+        'cust-product',
+        'cust-quantity',
+        'cust-grade'
+    ];
+
+    const values = {};
+
+    for (const id of fields) {
+
+        const el = document.getElementById(id);
+
+        if (!el || !el.value.trim()) {
+
+            if (el) {
+                el.reportValidity();
+            }
+
+            return null;
+        }
+
+        values[id] = el.value.trim();
+    }
+
+    // Optional designation
+    const designationEl =
+        document.getElementById('cust-designation');
+
+    values.designation =
+        designationEl
+            ? designationEl.value.trim()
+            : '';
+
+    // Optional specification / COA upload
+    const fileEl =
+        document.getElementById('cust-file');
+
+    const file =
+        fileEl && fileEl.files
+            ? fileEl.files[0]
+            : null;
+
+    values.fileName =
+        file
+            ? file.name
+            : 'Not uploaded';
+
+    return values;
 }
 
-window.closeCheckout = function() { document.getElementById('checkout-modal').classList.add('hidden'); }
+// 11. SUBMIT QUOTE
 
-window.submitOrder = function(method) {
-    const name = document.getElementById('cust-name').value.trim();
-    if (!name) return alert("Please enter your name.");
-    let body = `NEW INQUIRY - EXCIPURE PHARMA\nName: ${name}\n\nProducts:\n` + cart.map(c => `- ${c.name} (x${c.qty})`).join('\n');
-    if (method === 'whatsapp') window.open(`https://wa.me/919398453760?text=${encodeURIComponent(body)}`, '_blank');
-    else window.location.href = `mailto:info@excipurepharma.com?subject=Inquiry&body=${encodeURIComponent(body)}`;
-}
+window.submitQuote = function(method) {
+
+    const data = getQuoteData();
+
+    if (!data) return;
+
+    const body = [
+
+        'NEW QUOTE REQUEST - EXCIPURE PHARMA',
+        '',
+
+        `Name: ${data['cust-name']}`,
+        `Company: ${data['cust-company']}`,
+        `Designation: ${data.designation || 'Not provided'}`,
+        `WhatsApp / Mobile: ${data['cust-phone']}`,
+        `Email: ${data['cust-email']}`,
+        `Product Required: ${data['cust-product']}`,
+        `Quantity: ${data['cust-quantity']}`,
+        `Required Grade: ${data['cust-grade']}`,
+        `Specification/COA: ${data.fileName}`,
+
+        '',
+
+        'Selected Products:',
+
+        cart.map(c =>
+            `- ${c.name} (x${c.qty})`
+        ).join('\n') || '- None'
+
+    ].join('\n');
+
+    // WhatsApp
+    if (method === 'whatsapp') {
+
+        window.open(
+            `https://wa.me/919398453760?text=${encodeURIComponent(body)}`,
+            '_blank'
+        );
+
+    } else {
+
+        // Email
+        window.location.href =
+            `mailto:info@excipurepharma.com?subject=${
+                encodeURIComponent(
+                    'Request a Quote - ' +
+                    data['cust-product']
+                )
+            }&body=${
+                encodeURIComponent(body)
+            }`;
+    }
+};
+
+// Backward compatibility
+window.submitOrder = window.submitQuote;
+
+// 12. STARTUP
 
 document.addEventListener('DOMContentLoaded', () => {
+
     if (document.getElementById('product-grid')) {
+
         window.renderProducts(products);
         window.renderSidebar();
+
     }
+
 });
