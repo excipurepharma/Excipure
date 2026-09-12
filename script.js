@@ -150,7 +150,7 @@ window.renderProducts = function(items) {
             </div>
 
 
-            <!-- IMAGE -->
+            <!-- PRODUCT IMAGE -->
             <img
                 src="${p.img}?v=${Date.now()}"
                 alt="${p.name}"
@@ -198,50 +198,49 @@ window.renderProducts = function(items) {
 
                 <!-- =================================================
                      FORM / PURITY / GRADE
-                     Larger fonts as requested
+                     VERTICAL LAYOUT
                 ================================================= -->
 
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
-
+                <div class="flex flex-col gap-2 mb-6">
 
                     <!-- FORM -->
-                    <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100">
+                    <div class="text-base md:text-lg text-slate-700 leading-relaxed">
 
-                        <div class="text-sm font-black text-slate-400 uppercase tracking-widest mb-2">
-                            Form
-                        </div>
+                        <span class="font-black">
+                            Form:
+                        </span>
 
-                        <div class="text-base font-black text-slate-800 leading-snug">
+                        <span class="font-black text-slate-900">
                             ${p.appearance || 'N/A'}
-                        </div>
+                        </span>
 
                     </div>
 
 
                     <!-- PURITY -->
-                    <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100">
+                    <div class="text-base md:text-lg text-slate-700 leading-relaxed">
 
-                        <div class="text-sm font-black text-slate-400 uppercase tracking-widest mb-2">
-                            Purity
-                        </div>
+                        <span class="font-black">
+                            Purity:
+                        </span>
 
-                        <div class="text-base font-black text-slate-800 leading-snug">
+                        <span class="font-black text-slate-900">
                             ${p.purity || 'N/A'}
-                        </div>
+                        </span>
 
                     </div>
 
 
                     <!-- GRADE -->
-                    <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100">
+                    <div class="text-base md:text-lg text-slate-700 leading-relaxed">
 
-                        <div class="text-sm font-black text-slate-400 uppercase tracking-widest mb-2">
-                            Grade
-                        </div>
+                        <span class="font-black">
+                            Grade:
+                        </span>
 
-                        <div class="text-base font-black text-slate-800 leading-snug">
+                        <span class="font-black text-slate-900">
                             ${p.grade || 'N/A'}
-                        </div>
+                        </span>
 
                     </div>
 
@@ -267,7 +266,7 @@ window.renderProducts = function(items) {
                 <div class="pt-4 border-t border-slate-50 grid grid-cols-1 sm:grid-cols-2 gap-3">
 
 
-                    <!-- DETAILS -->
+                    <!-- DETAILS BUTTON -->
                     <button
                         onclick="window.viewDetails(${p.id})"
                         class="w-full bg-white text-[#004b8d] border-2 border-[#004b8d] py-4 rounded-2xl font-black text-base uppercase tracking-widest hover:bg-[#004b8d] hover:text-white transition shadow-sm">
@@ -277,7 +276,7 @@ window.renderProducts = function(items) {
                     </button>
 
 
-                    <!-- REQUEST A QUOTE -->
+                    <!-- REQUEST A QUOTE BUTTON -->
                     <button
                         onclick="window.requestQuote(${p.id})"
                         class="w-full bg-[#004b8d] text-white py-4 rounded-2xl font-black text-base uppercase tracking-widest hover:bg-[#1a7139] transition shadow-xl">
