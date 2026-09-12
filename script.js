@@ -140,7 +140,6 @@ window.renderProducts = function(items) {
 
         <div class="product-card bg-white rounded-[2.5rem] p-7 border border-slate-100 shadow-sm relative overflow-hidden group transition-all duration-300">
 
-            <!-- STOCK -->
             <div class="absolute top-5 left-5 z-10">
 
                 <span class="block bg-[#004b8d] text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest shadow-md">
@@ -152,7 +151,6 @@ window.renderProducts = function(items) {
             </div>
 
 
-            <!-- PRODUCT IMAGE -->
             <img
                 src="${p.img}?v=${Date.now()}"
                 alt="${p.name}"
@@ -162,7 +160,6 @@ window.renderProducts = function(items) {
 
             <div class="px-2">
 
-                <!-- CATEGORY -->
                 <p class="text-[12px] font-black text-[#1a7139] uppercase mb-1 tracking-tighter">
 
                     ${p.cat || ''}
@@ -170,7 +167,6 @@ window.renderProducts = function(items) {
                 </p>
 
 
-                <!-- PRODUCT NAME -->
                 <h3 class="font-black text-2xl min-h-[3.5rem] mb-4 uppercase leading-tight text-slate-900">
 
                     ${p.name}
@@ -178,7 +174,6 @@ window.renderProducts = function(items) {
                 </h3>
 
 
-                <!-- APPLICATION -->
                 <p class="text-[16px] text-slate-500 mb-1 leading-tight">
 
                     Application:
@@ -192,7 +187,6 @@ window.renderProducts = function(items) {
                 </p>
 
 
-                <!-- KEY FEATURES -->
                 <p class="text-[16px] text-slate-500 mb-5 leading-tight">
 
                     Key Features:
@@ -206,9 +200,7 @@ window.renderProducts = function(items) {
                 </p>
 
 
-                <!-- FORM / PURITY / GRADE -->
                 <div class="flex flex-col gap-2 mb-6">
-
 
                     <div class="text-base md:text-lg text-slate-700 leading-relaxed">
 
@@ -257,7 +249,6 @@ window.renderProducts = function(items) {
                 </div>
 
 
-                <!-- MOQ -->
                 <div class="text-[15px] text-slate-400 leading-tight mb-6 uppercase font-black">
 
                     MOQ:
@@ -271,9 +262,7 @@ window.renderProducts = function(items) {
                 </div>
 
 
-                <!-- ACTIONS -->
                 <div class="pt-4 border-t border-slate-50 grid grid-cols-1 sm:grid-cols-2 gap-3">
-
 
                     <button
                         type="button"
@@ -528,35 +517,51 @@ window.renderSidebar = function() {
 
 window.searchProducts = function(query) {
 
-    const q = String(query || '')
-        .toLowerCase()
-        .trim();
+    const q =
+        String(query || '')
+            .toLowerCase()
+            .trim();
 
 
     if (!q) {
 
-        window.renderProducts(products);
+        window.renderProducts(
+            products
+        );
 
         return;
 
     }
 
 
-    const filtered = products.filter(p =>
+    const filtered =
+        products.filter(p =>
 
-        p.name.toLowerCase().includes(q) ||
+            p.name
+                .toLowerCase()
+                .includes(q)
 
-        p.cat.toLowerCase().includes(q) ||
+            ||
 
-        (
-            p.features &&
-            p.features.toLowerCase().includes(q)
-        )
+            p.cat
+                .toLowerCase()
+                .includes(q)
 
+            ||
+
+            (
+                p.features &&
+                p.features
+                    .toLowerCase()
+                    .includes(q)
+            )
+
+        );
+
+
+    window.renderProducts(
+        filtered
     );
-
-
-    window.renderProducts(filtered);
 
 };
 
@@ -565,25 +570,32 @@ window.searchProducts = function(query) {
 // 7. DROPDOWN / FILTER
 // =========================================================
 
-window.toggleDropdown = function(btn) {
+window.toggleDropdown =
+function(btn) {
 
     if (!btn) return;
 
-    const content = btn.nextElementSibling;
+    const content =
+        btn.nextElementSibling;
 
-    const icon = btn.querySelector(
-        '.dropdown-icon'
-    );
+    const icon =
+        btn.querySelector(
+            '.dropdown-icon'
+        );
 
 
     if (!content) return;
 
 
     const opening =
-        content.classList.contains('hidden');
+        content.classList.contains(
+            'hidden'
+        );
 
 
-    content.classList.toggle('hidden');
+    content.classList.toggle(
+        'hidden'
+    );
 
 
     if (icon) {
@@ -598,11 +610,14 @@ window.toggleDropdown = function(btn) {
 };
 
 
-window.filterProducts = function(cat) {
+window.filterProducts =
+function(cat) {
 
     if (cat === 'All') {
 
-        window.renderProducts(products);
+        window.renderProducts(
+            products
+        );
 
     } else {
 
@@ -620,7 +635,8 @@ window.filterProducts = function(cat) {
 };
 
 
-window.filterSingleProduct = function(id) {
+window.filterSingleProduct =
+function(id) {
 
     const item =
         products.find(
@@ -631,7 +647,10 @@ window.filterSingleProduct = function(id) {
     if (!item) return;
 
 
-    window.renderProducts([item]);
+    window.renderProducts([
+        item
+    ]);
+
 
     scrollToCatalog();
 
@@ -641,7 +660,9 @@ window.filterSingleProduct = function(id) {
 function scrollToCatalog() {
 
     const target =
-        document.getElementById('catalog');
+        document.getElementById(
+            'catalog'
+        );
 
 
     if (!target) return;
@@ -664,7 +685,8 @@ function scrollToCatalog() {
 // 8. DETAILS MODAL
 // =========================================================
 
-window.viewDetails = function(id) {
+window.viewDetails =
+function(id) {
 
     const p =
         products.find(
@@ -802,25 +824,27 @@ window.viewDetails = function(id) {
 
 
         specs.innerHTML =
-            techSpecs.map(s => `
+            techSpecs.map(
+                s => `
 
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
 
-                    <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">
+                        <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">
 
-                        ${s.label}
+                            ${s.label}
 
-                    </h4>
+                        </h4>
 
-                    <p class="text-base font-extrabold text-slate-800">
+                        <p class="text-base font-extrabold text-slate-800">
 
-                        ${s.value || 'N/A'}
+                            ${s.value || 'N/A'}
 
-                    </p>
+                        </p>
 
-                </div>
+                    </div>
 
-            `).join('');
+                `
+            ).join('');
 
     }
 
@@ -845,7 +869,8 @@ window.viewDetails = function(id) {
 };
 
 
-window.closeDetails = function() {
+window.closeDetails =
+function() {
 
     const modal =
         document.getElementById(
@@ -868,7 +893,8 @@ window.closeDetails = function() {
 // 9. CART / QUOTE LIST
 // =========================================================
 
-window.addToCart = function(id) {
+window.addToCart =
+function(id) {
 
     const product =
         products.find(
@@ -888,7 +914,9 @@ window.addToCart = function(id) {
     if (existing) {
 
         existing.qty =
-            Number(existing.qty || 1) + 1;
+            Number(
+                existing.qty || 1
+            ) + 1;
 
     } else {
 
@@ -896,7 +924,9 @@ window.addToCart = function(id) {
 
             ...product,
 
-            qty: 1
+            qty: 1,
+
+            quoteQuantity: ''
 
         });
 
@@ -905,6 +935,7 @@ window.addToCart = function(id) {
 
     window.updateCartUI();
 
+
     window.showQuoteToast(
         `${product.name} added to quote list`
     );
@@ -912,7 +943,8 @@ window.addToCart = function(id) {
 };
 
 
-window.changeQty = function(id, delta) {
+window.changeQty =
+function(id, delta) {
 
     const item =
         cart.find(
@@ -923,14 +955,19 @@ window.changeQty = function(id, delta) {
     if (!item) return;
 
 
-    item.qty = Math.max(
+    item.qty =
+        Math.max(
 
-        1,
+            1,
 
-        Number(item.qty || 1) +
-        Number(delta || 0)
+            Number(
+                item.qty || 1
+            ) +
+            Number(
+                delta || 0
+            )
 
-    );
+        );
 
 
     window.updateCartUI();
@@ -938,7 +975,8 @@ window.changeQty = function(id, delta) {
 };
 
 
-window.removeFromCart = function(id) {
+window.removeFromCart =
+function(id) {
 
     const removed =
         cart.find(
@@ -965,12 +1003,15 @@ window.removeFromCart = function(id) {
 
 };
 
-
 // =========================================================
 // 10. CART UI
 // =========================================================
 
-function buildCartItem(item, extraClass = '') {
+function buildCartItem(
+    item,
+    extraClass = '',
+    showQuantityInput = false
+) {
 
     return `
 
@@ -1060,7 +1101,86 @@ function buildCartItem(item, extraClass = '') {
 }
 
 
-window.updateCartUI = function() {
+// =========================================================
+// 10B. QUOTE-PRODUCT ITEM
+// =========================================================
+
+function buildQuoteProductItem(item) {
+
+    return `
+
+        <div class="bg-slate-50 border border-slate-100 rounded-2xl p-4 mb-3">
+
+            <!-- PRODUCT HEADER -->
+
+            <div class="flex items-start gap-3">
+
+                <div class="flex-1 min-w-0">
+
+                    <h4 class="text-base font-black text-slate-800 leading-snug">
+
+                        ${item.name}
+
+                    </h4>
+
+
+                    <p class="text-[10px] uppercase font-bold text-slate-400 mt-1">
+
+                        ${item.stock || ''}
+
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    onclick="window.removeFromCart(${item.id})"
+                    class="shrink-0 p-2 rounded-xl text-red-500 hover:bg-red-50 transition">
+
+                    <i
+                        data-lucide="trash-2"
+                        class="w-4 h-4">
+                    </i>
+
+                </button>
+
+            </div>
+
+
+            <!-- QUANTITY REQUIRED -->
+
+            <div class="mt-4">
+
+                <label
+                    for="quote-quantity-${item.id}"
+                    class="block text-xs font-black text-slate-600 uppercase tracking-wider mb-2">
+
+                    Quantity Required:
+
+                </label>
+
+
+                <input
+                    type="text"
+                    id="quote-quantity-${item.id}"
+                    value="${item.quoteQuantity || ''}"
+                    placeholder="e.g (25/50/100 KGs/Liters/Tonnes)"
+                    autocomplete="off"
+                    oninput="window.updateQuoteQuantity(${item.id}, this.value)"
+                    class="w-full p-3 bg-white rounded-xl border border-slate-200 text-sm font-bold text-slate-700 focus:ring-2 focus:ring-[#004b8d] focus:border-[#004b8d] outline-none">
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+window.updateCartUI =
+function() {
 
     const count =
         cart.length;
@@ -1102,7 +1222,7 @@ window.updateCartUI = function() {
 
     if (cartItems) {
 
-        if (cart.length === 0) {
+        if (!cart.length) {
 
             cartItems.innerHTML = `
 
@@ -1156,7 +1276,8 @@ window.updateCartUI = function() {
 // 11. REQUEST A QUOTE
 // =========================================================
 
-window.showCheckout = function() {
+window.showCheckout =
+function() {
 
     if (!cart.length) {
 
@@ -1174,7 +1295,8 @@ window.showCheckout = function() {
 };
 
 
-window.requestQuote = function(id) {
+window.requestQuote =
+function(id) {
 
     const product =
         products.find(
@@ -1197,7 +1319,9 @@ window.requestQuote = function(id) {
 
             ...product,
 
-            qty: 1
+            qty: 1,
+
+            quoteQuantity: ''
 
         });
 
@@ -1234,7 +1358,8 @@ function() {
 // 12. SEARCHABLE PRODUCT MULTI-SELECT
 // =========================================================
 
-window.toggleProductPicker = function() {
+window.toggleProductPicker =
+function() {
 
     const picker =
         document.getElementById(
@@ -1278,7 +1403,8 @@ window.toggleProductPicker = function() {
 };
 
 
-window.closeProductPicker = function() {
+window.closeProductPicker =
+function() {
 
     const picker =
         document.getElementById(
@@ -1326,35 +1452,41 @@ function(query = '') {
 
 
     const results =
-        products.filter(product => {
+        products.filter(
+            product => {
 
-            if (!q) return true;
+                if (!q) {
+
+                    return true;
+
+                }
 
 
-            return (
+                return (
 
-                product.name
-                    .toLowerCase()
-                    .includes(q)
-
-                ||
-
-                product.cat
-                    .toLowerCase()
-                    .includes(q)
-
-                ||
-
-                (
-                    product.features &&
-                    product.features
+                    product.name
                         .toLowerCase()
                         .includes(q)
-                )
 
-            );
+                    ||
 
-        });
+                    product.cat
+                        .toLowerCase()
+                        .includes(q)
+
+                    ||
+
+                    (
+                        product.features &&
+                        product.features
+                            .toLowerCase()
+                            .includes(q)
+                    )
+
+                );
+
+            }
+        );
 
 
     if (!results.length) {
@@ -1375,66 +1507,70 @@ function(query = '') {
 
 
     container.innerHTML =
-        results.map(product => {
+        results
+            .map(
+                product => {
 
-            const selected =
-                cart.some(
-                    item =>
-                        item.id ===
-                        product.id
-                );
-
-
-            return `
-
-                <button
-                    type="button"
-                    onclick="window.toggleQuoteProduct(${product.id})"
-                    class="w-full flex items-center gap-3 p-3 rounded-xl text-left transition ${
-                        selected
-                            ? 'bg-blue-50 border border-blue-100'
-                            : 'hover:bg-slate-50 border border-transparent'
-                    }">
+                    const selected =
+                        cart.some(
+                            item =>
+                                item.id ===
+                                product.id
+                        );
 
 
-                    <span
-                        class="w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 ${
-                            selected
-                                ? 'bg-[#004b8d] border-[#004b8d] text-white'
-                                : 'border-slate-300 bg-white'
-                        }">
+                    return `
 
-                        ${
-                            selected
-                                ? '<i data-lucide="check" class="w-3.5 h-3.5"></i>'
-                                : ''
-                        }
-
-                    </span>
+                        <button
+                            type="button"
+                            onclick="window.toggleQuoteProduct(${product.id})"
+                            class="w-full flex items-center gap-3 p-3 rounded-xl text-left transition ${
+                                selected
+                                    ? 'bg-blue-50 border border-blue-100'
+                                    : 'hover:bg-slate-50 border border-transparent'
+                            }">
 
 
-                    <span class="min-w-0 flex-1">
+                            <span
+                                class="w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 ${
+                                    selected
+                                        ? 'bg-[#004b8d] border-[#004b8d] text-white'
+                                        : 'border-slate-300 bg-white'
+                                }">
 
-                        <span class="block text-sm font-black text-slate-800 truncate">
+                                ${
+                                    selected
+                                        ? '<i data-lucide="check" class="w-3.5 h-3.5"></i>'
+                                        : ''
+                                }
 
-                            ${product.name}
-
-                        </span>
+                            </span>
 
 
-                        <span class="block text-[10px] uppercase font-bold text-slate-400 mt-0.5">
+                            <span class="min-w-0 flex-1">
 
-                            ${product.cat}
+                                <span class="block text-sm font-black text-slate-800 truncate">
 
-                        </span>
+                                    ${product.name}
 
-                    </span>
+                                </span>
 
-                </button>
 
-            `;
+                                <span class="block text-[10px] uppercase font-bold text-slate-400 mt-0.5">
 
-        }).join('');
+                                    ${product.cat}
+
+                                </span>
+
+                            </span>
+
+                        </button>
+
+                    `;
+
+                }
+            )
+            .join('');
 
 
     lucide.createIcons();
@@ -1473,7 +1609,9 @@ function(id) {
 
             ...product,
 
-            qty: 1
+            qty: 1,
+
+            quoteQuantity: ''
 
         });
 
@@ -1499,7 +1637,54 @@ function(id) {
 
 
 // =========================================================
-// 12B. SYNCHRONIZE QUOTE FORM + RIGHT SUMMARY
+// 12B. FREE-TEXT QUANTITY PER SELECTED PRODUCT
+// =========================================================
+
+window.updateQuoteQuantity =
+function(id, value) {
+
+    const item =
+        cart.find(
+            product =>
+                product.id === id
+        );
+
+
+    if (!item) return;
+
+
+    item.quoteQuantity =
+        String(
+            value || ''
+        );
+
+
+    // Keep the right-side summary
+    // synchronized without rebuilding
+    // the entire form while the user types.
+
+    const summaryInput =
+        document.getElementById(
+            `summary-quantity-${id}`
+        );
+
+
+    if (
+        summaryInput &&
+        summaryInput.value !==
+            item.quoteQuantity
+    ) {
+
+        summaryInput.value =
+            item.quoteQuantity;
+
+    }
+
+};
+
+
+// =========================================================
+// 12C. SYNCHRONIZE QUOTE FORM + RIGHT SUMMARY
 // =========================================================
 
 window.updateQuoteProductUI =
@@ -1523,9 +1708,7 @@ function() {
         );
 
 
-    // ---------------------------------------------------------
-    // SELECTED PRODUCTS UNDER PICKER
-    // ---------------------------------------------------------
+    // LEFT SIDE - SELECTED PRODUCTS
 
     if (selectedContainer) {
 
@@ -1536,52 +1719,19 @@ function() {
         } else {
 
             selectedContainer.innerHTML =
-                cart.map(item => `
-
-                    <div class="flex items-center justify-between gap-3 bg-blue-50 border border-blue-100 rounded-xl px-3 py-2">
-
-                        <div class="min-w-0 flex-1">
-
-                            <div class="text-sm font-black text-slate-800 truncate">
-
-                                ${item.name}
-
-                            </div>
-
-                            <div class="text-[10px] font-bold text-slate-400 uppercase mt-0.5">
-
-                                Cart quantity: ${item.qty}
-
-                            </div>
-
-                        </div>
-
-
-                        <button
-                            type="button"
-                            onclick="window.removeFromCart(${item.id})"
-                            aria-label="Remove ${item.name}"
-                            class="shrink-0 p-1 rounded-lg text-red-500 hover:bg-red-100 transition">
-
-                            <i
-                                data-lucide="x"
-                                class="w-4 h-4">
-                            </i>
-
-                        </button>
-
-                    </div>
-
-                `).join('');
+                cart.map(
+                    item =>
+                        buildQuoteProductItem(
+                            item
+                        )
+                ).join('');
 
         }
 
     }
 
 
-    // ---------------------------------------------------------
-    // PRODUCT SELECTOR BUTTON LABEL
-    // ---------------------------------------------------------
+    // PRODUCT SELECTOR LABEL
 
     if (productLabel) {
 
@@ -1595,10 +1745,7 @@ function() {
     }
 
 
-    // ---------------------------------------------------------
-    // RIGHT-SIDE SUMMARY
-    // THIS MUST ALWAYS MIRROR CART
-    // ---------------------------------------------------------
+    // RIGHT SIDE - SUMMARY
 
     if (summaryContainer) {
 
@@ -1632,8 +1779,72 @@ function() {
         } else {
 
             summaryContainer.innerHTML =
-                cart.map(item =>
-                    buildCartItem(item)
+
+                cart.map(
+                    item => `
+
+                        <div class="bg-slate-50 border border-slate-100 rounded-2xl p-4 mb-3">
+
+                            <div class="flex items-start gap-3">
+
+                                <div class="flex-1 min-w-0">
+
+                                    <h4 class="text-base font-black text-slate-800 leading-snug">
+
+                                        ${item.name}
+
+                                    </h4>
+
+
+                                    <p class="text-[10px] uppercase font-bold text-slate-400 mt-1">
+
+                                        ${item.stock || ''}
+
+                                    </p>
+
+                                </div>
+
+
+                                <button
+                                    type="button"
+                                    onclick="window.removeFromCart(${item.id})"
+                                    class="shrink-0 p-2 rounded-xl text-red-500 hover:bg-red-50 transition">
+
+                                    <i
+                                        data-lucide="trash-2"
+                                        class="w-4 h-4">
+                                    </i>
+
+                                </button>
+
+                            </div>
+
+
+                            <div class="mt-4">
+
+                                <label
+                                    for="summary-quantity-${item.id}"
+                                    class="block text-xs font-black text-slate-600 uppercase tracking-wider mb-2">
+
+                                    Quantity Required:
+
+                                </label>
+
+
+                                <input
+                                    type="text"
+                                    id="summary-quantity-${item.id}"
+                                    value="${item.quoteQuantity || ''}"
+                                    placeholder="e.g (25/50/100 KGs/Liters/Tonnes)"
+                                    autocomplete="off"
+                                    oninput="window.updateQuoteQuantity(${item.id}, this.value)"
+                                    class="w-full p-3 bg-white rounded-xl border border-slate-200 text-sm font-bold text-slate-700 focus:ring-2 focus:ring-[#004b8d] focus:border-[#004b8d] outline-none">
+
+                            </div>
+
+                        </div>
+
+                    `
                 ).join('');
 
         }
@@ -1647,7 +1858,7 @@ function() {
 
 
 // =========================================================
-// 12C. OPEN QUOTE FORM
+// 12D. OPEN QUOTE FORM
 // =========================================================
 
 window.openQuoteForm =
@@ -1664,9 +1875,6 @@ function() {
     }
 
 
-    // IMPORTANT:
-    // Refresh cart + right-side quote summary
-    // BEFORE showing the form.
     window.updateCartUI();
 
     window.updateQuoteProductUI();
@@ -1686,7 +1894,9 @@ function() {
     }
 
 
-    window.renderQuoteProductOptions('');
+    window.renderQuoteProductOptions(
+        ''
+    );
 
 
     const modal =
@@ -1732,9 +1942,8 @@ function() {
 
 };
 
-
 // =========================================================
-// 14. QUOTE FORM DATA
+// 14. READ QUOTE FORM
 // =========================================================
 
 function getQuoteData() {
@@ -1756,7 +1965,6 @@ function getQuoteData() {
         'cust-company',
         'cust-phone',
         'cust-email',
-        'cust-quantity',
         'cust-grade'
 
     ];
@@ -1801,19 +2009,47 @@ function getQuoteData() {
     }
 
 
-    // PRODUCT SELECTION IS REQUIRED
-    if (!cart.length) {
+    // ---------------------------------------------------------
+    // CHECK QUANTITY FOR EVERY SELECTED PRODUCT
+    // ---------------------------------------------------------
 
-        alert(
-            'Please select at least one product.'
-        );
+    for (const item of cart) {
 
-        return null;
+        const quantity =
+            String(
+                item.quoteQuantity || ''
+            ).trim();
+
+
+        if (!quantity) {
+
+            alert(
+                `Please enter Quantity Required for ${item.name}.`
+            );
+
+
+            const quantityField =
+                document.getElementById(
+                    `quote-quantity-${item.id}`
+                );
+
+
+            if (quantityField) {
+
+                quantityField.focus();
+
+            }
+
+
+            return null;
+
+        }
 
     }
 
 
     // OPTIONAL DESIGNATION
+
     const designation =
         document.getElementById(
             'cust-designation'
@@ -1827,6 +2063,7 @@ function getQuoteData() {
 
 
     // OPTIONAL FILE
+
     const fileInput =
         document.getElementById(
             'cust-file'
@@ -1844,25 +2081,28 @@ function getQuoteData() {
             : 'Not uploaded';
 
 
-    // PRODUCTS FROM CART
+    // PRODUCTS
+
     values.products =
-        cart.map(item => ({
+        cart.map(
+            item => ({
 
-            name:
-                item.name,
+                name:
+                    item.name,
 
-            cartQuantity:
-                item.qty,
+                quantity:
+                    String(
+                        item.quoteQuantity || ''
+                    ).trim(),
 
-            grade:
-                item.grade || 'N/A'
+                cartQuantity:
+                    item.qty,
 
-        }));
+                grade:
+                    item.grade || 'N/A'
 
-
-    // FREE-TEXT QUANTITY FROM FORM
-    values.quantity =
-        values['cust-quantity'];
+            })
+        );
 
 
     return values;
@@ -1885,10 +2125,11 @@ function(method) {
 
 
     const productLines =
+
         data.products
             .map(
                 product =>
-                    `- ${product.name}`
+                    `- ${product.name} | Quantity Required: ${product.quantity}`
             )
             .join('\n');
 
@@ -1904,12 +2145,17 @@ function(method) {
         `Company: ${data['cust-company']}`,
 
         `Designation: ${
-            data.designation || 'Not provided'
+            data.designation ||
+            'Not provided'
         }`,
 
-        `WhatsApp / Mobile: ${data['cust-phone']}`,
+        `WhatsApp / Mobile: ${
+            data['cust-phone']
+        }`,
 
-        `Email: ${data['cust-email']}`,
+        `Email: ${
+            data['cust-email']
+        }`,
 
         '',
 
@@ -1919,11 +2165,13 @@ function(method) {
 
         '',
 
-        `Quantity: ${data.quantity}`,
+        `Required Grade: ${
+            data['cust-grade']
+        }`,
 
-        `Required Grade: ${data['cust-grade']}`,
-
-        `Specification/COA: ${data.fileName}`
+        `Specification/COA: ${
+            data.fileName
+        }`
 
     ].join('\n');
 
@@ -1932,7 +2180,9 @@ function(method) {
     // WHATSAPP
     // ---------------------------------------------------------
 
-    if (method === 'whatsapp') {
+    if (
+        method === 'whatsapp'
+    ) {
 
         window.open(
 
@@ -2012,12 +2262,15 @@ function(message) {
 
 
     setTimeout(
+
         () => {
 
             toast.remove();
 
         },
+
         2200
+
     );
 
 };
