@@ -125,7 +125,7 @@ window.renderProducts = function(items) {
 
     if (!grid) return;
 
-    if (items.length === 0) {
+    if (!items || items.length === 0) {
 
         grid.innerHTML = `
             <div class="col-span-full py-20 text-center text-slate-400 font-bold text-xl">
@@ -144,7 +144,9 @@ window.renderProducts = function(items) {
             <div class="absolute top-5 left-5 z-10">
 
                 <span class="block bg-[#004b8d] text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest shadow-md">
-                    ${p.stock}
+
+                    ${p.stock || ''}
+
                 </span>
 
             </div>
@@ -162,13 +164,17 @@ window.renderProducts = function(items) {
 
                 <!-- CATEGORY -->
                 <p class="text-[12px] font-black text-[#1a7139] uppercase mb-1 tracking-tighter">
-                    ${p.cat}
+
+                    ${p.cat || ''}
+
                 </p>
 
 
                 <!-- PRODUCT NAME -->
                 <h3 class="font-black text-2xl min-h-[3.5rem] mb-4 uppercase leading-tight text-slate-900">
+
                     ${p.name}
+
                 </h3>
 
 
@@ -178,7 +184,9 @@ window.renderProducts = function(items) {
                     Application:
 
                     <span class="font-black text-slate-800">
-                        ${p.func}
+
+                        ${p.func || 'N/A'}
+
                     </span>
 
                 </p>
@@ -190,20 +198,18 @@ window.renderProducts = function(items) {
                     Key Features:
 
                     <span class="font-bold text-[#1a7139] italic">
+
                         ${p.features || 'Standard Quality'}
+
                     </span>
 
                 </p>
 
 
-                <!-- =================================================
-                     FORM / PURITY / GRADE
-                     VERTICAL LAYOUT
-                ================================================= -->
-
+                <!-- FORM / PURITY / GRADE -->
                 <div class="flex flex-col gap-2 mb-6">
 
-                    <!-- FORM -->
+
                     <div class="text-base md:text-lg text-slate-700 leading-relaxed">
 
                         <span class="font-black">
@@ -211,13 +217,14 @@ window.renderProducts = function(items) {
                         </span>
 
                         <span class="font-black text-slate-900">
+
                             ${p.appearance || 'N/A'}
+
                         </span>
 
                     </div>
 
 
-                    <!-- PURITY -->
                     <div class="text-base md:text-lg text-slate-700 leading-relaxed">
 
                         <span class="font-black">
@@ -225,13 +232,14 @@ window.renderProducts = function(items) {
                         </span>
 
                         <span class="font-black text-slate-900">
+
                             ${p.purity || 'N/A'}
+
                         </span>
 
                     </div>
 
 
-                    <!-- GRADE -->
                     <div class="text-base md:text-lg text-slate-700 leading-relaxed">
 
                         <span class="font-black">
@@ -239,7 +247,9 @@ window.renderProducts = function(items) {
                         </span>
 
                         <span class="font-black text-slate-900">
+
                             ${p.grade || 'N/A'}
+
                         </span>
 
                     </div>
@@ -253,21 +263,20 @@ window.renderProducts = function(items) {
                     MOQ:
 
                     <span class="text-slate-900 font-black">
+
                         ${p.moq || '25 Kg'}
+
                     </span>
 
                 </div>
 
 
-                <!-- =================================================
-                     DETAILS + REQUEST A QUOTE
-                ================================================= -->
-
+                <!-- ACTIONS -->
                 <div class="pt-4 border-t border-slate-50 grid grid-cols-1 sm:grid-cols-2 gap-3">
 
 
-                    <!-- DETAILS BUTTON -->
                     <button
+                        type="button"
                         onclick="window.viewDetails(${p.id})"
                         class="w-full bg-white text-[#004b8d] border-2 border-[#004b8d] py-4 rounded-2xl font-black text-base uppercase tracking-widest hover:bg-[#004b8d] hover:text-white transition shadow-sm">
 
@@ -276,8 +285,8 @@ window.renderProducts = function(items) {
                     </button>
 
 
-                    <!-- REQUEST A QUOTE BUTTON -->
                     <button
+                        type="button"
                         onclick="window.requestQuote(${p.id})"
                         class="w-full bg-[#004b8d] text-white py-4 rounded-2xl font-black text-base uppercase tracking-widest hover:bg-[#1a7139] transition shadow-xl">
 
@@ -292,7 +301,6 @@ window.renderProducts = function(items) {
         </div>
 
     `).join('');
-
 
     lucide.createIcons();
 
@@ -317,15 +325,17 @@ window.renderSidebar = function() {
         "Specialty"
     ];
 
-
     let html = `
 
         <button
+            type="button"
             onclick="window.filterProducts('All')"
             class="w-full text-left px-5 py-4 rounded-xl hover:bg-slate-50 transition font-black text-lg mb-4 flex items-center justify-between border border-transparent group">
 
             <span class="text-slate-700 group-hover:text-[#004b8d]">
+
                 All Products (${products.length})
+
             </span>
 
             <i
@@ -345,7 +355,6 @@ window.renderSidebar = function() {
         );
 
 
-        // COLOURS
         if (cat === "Colours") {
 
             const types = [
@@ -361,11 +370,14 @@ window.renderSidebar = function() {
                 <div class="category-group border-b border-slate-50 last:border-0 pb-1">
 
                     <button
+                        type="button"
                         onclick="window.toggleDropdown(this)"
-                        class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition text-left group">
+                        class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition text-left">
 
                         <span class="text-base font-black text-slate-800 uppercase">
+
                             ${cat} (${catItems.length})
+
                         </span>
 
                         <i
@@ -379,6 +391,7 @@ window.renderSidebar = function() {
                     <div class="dropdown-content hidden pl-6 pr-2 py-3 space-y-4 border-l-2 border-slate-100 ml-5">
 
                         <button
+                            type="button"
                             onclick="window.filterProducts('Colours')"
                             class="text-[10px] font-black text-[#1a7139] uppercase px-0 hover:underline">
 
@@ -389,12 +402,13 @@ window.renderSidebar = function() {
 
                         ${types.map(type => {
 
-                            const typeItems = catItems.filter(
-                                p => p.subCat === type
-                            );
+                            const typeItems =
+                                catItems.filter(
+                                    p => p.subCat === type
+                                );
 
 
-                            if (typeItems.length === 0) {
+                            if (!typeItems.length) {
                                 return '';
                             }
 
@@ -404,11 +418,14 @@ window.renderSidebar = function() {
                                 <div class="sub-category-group">
 
                                     <button
+                                        type="button"
                                         onclick="window.toggleDropdown(this)"
                                         class="w-full flex items-center justify-between py-1 px-0 hover:text-[#004b8d] transition text-left">
 
-                                        <span class="text-[13px] font-black text-[#004b8d] uppercase leading-tight">
+                                        <span class="text-[13px] font-black text-[#004b8d] uppercase">
+
                                             ${type} (${typeItems.length})
+
                                         </span>
 
                                         <i
@@ -424,6 +441,7 @@ window.renderSidebar = function() {
                                         ${typeItems.map(p => `
 
                                             <button
+                                                type="button"
                                                 onclick="window.filterSingleProduct(${p.id})"
                                                 class="w-full text-left py-0.5 text-sm font-bold text-slate-500 hover:text-[#004b8d] truncate">
 
@@ -450,17 +468,19 @@ window.renderSidebar = function() {
         }
 
 
-        // NORMAL CATEGORIES
         return `
 
             <div class="category-group border-b border-slate-50 last:border-0 pb-1">
 
                 <button
+                    type="button"
                     onclick="window.toggleDropdown(this)"
                     class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition text-left">
 
                     <span class="text-base font-black text-slate-800 uppercase">
+
                         ${cat} (${catItems.length})
+
                     </span>
 
                     <i
@@ -476,6 +496,7 @@ window.renderSidebar = function() {
                     ${catItems.map(p => `
 
                         <button
+                            type="button"
                             onclick="window.filterSingleProduct(${p.id})"
                             class="w-full text-left py-1.5 text-sm font-bold text-slate-500 hover:text-[#004b8d] transition truncate">
 
@@ -507,7 +528,7 @@ window.renderSidebar = function() {
 
 window.searchProducts = function(query) {
 
-    const q = query
+    const q = String(query || '')
         .toLowerCase()
         .trim();
 
@@ -517,6 +538,7 @@ window.searchProducts = function(query) {
         window.renderProducts(products);
 
         return;
+
     }
 
 
@@ -540,10 +562,12 @@ window.searchProducts = function(query) {
 
 
 // =========================================================
-// 7. DROPDOWN
+// 7. DROPDOWN / FILTER
 // =========================================================
 
 window.toggleDropdown = function(btn) {
+
+    if (!btn) return;
 
     const content = btn.nextElementSibling;
 
@@ -555,32 +579,19 @@ window.toggleDropdown = function(btn) {
     if (!content) return;
 
 
-    content.classList.toggle(
-        'hidden'
-    );
+    const opening =
+        content.classList.contains('hidden');
+
+
+    content.classList.toggle('hidden');
 
 
     if (icon) {
 
-        const isPlus =
-            icon.getAttribute(
-                'data-lucide'
-            ) === 'plus';
-
-
         icon.style.transform =
-
-            content.classList.contains(
-                'hidden'
-            )
-
-                ? 'rotate(0deg)'
-
-                : (
-                    isPlus
-                        ? 'rotate(45deg)'
-                        : 'rotate(180deg)'
-                );
+            opening
+                ? 'rotate(180deg)'
+                : 'rotate(0deg)';
 
     }
 
@@ -591,11 +602,11 @@ window.filterProducts = function(cat) {
 
     if (cat === 'All') {
 
-        renderProducts(products);
+        window.renderProducts(products);
 
     } else {
 
-        renderProducts(
+        window.renderProducts(
             products.filter(
                 p => p.cat === cat
             )
@@ -603,220 +614,13 @@ window.filterProducts = function(cat) {
 
     }
 
+
     scrollToCatalog();
 
 };
 
 
 window.filterSingleProduct = function(id) {
-
-    renderProducts(
-        products.filter(
-            p => p.id === id
-        )
-    );
-
-    scrollToCatalog();
-
-};
-
-
-function scrollToCatalog() {
-
-    const target =
-        document.getElementById(
-            'catalog'
-        );
-
-
-    if (target) {
-
-        window.scrollTo({
-
-            top:
-                target.offsetTop - 100,
-
-            behavior:
-                'smooth'
-
-        });
-
-    }
-
-};
-
-
-// =========================================================
-// 8. DETAILS MODAL
-//
-// IMPORTANT:
-// Form, Purity and Grade are NOT repeated here.
-// All other technical information remains.
-// =========================================================
-
-window.viewDetails = function(id) {
-
-    const p = products.find(
-        item => item.id === id
-    );
-
-
-    if (!p) return;
-
-
-    activeProductId = id;
-
-
-    // TITLE
-    document.getElementById(
-        'modal-title'
-    ).innerText = p.name;
-
-
-    // IMAGE
-    document.getElementById(
-        'modal-img'
-    ).src = p.img;
-
-
-    // DESCRIPTION + KEY FEATURES
-    document.getElementById(
-        'modal-desc'
-    ).innerHTML = `
-
-        <div class="mb-6">
-
-            <span class="text-xl text-slate-600 leading-relaxed font-medium">
-
-                ${p.desc}
-
-            </span>
-
-        </div>
-
-
-        <div class="bg-blue-50 p-6 rounded-[2rem] border border-blue-100 mb-8 shadow-sm">
-
-            <h4 class="text-[10px] font-black text-[#004b8d] uppercase tracking-widest mb-2">
-
-                Key Features
-
-            </h4>
-
-            <p class="text-lg font-extrabold text-[#004b8d] italic leading-tight">
-
-                ${p.features || 'Premium Pharmaceutical Grade'}
-
-            </p>
-
-        </div>
-
-    `;
-
-
-    // OTHER PROPERTIES ONLY
-    const techSpecs = [
-
-        {
-            label: "Function",
-            value: p.func
-        },
-
-        {
-            label: "Formula",
-            value: p.mol
-        },
-
-        {
-            label: "Weight",
-            value: p.weight
-        },
-
-        {
-            label: "Density",
-            value: p.density
-        },
-
-        {
-            label: "Melting Point",
-            value: p.melting
-        },
-
-        {
-            label: "Origin",
-            value: p.origin
-        },
-
-        {
-            label: "MOQ",
-            value: p.moq
-        },
-
-        {
-            label: "Packaging",
-            value: p.pkgType
-        }
-
-    ];
-
-
-    document.getElementById(
-        'specs-grid'
-    ).innerHTML = techSpecs.map(
-        s => `
-
-            <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-
-                <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">
-
-                    ${s.label}
-
-                </h4>
-
-                <p class="text-base font-extrabold text-slate-800">
-
-                    ${s.value || 'N/A'}
-
-                </p>
-
-            </div>
-
-        `
-    ).join('');
-
-
-    document
-        .getElementById(
-            'details-modal'
-        )
-        .classList.remove(
-            'hidden'
-        );
-
-
-    lucide.createIcons();
-
-};
-
-
-window.closeDetails = function() {
-
-    document
-        .getElementById(
-            'details-modal'
-        )
-        .classList.add(
-            'hidden'
-        );
-
-};
-
-
-// =========================================================
-// 9. QUOTE LIST / CART
-// =========================================================
-
-window.addToCart = function(id) {
 
     const item =
         products.find(
@@ -827,21 +631,270 @@ window.addToCart = function(id) {
     if (!item) return;
 
 
-    const inCart =
-        cart.find(
-            c => c.id === id
+    window.renderProducts([item]);
+
+    scrollToCatalog();
+
+};
+
+
+function scrollToCatalog() {
+
+    const target =
+        document.getElementById('catalog');
+
+
+    if (!target) return;
+
+
+    window.scrollTo({
+
+        top:
+            target.offsetTop - 100,
+
+        behavior:
+            'smooth'
+
+    });
+
+};
+
+
+// =========================================================
+// 8. DETAILS MODAL
+// =========================================================
+
+window.viewDetails = function(id) {
+
+    const p =
+        products.find(
+            item => item.id === id
         );
 
 
-    if (inCart) {
+    if (!p) return;
 
-        inCart.qty++;
+
+    activeProductId = id;
+
+
+    const title =
+        document.getElementById(
+            'modal-title'
+        );
+
+
+    const image =
+        document.getElementById(
+            'modal-img'
+        );
+
+
+    const desc =
+        document.getElementById(
+            'modal-desc'
+        );
+
+
+    const specs =
+        document.getElementById(
+            'specs-grid'
+        );
+
+
+    if (title) {
+
+        title.innerText =
+            p.name;
+
+    }
+
+
+    if (image) {
+
+        image.src =
+            p.img;
+
+    }
+
+
+    if (desc) {
+
+        desc.innerHTML = `
+
+            <div class="mb-6">
+
+                <span class="text-xl text-slate-600 leading-relaxed font-medium">
+
+                    ${p.desc || ''}
+
+                </span>
+
+            </div>
+
+
+            <div class="bg-blue-50 p-6 rounded-[2rem] border border-blue-100 mb-8 shadow-sm">
+
+                <h4 class="text-[10px] font-black text-[#004b8d] uppercase tracking-widest mb-2">
+
+                    Key Features
+
+                </h4>
+
+                <p class="text-lg font-extrabold text-[#004b8d] italic leading-tight">
+
+                    ${p.features || 'Premium Pharmaceutical Grade'}
+
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+
+    if (specs) {
+
+        const techSpecs = [
+
+            {
+                label: 'Function',
+                value: p.func
+            },
+
+            {
+                label: 'Formula',
+                value: p.mol
+            },
+
+            {
+                label: 'Weight',
+                value: p.weight
+            },
+
+            {
+                label: 'Density',
+                value: p.density
+            },
+
+            {
+                label: 'Melting Point',
+                value: p.melting
+            },
+
+            {
+                label: 'Origin',
+                value: p.origin
+            },
+
+            {
+                label: 'MOQ',
+                value: p.moq
+            },
+
+            {
+                label: 'Packaging',
+                value: p.pkgType
+            }
+
+        ];
+
+
+        specs.innerHTML =
+            techSpecs.map(s => `
+
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+
+                    <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">
+
+                        ${s.label}
+
+                    </h4>
+
+                    <p class="text-base font-extrabold text-slate-800">
+
+                        ${s.value || 'N/A'}
+
+                    </p>
+
+                </div>
+
+            `).join('');
+
+    }
+
+
+    const modal =
+        document.getElementById(
+            'details-modal'
+        );
+
+
+    if (modal) {
+
+        modal.classList.remove(
+            'hidden'
+        );
+
+    }
+
+
+    lucide.createIcons();
+
+};
+
+
+window.closeDetails = function() {
+
+    const modal =
+        document.getElementById(
+            'details-modal'
+        );
+
+
+    if (modal) {
+
+        modal.classList.add(
+            'hidden'
+        );
+
+    }
+
+};
+
+
+// =========================================================
+// 9. CART / QUOTE LIST
+// =========================================================
+
+window.addToCart = function(id) {
+
+    const product =
+        products.find(
+            p => p.id === id
+        );
+
+
+    if (!product) return;
+
+
+    const existing =
+        cart.find(
+            item => item.id === id
+        );
+
+
+    if (existing) {
+
+        existing.qty =
+            Number(existing.qty || 1) + 1;
 
     } else {
 
         cart.push({
 
-            ...item,
+            ...product,
 
             qty: 1
 
@@ -853,174 +906,8 @@ window.addToCart = function(id) {
     window.updateCartUI();
 
     window.showQuoteToast(
-        `${item.name} added to quote list`
+        `${product.name} added to quote list`
     );
-
-};
-
-
-window.updateCartUI = function() {
-
-    const itemCount = cart.length;
-
-    const countEl =
-        document.getElementById(
-            'cart-count'
-        );
-
-    const totalCountEl =
-        document.getElementById(
-            'cart-total-count'
-        );
-
-    const itemsEl =
-        document.getElementById(
-            'cart-items'
-        );
-
-
-    if (countEl) {
-
-        countEl.innerText =
-            itemCount;
-
-    }
-
-
-    if (totalCountEl) {
-
-        totalCountEl.innerText =
-            itemCount;
-
-    }
-
-
-    if (!itemsEl) {
-
-        window.updateQuoteProductUI();
-
-        return;
-
-    }
-
-
-    if (cart.length === 0) {
-
-        itemsEl.innerHTML = `
-
-            <div class="py-12 text-center text-slate-400">
-
-                <i
-                    data-lucide="shopping-cart"
-                    class="w-10 h-10 mx-auto mb-3 opacity-40">
-                </i>
-
-                <p class="font-black text-lg">
-                    Your quote list is empty.
-                </p>
-
-                <p class="text-sm font-medium mt-1">
-                    Add products to request a quote.
-                </p>
-
-            </div>
-
-        `;
-
-
-        lucide.createIcons();
-
-        window.updateQuoteProductUI();
-
-        return;
-
-    }
-
-
-    itemsEl.innerHTML = cart.map(c => `
-
-        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 mb-4">
-
-            <div class="flex items-start gap-3">
-
-                <div class="flex-1 min-w-0">
-
-                    <h4 class="text-sm font-black text-slate-800 leading-snug">
-                        ${c.name}
-                    </h4>
-
-                    <p class="text-[10px] uppercase text-slate-400 mt-1">
-                        ${c.stock}
-                    </p>
-
-                </div>
-
-
-                <!-- DELETE ITEM -->
-                <button
-                    type="button"
-                    onclick="window.removeFromCart(${c.id})"
-                    aria-label="Remove ${c.name}"
-                    class="shrink-0 p-2 rounded-xl text-red-500 hover:bg-red-50 transition">
-
-                    <i
-                        data-lucide="trash-2"
-                        class="w-4 h-4">
-                    </i>
-
-                </button>
-
-            </div>
-
-
-            <!-- QUANTITY CONTROLS -->
-            <div class="flex items-center justify-between mt-4">
-
-                <span class="text-xs font-black text-slate-400 uppercase">
-                    Quantity
-                </span>
-
-
-                <div class="flex items-center gap-3 bg-white px-3 py-2 rounded-xl border border-slate-100">
-
-                    <button
-                        type="button"
-                        onclick="window.changeQty(${c.id}, -1)"
-                        class="font-black text-slate-400 hover:text-slate-800 px-1">
-
-                        −
-
-                    </button>
-
-
-                    <span class="text-sm font-black min-w-[48px] text-center">
-
-                        ${c.qty}
-
-                    </span>
-
-
-                    <button
-                        type="button"
-                        onclick="window.changeQty(${c.id}, 1)"
-                        class="text-[#004b8d] font-black hover:text-[#1a7139] px-1">
-
-                        +
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    `).join('');
-
-
-    lucide.createIcons();
-
-    window.updateQuoteProductUI();
 
 };
 
@@ -1036,12 +923,14 @@ window.changeQty = function(id, delta) {
     if (!item) return;
 
 
-    item.qty =
-        Math.max(
-            1,
-            Number(item.qty || 1) +
-            Number(delta)
-        );
+    item.qty = Math.max(
+
+        1,
+
+        Number(item.qty || 1) +
+        Number(delta || 0)
+
+    );
 
 
     window.updateCartUI();
@@ -1069,7 +958,7 @@ window.removeFromCart = function(id) {
     if (removed) {
 
         window.showQuoteToast(
-            `${removed.name} removed from quote list`
+            `${removed.name} removed`
         );
 
     }
@@ -1077,68 +966,188 @@ window.removeFromCart = function(id) {
 };
 
 
-window.showQuoteToast = function(message) {
-
-    const toast =
-        document.createElement(
-            'div'
-        );
-
-
-    toast.className =
-        "fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-6 py-3 rounded-full z-[100] text-sm font-bold shadow-2xl text-center";
-
-
-    toast.innerText =
-        message;
-
-
-    document.body.appendChild(
-        toast
-    );
-
-
-    setTimeout(
-        () => toast.remove(),
-        2000
-    );
-
-};
-
-
 // =========================================================
-// 10. QUOTE DRAWER
+// 10. CART UI
 // =========================================================
 
-window.toggleCart = function() {
+function buildCartItem(item, extraClass = '') {
 
-    const drawer =
+    return `
+
+        <div class="bg-slate-50 ${extraClass} p-4 rounded-2xl border border-slate-100">
+
+            <div class="flex items-start gap-3">
+
+                <div class="flex-1 min-w-0">
+
+                    <h4 class="text-sm font-black text-slate-800 leading-snug">
+
+                        ${item.name}
+
+                    </h4>
+
+
+                    <p class="text-[10px] uppercase text-slate-400 mt-1">
+
+                        ${item.stock || ''}
+
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    onclick="window.removeFromCart(${item.id})"
+                    aria-label="Remove ${item.name}"
+                    class="shrink-0 p-2 rounded-xl text-red-500 hover:bg-red-50 transition">
+
+                    <i
+                        data-lucide="trash-2"
+                        class="w-4 h-4">
+                    </i>
+
+                </button>
+
+            </div>
+
+
+            <div class="flex items-center justify-between mt-4">
+
+                <span class="text-xs font-black text-slate-400 uppercase tracking-wider">
+
+                    Quantity
+
+                </span>
+
+
+                <div class="flex items-center gap-3 bg-white px-3 py-2 rounded-xl border border-slate-100">
+
+                    <button
+                        type="button"
+                        onclick="window.changeQty(${item.id}, -1)"
+                        class="font-black text-slate-400 hover:text-slate-800 px-2 text-lg">
+
+                        −
+
+                    </button>
+
+
+                    <span class="text-sm font-black min-w-[48px] text-center">
+
+                        ${item.qty}
+
+                    </span>
+
+
+                    <button
+                        type="button"
+                        onclick="window.changeQty(${item.id}, 1)"
+                        class="text-[#004b8d] font-black hover:text-[#1a7139] px-2 text-lg">
+
+                        +
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+window.updateCartUI = function() {
+
+    const count =
+        cart.length;
+
+
+    const countEl =
         document.getElementById(
-            'cart-drawer'
+            'cart-count'
         );
 
 
-    const content =
+    const totalCountEl =
         document.getElementById(
-            'cart-content'
+            'cart-total-count'
         );
 
 
-    if (!drawer || !content) {
+    const cartItems =
+        document.getElementById(
+            'cart-items'
+        );
 
-        return;
+
+    if (countEl) {
+
+        countEl.innerText =
+            count;
 
     }
 
 
-    drawer.classList.toggle(
-        'invisible'
-    );
+    if (totalCountEl) {
+
+        totalCountEl.innerText =
+            count;
+
+    }
 
 
-    content.classList.toggle(
-        'translate-x-full'
-    );
+    if (cartItems) {
+
+        if (cart.length === 0) {
+
+            cartItems.innerHTML = `
+
+                <div class="py-12 text-center text-slate-400">
+
+                    <i
+                        data-lucide="shopping-cart"
+                        class="w-10 h-10 mx-auto mb-3 opacity-40">
+                    </i>
+
+                    <p class="font-black text-lg">
+
+                        Your quote list is empty.
+
+                    </p>
+
+                    <p class="text-sm font-medium mt-1">
+
+                        Add products to request a quote.
+
+                    </p>
+
+                </div>
+
+            `;
+
+        } else {
+
+            cartItems.innerHTML =
+                cart.map(
+                    item =>
+                        buildCartItem(
+                            item,
+                            'mb-4'
+                        )
+                ).join('');
+
+        }
+
+    }
+
+
+    window.updateQuoteProductUI();
+
+    lucide.createIcons();
 
 };
 
@@ -1149,10 +1158,10 @@ window.toggleCart = function() {
 
 window.showCheckout = function() {
 
-    if (cart.length === 0) {
+    if (!cart.length) {
 
         alert(
-            "Quote list is empty!"
+            'Quote list is empty!'
         );
 
         return;
@@ -1167,18 +1176,18 @@ window.showCheckout = function() {
 
 window.requestQuote = function(id) {
 
-    const item =
+    const product =
         products.find(
             p => p.id === id
         );
 
 
-    if (!item) return;
+    if (!product) return;
 
 
     const existing =
         cart.find(
-            c => c.id === id
+            item => item.id === id
         );
 
 
@@ -1186,7 +1195,7 @@ window.requestQuote = function(id) {
 
         cart.push({
 
-            ...item,
+            ...product,
 
             qty: 1
 
@@ -1197,8 +1206,6 @@ window.requestQuote = function(id) {
 
     window.updateCartUI();
 
-
-    // DIRECTLY OPEN QUOTE FORM
     window.openQuoteForm();
 
 };
@@ -1260,7 +1267,11 @@ window.toggleProductPicker = function() {
         }
 
 
-        window.renderQuoteProductOptions('');
+        window.renderQuoteProductOptions(
+            search
+                ? search.value
+                : ''
+        );
 
     }
 
@@ -1314,30 +1325,39 @@ function(query = '') {
             .trim();
 
 
-    const availableProducts =
+    const results =
         products.filter(product => {
 
-            const matchesSearch =
+            if (!q) return true;
 
-                !q ||
+
+            return (
 
                 product.name
                     .toLowerCase()
-                    .includes(q) ||
+                    .includes(q)
+
+                ||
 
                 product.cat
                     .toLowerCase()
-                    .includes(q);
+                    .includes(q)
 
+                ||
 
-            return matchesSearch;
+                (
+                    product.features &&
+                    product.features
+                        .toLowerCase()
+                        .includes(q)
+                )
+
+            );
 
         });
 
 
-    if (
-        availableProducts.length === 0
-    ) {
+    if (!results.length) {
 
         container.innerHTML = `
 
@@ -1355,7 +1375,7 @@ function(query = '') {
 
 
     container.innerHTML =
-        availableProducts.map(product => {
+        results.map(product => {
 
             const selected =
                 cart.some(
@@ -1377,7 +1397,6 @@ function(query = '') {
                     }">
 
 
-                    <!-- CHECKBOX -->
                     <span
                         class="w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 ${
                             selected
@@ -1394,7 +1413,6 @@ function(query = '') {
                     </span>
 
 
-                    <!-- PRODUCT -->
                     <span class="min-w-0 flex-1">
 
                         <span class="block text-sm font-black text-slate-800 truncate">
@@ -1427,35 +1445,33 @@ function(query = '') {
 window.toggleQuoteProduct =
 function(id) {
 
-    const item =
+    const product =
         products.find(
             p => p.id === id
         );
 
 
-    if (!item) return;
+    if (!product) return;
 
 
-    const existingIndex =
+    const index =
         cart.findIndex(
-            c => c.id === id
+            item => item.id === id
         );
 
 
-    if (existingIndex >= 0) {
+    if (index >= 0) {
 
-        // REMOVE
         cart.splice(
-            existingIndex,
+            index,
             1
         );
 
     } else {
 
-        // ADD
         cart.push({
 
-            ...item,
+            ...product,
 
             qty: 1
 
@@ -1467,19 +1483,23 @@ function(id) {
     window.updateCartUI();
 
 
-    window.renderQuoteProductOptions(
-
+    const search =
         document.getElementById(
             'product-picker-search'
-        )?.value || ''
+        );
 
+
+    window.renderQuoteProductOptions(
+        search
+            ? search.value
+            : ''
     );
 
 };
 
 
 // =========================================================
-// 12B. SELECTED PRODUCTS UI
+// 12B. SYNCHRONIZE QUOTE FORM + RIGHT SUMMARY
 // =========================================================
 
 window.updateQuoteProductUI =
@@ -1497,22 +1517,26 @@ function() {
         );
 
 
-    const quantityField =
+    const summaryContainer =
         document.getElementById(
-            'cust-quantity'
+            'summary-items'
         );
 
 
-    // SELECTED PRODUCT CHIPS
+    // ---------------------------------------------------------
+    // SELECTED PRODUCTS UNDER PICKER
+    // ---------------------------------------------------------
+
     if (selectedContainer) {
 
-        selectedContainer.innerHTML =
+        if (!cart.length) {
 
-            cart.length === 0
+            selectedContainer.innerHTML = '';
 
-                ? ''
+        } else {
 
-                : cart.map(item => `
+            selectedContainer.innerHTML =
+                cart.map(item => `
 
                     <div class="flex items-center justify-between gap-3 bg-blue-50 border border-blue-100 rounded-xl px-3 py-2">
 
@@ -1524,13 +1548,19 @@ function() {
 
                             </div>
 
+                            <div class="text-[10px] font-bold text-slate-400 uppercase mt-0.5">
+
+                                Cart quantity: ${item.qty}
+
+                            </div>
+
                         </div>
 
 
-                        <!-- REMOVE FROM SELECTED LIST -->
                         <button
                             type="button"
                             onclick="window.removeFromCart(${item.id})"
+                            aria-label="Remove ${item.name}"
                             class="shrink-0 p-1 rounded-lg text-red-500 hover:bg-red-100 transition">
 
                             <i
@@ -1544,17 +1574,18 @@ function() {
 
                 `).join('');
 
-
-        lucide.createIcons();
+        }
 
     }
 
 
-    // PRODUCT BUTTON LABEL
+    // ---------------------------------------------------------
+    // PRODUCT SELECTOR BUTTON LABEL
+    // ---------------------------------------------------------
+
     if (productLabel) {
 
         productLabel.innerText =
-
             cart.length === 0
 
                 ? 'Select one or more products *'
@@ -1564,27 +1595,53 @@ function() {
     }
 
 
-    // QUANTITY SUMMARY
-    if (quantityField) {
+    // ---------------------------------------------------------
+    // RIGHT-SIDE SUMMARY
+    // THIS MUST ALWAYS MIRROR CART
+    // ---------------------------------------------------------
 
-        if (cart.length === 0) {
+    if (summaryContainer) {
 
-            quantityField.value = '';
+        if (!cart.length) {
 
-            quantityField.placeholder =
-                'Add quantity for each selected product *';
+            summaryContainer.innerHTML = `
+
+                <div class="py-12 text-center text-slate-400">
+
+                    <i
+                        data-lucide="shopping-cart"
+                        class="w-10 h-10 mx-auto mb-3 opacity-40">
+                    </i>
+
+                    <p class="font-black text-lg">
+
+                        No products selected
+
+                    </p>
+
+                    <p class="text-sm font-medium mt-1">
+
+                        Select products from Product Required.
+
+                    </p>
+
+                </div>
+
+            `;
 
         } else {
 
-            quantityField.value =
-
+            summaryContainer.innerHTML =
                 cart.map(item =>
-                    `${item.name}: ${item.qty}`
-                ).join(' | ');
+                    buildCartItem(item)
+                ).join('');
 
         }
 
     }
+
+
+    lucide.createIcons();
 
 };
 
@@ -1596,7 +1653,7 @@ function() {
 window.openQuoteForm =
 function() {
 
-    if (cart.length === 0) {
+    if (!cart.length) {
 
         alert(
             'Please select at least one product.'
@@ -1607,20 +1664,24 @@ function() {
     }
 
 
+    // IMPORTANT:
+    // Refresh cart + right-side quote summary
+    // BEFORE showing the form.
     window.updateCartUI();
 
     window.updateQuoteProductUI();
 
 
-    const search =
+    const pickerSearch =
         document.getElementById(
             'product-picker-search'
         );
 
 
-    if (search) {
+    if (pickerSearch) {
 
-        search.value = '';
+        pickerSearch.value =
+            '';
 
     }
 
@@ -1628,15 +1689,15 @@ function() {
     window.renderQuoteProductOptions('');
 
 
-    const checkoutModal =
+    const modal =
         document.getElementById(
             'checkout-modal'
         );
 
 
-    if (checkoutModal) {
+    if (modal) {
 
-        checkoutModal.classList.remove(
+        modal.classList.remove(
             'hidden'
         );
 
@@ -1673,12 +1734,12 @@ function() {
 
 
 // =========================================================
-// 14. READ QUOTE FORM
+// 14. QUOTE FORM DATA
 // =========================================================
 
 function getQuoteData() {
 
-    if (cart.length === 0) {
+    if (!cart.length) {
 
         alert(
             'Please select at least one product.'
@@ -1704,26 +1765,30 @@ function getQuoteData() {
     const values = {};
 
 
-    for (
-        const id of requiredFields
-    ) {
+    for (const id of requiredFields) {
 
-        const el =
-            document.getElementById(
-                id
-            );
+        const field =
+            document.getElementById(id);
 
 
-        if (
-            !el ||
-            !el.value.trim()
-        ) {
+        if (!field) {
 
-            if (el) {
+            continue;
 
-                el.reportValidity();
+        }
 
-            }
+
+        const value =
+            String(
+                field.value || ''
+            ).trim();
+
+
+        if (!value) {
+
+            field.reportValidity();
+
+            field.focus();
 
             return null;
 
@@ -1731,64 +1796,73 @@ function getQuoteData() {
 
 
         values[id] =
-            el.value.trim();
+            value;
+
+    }
+
+
+    // PRODUCT SELECTION IS REQUIRED
+    if (!cart.length) {
+
+        alert(
+            'Please select at least one product.'
+        );
+
+        return null;
 
     }
 
 
     // OPTIONAL DESIGNATION
-    const designationEl =
+    const designation =
         document.getElementById(
             'cust-designation'
         );
 
 
     values.designation =
-
-        designationEl
-            ? designationEl.value.trim()
+        designation
+            ? designation.value.trim()
             : '';
 
 
     // OPTIONAL FILE
-    const fileEl =
+    const fileInput =
         document.getElementById(
             'cust-file'
         );
 
 
-    const file =
-
-        fileEl &&
-        fileEl.files &&
-        fileEl.files.length > 0
-
-            ? fileEl.files[0]
-
-            : null;
-
-
     values.fileName =
 
-        file
-            ? file.name
+        fileInput &&
+        fileInput.files &&
+        fileInput.files.length
+
+            ? fileInput.files[0].name
+
             : 'Not uploaded';
 
 
-    // PRODUCTS
+    // PRODUCTS FROM CART
     values.products =
         cart.map(item => ({
 
             name:
                 item.name,
 
-            quantity:
+            cartQuantity:
                 item.qty,
 
             grade:
                 item.grade || 'N/A'
 
         }));
+
+
+    // FREE-TEXT QUANTITY FROM FORM
+    values.quantity =
+        values['cust-quantity'];
 
 
     return values;
@@ -1810,17 +1884,16 @@ function(method) {
     if (!data) return;
 
 
-    // MULTIPLE PRODUCTS
     const productLines =
         data.products
             .map(
-                item =>
-                    `- ${item.name} | Quantity: ${item.quantity}`
+                product =>
+                    `- ${product.name}`
             )
             .join('\n');
 
 
-    const body = [
+    const message = [
 
         'NEW QUOTE REQUEST - EXCIPURE PHARMA',
 
@@ -1846,6 +1919,8 @@ function(method) {
 
         '',
 
+        `Quantity: ${data.quantity}`,
+
         `Required Grade: ${data['cust-grade']}`,
 
         `Specification/COA: ${data.fileName}`
@@ -1853,12 +1928,17 @@ function(method) {
     ].join('\n');
 
 
+    // ---------------------------------------------------------
     // WHATSAPP
+    // ---------------------------------------------------------
+
     if (method === 'whatsapp') {
 
         window.open(
 
-            `https://wa.me/919398453760?text=${encodeURIComponent(body)}`,
+            `https://wa.me/919398453760?text=${encodeURIComponent(
+                message
+            )}`,
 
             '_blank'
 
@@ -1869,7 +1949,10 @@ function(method) {
     }
 
 
+    // ---------------------------------------------------------
     // EMAIL
+    // ---------------------------------------------------------
+
     window.location.href =
 
         `mailto:info@excipurepharma.com` +
@@ -1879,14 +1962,69 @@ function(method) {
         )}` +
 
         `&body=${encodeURIComponent(
-            body
+            message
         )}`;
 
 };
 
 
 // =========================================================
-// BACKWARD COMPATIBILITY
+// 16. TOAST
+// =========================================================
+
+window.showQuoteToast =
+function(message) {
+
+    const existing =
+        document.getElementById(
+            'quote-toast'
+        );
+
+
+    if (existing) {
+
+        existing.remove();
+
+    }
+
+
+    const toast =
+        document.createElement(
+            'div'
+        );
+
+
+    toast.id =
+        'quote-toast';
+
+
+    toast.className =
+        'fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-6 py-3 rounded-full z-[100] text-sm font-bold shadow-2xl text-center';
+
+
+    toast.innerText =
+        message;
+
+
+    document.body.appendChild(
+        toast
+    );
+
+
+    setTimeout(
+        () => {
+
+            toast.remove();
+
+        },
+        2200
+    );
+
+};
+
+
+// =========================================================
+// 17. BACKWARD COMPATIBILITY
 // =========================================================
 
 window.submitOrder =
@@ -1894,26 +2032,27 @@ window.submitOrder =
 
 
 // =========================================================
-// 16. INITIALIZE
+// 18. INITIALIZATION
 // =========================================================
 
 document.addEventListener(
     'DOMContentLoaded',
     function() {
 
-        if (
-            document.getElementById(
-                'product-grid'
-            )
-        ) {
+        window.renderProducts(
+            products
+        );
 
-            window.renderProducts(
-                products
-            );
 
-            window.renderSidebar();
+        window.renderSidebar();
 
-        }
+
+        window.updateCartUI();
+
+
+        window.renderQuoteProductOptions(
+            ''
+        );
 
 
         lucide.createIcons();
