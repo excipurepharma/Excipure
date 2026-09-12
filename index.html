@@ -119,6 +119,7 @@
                     </a>
 
                 </div>
+
             </div>
 
             <div class="flex items-center gap-2 md:gap-8">
@@ -154,6 +155,7 @@
                 </button>
 
             </div>
+
         </div>
 
         <!-- Mobile navigation -->
@@ -184,6 +186,7 @@
 
     </div>
 </nav>
+
 
 <!-- =========================================================
      2. HERO
@@ -286,6 +289,7 @@
 
 </header>
 
+
 <!-- =========================================================
      3. CATALOG
 ========================================================= -->
@@ -326,6 +330,7 @@
 
     </div>
 
+
     <div class="flex flex-col md:flex-row gap-10">
 
         <!-- SIDEBAR -->
@@ -352,6 +357,7 @@
 
         </aside>
 
+
         <!-- PRODUCT GRID -->
         <div class="flex-1">
 
@@ -365,6 +371,7 @@
     </div>
 
 </main>
+
 
 <!-- =========================================================
      SEO CONTENT
@@ -474,6 +481,7 @@
 
 </div>
 
+
 <!-- =========================================================
      4. QUOTE LIST DRAWER
 ========================================================= -->
@@ -483,6 +491,7 @@
         class="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity"
         onclick="window.toggleCart()">
     </div>
+
 
     <div
         id="cart-content"
@@ -498,16 +507,19 @@
 
             </h2>
 
+
             <button onclick="window.toggleCart()">
                 <i data-lucide="x"></i>
             </button>
 
         </div>
 
+
         <div
             id="cart-items"
             class="flex-1 overflow-y-auto p-6 space-y-4">
         </div>
+
 
         <div class="p-6 border-t bg-slate-50">
 
@@ -523,10 +535,13 @@
 
             </div>
 
+
             <button
                 onclick="window.showCheckout()"
                 class="w-full bg-[#004b8d] text-white py-5 rounded-2xl font-black text-lg shadow-lg">
+
                 Request a Quote
+
             </button>
 
         </div>
@@ -534,6 +549,7 @@
     </div>
 
 </div>
+
 
 <!-- =========================================================
      5. PRODUCT DETAILS MODAL
@@ -547,6 +563,7 @@
         onclick="window.closeDetails()">
     </div>
 
+
     <div
         class="relative bg-white rounded-[3rem] w-full max-w-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
 
@@ -555,16 +572,22 @@
             <h2
                 id="modal-title"
                 class="text-3xl font-black text-[#004b8d]">
+
                 Product Details
+
             </h2>
+
 
             <button
                 onclick="window.closeDetails()"
                 class="p-3 hover:bg-slate-200 rounded-full transition">
+
                 <i data-lucide="x"></i>
+
             </button>
 
         </div>
+
 
         <div class="overflow-y-auto p-10">
 
@@ -573,6 +596,7 @@
                 src=""
                 alt="Product Detail"
                 class="w-full h-64 object-contain mb-8 bg-slate-50 rounded-[2rem] border border-slate-100 shadow-inner">
+
 
             <div class="space-y-8">
 
@@ -590,6 +614,7 @@
 
                 </div>
 
+
                 <!-- All remaining technical properties -->
                 <div
                     id="specs-grid"
@@ -600,12 +625,15 @@
 
         </div>
 
+
         <div class="p-8 border-t bg-slate-50">
 
             <button
                 onclick="window.requestQuoteFromDetails()"
                 class="w-full bg-[#004b8d] text-white py-5 rounded-2xl font-black text-lg shadow-lg hover:bg-[#1a7139] transition">
+
                 Request a Quote
+
             </button>
 
         </div>
@@ -613,6 +641,7 @@
     </div>
 
 </div>
+
 
 <!-- =========================================================
      6. REQUEST A QUOTE FORM
@@ -626,6 +655,7 @@
         onclick="window.closeCheckout()">
     </div>
 
+
     <div
         class="relative bg-white rounded-[3rem] w-full max-w-5xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[92vh]">
 
@@ -638,16 +668,23 @@
 
         </button>
 
+
         <!-- FORM -->
         <div class="p-8 md:p-12 md:w-1/2 overflow-y-auto">
 
             <h2 class="text-3xl font-black mb-2 text-[#004b8d]">
+
                 Request a Quote
+
             </h2>
 
+
             <p class="text-slate-500 font-medium mb-8">
+
                 Please share your requirements and our team will get back to you.
+
             </p>
+
 
             <form
                 id="quote-form"
@@ -662,6 +699,7 @@
                     required
                     class="w-full p-4 bg-slate-100 rounded-2xl border-none text-base font-bold">
 
+
                 <!-- COMPANY -->
                 <input
                     type="text"
@@ -670,12 +708,14 @@
                     required
                     class="w-full p-4 bg-slate-100 rounded-2xl border-none text-base font-bold">
 
+
                 <!-- DESIGNATION -->
                 <input
                     type="text"
                     id="cust-designation"
                     placeholder="Designation (Optional)"
                     class="w-full p-4 bg-slate-100 rounded-2xl border-none text-base font-bold">
+
 
                 <!-- WHATSAPP / MOBILE -->
                 <input
@@ -685,6 +725,7 @@
                     required
                     class="w-full p-4 bg-slate-100 rounded-2xl border-none text-base font-bold">
 
+
                 <!-- EMAIL -->
                 <input
                     type="email"
@@ -693,14 +734,18 @@
                     required
                     class="w-full p-4 bg-slate-100 rounded-2xl border-none text-base font-bold">
 
+
                 <!-- PRODUCT REQUIRED: SEARCHABLE MULTI-SELECT -->
                 <div class="relative">
 
                     <label
                         for="product-picker-button"
                         class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">
+
                         Product Required *
+
                     </label>
+
 
                     <button
                         type="button"
@@ -709,11 +754,19 @@
                         class="w-full p-4 bg-slate-100 rounded-2xl border border-transparent text-left text-base font-bold text-slate-700 flex items-center justify-between hover:border-[#004b8d] transition">
 
                         <span id="product-picker-label">
+
                             Select one or more products *
+
                         </span>
 
-                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400"></i>
+
+                        <i
+                            data-lucide="chevron-down"
+                            class="w-5 h-5 text-slate-400">
+                        </i>
+
                     </button>
+
 
                     <div
                         id="product-picker"
@@ -728,6 +781,7 @@
                                     class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none">
                                 </i>
 
+
                                 <input
                                     type="text"
                                     id="product-picker-search"
@@ -739,27 +793,35 @@
 
                         </div>
 
+
                         <div
                             id="product-picker-options"
                             class="max-h-72 overflow-y-auto p-2 space-y-1">
                         </div>
 
+
                         <div class="p-3 border-t border-slate-100 bg-slate-50 flex items-center justify-between gap-3">
 
                             <span class="text-xs font-black text-slate-400 uppercase">
+
                                 Select multiple products
+
                             </span>
+
 
                             <button
                                 type="button"
                                 onclick="window.closeProductPicker()"
                                 class="px-4 py-2 rounded-xl bg-[#004b8d] text-white font-black text-xs uppercase tracking-widest hover:bg-[#1a7139] transition">
+
                                 Done
+
                             </button>
 
                         </div>
 
                     </div>
+
 
                     <!-- Selected Products -->
                     <div
@@ -769,24 +831,29 @@
 
                 </div>
 
+
                 <!-- QUANTITY SUMMARY -->
                 <div>
 
                     <label
                         for="cust-quantity"
                         class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">
+
                         Quantity *
+
                     </label>
+
 
                     <input
                         type="text"
                         id="cust-quantity"
-                        placeholder="Enter quantity (e.g. 25 Kg, 100 Kg, 5 Drums) *"
+                        placeholder="Enter quantity (e.g. 25 Kg, 100 Kg, 5 Drums)"
                         autocomplete="off"
                         required
                         class="w-full p-4 bg-slate-100 rounded-2xl border-none text-base font-bold text-slate-700 focus:ring-2 focus:ring-[#004b8d] outline-none">
 
                 </div>
+
 
                 <!-- REQUIRED GRADE -->
                 <div>
@@ -798,6 +865,7 @@
                         Required Grade *
 
                     </label>
+
 
                     <select
                         id="cust-grade"
@@ -832,6 +900,7 @@
 
                 </div>
 
+
                 <!-- SPECIFICATION / COA -->
                 <div>
 
@@ -847,6 +916,7 @@
 
                     </label>
 
+
                     <input
                         type="file"
                         id="cust-file"
@@ -854,6 +924,7 @@
                         class="w-full p-4 bg-slate-100 rounded-2xl border-none text-sm font-bold text-slate-600">
 
                 </div>
+
 
                 <!-- SUBMIT -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
@@ -868,6 +939,7 @@
                         Send via WhatsApp
 
                     </button>
+
 
                     <button
                         type="button"
@@ -886,17 +958,24 @@
 
         </div>
 
+
         <!-- SUMMARY -->
         <div
             class="bg-slate-50 p-8 md:p-12 md:w-1/2 flex flex-col overflow-y-auto border-l border-slate-100">
 
             <h3 class="text-2xl font-black mb-2">
+
                 Selected Products
+
             </h3>
 
+
             <p class="text-slate-500 font-medium mb-8">
+
                 Your selected products are shown below. Use the quantity controls to adjust the quote list.
+
             </p>
+
 
             <div
                 id="summary-items"
@@ -908,6 +987,7 @@
     </div>
 
 </div>
+
 
 <!-- =========================================================
      7. FOOTER
@@ -930,81 +1010,122 @@
 
             </div>
 
+
             <p class="text-slate-500 text-lg font-medium max-w-md leading-relaxed mb-10">
+
                 Premium wholesaler and distributor of pharmaceutical raw materials based in Hyderabad, serving Pan-India.
+
             </p>
+
 
             <div class="space-y-5 font-black text-slate-700 text-lg">
 
                 <p class="flex items-center gap-4">
+
                     <i data-lucide="phone"></i>
+
                     +91 9398453760
+
                 </p>
 
+
                 <p class="flex items-center gap-4">
+
                     <i data-lucide="mail"></i>
+
                     info@excipurepharma.com
+
                 </p>
 
+
                 <p class="flex items-center gap-4">
+
                     <i data-lucide="map-pin"></i>
+
                     Hyderabad, Telangana, India
+
                 </p>
 
             </div>
 
         </div>
 
+
         <div>
 
             <h4 class="font-black mb-8 text-xs uppercase text-slate-400">
+
                 Services
+
             </h4>
+
 
             <ul class="space-y-6 font-black text-slate-600 text-lg">
 
                 <li>
+
                     <a
                         href="/#catalog"
                         class="hover:text-[#004b8d]">
+
                         Products
+
                     </a>
+
                 </li>
 
+
                 <li>
+
                     <a
                         href="contact"
                         class="hover:text-[#004b8d]">
+
                         Support
+
                     </a>
+
                 </li>
 
             </ul>
 
         </div>
 
+
         <div>
 
             <h4 class="font-black mb-8 text-xs uppercase text-slate-400">
+
                 Legal
+
             </h4>
+
 
             <ul class="space-y-6 font-black text-slate-600 text-lg">
 
                 <li>
+
                     <a
                         href="privacy"
                         class="hover:text-[#004b8d]">
+
                         Privacy
+
                     </a>
+
                 </li>
 
+
                 <li>
+
                     <a
                         href="compliance"
                         class="hover:text-[#004b8d]">
+
                         Compliance
+
                     </a>
+
                 </li>
 
             </ul>
@@ -1013,13 +1134,17 @@
 
     </div>
 
+
     <div class="container mx-auto px-6 border-t pt-10">
 
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10 text-xs font-black text-slate-400 tracking-widest uppercase">
 
             <p>
+
                 © 2026 EXCIPURE PHARMA. ALL RIGHTS RESERVED.
+
             </p>
+
 
             <div class="flex gap-8">
 
@@ -1035,10 +1160,13 @@
 
         </div>
 
+
         <div class="max-w-4xl border-l-4 border-[#004b8d] pl-6 py-2">
 
             <p class="text-slate-500 text-sm md:text-base font-medium italic">
+
                 Excipure Pharma is committed to high standards of quality and compliance. Product information provided on this website is for business and informational purposes only.
+
             </p>
 
         </div>
@@ -1046,6 +1174,7 @@
     </div>
 
 </footer>
+
 
 <script src="script.js"></script>
 
