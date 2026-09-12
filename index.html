@@ -693,21 +693,100 @@
                     required
                     class="w-full p-4 bg-slate-100 rounded-2xl border-none text-base font-bold">
 
-                <!-- PRODUCT -->
-                <input
-                    type="text"
-                    id="cust-product"
-                    placeholder="Product Required *"
-                    required
-                    class="w-full p-4 bg-slate-100 rounded-2xl border-none text-base font-bold">
+                <!-- PRODUCT REQUIRED: SEARCHABLE MULTI-SELECT -->
+                <div class="relative">
 
-                <!-- QUANTITY -->
-                <input
-                    type="text"
-                    id="cust-quantity"
-                    placeholder="Quantity *"
-                    required
-                    class="w-full p-4 bg-slate-100 rounded-2xl border-none text-base font-bold">
+                    <label
+                        for="product-picker-button"
+                        class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">
+                        Product Required *
+                    </label>
+
+                    <button
+                        type="button"
+                        id="product-picker-button"
+                        onclick="window.toggleProductPicker()"
+                        class="w-full p-4 bg-slate-100 rounded-2xl border border-transparent text-left text-base font-bold text-slate-700 flex items-center justify-between hover:border-[#004b8d] transition">
+
+                        <span id="product-picker-label">
+                            Select one or more products *
+                        </span>
+
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400"></i>
+                    </button>
+
+                    <div
+                        id="product-picker"
+                        class="hidden absolute left-0 right-0 top-full mt-2 z-50 bg-white rounded-2xl border border-slate-200 shadow-2xl overflow-hidden">
+
+                        <div class="p-3 border-b border-slate-100 bg-slate-50">
+
+                            <div class="relative">
+
+                                <i
+                                    data-lucide="search"
+                                    class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none">
+                                </i>
+
+                                <input
+                                    type="text"
+                                    id="product-picker-search"
+                                    oninput="window.filterQuoteProducts(this.value)"
+                                    placeholder="Search products..."
+                                    class="w-full pl-10 pr-3 py-3 bg-white rounded-xl border border-slate-200 outline-none font-bold text-sm focus:ring-2 focus:ring-[#004b8d]">
+
+                            </div>
+
+                        </div>
+
+                        <div
+                            id="product-picker-options"
+                            class="max-h-72 overflow-y-auto p-2 space-y-1">
+                        </div>
+
+                        <div class="p-3 border-t border-slate-100 bg-slate-50 flex items-center justify-between gap-3">
+
+                            <span class="text-xs font-black text-slate-400 uppercase">
+                                Select multiple products
+                            </span>
+
+                            <button
+                                type="button"
+                                onclick="window.closeProductPicker()"
+                                class="px-4 py-2 rounded-xl bg-[#004b8d] text-white font-black text-xs uppercase tracking-widest hover:bg-[#1a7139] transition">
+                                Done
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Selected Products -->
+                    <div
+                        id="selected-products"
+                        class="mt-3 space-y-2">
+                    </div>
+
+                </div>
+
+                <!-- QUANTITY SUMMARY -->
+                <div>
+
+                    <label
+                        for="cust-quantity"
+                        class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">
+                        Quantity *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="cust-quantity"
+                        placeholder="Add quantity for each selected product *"
+                        readonly
+                        required
+                        class="w-full p-4 bg-slate-100 rounded-2xl border-none text-base font-bold text-slate-700">
+
+                </div>
 
                 <!-- REQUIRED GRADE -->
                 <div>
