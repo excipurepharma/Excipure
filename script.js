@@ -813,7 +813,7 @@ window.closeDetails = function() {
 
 
 // =========================================================
-// 9. QUOTE LIST
+// 9. QUOTE LIST / CART
 // =========================================================
 
 window.addToCart = function(id) {
@@ -852,29 +852,8 @@ window.addToCart = function(id) {
 
     window.updateCartUI();
 
-
-    const toast =
-        document.createElement(
-            'div'
-        );
-
-
-    toast.className =
-        "fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-6 py-3 rounded-full z-[100] text-sm font-bold shadow-2xl";
-
-
-    toast.innerText =
-        `${item.name} added to quote list`;
-
-
-    document.body.appendChild(
-        toast
-    );
-
-
-    setTimeout(
-        () => toast.remove(),
-        2000
+    window.showQuoteToast(
+        `${item.name} added to quote list`
     );
 
 };
@@ -882,25 +861,17 @@ window.addToCart = function(id) {
 
 window.updateCartUI = function() {
 
-    const total =
-        cart.reduce(
-            (acc, c) =>
-                acc + c.qty,
-            0
-        );
-
+    const itemCount = cart.length;
 
     const countEl =
         document.getElementById(
             'cart-count'
         );
 
-
     const totalCountEl =
         document.getElementById(
             'cart-total-count'
         );
-
 
     const itemsEl =
         document.getElementById(
@@ -911,7 +882,7 @@ window.updateCartUI = function() {
     if (countEl) {
 
         countEl.innerText =
-            total;
+            itemCount;
 
     }
 
@@ -919,48 +890,110 @@ window.updateCartUI = function() {
     if (totalCountEl) {
 
         totalCountEl.innerText =
-            total;
+            itemCount;
 
     }
 
 
-    if (!itemsEl) return;
+    if (!itemsEl) {
+
+        window.updateQuoteProductUI();
+
+        return;
+
+    }
 
 
-    itemsEl.innerHTML =
-        cart.map(c => `
+    if (cart.length === 0) {
 
-            <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100 mb-4">
+        itemsEl.innerHTML = `
 
-                <div class="flex-1">
+            <div class="py-12 text-center text-slate-400">
 
-                    <h4 class="text-sm font-bold text-slate-800">
+                <i
+                    data-lucide="shopping-cart"
+                    class="w-10 h-10 mx-auto mb-3 opacity-40">
+                </i>
 
+                <p class="font-black text-lg">
+                    Your quote list is empty.
+                </p>
+
+                <p class="text-sm font-medium mt-1">
+                    Add products to request a quote.
+                </p>
+
+            </div>
+
+        `;
+
+
+        lucide.createIcons();
+
+        window.updateQuoteProductUI();
+
+        return;
+
+    }
+
+
+    itemsEl.innerHTML = cart.map(c => `
+
+        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 mb-4">
+
+            <div class="flex items-start gap-3">
+
+                <div class="flex-1 min-w-0">
+
+                    <h4 class="text-sm font-black text-slate-800 leading-snug">
                         ${c.name}
-
                     </h4>
 
-                    <p class="text-[10px] uppercase text-slate-400">
-
+                    <p class="text-[10px] uppercase text-slate-400 mt-1">
                         ${c.stock}
-
                     </p>
 
                 </div>
 
 
-                <div class="flex items-center gap-3 bg-white px-3 py-1 rounded-xl border border-slate-100">
+                <!-- DELETE ITEM -->
+                <button
+                    type="button"
+                    onclick="window.removeFromCart(${c.id})"
+                    aria-label="Remove ${c.name}"
+                    class="shrink-0 p-2 rounded-xl text-red-500 hover:bg-red-50 transition">
+
+                    <i
+                        data-lucide="trash-2"
+                        class="w-4 h-4">
+                    </i>
+
+                </button>
+
+            </div>
+
+
+            <!-- QUANTITY CONTROLS -->
+            <div class="flex items-center justify-between mt-4">
+
+                <span class="text-xs font-black text-slate-400 uppercase">
+                    Quantity
+                </span>
+
+
+                <div class="flex items-center gap-3 bg-white px-3 py-2 rounded-xl border border-slate-100">
 
                     <button
+                        type="button"
                         onclick="window.changeQty(${c.id}, -1)"
-                        class="font-bold text-slate-400">
+                        class="font-black text-slate-400 hover:text-slate-800 px-1">
 
-                        -
+                        −
 
                     </button>
 
 
-                    <span class="text-sm font-black w-4 text-center">
+                    <span class="text-sm font-black min-w-[48px] text-center">
 
                         ${c.qty}
 
@@ -968,8 +1001,9 @@ window.updateCartUI = function() {
 
 
                     <button
+                        type="button"
                         onclick="window.changeQty(${c.id}, 1)"
-                        class="text-[#004b8d] font-bold">
+                        class="text-[#004b8d] font-black hover:text-[#1a7139] px-1">
 
                         +
 
@@ -979,7 +1013,14 @@ window.updateCartUI = function() {
 
             </div>
 
-        `).join('');
+        </div>
+
+    `).join('');
+
+
+    lucide.createIcons();
+
+    window.updateQuoteProductUI();
 
 };
 
@@ -995,20 +1036,72 @@ window.changeQty = function(id, delta) {
     if (!item) return;
 
 
-    item.qty += delta;
-
-
-    if (item.qty < 1) {
-
-        cart =
-            cart.filter(
-                c => c.id !== id
-            );
-
-    }
+    item.qty =
+        Math.max(
+            1,
+            Number(item.qty || 1) +
+            Number(delta)
+        );
 
 
     window.updateCartUI();
+
+};
+
+
+window.removeFromCart = function(id) {
+
+    const removed =
+        cart.find(
+            item => item.id === id
+        );
+
+
+    cart =
+        cart.filter(
+            item => item.id !== id
+        );
+
+
+    window.updateCartUI();
+
+
+    if (removed) {
+
+        window.showQuoteToast(
+            `${removed.name} removed from quote list`
+        );
+
+    }
+
+};
+
+
+window.showQuoteToast = function(message) {
+
+    const toast =
+        document.createElement(
+            'div'
+        );
+
+
+    toast.className =
+        "fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-6 py-3 rounded-full z-[100] text-sm font-bold shadow-2xl text-center";
+
+
+    toast.innerText =
+        message;
+
+
+    document.body.appendChild(
+        toast
+    );
+
+
+    setTimeout(
+        () => toast.remove(),
+        2000
+    );
 
 };
 
@@ -1032,7 +1125,9 @@ window.toggleCart = function() {
 
 
     if (!drawer || !content) {
+
         return;
+
     }
 
 
@@ -1065,14 +1160,21 @@ window.showCheckout = function() {
     }
 
 
-    window.openQuoteForm(
-        cart[0].id
-    );
+    window.openQuoteForm();
 
 };
 
 
 window.requestQuote = function(id) {
+
+    const item =
+        products.find(
+            p => p.id === id
+        );
+
+
+    if (!item) return;
+
 
     const existing =
         cart.find(
@@ -1080,26 +1182,15 @@ window.requestQuote = function(id) {
         );
 
 
-    if (existing) {
+    if (!existing) {
 
-        existing.qty = 1;
+        cart.push({
 
-    } else {
+            ...item,
 
-        const item =
-            products.find(
-                p => p.id === id
-            );
+            qty: 1
 
-
-        if (item) {
-
-            cart = [
-                item,
-                ...cart
-            ];
-
-        }
+        });
 
     }
 
@@ -1107,13 +1198,12 @@ window.requestQuote = function(id) {
     window.updateCartUI();
 
 
-    // DIRECTLY OPEN FORM
-    window.openQuoteForm(id);
+    // DIRECTLY OPEN QUOTE FORM
+    window.openQuoteForm();
 
 };
 
 
-// Details -> Request Quote
 window.requestQuoteFromDetails =
 function() {
 
@@ -1122,6 +1212,8 @@ function() {
         window.requestQuote(
             activeProductId
         );
+
+        return;
 
     }
 
@@ -1132,82 +1224,408 @@ function() {
 
 
 // =========================================================
-// 12. OPEN QUOTE FORM
+// 12. SEARCHABLE PRODUCT MULTI-SELECT
 // =========================================================
 
-window.openQuoteForm = function(id) {
+window.toggleProductPicker = function() {
 
-    const selected =
-        products.find(
-            p => p.id === id
-        ) ||
-        cart[0];
-
-
-    if (!selected) return;
-
-
-    // PRE-FILL PRODUCT
-    const productField =
+    const picker =
         document.getElementById(
-            'cust-product'
+            'product-picker'
         );
 
 
-    if (productField) {
+    if (!picker) return;
 
-        productField.value =
-            selected.name;
+
+    picker.classList.toggle(
+        'hidden'
+    );
+
+
+    if (!picker.classList.contains(
+        'hidden'
+    )) {
+
+        const search =
+            document.getElementById(
+                'product-picker-search'
+            );
+
+
+        if (search) {
+
+            search.focus();
+
+        }
+
+
+        window.renderQuoteProductOptions('');
+
+    }
+
+};
+
+
+window.closeProductPicker = function() {
+
+    const picker =
+        document.getElementById(
+            'product-picker'
+        );
+
+
+    if (picker) {
+
+        picker.classList.add(
+            'hidden'
+        );
+
+    }
+
+};
+
+
+window.filterQuoteProducts =
+function(query) {
+
+    window.renderQuoteProductOptions(
+        query
+    );
+
+};
+
+
+window.renderQuoteProductOptions =
+function(query = '') {
+
+    const container =
+        document.getElementById(
+            'product-picker-options'
+        );
+
+
+    if (!container) return;
+
+
+    const q =
+        String(query)
+            .toLowerCase()
+            .trim();
+
+
+    const availableProducts =
+        products.filter(product => {
+
+            const matchesSearch =
+
+                !q ||
+
+                product.name
+                    .toLowerCase()
+                    .includes(q) ||
+
+                product.cat
+                    .toLowerCase()
+                    .includes(q);
+
+
+            return matchesSearch;
+
+        });
+
+
+    if (
+        availableProducts.length === 0
+    ) {
+
+        container.innerHTML = `
+
+            <div class="py-8 text-center text-slate-400 font-bold">
+
+                No products found.
+
+            </div>
+
+        `;
+
+        return;
 
     }
 
 
-    // SUMMARY
-    const summaryItems =
-        document.getElementById(
-            'summary-items'
-        );
+    container.innerHTML =
+        availableProducts.map(product => {
+
+            const selected =
+                cart.some(
+                    item =>
+                        item.id ===
+                        product.id
+                );
 
 
-    if (summaryItems) {
+            return `
 
-        summaryItems.innerHTML =
-            cart.map(c => `
-
-                <div class="flex justify-between items-center bg-white p-4 rounded-2xl border border-slate-100 shadow-sm">
-
-                    <div>
-
-                        <div class="font-black text-slate-800 text-base">
-
-                            ${c.name}
-
-                        </div>
-
-                        <div class="text-xs font-bold text-slate-400 mt-1">
-
-                            ${c.stock}
-
-                        </div>
-
-                    </div>
+                <button
+                    type="button"
+                    onclick="window.toggleQuoteProduct(${product.id})"
+                    class="w-full flex items-center gap-3 p-3 rounded-xl text-left transition ${
+                        selected
+                            ? 'bg-blue-50 border border-blue-100'
+                            : 'hover:bg-slate-50 border border-transparent'
+                    }">
 
 
-                    <div class="bg-slate-50 px-4 py-2 rounded-lg border border-slate-100">
+                    <!-- CHECKBOX -->
+                    <span
+                        class="w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 ${
+                            selected
+                                ? 'bg-[#004b8d] border-[#004b8d] text-white'
+                                : 'border-slate-300 bg-white'
+                        }">
 
-                        <span class="font-black text-[#004b8d] text-lg">
+                        ${
+                            selected
+                                ? '<i data-lucide="check" class="w-3.5 h-3.5"></i>'
+                                : ''
+                        }
 
-                            x${c.qty}
+                    </span>
+
+
+                    <!-- PRODUCT -->
+                    <span class="min-w-0 flex-1">
+
+                        <span class="block text-sm font-black text-slate-800 truncate">
+
+                            ${product.name}
 
                         </span>
 
-                    </div>
 
-                </div>
+                        <span class="block text-[10px] uppercase font-bold text-slate-400 mt-0.5">
 
-            `).join('');
+                            ${product.cat}
+
+                        </span>
+
+                    </span>
+
+                </button>
+
+            `;
+
+        }).join('');
+
+
+    lucide.createIcons();
+
+};
+
+
+window.toggleQuoteProduct =
+function(id) {
+
+    const item =
+        products.find(
+            p => p.id === id
+        );
+
+
+    if (!item) return;
+
+
+    const existingIndex =
+        cart.findIndex(
+            c => c.id === id
+        );
+
+
+    if (existingIndex >= 0) {
+
+        // REMOVE
+        cart.splice(
+            existingIndex,
+            1
+        );
+
+    } else {
+
+        // ADD
+        cart.push({
+
+            ...item,
+
+            qty: 1
+
+        });
 
     }
+
+
+    window.updateCartUI();
+
+
+    window.renderQuoteProductOptions(
+
+        document.getElementById(
+            'product-picker-search'
+        )?.value || ''
+
+    );
+
+};
+
+
+// =========================================================
+// 12B. SELECTED PRODUCTS UI
+// =========================================================
+
+window.updateQuoteProductUI =
+function() {
+
+    const selectedContainer =
+        document.getElementById(
+            'selected-products'
+        );
+
+
+    const productLabel =
+        document.getElementById(
+            'product-picker-label'
+        );
+
+
+    const quantityField =
+        document.getElementById(
+            'cust-quantity'
+        );
+
+
+    // SELECTED PRODUCT CHIPS
+    if (selectedContainer) {
+
+        selectedContainer.innerHTML =
+
+            cart.length === 0
+
+                ? ''
+
+                : cart.map(item => `
+
+                    <div class="flex items-center justify-between gap-3 bg-blue-50 border border-blue-100 rounded-xl px-3 py-2">
+
+                        <div class="min-w-0 flex-1">
+
+                            <div class="text-sm font-black text-slate-800 truncate">
+
+                                ${item.name}
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- REMOVE FROM SELECTED LIST -->
+                        <button
+                            type="button"
+                            onclick="window.removeFromCart(${item.id})"
+                            class="shrink-0 p-1 rounded-lg text-red-500 hover:bg-red-100 transition">
+
+                            <i
+                                data-lucide="x"
+                                class="w-4 h-4">
+                            </i>
+
+                        </button>
+
+                    </div>
+
+                `).join('');
+
+
+        lucide.createIcons();
+
+    }
+
+
+    // PRODUCT BUTTON LABEL
+    if (productLabel) {
+
+        productLabel.innerText =
+
+            cart.length === 0
+
+                ? 'Select one or more products *'
+
+                : `${cart.length} product${cart.length === 1 ? '' : 's'} selected`;
+
+    }
+
+
+    // QUANTITY SUMMARY
+    if (quantityField) {
+
+        if (cart.length === 0) {
+
+            quantityField.value = '';
+
+            quantityField.placeholder =
+                'Add quantity for each selected product *';
+
+        } else {
+
+            quantityField.value =
+
+                cart.map(item =>
+                    `${item.name}: ${item.qty}`
+                ).join(' | ');
+
+        }
+
+    }
+
+};
+
+
+// =========================================================
+// 12C. OPEN QUOTE FORM
+// =========================================================
+
+window.openQuoteForm =
+function() {
+
+    if (cart.length === 0) {
+
+        alert(
+            'Please select at least one product.'
+        );
+
+        return;
+
+    }
+
+
+    window.updateCartUI();
+
+    window.updateQuoteProductUI();
+
+
+    const search =
+        document.getElementById(
+            'product-picker-search'
+        );
+
+
+    if (search) {
+
+        search.value = '';
+
+    }
+
+
+    window.renderQuoteProductOptions('');
 
 
     const checkoutModal =
@@ -1255,10 +1673,21 @@ function() {
 
 
 // =========================================================
-// 14. READ FORM
+// 14. READ QUOTE FORM
 // =========================================================
 
 function getQuoteData() {
+
+    if (cart.length === 0) {
+
+        alert(
+            'Please select at least one product.'
+        );
+
+        return null;
+
+    }
+
 
     const requiredFields = [
 
@@ -1266,7 +1695,6 @@ function getQuoteData() {
         'cust-company',
         'cust-phone',
         'cust-email',
-        'cust-product',
         'cust-quantity',
         'cust-grade'
 
@@ -1308,7 +1736,7 @@ function getQuoteData() {
     }
 
 
-    // OPTIONAL
+    // OPTIONAL DESIGNATION
     const designationEl =
         document.getElementById(
             'cust-designation'
@@ -1316,6 +1744,7 @@ function getQuoteData() {
 
 
     values.designation =
+
         designationEl
             ? designationEl.value.trim()
             : '';
@@ -1329,17 +1758,37 @@ function getQuoteData() {
 
 
     const file =
+
         fileEl &&
         fileEl.files &&
         fileEl.files.length > 0
+
             ? fileEl.files[0]
+
             : null;
 
 
     values.fileName =
+
         file
             ? file.name
             : 'Not uploaded';
+
+
+    // PRODUCTS
+    values.products =
+        cart.map(item => ({
+
+            name:
+                item.name,
+
+            quantity:
+                item.qty,
+
+            grade:
+                item.grade || 'N/A'
+
+        }));
 
 
     return values;
@@ -1361,16 +1810,14 @@ function(method) {
     if (!data) return;
 
 
-    const selectedProducts =
-        cart.length > 0
-
-            ? cart
-                .map(c =>
-                    `- ${c.name} (x${c.qty})`
-                )
-                .join('\n')
-
-            : '- None';
+    // MULTIPLE PRODUCTS
+    const productLines =
+        data.products
+            .map(
+                item =>
+                    `- ${item.name} | Quantity: ${item.quantity}`
+            )
+            .join('\n');
 
 
     const body = [
@@ -1384,46 +1831,38 @@ function(method) {
         `Company: ${data['cust-company']}`,
 
         `Designation: ${
-            data.designation ||
-            'Not provided'
+            data.designation || 'Not provided'
         }`,
 
         `WhatsApp / Mobile: ${data['cust-phone']}`,
 
         `Email: ${data['cust-email']}`,
 
-        `Product Required: ${data['cust-product']}`,
+        '',
 
-        `Quantity: ${data['cust-quantity']}`,
+        'Products Required:',
 
-        `Required Grade: ${data['cust-grade']}`,
-
-        `Specification/COA: ${data.fileName}`,
+        productLines,
 
         '',
 
-        'Selected Products:',
+        `Required Grade: ${data['cust-grade']}`,
 
-        selectedProducts
+        `Specification/COA: ${data.fileName}`
 
     ].join('\n');
 
 
     // WHATSAPP
-    if (
-        method === 'whatsapp'
-    ) {
+    if (method === 'whatsapp') {
 
         window.open(
 
-            `https://wa.me/919398453760?text=${
-                encodeURIComponent(body)
-            }`,
+            `https://wa.me/919398453760?text=${encodeURIComponent(body)}`,
 
             '_blank'
 
         );
-
 
         return;
 
@@ -1435,21 +1874,21 @@ function(method) {
 
         `mailto:info@excipurepharma.com` +
 
-        `?subject=${
-            encodeURIComponent(
-                'Request a Quote - ' +
-                data['cust-product']
-            )
-        }` +
+        `?subject=${encodeURIComponent(
+            'Request a Quote - Excipure Pharma'
+        )}` +
 
-        `&body=${
-            encodeURIComponent(body)
-        }`;
+        `&body=${encodeURIComponent(
+            body
+        )}`;
 
 };
 
 
-// Backward compatibility
+// =========================================================
+// BACKWARD COMPATIBILITY
+// =========================================================
+
 window.submitOrder =
     window.submitQuote;
 
