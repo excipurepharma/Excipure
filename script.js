@@ -107,7 +107,6 @@ const products = [
     { id: 302, name: "Bio-SAP Polymer", cat: "Specialty", stock: "25 Kg Bag", func: "Water Retainer", apps: "Agriculture, Hygiene", grade: "Eco-Friendly", mol: "Bio-Polymer", purity: ">99%", desc: "Eco-friendly polymer.", img: "images/products/specialty/bio-based-super-absorbent-polymer.jpg", features: "High absorbency, eco-friendly, lightweight", appearance: "White granules", weight: "Variable", density: "Variable", melting: "Decomposes", origin: "India", moq: "25 Kg", pkgType: "Bag" }
 ];
 
-```javascript
 // 3. CART / QUOTE STATE
 let cart = [];
 let activeProductId = null;
