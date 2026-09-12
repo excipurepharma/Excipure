@@ -107,2208 +107,600 @@ const products = [
     { id: 302, name: "Bio-SAP Polymer", cat: "Specialty", stock: "25 Kg Bag", func: "Water Retainer", apps: "Agriculture, Hygiene", grade: "Eco-Friendly", mol: "Bio-Polymer", purity: ">99%", desc: "Eco-friendly polymer.", img: "images/products/specialty/bio-based-super-absorbent-polymer.jpg", features: "High absorbency, eco-friendly, lightweight", appearance: "White granules", weight: "Variable", density: "Variable", melting: "Decomposes", origin: "India", moq: "25 Kg", pkgType: "Bag" }
 ];
 
-// =========================================================
+```javascript
 // 3. CART / QUOTE STATE
-// =========================================================
-
 let cart = [];
 let activeProductId = null;
 
-
-// =========================================================
 // 4. PRODUCT CARD RENDERING
-// =========================================================
-
 window.renderProducts = function(items) {
-
     const grid = document.getElementById('product-grid');
-
     if (!grid) return;
-
     if (!items || items.length === 0) {
-
-        grid.innerHTML = `
-            <div class="col-span-full py-20 text-center text-slate-400 font-bold text-xl">
-                No products found matching your search.
-            </div>
-        `;
-
+        grid.innerHTML = '<div class="col-span-full py-20 text-center text-slate-400 font-bold text-xl">No products found matching your search.</div>';
         return;
     }
-
     grid.innerHTML = items.map(p => `
-
         <div class="product-card bg-white rounded-[2.5rem] p-7 border border-slate-100 shadow-sm relative overflow-hidden group transition-all duration-300">
-
             <div class="absolute top-5 left-5 z-10">
-
-                <span class="block bg-[#004b8d] text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest shadow-md">
-
-                    ${p.stock || ''}
-
-                </span>
-
+                <span class="block bg-[#004b8d] text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest shadow-md">${p.stock || ''}</span>
             </div>
-
-
-            <img
-                src="${p.img}?v=${Date.now()}"
-                alt="${p.name}"
-                class="w-full h-56 object-cover rounded-3xl mb-5 bg-slate-50 border border-slate-50 shadow-inner"
-            >
-
-
+            <img src="${p.img}?v=${Date.now()}" alt="${p.name}" class="w-full h-56 object-cover rounded-3xl mb-5 bg-slate-50 border border-slate-50 shadow-inner">
             <div class="px-2">
-
-                <p class="text-[12px] font-black text-[#1a7139] uppercase mb-1 tracking-tighter">
-
-                    ${p.cat || ''}
-
-                </p>
-
-
-                <h3 class="font-black text-2xl min-h-[3.5rem] mb-4 uppercase leading-tight text-slate-900">
-
-                    ${p.name}
-
-                </h3>
-
-
-                <p class="text-[16px] text-slate-500 mb-1 leading-tight">
-
-                    Application:
-
-                    <span class="font-black text-slate-800">
-
-                        ${p.func || 'N/A'}
-
-                    </span>
-
-                </p>
-
-
-                <p class="text-[16px] text-slate-500 mb-5 leading-tight">
-
-                    Key Features:
-
-                    <span class="font-bold text-[#1a7139] italic">
-
-                        ${p.features || 'Standard Quality'}
-
-                    </span>
-
-                </p>
-
-
+                <p class="text-[12px] font-black text-[#1a7139] uppercase mb-1 tracking-tighter">${p.cat || ''}</p>
+                <h3 class="font-black text-2xl min-h-[3.5rem] mb-4 uppercase leading-tight text-slate-900">${p.name}</h3>
+                <p class="text-[16px] text-slate-500 mb-1 leading-tight">Application: <span class="font-black text-slate-800">${p.func || 'N/A'}</span></p>
+                <p class="text-[16px] text-slate-500 mb-5 leading-tight">Key Features: <span class="font-bold text-[#1a7139] italic">${p.features || 'Standard Quality'}</span></p>
                 <div class="flex flex-col gap-2 mb-6">
-
-                    <div class="text-base md:text-lg text-slate-700 leading-relaxed">
-
-                        <span class="font-black">
-                            Form:
-                        </span>
-
-                        <span class="font-black text-slate-900">
-
-                            ${p.appearance || 'N/A'}
-
-                        </span>
-
-                    </div>
-
-
-                    <div class="text-base md:text-lg text-slate-700 leading-relaxed">
-
-                        <span class="font-black">
-                            Purity:
-                        </span>
-
-                        <span class="font-black text-slate-900">
-
-                            ${p.purity || 'N/A'}
-
-                        </span>
-
-                    </div>
-
-
-                    <div class="text-base md:text-lg text-slate-700 leading-relaxed">
-
-                        <span class="font-black">
-                            Grade:
-                        </span>
-
-                        <span class="font-black text-slate-900">
-
-                            ${p.grade || 'N/A'}
-
-                        </span>
-
-                    </div>
-
+                    <div class="text-base md:text-lg text-slate-700 leading-relaxed"><span class="font-black">Form:</span> <span class="font-black text-slate-900">${p.appearance || 'N/A'}</span></div>
+                    <div class="text-base md:text-lg text-slate-700 leading-relaxed"><span class="font-black">Purity:</span> <span class="font-black text-slate-900">${p.purity || 'N/A'}</span></div>
+                    <div class="text-base md:text-lg text-slate-700 leading-relaxed"><span class="font-black">Grade:</span> <span class="font-black text-slate-900">${p.grade || 'N/A'}</span></div>
                 </div>
-
-
-                <div class="text-[15px] text-slate-400 leading-tight mb-6 uppercase font-black">
-
-                    MOQ:
-
-                    <span class="text-slate-900 font-black">
-
-                        ${p.moq || '25 Kg'}
-
-                    </span>
-
-                </div>
-
-
+                <div class="text-[15px] text-slate-400 leading-tight mb-6 uppercase font-black">MOQ: <span class="text-slate-900 font-black">${p.moq || '25 Kg'}</span></div>
                 <div class="pt-4 border-t border-slate-50 grid grid-cols-1 sm:grid-cols-2 gap-3">
-
-                    <button
-                        type="button"
-                        onclick="window.viewDetails(${p.id})"
-                        class="w-full bg-white text-[#004b8d] border-2 border-[#004b8d] py-4 rounded-2xl font-black text-base uppercase tracking-widest hover:bg-[#004b8d] hover:text-white transition shadow-sm">
-
-                        Details
-
-                    </button>
-
-
-                    <button
-                        type="button"
-                        onclick="window.requestQuote(${p.id})"
-                        class="w-full bg-[#004b8d] text-white py-4 rounded-2xl font-black text-base uppercase tracking-widest hover:bg-[#1a7139] transition shadow-xl">
-
-                        Request a Quote
-
-                    </button>
-
+                    <button type="button" onclick="window.viewDetails(${p.id})" class="w-full bg-white text-[#004b8d] border-2 border-[#004b8d] py-4 rounded-2xl font-black text-base uppercase tracking-widest hover:bg-[#004b8d] hover:text-white transition shadow-sm">Details</button>
+                    <button type="button" onclick="window.requestQuote(${p.id})" class="w-full bg-[#004b8d] text-white py-4 rounded-2xl font-black text-base uppercase tracking-widest hover:bg-[#1a7139] transition shadow-xl">Request a Quote</button>
                 </div>
-
             </div>
-
         </div>
-
     `).join('');
-
     lucide.createIcons();
-
 };
 
-
-// =========================================================
 // 5. SIDEBAR
-// =========================================================
-
 window.renderSidebar = function() {
-
     const nav = document.getElementById('sidebar-nav');
-
     if (!nav) return;
-
-    const categories = [
-        "Excipients",
-        "Colours",
-        "Solvents",
-        "Vitamins",
-        "Specialty"
-    ];
-
+    const categories = ['Excipients', 'Colours', 'Solvents', 'Vitamins', 'Specialty'];
     let html = `
-
-        <button
-            type="button"
-            onclick="window.filterProducts('All')"
-            class="w-full text-left px-5 py-4 rounded-xl hover:bg-slate-50 transition font-black text-lg mb-4 flex items-center justify-between border border-transparent group">
-
-            <span class="text-slate-700 group-hover:text-[#004b8d]">
-
-                All Products (${products.length})
-
-            </span>
-
-            <i
-                data-lucide="layers"
-                class="w-5 h-5 text-slate-300">
-            </i>
-
+        <button type="button" onclick="window.filterProducts('All')" class="w-full text-left px-5 py-4 rounded-xl hover:bg-slate-50 transition font-black text-lg mb-4 flex items-center justify-between border border-transparent group">
+            <span class="text-slate-700 group-hover:text-[#004b8d]">All Products (${products.length})</span>
+            <i data-lucide="layers" class="w-5 h-5 text-slate-300"></i>
         </button>
-
     `;
-
-
     html += categories.map(cat => {
-
-        const catItems = products.filter(
-            p => p.cat === cat
-        );
-
-
-        if (cat === "Colours") {
-
-            const types = [
-                "Inorganic Pigment",
-                "Aluminium Lake Pigment",
-                "Synthetic Azo Dye",
-                "Organic Pigment"
-            ];
-
-
+        const catItems = products.filter(p => p.cat === cat);
+        if (cat === 'Colours') {
+            const types = ['Inorganic Pigment', 'Aluminium Lake Pigment', 'Synthetic Azo Dye', 'Organic Pigment'];
             return `
-
                 <div class="category-group border-b border-slate-50 last:border-0 pb-1">
-
-                    <button
-                        type="button"
-                        onclick="window.toggleDropdown(this)"
-                        class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition text-left">
-
-                        <span class="text-base font-black text-slate-800 uppercase">
-
-                            ${cat} (${catItems.length})
-
-                        </span>
-
-                        <i
-                            data-lucide="chevron-down"
-                            class="w-5 h-5 text-slate-300 dropdown-icon">
-                        </i>
-
+                    <button type="button" onclick="window.toggleDropdown(this)" class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition text-left">
+                        <span class="text-base font-black text-slate-800 uppercase">${cat} (${catItems.length})</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-300 dropdown-icon"></i>
                     </button>
-
-
                     <div class="dropdown-content hidden pl-6 pr-2 py-3 space-y-4 border-l-2 border-slate-100 ml-5">
-
-                        <button
-                            type="button"
-                            onclick="window.filterProducts('Colours')"
-                            class="text-[10px] font-black text-[#1a7139] uppercase px-0 hover:underline">
-
-                            View All Colours
-
-                        </button>
-
-
+                        <button type="button" onclick="window.filterProducts('Colours')" class="text-[10px] font-black text-[#1a7139] uppercase px-0 hover:underline">View All Colours</button>
                         ${types.map(type => {
-
-                            const typeItems =
-                                catItems.filter(
-                                    p => p.subCat === type
-                                );
-
-
-                            if (!typeItems.length) {
-                                return '';
-                            }
-
-
+                            const typeItems = catItems.filter(p => p.subCat === type);
+                            if (!typeItems.length) return '';
                             return `
-
                                 <div class="sub-category-group">
-
-                                    <button
-                                        type="button"
-                                        onclick="window.toggleDropdown(this)"
-                                        class="w-full flex items-center justify-between py-1 px-0 hover:text-[#004b8d] transition text-left">
-
-                                        <span class="text-[13px] font-black text-[#004b8d] uppercase">
-
-                                            ${type} (${typeItems.length})
-
-                                        </span>
-
-                                        <i
-                                            data-lucide="plus"
-                                            class="w-3 h-3 text-slate-400 dropdown-icon">
-                                        </i>
-
+                                    <button type="button" onclick="window.toggleDropdown(this)" class="w-full flex items-center justify-between py-1 px-0 hover:text-[#004b8d] transition text-left">
+                                        <span class="text-[13px] font-black text-[#004b8d] uppercase">${type} (${typeItems.length})</span>
+                                        <i data-lucide="plus" class="w-3 h-3 text-slate-400 dropdown-icon"></i>
                                     </button>
-
-
                                     <div class="dropdown-content hidden pl-4 pt-2 space-y-2">
-
-                                        ${typeItems.map(p => `
-
-                                            <button
-                                                type="button"
-                                                onclick="window.filterSingleProduct(${p.id})"
-                                                class="w-full text-left py-0.5 text-sm font-bold text-slate-500 hover:text-[#004b8d] truncate">
-
-                                                • ${p.name}
-
-                                            </button>
-
-                                        `).join('')}
-
+                                        ${typeItems.map(p => `<button type="button" onclick="window.filterSingleProduct(${p.id})" class="w-full text-left py-0.5 text-sm font-bold text-slate-500 hover:text-[#004b8d] truncate">• ${p.name}</button>`).join('')}
                                     </div>
-
                                 </div>
-
                             `;
-
                         }).join('')}
-
                     </div>
-
                 </div>
-
             `;
-
         }
-
-
         return `
-
             <div class="category-group border-b border-slate-50 last:border-0 pb-1">
-
-                <button
-                    type="button"
-                    onclick="window.toggleDropdown(this)"
-                    class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition text-left">
-
-                    <span class="text-base font-black text-slate-800 uppercase">
-
-                        ${cat} (${catItems.length})
-
-                    </span>
-
-                    <i
-                        data-lucide="chevron-down"
-                        class="w-5 h-5 text-slate-300 dropdown-icon">
-                    </i>
-
+                <button type="button" onclick="window.toggleDropdown(this)" class="w-full flex items-center justify-between px-5 py-5 rounded-xl hover:bg-slate-50 transition text-left">
+                    <span class="text-base font-black text-slate-800 uppercase">${cat} (${catItems.length})</span>
+                    <i data-lucide="chevron-down" class="w-5 h-5 text-slate-300 dropdown-icon"></i>
                 </button>
-
-
                 <div class="dropdown-content hidden pl-6 pr-2 py-2 space-y-1 border-l-2 border-slate-100 ml-5">
-
-                    ${catItems.map(p => `
-
-                        <button
-                            type="button"
-                            onclick="window.filterSingleProduct(${p.id})"
-                            class="w-full text-left py-1.5 text-sm font-bold text-slate-500 hover:text-[#004b8d] transition truncate">
-
-                            • ${p.name}
-
-                        </button>
-
-                    `).join('')}
-
+                    ${catItems.map(p => `<button type="button" onclick="window.filterSingleProduct(${p.id})" class="w-full text-left py-1.5 text-sm font-bold text-slate-500 hover:text-[#004b8d] transition truncate">• ${p.name}</button>`).join('')}
                 </div>
-
             </div>
-
         `;
-
     }).join('');
-
-
     nav.innerHTML = html;
-
     lucide.createIcons();
-
 };
 
-
-// =========================================================
 // 6. SEARCH
-// =========================================================
-
 window.searchProducts = function(query) {
-
-    const q =
-        String(query || '')
-            .toLowerCase()
-            .trim();
-
-
+    const q = String(query || '').toLowerCase().trim();
     if (!q) {
-
-        window.renderProducts(
-            products
-        );
-
+        window.renderProducts(products);
         return;
-
     }
-
-
-    const filtered =
-        products.filter(p =>
-
-            p.name
-                .toLowerCase()
-                .includes(q)
-
-            ||
-
-            p.cat
-                .toLowerCase()
-                .includes(q)
-
-            ||
-
-            (
-                p.features &&
-                p.features
-                    .toLowerCase()
-                    .includes(q)
-            )
-
-        );
-
-
-    window.renderProducts(
-        filtered
+    const filtered = products.filter(p =>
+        p.name.toLowerCase().includes(q) ||
+        p.cat.toLowerCase().includes(q) ||
+        (p.features && p.features.toLowerCase().includes(q))
     );
-
+    window.renderProducts(filtered);
 };
 
-
-// =========================================================
 // 7. DROPDOWN / FILTER
-// =========================================================
-
-window.toggleDropdown =
-function(btn) {
-
+window.toggleDropdown = function(btn) {
     if (!btn) return;
-
-    const content =
-        btn.nextElementSibling;
-
-    const icon =
-        btn.querySelector(
-            '.dropdown-icon'
-        );
-
-
+    const content = btn.nextElementSibling;
+    const icon = btn.querySelector('.dropdown-icon');
     if (!content) return;
-
-
-    const opening =
-        content.classList.contains(
-            'hidden'
-        );
-
-
-    content.classList.toggle(
-        'hidden'
-    );
-
-
-    if (icon) {
-
-        icon.style.transform =
-            opening
-                ? 'rotate(180deg)'
-                : 'rotate(0deg)';
-
-    }
-
+    const opening = content.classList.contains('hidden');
+    content.classList.toggle('hidden');
+    if (icon) icon.style.transform = opening ? 'rotate(180deg)' : 'rotate(0deg)';
 };
 
-
-window.filterProducts =
-function(cat) {
-
-    if (cat === 'All') {
-
-        window.renderProducts(
-            products
-        );
-
-    } else {
-
-        window.renderProducts(
-            products.filter(
-                p => p.cat === cat
-            )
-        );
-
-    }
-
-
+window.filterProducts = function(cat) {
+    window.renderProducts(cat === 'All' ? products : products.filter(p => p.cat === cat));
     scrollToCatalog();
-
 };
 
-
-window.filterSingleProduct =
-function(id) {
-
-    const item =
-        products.find(
-            p => p.id === id
-        );
-
-
+window.filterSingleProduct = function(id) {
+    const item = products.find(p => p.id === id);
     if (!item) return;
-
-
-    window.renderProducts([
-        item
-    ]);
-
-
+    window.renderProducts([item]);
     scrollToCatalog();
-
 };
-
 
 function scrollToCatalog() {
-
-    const target =
-        document.getElementById(
-            'catalog'
-        );
-
-
+    const target = document.getElementById('catalog');
     if (!target) return;
-
-
     window.scrollTo({
-
-        top:
-            target.offsetTop - 100,
-
-        behavior:
-            'smooth'
-
+        top: target.offsetTop - 100,
+        behavior: 'smooth'
     });
+}
 
-};
-
-
-// =========================================================
 // 8. DETAILS MODAL
-// =========================================================
-
-window.viewDetails =
-function(id) {
-
-    const p =
-        products.find(
-            item => item.id === id
-        );
-
-
+window.viewDetails = function(id) {
+    const p = products.find(item => item.id === id);
     if (!p) return;
-
-
     activeProductId = id;
-
-
-    const title =
-        document.getElementById(
-            'modal-title'
-        );
-
-
-    const image =
-        document.getElementById(
-            'modal-img'
-        );
-
-
-    const desc =
-        document.getElementById(
-            'modal-desc'
-        );
-
-
-    const specs =
-        document.getElementById(
-            'specs-grid'
-        );
-
-
-    if (title) {
-
-        title.innerText =
-            p.name;
-
-    }
-
-
-    if (image) {
-
-        image.src =
-            p.img;
-
-    }
-
-
+    const title = document.getElementById('modal-title');
+    const image = document.getElementById('modal-img');
+    const desc = document.getElementById('modal-desc');
+    const specs = document.getElementById('specs-grid');
+    if (title) title.innerText = p.name;
+    if (image) image.src = p.img;
     if (desc) {
-
         desc.innerHTML = `
-
             <div class="mb-6">
-
-                <span class="text-xl text-slate-600 leading-relaxed font-medium">
-
-                    ${p.desc || ''}
-
-                </span>
-
+                <span class="text-xl text-slate-600 leading-relaxed font-medium">${p.desc || ''}</span>
             </div>
-
-
             <div class="bg-blue-50 p-6 rounded-[2rem] border border-blue-100 mb-8 shadow-sm">
-
-                <h4 class="text-[10px] font-black text-[#004b8d] uppercase tracking-widest mb-2">
-
-                    Key Features
-
-                </h4>
-
-                <p class="text-lg font-extrabold text-[#004b8d] italic leading-tight">
-
-                    ${p.features || 'Premium Pharmaceutical Grade'}
-
-                </p>
-
+                <h4 class="text-[10px] font-black text-[#004b8d] uppercase tracking-widest mb-2">Key Features</h4>
+                <p class="text-lg font-extrabold text-[#004b8d] italic leading-tight">${p.features || 'Premium Pharmaceutical Grade'}</p>
             </div>
-
         `;
-
     }
-
-
     if (specs) {
-
         const techSpecs = [
-
-            {
-                label: 'Function',
-                value: p.func
-            },
-
-            {
-                label: 'Formula',
-                value: p.mol
-            },
-
-            {
-                label: 'Weight',
-                value: p.weight
-            },
-
-            {
-                label: 'Density',
-                value: p.density
-            },
-
-            {
-                label: 'Melting Point',
-                value: p.melting
-            },
-
-            {
-                label: 'Origin',
-                value: p.origin
-            },
-
-            {
-                label: 'MOQ',
-                value: p.moq
-            },
-
-            {
-                label: 'Packaging',
-                value: p.pkgType
-            }
-
+            { label: 'Function', value: p.func },
+            { label: 'Formula', value: p.mol },
+            { label: 'Weight', value: p.weight },
+            { label: 'Density', value: p.density },
+            { label: 'Melting Point', value: p.melting },
+            { label: 'Origin', value: p.origin },
+            { label: 'MOQ', value: p.moq },
+            { label: 'Packaging', value: p.pkgType }
         ];
-
-
-        specs.innerHTML =
-            techSpecs.map(
-                s => `
-
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-
-                        <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">
-
-                            ${s.label}
-
-                        </h4>
-
-                        <p class="text-base font-extrabold text-slate-800">
-
-                            ${s.value || 'N/A'}
-
-                        </p>
-
-                    </div>
-
-                `
-            ).join('');
-
+        specs.innerHTML = techSpecs.map(s => `
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">${s.label}</h4>
+                <p class="text-base font-extrabold text-slate-800">${s.value || 'N/A'}</p>
+            </div>
+        `).join('');
     }
-
-
-    const modal =
-        document.getElementById(
-            'details-modal'
-        );
-
-
-    if (modal) {
-
-        modal.classList.remove(
-            'hidden'
-        );
-
-    }
-
-
+    const modal = document.getElementById('details-modal');
+    if (modal) modal.classList.remove('hidden');
     lucide.createIcons();
-
 };
 
-
-window.closeDetails =
-function() {
-
-    const modal =
-        document.getElementById(
-            'details-modal'
-        );
-
-
-    if (modal) {
-
-        modal.classList.add(
-            'hidden'
-        );
-
-    }
-
+window.closeDetails = function() {
+    const modal = document.getElementById('details-modal');
+    if (modal) modal.classList.add('hidden');
 };
 
-
-// =========================================================
 // 9. CART / QUOTE LIST
-// =========================================================
-
-window.addToCart =
-function(id) {
-
-    const product =
-        products.find(
-            p => p.id === id
-        );
-
-
+window.addToCart = function(id) {
+    const product = products.find(p => p.id === id);
     if (!product) return;
-
-
-    const existing =
-        cart.find(
-            item => item.id === id
-        );
-
-
+    const existing = cart.find(item => item.id === id);
     if (existing) {
-
-        existing.qty =
-            Number(
-                existing.qty || 1
-            ) + 1;
-
+        existing.qty = Number(existing.qty || 1) + 1;
     } else {
-
         cart.push({
-
             ...product,
-
             qty: 1,
-
             quoteQuantity: ''
-
         });
-
     }
-
-
     window.updateCartUI();
-
-
-    window.showQuoteToast(
-        `${product.name} added to quote list`
-    );
-
+    window.showQuoteToast(`${product.name} added to quote list`);
 };
 
-
-window.changeQty =
-function(id, delta) {
-
-    const item =
-        cart.find(
-            c => c.id === id
-        );
-
-
+window.changeQty = function(id, delta) {
+    const item = cart.find(c => c.id === id);
     if (!item) return;
-
-
-    item.qty =
-        Math.max(
-
-            1,
-
-            Number(
-                item.qty || 1
-            ) +
-            Number(
-                delta || 0
-            )
-
-        );
-
-
+    item.qty = Math.max(1, Number(item.qty || 1) + Number(delta || 0));
     window.updateCartUI();
-
 };
 
-
-window.removeFromCart =
-function(id) {
-
-    const removed =
-        cart.find(
-            item => item.id === id
-        );
-
-
-    cart =
-        cart.filter(
-            item => item.id !== id
-        );
-
-
+window.removeFromCart = function(id) {
+    const removed = cart.find(item => item.id === id);
+    cart = cart.filter(item => item.id !== id);
     window.updateCartUI();
-
-
-    if (removed) {
-
-        window.showQuoteToast(
-            `${removed.name} removed`
-        );
-
-    }
-
+    if (removed) window.showQuoteToast(`${removed.name} removed`);
 };
 
-// =========================================================
 // 10. CART UI
-// =========================================================
-
-function buildCartItem(
-    item,
-    extraClass = '',
-    showQuantityInput = false
-) {
-
+function buildCartItem(item, extraClass = '') {
     return `
-
         <div class="bg-slate-50 ${extraClass} p-4 rounded-2xl border border-slate-100">
-
             <div class="flex items-start gap-3">
-
                 <div class="flex-1 min-w-0">
-
-                    <h4 class="text-sm font-black text-slate-800 leading-snug">
-
-                        ${item.name}
-
-                    </h4>
-
-
-                    <p class="text-[10px] uppercase text-slate-400 mt-1">
-
-                        ${item.stock || ''}
-
-                    </p>
-
+                    <h4 class="text-sm font-black text-slate-800 leading-snug">${item.name}</h4>
+                    <p class="text-[10px] uppercase text-slate-400 mt-1">${item.stock || ''}</p>
                 </div>
-
-
-                <button
-                    type="button"
-                    onclick="window.removeFromCart(${item.id})"
-                    aria-label="Remove ${item.name}"
-                    class="shrink-0 p-2 rounded-xl text-red-500 hover:bg-red-50 transition">
-
-                    <i
-                        data-lucide="trash-2"
-                        class="w-4 h-4">
-                    </i>
-
+                <button type="button" onclick="window.removeFromCart(${item.id})" aria-label="Remove ${item.name}" class="shrink-0 p-2 rounded-xl text-red-500 hover:bg-red-50 transition">
+                    <i data-lucide="trash-2" class="w-4 h-4"></i>
                 </button>
-
             </div>
-
-
             <div class="flex items-center justify-between mt-4">
-
-                <span class="text-xs font-black text-slate-400 uppercase tracking-wider">
-
-                    Quantity
-
-                </span>
-
-
+                <span class="text-xs font-black text-slate-400 uppercase tracking-wider">Quantity</span>
                 <div class="flex items-center gap-3 bg-white px-3 py-2 rounded-xl border border-slate-100">
-
-                    <button
-                        type="button"
-                        onclick="window.changeQty(${item.id}, -1)"
-                        class="font-black text-slate-400 hover:text-slate-800 px-2 text-lg">
-
-                        −
-
-                    </button>
-
-
-                    <span class="text-sm font-black min-w-[48px] text-center">
-
-                        ${item.qty}
-
-                    </span>
-
-
-                    <button
-                        type="button"
-                        onclick="window.changeQty(${item.id}, 1)"
-                        class="text-[#004b8d] font-black hover:text-[#1a7139] px-2 text-lg">
-
-                        +
-
-                    </button>
-
+                    <button type="button" onclick="window.changeQty(${item.id}, -1)" class="font-black text-slate-400 hover:text-slate-800 px-2 text-lg">−</button>
+                    <span class="text-sm font-black min-w-[48px] text-center">${item.qty}</span>
+                    <button type="button" onclick="window.changeQty(${item.id}, 1)" class="text-[#004b8d] font-black hover:text-[#1a7139] px-2 text-lg">+</button>
                 </div>
-
             </div>
-
         </div>
-
     `;
-
 }
 
-
-// =========================================================
-// 10B. QUOTE-PRODUCT ITEM
-// =========================================================
-
-function buildQuoteProductItem(item) {
-
-    return `
-
-        <div class="bg-slate-50 border border-slate-100 rounded-2xl p-4 mb-3">
-
-            <!-- PRODUCT HEADER -->
-
-            <div class="flex items-start gap-3">
-
-                <div class="flex-1 min-w-0">
-
-                    <h4 class="text-base font-black text-slate-800 leading-snug">
-
-                        ${item.name}
-
-                    </h4>
-
-
-                    <p class="text-[10px] uppercase font-bold text-slate-400 mt-1">
-
-                        ${item.stock || ''}
-
-                    </p>
-
-                </div>
-
-
-                <button
-                    type="button"
-                    onclick="window.removeFromCart(${item.id})"
-                    class="shrink-0 p-2 rounded-xl text-red-500 hover:bg-red-50 transition">
-
-                    <i
-                        data-lucide="trash-2"
-                        class="w-4 h-4">
-                    </i>
-
-                </button>
-
-            </div>
-
-
-            <!-- QUANTITY REQUIRED -->
-
-            <div class="mt-4">
-
-                <label
-                    for="quote-quantity-${item.id}"
-                    class="block text-xs font-black text-slate-600 uppercase tracking-wider mb-2">
-
-                    Quantity Required:
-
-                </label>
-
-
-                <input
-                    type="text"
-                    id="quote-quantity-${item.id}"
-                    value="${item.quoteQuantity || ''}"
-                    placeholder="e.g (25/50/100 KGs/Liters/Tonnes)"
-                    autocomplete="off"
-                    oninput="window.updateQuoteQuantity(${item.id}, this.value)"
-                    class="w-full p-3 bg-white rounded-xl border border-slate-200 text-sm font-bold text-slate-700 focus:ring-2 focus:ring-[#004b8d] focus:border-[#004b8d] outline-none">
-
-            </div>
-
-        </div>
-
-    `;
-
-}
-
-
-window.updateCartUI =
-function() {
-
-    const count =
-        cart.length;
-
-
-    const countEl =
-        document.getElementById(
-            'cart-count'
-        );
-
-
-    const totalCountEl =
-        document.getElementById(
-            'cart-total-count'
-        );
-
-
-    const cartItems =
-        document.getElementById(
-            'cart-items'
-        );
-
-
-    if (countEl) {
-
-        countEl.innerText =
-            count;
-
-    }
-
-
-    if (totalCountEl) {
-
-        totalCountEl.innerText =
-            count;
-
-    }
-
-
+window.updateCartUI = function() {
+    const count = cart.length;
+    const countEl = document.getElementById('cart-count');
+    const totalCountEl = document.getElementById('cart-total-count');
+    const cartItems = document.getElementById('cart-items');
+    if (countEl) countEl.innerText = count;
+    if (totalCountEl) totalCountEl.innerText = count;
     if (cartItems) {
-
-        if (!cart.length) {
-
+        if (cart.length === 0) {
             cartItems.innerHTML = `
-
                 <div class="py-12 text-center text-slate-400">
-
-                    <i
-                        data-lucide="shopping-cart"
-                        class="w-10 h-10 mx-auto mb-3 opacity-40">
-                    </i>
-
-                    <p class="font-black text-lg">
-
-                        Your quote list is empty.
-
-                    </p>
-
-                    <p class="text-sm font-medium mt-1">
-
-                        Add products to request a quote.
-
-                    </p>
-
+                    <i data-lucide="shopping-cart" class="w-10 h-10 mx-auto mb-3 opacity-40"></i>
+                    <p class="font-black text-lg">Your quote list is empty.</p>
+                    <p class="text-sm font-medium mt-1">Add products to request a quote.</p>
                 </div>
-
             `;
-
         } else {
-
-            cartItems.innerHTML =
-                cart.map(
-                    item =>
-                        buildCartItem(
-                            item,
-                            'mb-4'
-                        )
-                ).join('');
-
+            cartItems.innerHTML = cart.map(item => buildCartItem(item, 'mb-4')).join('');
         }
-
     }
-
-
     window.updateQuoteProductUI();
-
     lucide.createIcons();
-
 };
 
-
-// =========================================================
 // 11. REQUEST A QUOTE
-// =========================================================
-
-window.showCheckout =
-function() {
-
+window.showCheckout = function() {
     if (!cart.length) {
-
-        alert(
-            'Quote list is empty!'
-        );
-
+        alert('Quote list is empty!');
         return;
-
     }
-
-
     window.openQuoteForm();
-
 };
 
-
-window.requestQuote =
-function(id) {
-
-    const product =
-        products.find(
-            p => p.id === id
-        );
-
-
+window.requestQuote = function(id) {
+    const product = products.find(p => p.id === id);
     if (!product) return;
-
-
-    const existing =
-        cart.find(
-            item => item.id === id
-        );
-
-
+    const existing = cart.find(item => item.id === id);
     if (!existing) {
-
         cart.push({
-
             ...product,
-
             qty: 1,
-
             quoteQuantity: ''
-
         });
-
     }
-
-
     window.updateCartUI();
-
     window.openQuoteForm();
-
 };
 
-
-window.requestQuoteFromDetails =
-function() {
-
+window.requestQuoteFromDetails = function() {
     if (activeProductId) {
-
-        window.requestQuote(
-            activeProductId
-        );
-
+        window.requestQuote(activeProductId);
         return;
-
     }
-
-
     window.closeDetails();
-
 };
 
-
-// =========================================================
 // 12. SEARCHABLE PRODUCT MULTI-SELECT
-// =========================================================
-
-window.toggleProductPicker =
-function() {
-
-    const picker =
-        document.getElementById(
-            'product-picker'
-        );
-
-
+window.toggleProductPicker = function() {
+    const picker = document.getElementById('product-picker');
     if (!picker) return;
-
-
-    picker.classList.toggle(
-        'hidden'
-    );
-
-
-    if (!picker.classList.contains(
-        'hidden'
-    )) {
-
-        const search =
-            document.getElementById(
-                'product-picker-search'
-            );
-
-
-        if (search) {
-
-            search.focus();
-
-        }
-
-
-        window.renderQuoteProductOptions(
-            search
-                ? search.value
-                : ''
-        );
-
+    picker.classList.toggle('hidden');
+    if (!picker.classList.contains('hidden')) {
+        const search = document.getElementById('product-picker-search');
+        if (search) search.focus();
+        window.renderQuoteProductOptions(search ? search.value : '');
     }
-
 };
 
-
-window.closeProductPicker =
-function() {
-
-    const picker =
-        document.getElementById(
-            'product-picker'
-        );
-
-
-    if (picker) {
-
-        picker.classList.add(
-            'hidden'
-        );
-
-    }
-
+window.closeProductPicker = function() {
+    const picker = document.getElementById('product-picker');
+    if (picker) picker.classList.add('hidden');
 };
 
-
-window.filterQuoteProducts =
-function(query) {
-
-    window.renderQuoteProductOptions(
-        query
-    );
-
+window.filterQuoteProducts = function(query) {
+    window.renderQuoteProductOptions(query);
 };
 
-
-window.renderQuoteProductOptions =
-function(query = '') {
-
-    const container =
-        document.getElementById(
-            'product-picker-options'
-        );
-
-
+window.renderQuoteProductOptions = function(query = '') {
+    const container = document.getElementById('product-picker-options');
     if (!container) return;
-
-
-    const q =
-        String(query)
-            .toLowerCase()
-            .trim();
-
-
-    const results =
-        products.filter(
-            product => {
-
-                if (!q) {
-
-                    return true;
-
-                }
-
-
-                return (
-
-                    product.name
-                        .toLowerCase()
-                        .includes(q)
-
-                    ||
-
-                    product.cat
-                        .toLowerCase()
-                        .includes(q)
-
-                    ||
-
-                    (
-                        product.features &&
-                        product.features
-                            .toLowerCase()
-                            .includes(q)
-                    )
-
-                );
-
-            }
-        );
-
-
+    const q = String(query).toLowerCase().trim();
+    const results = products.filter(product => {
+        if (!q) return true;
+        return product.name.toLowerCase().includes(q) ||
+            product.cat.toLowerCase().includes(q) ||
+            (product.features && product.features.toLowerCase().includes(q));
+    });
     if (!results.length) {
-
-        container.innerHTML = `
-
-            <div class="py-8 text-center text-slate-400 font-bold">
-
-                No products found.
-
-            </div>
-
-        `;
-
+        container.innerHTML = '<div class="py-8 text-center text-slate-400 font-bold">No products found.</div>';
         return;
-
     }
-
-
-    container.innerHTML =
-        results
-            .map(
-                product => {
-
-                    const selected =
-                        cart.some(
-                            item =>
-                                item.id ===
-                                product.id
-                        );
-
-
-                    return `
-
-                        <button
-                            type="button"
-                            onclick="window.toggleQuoteProduct(${product.id})"
-                            class="w-full flex items-center gap-3 p-3 rounded-xl text-left transition ${
-                                selected
-                                    ? 'bg-blue-50 border border-blue-100'
-                                    : 'hover:bg-slate-50 border border-transparent'
-                            }">
-
-
-                            <span
-                                class="w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 ${
-                                    selected
-                                        ? 'bg-[#004b8d] border-[#004b8d] text-white'
-                                        : 'border-slate-300 bg-white'
-                                }">
-
-                                ${
-                                    selected
-                                        ? '<i data-lucide="check" class="w-3.5 h-3.5"></i>'
-                                        : ''
-                                }
-
-                            </span>
-
-
-                            <span class="min-w-0 flex-1">
-
-                                <span class="block text-sm font-black text-slate-800 truncate">
-
-                                    ${product.name}
-
-                                </span>
-
-
-                                <span class="block text-[10px] uppercase font-bold text-slate-400 mt-0.5">
-
-                                    ${product.cat}
-
-                                </span>
-
-                            </span>
-
-                        </button>
-
-                    `;
-
-                }
-            )
-            .join('');
-
-
+    container.innerHTML = results.map(product => {
+        const selected = cart.some(item => item.id === product.id);
+        return `
+            <button type="button" onclick="window.toggleQuoteProduct(${product.id})" class="w-full flex items-center gap-3 p-3 rounded-xl text-left transition ${selected ? 'bg-blue-50 border border-blue-100' : 'hover:bg-slate-50 border border-transparent'}">
+                <span class="w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 ${selected ? 'bg-[#004b8d] border-[#004b8d] text-white' : 'border-slate-300 bg-white'}">
+                    ${selected ? '<i data-lucide="check" class="w-3.5 h-3.5"></i>' : ''}
+                </span>
+                <span class="min-w-0 flex-1">
+                    <span class="block text-sm font-black text-slate-800 truncate">${product.name}</span>
+                    <span class="block text-[10px] uppercase font-bold text-slate-400 mt-0.5">${product.cat}</span>
+                </span>
+            </button>
+        `;
+    }).join('');
     lucide.createIcons();
-
 };
 
-
-window.toggleQuoteProduct =
-function(id) {
-
-    const product =
-        products.find(
-            p => p.id === id
-        );
-
-
+window.toggleQuoteProduct = function(id) {
+    const product = products.find(p => p.id === id);
     if (!product) return;
-
-
-    const index =
-        cart.findIndex(
-            item => item.id === id
-        );
-
-
+    const index = cart.findIndex(item => item.id === id);
     if (index >= 0) {
-
-        cart.splice(
-            index,
-            1
-        );
-
+        cart.splice(index, 1);
     } else {
-
         cart.push({
-
             ...product,
-
             qty: 1,
-
             quoteQuantity: ''
-
         });
-
     }
-
-
     window.updateCartUI();
-
-
-    const search =
-        document.getElementById(
-            'product-picker-search'
-        );
-
-
-    window.renderQuoteProductOptions(
-        search
-            ? search.value
-            : ''
-    );
-
+    const search = document.getElementById('product-picker-search');
+    window.renderQuoteProductOptions(search ? search.value : '');
 };
 
+// 12B. SYNCHRONIZE QUOTE FORM + RIGHT SUMMARY
+function buildQuoteProductItem(item, inputId) {
+    return `
+        <div class="bg-white border border-slate-200 rounded-2xl p-4">
+            <div class="flex items-start gap-3">
+                <div class="flex-1 min-w-0">
+                    <div class="text-sm font-black text-slate-800 leading-snug">${item.name}</div>
+                    <div class="text-[10px] font-bold text-slate-400 uppercase mt-1">${item.stock || ''}</div>
+                </div>
+                <button type="button" onclick="window.removeFromCart(${item.id})" aria-label="Remove ${item.name}" class="shrink-0 p-1.5 rounded-lg text-red-500 hover:bg-red-50 transition">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+            <div class="mt-4">
+                <label for="${inputId}" class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">Quantity Required:</label>
+                <input type="text" id="${inputId}" value="${item.quoteQuantity || ''}" placeholder="e.g (25/50/100 KGs/Liters/Tonnes)" autocomplete="off" class="w-full p-3 bg-slate-50 rounded-xl border border-slate-200 text-sm font-bold text-slate-700 focus:ring-2 focus:ring-[#004b8d] focus:border-transparent outline-none" oninput="window.updateQuoteQuantity(${item.id}, this.value)">
+            </div>
+        </div>
+    `;
+}
 
-// =========================================================
-// 12B. FREE-TEXT QUANTITY PER SELECTED PRODUCT
-// =========================================================
-
-window.updateQuoteQuantity =
-function(id, value) {
-
-    const item =
-        cart.find(
-            product =>
-                product.id === id
-        );
-
-
+window.updateQuoteQuantity = function(id, value) {
+    const item = cart.find(product => product.id === id);
     if (!item) return;
-
-
-    item.quoteQuantity =
-        String(
-            value || ''
-        );
-
-
-    // Keep the right-side summary
-    // synchronized without rebuilding
-    // the entire form while the user types.
-
-    const summaryInput =
-        document.getElementById(
-            `summary-quantity-${id}`
-        );
-
-
-    if (
-        summaryInput &&
-        summaryInput.value !==
-            item.quoteQuantity
-    ) {
-
-        summaryInput.value =
-            item.quoteQuantity;
-
-    }
-
+    item.quoteQuantity = String(value || '');
+    const leftInput = document.getElementById(`quote-quantity-${id}`);
+    const rightInput = document.getElementById(`summary-quantity-${id}`);
+    if (leftInput && leftInput.value !== item.quoteQuantity) leftInput.value = item.quoteQuantity;
+    if (rightInput && rightInput.value !== item.quoteQuantity) rightInput.value = item.quoteQuantity;
 };
 
-
-// =========================================================
-// 12C. SYNCHRONIZE QUOTE FORM + RIGHT SUMMARY
-// =========================================================
-
-window.updateQuoteProductUI =
-function() {
-
-    const selectedContainer =
-        document.getElementById(
-            'selected-products'
-        );
-
-
-    const productLabel =
-        document.getElementById(
-            'product-picker-label'
-        );
-
-
-    const summaryContainer =
-        document.getElementById(
-            'summary-items'
-        );
-
-
-    // LEFT SIDE - SELECTED PRODUCTS
+window.updateQuoteProductUI = function() {
+    const selectedContainer = document.getElementById('selected-products');
+    const productLabel = document.getElementById('product-picker-label');
+    const summaryContainer = document.getElementById('summary-items');
 
     if (selectedContainer) {
-
-        if (!cart.length) {
-
-            selectedContainer.innerHTML = '';
-
-        } else {
-
-            selectedContainer.innerHTML =
-                cart.map(
-                    item =>
-                        buildQuoteProductItem(
-                            item
-                        )
-                ).join('');
-
-        }
-
+        selectedContainer.innerHTML = cart.length
+            ? cart.map(item => buildQuoteProductItem(item, `quote-quantity-${item.id}`)).join('')
+            : '';
     }
-
-
-    // PRODUCT SELECTOR LABEL
 
     if (productLabel) {
-
-        productLabel.innerText =
-            cart.length === 0
-
-                ? 'Select one or more products *'
-
-                : `${cart.length} product${cart.length === 1 ? '' : 's'} selected`;
-
+        productLabel.innerText = cart.length === 0
+            ? 'Select one or more products *'
+            : `${cart.length} product${cart.length === 1 ? '' : 's'} selected`;
     }
-
-
-    // RIGHT SIDE - SUMMARY
 
     if (summaryContainer) {
-
-        if (!cart.length) {
-
-            summaryContainer.innerHTML = `
-
+        summaryContainer.innerHTML = cart.length
+            ? cart.map(item => buildQuoteProductItem(item, `summary-quantity-${item.id}`)).join('')
+            : `
                 <div class="py-12 text-center text-slate-400">
-
-                    <i
-                        data-lucide="shopping-cart"
-                        class="w-10 h-10 mx-auto mb-3 opacity-40">
-                    </i>
-
-                    <p class="font-black text-lg">
-
-                        No products selected
-
-                    </p>
-
-                    <p class="text-sm font-medium mt-1">
-
-                        Select products from Product Required.
-
-                    </p>
-
+                    <i data-lucide="shopping-cart" class="w-10 h-10 mx-auto mb-3 opacity-40"></i>
+                    <p class="font-black text-lg">No products selected</p>
+                    <p class="text-sm font-medium mt-1">Select products from Product Required.</p>
                 </div>
-
             `;
-
-        } else {
-
-            summaryContainer.innerHTML =
-
-                cart.map(
-                    item => `
-
-                        <div class="bg-slate-50 border border-slate-100 rounded-2xl p-4 mb-3">
-
-                            <div class="flex items-start gap-3">
-
-                                <div class="flex-1 min-w-0">
-
-                                    <h4 class="text-base font-black text-slate-800 leading-snug">
-
-                                        ${item.name}
-
-                                    </h4>
-
-
-                                    <p class="text-[10px] uppercase font-bold text-slate-400 mt-1">
-
-                                        ${item.stock || ''}
-
-                                    </p>
-
-                                </div>
-
-
-                                <button
-                                    type="button"
-                                    onclick="window.removeFromCart(${item.id})"
-                                    class="shrink-0 p-2 rounded-xl text-red-500 hover:bg-red-50 transition">
-
-                                    <i
-                                        data-lucide="trash-2"
-                                        class="w-4 h-4">
-                                    </i>
-
-                                </button>
-
-                            </div>
-
-
-                            <div class="mt-4">
-
-                                <label
-                                    for="summary-quantity-${item.id}"
-                                    class="block text-xs font-black text-slate-600 uppercase tracking-wider mb-2">
-
-                                    Quantity Required:
-
-                                </label>
-
-
-                                <input
-                                    type="text"
-                                    id="summary-quantity-${item.id}"
-                                    value="${item.quoteQuantity || ''}"
-                                    placeholder="e.g (25/50/100 KGs/Liters/Tonnes)"
-                                    autocomplete="off"
-                                    oninput="window.updateQuoteQuantity(${item.id}, this.value)"
-                                    class="w-full p-3 bg-white rounded-xl border border-slate-200 text-sm font-bold text-slate-700 focus:ring-2 focus:ring-[#004b8d] focus:border-[#004b8d] outline-none">
-
-                            </div>
-
-                        </div>
-
-                    `
-                ).join('');
-
-        }
-
     }
-
 
     lucide.createIcons();
-
 };
 
-
-// =========================================================
-// 12D. OPEN QUOTE FORM
-// =========================================================
-
-window.openQuoteForm =
-function() {
-
+// 12C. OPEN QUOTE FORM
+window.openQuoteForm = function() {
     if (!cart.length) {
-
-        alert(
-            'Please select at least one product.'
-        );
-
+        alert('Please select at least one product.');
         return;
-
     }
-
 
     window.updateCartUI();
-
     window.updateQuoteProductUI();
 
+    const pickerSearch = document.getElementById('product-picker-search');
 
-    const pickerSearch =
-        document.getElementById(
-            'product-picker-search'
-        );
+    if (pickerSearch) pickerSearch.value = '';
 
+    window.renderQuoteProductOptions('');
 
-    if (pickerSearch) {
+    const modal = document.getElementById('checkout-modal');
 
-        pickerSearch.value =
-            '';
-
-    }
-
-
-    window.renderQuoteProductOptions(
-        ''
-    );
-
-
-    const modal =
-        document.getElementById(
-            'checkout-modal'
-        );
-
-
-    if (modal) {
-
-        modal.classList.remove(
-            'hidden'
-        );
-
-    }
-
+    if (modal) modal.classList.remove('hidden');
 
     lucide.createIcons();
-
 };
 
-
-// =========================================================
 // 13. CLOSE QUOTE FORM
-// =========================================================
-
-window.closeCheckout =
-function() {
-
-    const modal =
-        document.getElementById(
-            'checkout-modal'
-        );
-
-
-    if (modal) {
-
-        modal.classList.add(
-            'hidden'
-        );
-
-    }
-
+window.closeCheckout = function() {
+    const modal = document.getElementById('checkout-modal');
+    if (modal) modal.classList.add('hidden');
 };
 
-// =========================================================
-// 14. READ QUOTE FORM
-// =========================================================
-
+// 14. QUOTE FORM DATA
 function getQuoteData() {
-
     if (!cart.length) {
-
-        alert(
-            'Please select at least one product.'
-        );
-
+        alert('Please select at least one product.');
         return null;
-
     }
 
-
-    const requiredFields = [
-
-        'cust-name',
-        'cust-company',
-        'cust-phone',
-        'cust-email',
-        'cust-grade'
-
-    ];
-
-
+    const requiredFields = ['cust-name', 'cust-company', 'cust-phone', 'cust-email', 'cust-grade'];
     const values = {};
 
-
     for (const id of requiredFields) {
-
-        const field =
-            document.getElementById(id);
-
-
-        if (!field) {
-
-            continue;
-
-        }
-
-
-        const value =
-            String(
-                field.value || ''
-            ).trim();
-
+        const field = document.getElementById(id);
+        if (!field) continue;
+        const value = String(field.value || '').trim();
 
         if (!value) {
-
             field.reportValidity();
-
             field.focus();
-
             return null;
-
         }
 
-
-        values[id] =
-            value;
-
+        values[id] = value;
     }
 
+    const designation = document.getElementById('cust-designation');
+    values.designation = designation ? designation.value.trim() : '';
 
-    // ---------------------------------------------------------
-    // CHECK QUANTITY FOR EVERY SELECTED PRODUCT
-    // ---------------------------------------------------------
+    const fileInput = document.getElementById('cust-file');
+    values.fileName = fileInput && fileInput.files && fileInput.files.length
+        ? fileInput.files[0].name
+        : 'Not uploaded';
 
-    for (const item of cart) {
+    const missingQuantity = cart.find(item => !String(item.quoteQuantity || '').trim());
 
-        const quantity =
-            String(
-                item.quoteQuantity || ''
-            ).trim();
+    if (missingQuantity) {
+        alert(`Please enter the quantity required for ${missingQuantity.name}.`);
 
+        const input =
+            document.getElementById(`quote-quantity-${missingQuantity.id}`) ||
+            document.getElementById(`summary-quantity-${missingQuantity.id}`);
 
-        if (!quantity) {
-
-            alert(
-                `Please enter Quantity Required for ${item.name}.`
-            );
-
-
-            const quantityField =
-                document.getElementById(
-                    `quote-quantity-${item.id}`
-                );
-
-
-            if (quantityField) {
-
-                quantityField.focus();
-
-            }
-
-
-            return null;
-
+        if (input) {
+            input.focus();
+            input.reportValidity();
         }
 
+        return null;
     }
 
-
-    // OPTIONAL DESIGNATION
-
-    const designation =
-        document.getElementById(
-            'cust-designation'
-        );
-
-
-    values.designation =
-        designation
-            ? designation.value.trim()
-            : '';
-
-
-    // OPTIONAL FILE
-
-    const fileInput =
-        document.getElementById(
-            'cust-file'
-        );
-
-
-    values.fileName =
-
-        fileInput &&
-        fileInput.files &&
-        fileInput.files.length
-
-            ? fileInput.files[0].name
-
-            : 'Not uploaded';
-
-
-    // PRODUCTS
-
-    values.products =
-        cart.map(
-            item => ({
-
-                name:
-                    item.name,
-
-                quantity:
-                    String(
-                        item.quoteQuantity || ''
-                    ).trim(),
-
-                cartQuantity:
-                    item.qty,
-
-                grade:
-                    item.grade || 'N/A'
-
-            })
-        );
-
+    values.products = cart.map(item => ({
+        name: item.name,
+        quantity: String(item.quoteQuantity || '').trim(),
+        grade: item.grade || 'N/A'
+    }));
 
     return values;
+}
 
-};
-
-
-// =========================================================
 // 15. SUBMIT QUOTE
-// =========================================================
-
-window.submitQuote =
-function(method) {
-
-    const data =
-        getQuoteData();
-
-
+window.submitQuote = function(method) {
+    const data = getQuoteData();
     if (!data) return;
 
-
-    const productLines =
-
-        data.products
-            .map(
-                product =>
-                    `- ${product.name} | Quantity Required: ${product.quantity}`
-            )
-            .join('\n');
-
+    const productLines = data.products
+        .map(product => `- ${product.name} | Quantity Required: ${product.quantity}`)
+        .join('\n');
 
     const message = [
-
         'NEW QUOTE REQUEST - EXCIPURE PHARMA',
-
         '',
-
         `Name: ${data['cust-name']}`,
-
         `Company: ${data['cust-company']}`,
-
-        `Designation: ${
-            data.designation ||
-            'Not provided'
-        }`,
-
-        `WhatsApp / Mobile: ${
-            data['cust-phone']
-        }`,
-
-        `Email: ${
-            data['cust-email']
-        }`,
-
+        `Designation: ${data.designation || 'Not provided'}`,
+        `WhatsApp / Mobile: ${data['cust-phone']}`,
+        `Email: ${data['cust-email']}`,
         '',
-
         'Products Required:',
-
         productLines,
-
         '',
-
-        `Required Grade: ${
-            data['cust-grade']
-        }`,
-
-        `Specification/COA: ${
-            data.fileName
-        }`
-
+        `Required Grade: ${data['cust-grade']}`,
+        `Specification/COA: ${data.fileName}`
     ].join('\n');
 
-
-    // ---------------------------------------------------------
-    // WHATSAPP
-    // ---------------------------------------------------------
-
-    if (
-        method === 'whatsapp'
-    ) {
-
+    if (method === 'whatsapp') {
         window.open(
-
-            `https://wa.me/919398453760?text=${encodeURIComponent(
-                message
-            )}`,
-
+            `https://wa.me/919398453760?text=${encodeURIComponent(message)}`,
             '_blank'
-
         );
-
         return;
-
     }
-
-
-    // ---------------------------------------------------------
-    // EMAIL
-    // ---------------------------------------------------------
 
     window.location.href =
-
         `mailto:info@excipurepharma.com` +
-
-        `?subject=${encodeURIComponent(
-            'Request a Quote - Excipure Pharma'
-        )}` +
-
-        `&body=${encodeURIComponent(
-            message
-        )}`;
-
+        `?subject=${encodeURIComponent('Request a Quote - Excipure Pharma')}` +
+        `&body=${encodeURIComponent(message)}`;
 };
 
-
-// =========================================================
 // 16. TOAST
-// =========================================================
+window.showQuoteToast = function(message) {
+    const existing = document.getElementById('quote-toast');
 
-window.showQuoteToast =
-function(message) {
+    if (existing) existing.remove();
 
-    const existing =
-        document.getElementById(
-            'quote-toast'
-        );
+    const toast = document.createElement('div');
 
+    toast.id = 'quote-toast';
+    toast.className = 'fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-6 py-3 rounded-full z-[100] text-sm font-bold shadow-2xl text-center';
+    toast.innerText = message;
 
-    if (existing) {
+    document.body.appendChild(toast);
 
-        existing.remove();
-
-    }
-
-
-    const toast =
-        document.createElement(
-            'div'
-        );
-
-
-    toast.id =
-        'quote-toast';
-
-
-    toast.className =
-        'fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-6 py-3 rounded-full z-[100] text-sm font-bold shadow-2xl text-center';
-
-
-    toast.innerText =
-        message;
-
-
-    document.body.appendChild(
-        toast
-    );
-
-
-    setTimeout(
-
-        () => {
-
-            toast.remove();
-
-        },
-
-        2200
-
-    );
-
+    setTimeout(() => {
+        toast.remove();
+    }, 2200);
 };
 
-
-// =========================================================
 // 17. BACKWARD COMPATIBILITY
-// =========================================================
+window.submitOrder = window.submitQuote;
 
-window.submitOrder =
-    window.submitQuote;
-
-
-// =========================================================
 // 18. INITIALIZATION
-// =========================================================
-
-document.addEventListener(
-    'DOMContentLoaded',
-    function() {
-
-        window.renderProducts(
-            products
-        );
-
-
-        window.renderSidebar();
-
-
-        window.updateCartUI();
-
-
-        window.renderQuoteProductOptions(
-            ''
-        );
-
-
-        lucide.createIcons();
-
-    }
-);
+document.addEventListener('DOMContentLoaded', function() {
+    window.renderProducts(products);
+    window.renderSidebar();
+    window.updateCartUI();
+    window.renderQuoteProductOptions('');
+    lucide.createIcons();
+});
