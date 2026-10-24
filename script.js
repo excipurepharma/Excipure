@@ -382,12 +382,23 @@ window.updateCartUI = function() {
     lucide.createIcons();
 };
 
+window.toggleCart = function() {
+    const drawer = document.getElementById('cart-drawer');
+    const content = document.getElementById('cart-content');
+    if (!drawer || !content) return;
+    const opening = drawer.classList.contains('invisible');
+    drawer.classList.toggle('invisible', !opening);
+    content.classList.toggle('translate-x-full', !opening);
+    content.classList.toggle('translate-x-0', opening);
+};
+
 // 11. REQUEST A QUOTE
 window.showCheckout = function() {
     if (!cart.length) {
         alert('Quote list is empty!');
         return;
     }
+    window.toggleCart();
     window.openQuoteForm();
 };
 
